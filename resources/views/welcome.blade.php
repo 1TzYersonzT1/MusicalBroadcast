@@ -11,13 +11,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;600&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-
+    <script src="{{ mix('js/app.js') }}" defer></script>
     @livewireStyles
 </head>
 
 <body class="antialiased">
 
-    @livewire('nav-menu')
+    @livewire('navigation-menu')
 
 
     @livewireScripts

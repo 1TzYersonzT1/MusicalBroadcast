@@ -17,7 +17,7 @@
         <script src="{{ mix('js/app.js') }}" defer></script>
     </head>
     <body>
-        <div class="font-sans text-gray-900 antialiased">
+        <div  style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('Fondo.png');" class="font-sans bg-gray-900 antialiased">
             {{ $slot }}
         </div>
     </body>
