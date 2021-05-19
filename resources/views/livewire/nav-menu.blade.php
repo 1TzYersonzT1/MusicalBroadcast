@@ -5,7 +5,7 @@
             <span class="font-semibold text-xl tracking-tight"><a href='#'>Logo</a></span>
         </div>
         <div class="block lg:hidden ">
-            <button id="nav" class="flex items-center px-3 py-2 border-2 rounded text-white hover:text-white ">
+            <button id="navBtnToggle" class="flex items-center px-3 py-2 border-2 rounded text-white hover:text-white ">
                 <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                     <title>Menu</title>
                     <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
@@ -14,7 +14,7 @@
         </div>
     </div>
 
-    <div class="menu w-full lg:block flex-grow lg:flex lg:items-center lg:w-auto lg:px-3 px-8">
+    <div id='navItems' class="menu w-full lg:block flex-grow lg:flex lg:items-center lg:w-auto lg:px-3 px-8">
         <div class="text-md text-white lg:flex-grow">
             <a href="#"
                 class="block mt-4 lg:inline-block lg:mt-0 hover:text-white px-4 py-2 rounded hover:text-gray-300 mr-2">
@@ -56,3 +56,4 @@
     </div>
 
 </nav>
+
