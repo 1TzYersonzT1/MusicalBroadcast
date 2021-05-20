@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-gray-900 border-b border-gray-100 mb-12">
+<nav x-data="{ open: false }" class="bg-gray-900 border-b border-gray-100 mb-12 sm:mx-auto">
     <!-- Primary Navigation Menu -->
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -46,7 +46,7 @@
                 <!-- Settings Dropdown -->
 
 
-                <div class="relative text-gray-600 mr-5">
+                <div class="relative lg:block sm:hidden text-gray-600 mr-5">
                     <input type="search" name="serch" placeholder="Buscar"
                         class="bg-white h-10 px-5 pr-10 w-80 rounded-full text-sm focus:outline-none">
                     <button type="submit" class="absolute right-0 top-0 mt-3 mr-4">
@@ -61,7 +61,7 @@
                 </div>
 
                 @guest
-                <div>
+                <div class="lg:block sm:hidden">
                     <x-jet-nav-link href="{{ route('login') }}">
                         <x-slot name='slot'>
                             <p class="text-white mr-5">{{ __('Iniciar sesión') }}</p>
@@ -84,7 +84,7 @@
                                 <span class="inline-flex rounded-md">
                                     <button type="button"
                                         class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-gray-900 hover:text-gray-200 focus:outline-none transition">
-                                        {{ Auth::user()->nombre}}
+                                        {{ Auth::user()->nombre}} {{ Auth::user()->apellido}}
 
                                         <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg"
                                             viewBox="0 0 20 20" fill="currentColor">
@@ -155,6 +155,36 @@
             </x-jet-responsive-nav-link>
         </div>
 
+        <div class="pt-2 pb-3 space-y-1">
+            <x-jet-responsive-nav-link href="/">
+                {{ __('Artistas') }}
+            </x-jet-responsive-nav-link>
+        </div>
+
+        <div class="pt-2 pb-3 space-y-1">
+            <x-jet-responsive-nav-link href="/">
+                {{ __('Talleres') }}
+            </x-jet-responsive-nav-link>
+        </div>
+
+        <div class="pt-2 pb-3 space-y-1">
+            <x-jet-responsive-nav-link href="/">
+                {{ __('Actividades') }}
+            </x-jet-responsive-nav-link>
+        </div>
+
+        <div class="pt-2 pb-3 space-y-1">
+            <x-jet-responsive-nav-link href="{{ route('login') }}">
+                {{ __('Iniciar sesión') }}
+            </x-jet-responsive-nav-link>
+        </div>
+
+        <div class="pt-2 pb-3 space-y-1">
+            <x-jet-responsive-nav-link href="{{ route('register') }}">
+                {{ __('Registrarse') }}
+            </x-jet-responsive-nav-link>
+        </div>
+
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="flex items-center px-4">
@@ -173,7 +203,7 @@
 
                     <x-jet-responsive-nav-link href="{{ route('profile.show') }}"
                         :active="request()->routeIs('profile.show')">
-                        {{ __('Profile') }}
+                        {{ __('Perfil') }}
                     </x-jet-responsive-nav-link>
 
                     <!-- Authentication -->

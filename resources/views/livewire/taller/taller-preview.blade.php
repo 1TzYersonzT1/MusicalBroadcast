@@ -1,6 +1,12 @@
 <div class="grid lg:grid-cols-2 container mx-auto">
     <div class='px-10'>
-        <div class="grid grid-cols-1 gap-10">
+        @can('crear-taller')
+            <div>
+                <button class="bg-green-500 px-5 py-1 mb-5 text-white font-bold">Crear taller</button>
+            </div>
+        @endcan
+
+        <div class="grid gap-10">
             @foreach ($talleres as $taller)
                 <div>
                     <div
@@ -12,7 +18,7 @@
                             <div class="text-black font-bold text-xl mb-2 leading-tight">
                                 <p>{{ $taller->TAL_Nombre }}</p>
                             </div>
-                            <a class="bg-blue-800 font-bold px-2 py-2 w-40 text-center text-white hover:text-blue-200"
+                            <a class="bg-blue-800 font-bold px-2 py-2 w-40 text-center text-white hover:text-blue-200 cursor-pointer"
                                 wire:click='mostrarTaller({{ $taller->id }})'>Más
                                 información</a>
                         </div>
