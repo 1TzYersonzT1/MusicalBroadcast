@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-gray-900 border-b border-gray-100">
+<nav x-data="{ open: false }" class="bg-gray-900 border-b border-gray-100 mb-12">
     <!-- Primary Navigation Menu -->
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -7,7 +7,7 @@
 
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="">
                         <x-jet-application-mark class="block h-9 w-auto" />
                     </a>
                 </div>
@@ -26,7 +26,7 @@
                         </x-slot>
                     </x-jet-nav-link>
 
-                    <x-jet-nav-link href="{{ route() }}">
+                    <x-jet-nav-link href="{{ route('talleres.index') }}">
                         <x-slot name='slot'>
                             <p class="text-white">{{ __('Talleres') }}</p>
                         </x-slot>
@@ -61,6 +61,7 @@
                 </div>
 
                 @guest
+                <div>
                     <x-jet-nav-link href="{{ route('login') }}">
                         <x-slot name='slot'>
                             <p class="text-white mr-5">{{ __('Iniciar sesión') }}</p>
@@ -72,6 +73,7 @@
                             <p class="text-white">{{ __('Registrarse') }}</p>
                         </x-slot>
                     </x-jet-nav-link>
+                </div>
                 @endguest
 
                 <div class="ml-3 relative">
