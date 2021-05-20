@@ -26,7 +26,7 @@
                         </x-slot>
                     </x-jet-nav-link>
 
-                    <x-jet-nav-link href="/">
+                    <x-jet-nav-link href="{{ route() }}">
                         <x-slot name='slot'>
                             <p class="text-white">{{ __('Talleres') }}</p>
                         </x-slot>

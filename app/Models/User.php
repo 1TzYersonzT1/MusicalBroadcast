@@ -29,11 +29,6 @@ class User extends Authenticatable
         'password',
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
         'password',
         'remember_token',
@@ -51,5 +46,22 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-   
+
+    public function roles() {
+        return $this->belongsToMany(Rol::class, 'usuario_rol', 'user_id', 'rol_id');
+    }
+
+    public function is_organizador() {
+        return $this->roles()->find(1) ? true : false;
+    }
+
+    public function is_representante() {
+        return $this->roles()->find(2) ? true : false;
+    }
+
+    public function is_administrador() {
+        return $this->roles()->find(3) ? true : false;
+    }
+    
+
 }

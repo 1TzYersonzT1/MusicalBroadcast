@@ -19,7 +19,6 @@
 
     @livewire('navigation-menu')
 
-
     @livewireScripts
 
 </body>
