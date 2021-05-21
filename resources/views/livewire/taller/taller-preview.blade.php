@@ -1,37 +1,46 @@
-<div class="grid lg:grid-cols-2 container mx-auto">
+<div class="lg:grid grid-cols-2 mt-10 container mx-auto">
     <div class='px-10'>
-        @can('crear-taller')
-            <div>
-                <button class="bg-green-500 px-5 py-1 mb-5 text-white font-bold">Crear taller</button>
-            </div>
-        @endcan
-
-        <div class="grid gap-10">
-            @foreach ($talleres as $taller)
-                <div>
-                    <div
-                        class="flex flex-col lg:flex-row rounded overflow-hidden h-auto lg:h-32 border shadow shadow-lg">
-                        <img class="block h-auto lg:w-48 flex-none bg-cover h-24"
-                            src="https://pbs.twimg.com/media/DrM0nIdU0AEhG5b.jpg">
-                        <div
-                            class="bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
-                            <div class="text-black font-bold text-xl mb-2 leading-tight">
-                                <p>{{ $taller->TAL_Nombre }}</p>
-                            </div>
-                            <a class="bg-blue-800 font-bold px-2 py-2 w-40 text-center text-white hover:text-blue-200 cursor-pointer"
-                                wire:click='mostrarTaller({{ $taller->id }})'>Más
-                                información</a>
-                        </div>
-                    </div>
+        <div class="flex">
+            @can('crear-taller') <div>
+                    <button class="bg-green-500 px-5 py-1 mb-5 text-white font-bold">Crear taller</button>
                 </div>
+            @endcan
 
-            @endforeach
+            @can('ver-solicitudes')
+                <div>
+                    <button class="bg-yellow-500 px-5 py-1 mb-5 text-white font-bold ml-5">Estado solicitudes</button>
+                </div>
+            @endcan
         </div>
 
+        <div>
+            <div class="swiper-container mySwiper mb-5">
+                <div class="swiper-wrapper">
+                    @foreach ($talleres as $taller)
+                        <div
+                            class="swiper-slide flex flex-col lg:flex-row rounded overflow-hidden sm:w-100 shadow shadow-lg">
+                            <img class="block h-auto lg:w-48 flex-none bg-cover h-24"
+                                src="https://pbs.twimg.com/media/DrM0nIdU0AEhG5b.jpg">
+                            <div
+                                class="object-cover bg-gradient-to-bl from-blue-900 to-black-900 w-full rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+                                <div class="text-black font-bold text-xl mb-2 leading-tight">
+                                    <p class="text-white">{{ $taller->TAL_Nombre  }}</p>
+                                </div>
+                                <button
+                                    class="bg-blue-800 font-bold px-2 py-2 w-40 text-center text-white hover:bg-blue-200 cursor-pointer"
+                                    wire:click='mostrarTaller({{ $taller->id }})'>Más
+                                    información</button>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
 
     </div>
-    <div class="px-10">
-        <div class="bg-white-150 mb-4 text-4xl font-bold">
+
+    <div class="px-10 text-white">
+        <div class="mb-4 text-4xl font-bold">
             {{ $tallerActual->TAL_Nombre }}
         </div>
 
@@ -65,6 +74,7 @@
             </div>
         </div>
 
-        
+
+
     </div>
 </div>

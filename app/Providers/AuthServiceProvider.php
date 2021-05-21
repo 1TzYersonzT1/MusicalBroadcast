@@ -31,6 +31,10 @@ class AuthServiceProvider extends ServiceProvider
             return $user->is_organizador();
         });
 
+        Gate::define('ver-solicitudes', function(User $user) {
+            return $user->is_organizador();
+        });
+
 
     }
 }
