@@ -18,17 +18,17 @@
                 <div class="swiper-wrapper">
                     @foreach ($talleres as $taller)
                         <div
-                            class="swiper-slide flex flex-col lg:flex-row rounded overflow-hidden sm:w-100 shadow shadow-lg">
+                            class="swiper-slide flex flex-col lg:flex-row rounded overflow-hidden sm:w-100 h-24 shadow-lg">
                             <img class="block h-auto lg:w-48 flex-none bg-cover h-24"
                                 src="https://pbs.twimg.com/media/DrM0nIdU0AEhG5b.jpg">
                             <div
-                                class="object-cover bg-gradient-to-bl from-blue-900 to-black-900 w-full rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+                                class="object-cover bg-gradient-to-b from-primary to-gray-900 w-full rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
                                 <div class="text-black font-bold text-xl mb-2 leading-tight">
-                                    <p class="text-white">{{ $taller->TAL_Nombre  }}</p>
+                                    <p class="text-white">{{ $taller->TAL_Nombre }}</p>
                                 </div>
                                 <button
-                                    class="bg-blue-800 font-bold px-2 py-2 w-40 text-center text-white hover:bg-blue-200 cursor-pointer"
-                                    wire:click='mostrarTaller({{ $taller->id }})'>Más
+                                    class="font-bold px-2 py-2 w-40 text-center text-white hover:bg-white hover:text-primary cursor-pointer"
+                                    wire:click='mostrarTaller({{ $taller->id }}, {{ $loop->index }})'>Más
                                     información</button>
                             </div>
                         </div>
@@ -37,8 +37,10 @@
             </div>
         </div>
 
-    </div>
+        <div class="swiper-pagination mb-10"></div>
 
+    </div>
+   
     <div class="px-10 text-white">
         <div class="mb-4 text-4xl font-bold">
             {{ $tallerActual->TAL_Nombre }}

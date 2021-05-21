@@ -49,15 +49,10 @@
 
     <!-- Initialize Swiper -->
     <script>
-        window.addEventListener('onContentChanged', () => {
-            initializeSwiper();
-        });
+        var mySwiper = {};
 
-
-
-        function initializeSwiper() {
-
-            var mySwiper = new Swiper('.mySwiper', {
+        function initializeSwiper(default_id) {
+            mySwiper = new Swiper('.mySwiper', {
                 loop: false,
                 slidesPerView: 'auto',
                 observer: true,
@@ -65,12 +60,20 @@
                     el: ".swiper-pagination",
                     clickable: true,
                 },
-
-
+                freeMode: true,
+                initialSlide: default_id,
             });
+
         }
+
+   
+
+        window.addEventListener('onContentChanged', (event) => {
+            initializeSwiper(event.detail.default_id);
+        });
+
         window.onload = function() {
-            initializeSwiper();
+            initializeSwiper(0);
         }
 
     </script>

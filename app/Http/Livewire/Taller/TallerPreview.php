@@ -14,12 +14,12 @@ class TallerPreview extends Component
 
     public function mount() {
         $this->talleres = Taller::orderBy('TAL_Horario', 'asc')->where('TAL_Horario', '>', new DateTime())->get();
-        $this->mostrarTaller($this->talleres[0]->id);
+        $this->mostrarTaller($this->talleres[0]->id, 0);
     }
 
-    public function mostrarTaller($id) {
+    public function mostrarTaller($id, $index) {
         $this->tallerActual = Taller::find($id);
-        $this->dispatchBrowserEvent('onContentChanged');
+        $this->dispatchBrowserEvent('onContentChanged', ["default_id" => $index]);
     }
 
     public function render()
