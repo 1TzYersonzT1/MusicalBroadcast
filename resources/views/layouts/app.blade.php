@@ -9,67 +9,64 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;600&display=swap" rel="stylesheet" />
 
     <!-- Styles -->
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}" />
 
     @livewireStyles
 
-    <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
+
+    <link rel="stylesheet" href="{{ mix('css/extra.css') }}" />
 </head>
 
-<body class="font-sans antialiased bg-primary">
+<body class="font-sans antialiased bg-gradient-to-b bg-primary">
 
     <x-jet-banner />
 
-    <div class="min-h-screen">
+    <div class="min-h-screen flex flex-col">
         @livewire('navigation-menu')
 
         <!-- Page Heading -->
         @if (isset($header))
             <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                <div class="max-w-7xl container mx-auto py-6 px-4 sm:px-6 lg:px-8">
                     {{ $header }}
                 </div>
             </header>
         @endif
 
         <!-- Page Content -->
-        <main class="mix-blend-normal lg:mx-auto">
+        <main class="mix-blend-normal container mx-auto">
             {{ $slot }}
         </main>
 
+        @include('footer')
     </div>
 
 
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-    <!-- Initialize Swiper -->
+    <!-- Inicializar swiper talleres -->
     <script>
         var mySwiper = {};
 
-        function initializeSwiper(default_id) {
+        function initializeSwiper(slideActual) {
             mySwiper = new Swiper('.mySwiper', {
-                loop: false,
+                loop: true,
                 slidesPerView: 'auto',
+                spaceBetween: 30,
                 observer: true,
-                pagination: {
-                    el: ".swiper-pagination",
-                    clickable: true,
-                },
-                freeMode: true,
-                initialSlide: default_id,
+                initialSlide: slideActual,
+            
             });
-
         }
 
-   
-
         window.addEventListener('onContentChanged', (event) => {
-            initializeSwiper(event.detail.default_id);
+            initializeSwiper(event.detail.slideActual);
         });
 
         window.onload = function() {

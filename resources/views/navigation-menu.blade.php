@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-gray-900 sm:mx-auto">
+<nav x-data="{ open: false }" class="bg-gray-900">
     <!-- Primary Navigation Menu -->
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -13,28 +13,28 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex text-white">
                     <x-jet-nav-link href="/">
                         <x-slot name='slot'>
-                            <p class="text-white">{{ __('Inicio') }}</p>
+                            <p class="text-white hover:transform hover:scale-125">{{ __('Inicio') }}</p>
                         </x-slot>
                     </x-jet-nav-link>
 
                     <x-jet-nav-link href="/">
                         <x-slot name='slot'>
-                            <p class="text-white">{{ __('Artistas') }}</p>
+                            <p class="text-white hover:transform hover:scale-125">{{ __('Artistas') }}</p>
                         </x-slot>
                     </x-jet-nav-link>
 
                     <x-jet-nav-link href="{{ route('talleres.index') }}">
                         <x-slot name='slot'>
-                            <p class="text-white">{{ __('Talleres') }}</p>
+                            <p class="text-white hover:transform hover:scale-125">{{ __('Talleres') }}</p>
                         </x-slot>
                     </x-jet-nav-link>
 
                     <x-jet-nav-link href="/">
                         <x-slot name='slot'>
-                            <p class="text-white">{{ __('Actividades') }}</p>
+                            <p class="text-white hover:transform hover:scale-125">{{ __('Actividades') }}</p>
                         </x-slot>
                     </x-jet-nav-link>
                 </div>
@@ -61,19 +61,19 @@
                 </div>
 
                 @guest
-                <div class="lg:block sm:hidden">
-                    <x-jet-nav-link href="{{ route('login') }}">
-                        <x-slot name='slot'>
-                            <p class="text-white mr-5">{{ __('Iniciar sesión') }}</p>
-                        </x-slot>
-                    </x-jet-nav-link>
+                    <div class="lg:block sm:hidden">
+                        <x-jet-nav-link href="{{ route('login') }}">
+                            <x-slot name='slot'>
+                                <p class="text-white mr-5">{{ __('Iniciar sesión') }}</p>
+                            </x-slot>
+                        </x-jet-nav-link>
 
-                    <x-jet-nav-link href="{{ route('register') }}">
-                        <x-slot name='slot'>
-                            <p class="text-white">{{ __('Registrarse') }}</p>
-                        </x-slot>
-                    </x-jet-nav-link>
-                </div>
+                        <x-jet-nav-link href="{{ route('register') }}">
+                            <x-slot name='slot'>
+                                <p class="text-white">{{ __('Registrarse') }}</p>
+                            </x-slot>
+                        </x-jet-nav-link>
+                    </div>
                 @endguest
 
                 <div class="ml-3 relative">
@@ -84,7 +84,7 @@
                                 <span class="inline-flex rounded-md">
                                     <button type="button"
                                         class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-gray-900 hover:text-gray-200 focus:outline-none transition">
-                                        {{ Auth::user()->nombre}} {{ Auth::user()->apellido}}
+                                        {{ Auth::user()->nombre }} {{ Auth::user()->apellido }}
 
                                         <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg"
                                             viewBox="0 0 20 20" fill="currentColor">
@@ -121,7 +121,7 @@
 
                                     <x-jet-dropdown-link href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                                    this.closest('form').submit();">
+                                                                                                                                            this.closest('form').submit();">
                                         {{ __('Cerrar sesión') }}
                                     </x-jet-dropdown-link>
                                 </form>
@@ -151,55 +151,58 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-jet-responsive-nav-link href="/">
-                {{ __('Inicio') }}
+                <span class="text-white flex justify-center">{{ __('Inicio') }}</span>
             </x-jet-responsive-nav-link>
         </div>
 
         <div class="pt-2 pb-3 space-y-1">
             <x-jet-responsive-nav-link href="/">
-                {{ __('Artistas') }}
+                <span class="text-white flex justify-center">{{ __('Artistas') }}</span>
             </x-jet-responsive-nav-link>
         </div>
 
         <div class="pt-2 pb-3 space-y-1">
             <x-jet-responsive-nav-link href="/">
-                {{ __('Talleres') }}
+                <span class="text-white flex justify-center">{{ __('Talleres') }}</span>
             </x-jet-responsive-nav-link>
         </div>
 
         <div class="pt-2 pb-3 space-y-1">
             <x-jet-responsive-nav-link href="/">
-                {{ __('Actividades') }}
-            </x-jet-responsive-nav-link>
-        </div>
-
-        <div class="pt-2 pb-3 space-y-1">
-            <x-jet-responsive-nav-link href="{{ route('login') }}">
-                {{ __('Iniciar sesión') }}
-            </x-jet-responsive-nav-link>
-        </div>
-
-        <div class="pt-2 pb-3 space-y-1">
-            <x-jet-responsive-nav-link href="{{ route('register') }}">
-                {{ __('Registrarse') }}
+                <span class="text-white flex justify-center">{{ __('Actividades') }}</span>
             </x-jet-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
-        <div class="pt-4 pb-1 border-t border-gray-200">
-            <div class="flex items-center px-4">
-                @auth
+        <div class="pt-3 pb-5 border-t border-gray-200">
+            @guest
+
+                <div class="pt-2 pb-3 space-y-1">
+                    <x-jet-responsive-nav-link href="{{ route('login') }}">
+                        <span class="text-white flex justify-center">{{ __('Iniciar sesión') }}</span>
+                    </x-jet-responsive-nav-link>
+                </div>
+
+                <div class="pt-2 pb-3 space-y-1">
+                    <x-jet-responsive-nav-link href="{{ route('register') }}">
+                        <span class="text-white flex justify-center"> {{ __('Registrarse') }}</span>
+                    </x-jet-responsive-nav-link>
+                </div>
+            @endguest
+
+            @auth
+                <div class="flex items-center px-4">
+
                     <div>
                         <div class="font-medium text-base text-white">{{ Auth::user()->name }}</div>
                         <div class="font-medium text-sm text-white">{{ Auth::user()->email }}</div>
                     </div>
-                @endauth
-            </div>
 
+                </div>
+            @endauth
             <div class="mt-3 space-y-1">
                 <!-- Account Management -->
                 @auth
-
 
                     <x-jet-responsive-nav-link href="{{ route('profile.show') }}"
                         :active="request()->routeIs('profile.show')">
@@ -211,7 +214,7 @@
                         @csrf
 
                         <x-jet-responsive-nav-link href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                                                this.closest('form').submit();">
+                                this.closest('form').submit();">
                             {{ __('Cerrar sesión') }}
                         </x-jet-responsive-nav-link>
                     </form>

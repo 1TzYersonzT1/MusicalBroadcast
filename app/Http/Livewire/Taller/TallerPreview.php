@@ -17,9 +17,9 @@ class TallerPreview extends Component
         $this->mostrarTaller($this->talleres[0]->id, 0);
     }
 
-    public function mostrarTaller($id, $index) {
+    public function mostrarTaller($id, $slideActual) {
         $this->tallerActual = Taller::find($id);
-        $this->dispatchBrowserEvent('onContentChanged', ["default_id" => $index]);
+        $this->dispatchBrowserEvent('onContentChanged', ["slideActual" => $slideActual]);
     }
 
     public function render()

@@ -34,14 +34,16 @@
                         </div>
                     @endforeach
                 </div>
+             
             </div>
+      
         </div>
 
-        <div class="swiper-pagination mb-10"></div>
+        
 
     </div>
    
-    <div class="px-10 text-white">
+    <div class="px-10 text-white shadow-inner">
         <div class="mb-4 text-4xl font-bold">
             {{ $tallerActual->TAL_Nombre }}
         </div>
@@ -76,7 +78,10 @@
             </div>
         </div>
 
-
+        <div class="flex flex-col items-center justify-center mb-10">
+            <span class="text-2xl text-white mb-4">¿Estás interesado/a?</span>
+            <button class="bg-gradient-to-tr from-white via-black to-primary px-5 py-2 hover:bg-gradient-to-b hover:from-primary hover:via-black hover:to-white">Participar</button>
+        </div>
 
     </div>
 </div>
