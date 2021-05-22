@@ -56,12 +56,11 @@
 
         function initializeSwiper(slideActual) {
             mySwiper = new Swiper('.mySwiper', {
-                loop: true,
+                loop: false,
                 slidesPerView: 'auto',
                 spaceBetween: 30,
                 observer: true,
                 initialSlide: slideActual,
-            
             });
         }
 
