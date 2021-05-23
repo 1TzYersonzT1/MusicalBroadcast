@@ -27,13 +27,11 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         // Gates para organizador
-        Gate::define('crear-taller', function(User $user) {
+        Gate::define('organizar', function(User $user) {
             return $user->is_organizador();
         });
 
-        Gate::define('ver-solicitudes', function(User $user) {
-            return $user->is_organizador();
-        });
+
 
 
     }
