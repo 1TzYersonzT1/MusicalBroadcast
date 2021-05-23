@@ -2,7 +2,7 @@
 
 use App\Http\Livewire\Taller\TallerPreview;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Taller\InscripcionesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,3 +19,4 @@ Route::get('/', function () {
 });
 
 Route::get("/talleres", TallerPreview::class)->name('talleres.index');
+Route::post("/talleres", [InscripcionesController::class, 'store'])->name('taller.inscripcion');

@@ -11,8 +11,6 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;600&display=swap" rel="stylesheet" />
 
-
-
     @livewireStyles
 
     <script src="{{ mix('js/app.js') }}" defer></script>
@@ -63,7 +61,6 @@
             mySwiper = new Swiper('.mySwiper', {
                 loop: false,
                 slidesPerView: 'auto',
-
                 spaceBetween: 30,
                 observer: true,
                 initialSlide: slideActual,

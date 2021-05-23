@@ -34,7 +34,7 @@
                                 <div>
                                     <button
                                         class="font-bold px-2 py-2 w-40 text-center text-white hover:bg-white hover:text-primary cursor-pointer"
-                                        wire:click='mostrarTaller({{ $taller->id }}, {{ $loop->index }})'>Más
+                                        wire:click="mostrarTaller({{ $taller->id }}, {{ $loop->index }})">Más
                                         información</button>
                                 </div>
                             </div>
@@ -45,9 +45,6 @@
             </div>
 
         </div>
-
-
-
     </div>
 
     <div class="px-10 text-white shadow-inner">
@@ -100,39 +97,41 @@
             <span>{{ $tallerActual->TAL_Nombre }}</span>
         </div>
 
-        <div class="grid lg:grid-cols-2 gap-8 mt-8">
 
-            <div class="flex flex-col">
-                <label for="nombre">Nombre</label>
-                <input id="nombre" type="text" name="nombre" class="rounded-full lg:w-40" />
+        <form method='post' action='{{ route('taller.inscripcion') }}'>
+            @csrf
+            <div class="grid lg:grid-cols-2 gap-8 mt-8">
+                <input id="idTaller" type="text" name="idTaller" class="rounded-full lg:w-40"
+                    value='{{ $tallerActual->id }}' hidden />
 
+                <div class="flex flex-col">
+                    <label for="nombre">Nombre</label>
+                    <input id="nombre" type="text" name="nombre" class="rounded-full lg:w-40" required />
+                </div>
+
+                <div class="flex flex-col">
+                    <label for="apellidos">Apellidos</label>
+                    <input id="apellidos" type="text" name="apellidos" class="rounded-full" required />
+                </div>
+
+                <div class="flex flex-col">
+                    <label for="email">Email</label>
+                    <input id="email" type="text" name="email" class="rounded-full w-full" required />
+                </div>
+
+                <div class="flex flex-col">
+                    <label for="telefono">Teléfono</label>
+                    <input id="telefono" type="text" name="telefono" class="rounded-full w-full" required />
+                </div>
             </div>
 
-            <div class="flex flex-col">
-                <label for="apellidos">Apellidos</label>
-                <input id="apellidos" type="text" name="apellidos" class="rounded-full" />
+            <div class="mt-10 flex justify-center">
+                <button type='submit'
+                    class="bg-primary rounded-full text-white font-bold px-5 py-2 hover:bg-gradient-to-b hover:from-primary hover:via-black hover:to-white">
+                    Participar
+                </button>
             </div>
-
-            <div class="flex flex-col">
-                <label for="email">Email</label>
-                <input id="email" type="text" name="email" class="rounded-full w-full" />
-            </div>
-
-            <div class="flex flex-col">
-                <label for="telefono">Teléfono</label>
-                <input id="telefono" type="text" name="telefono" class="rounded-full w-full" />
-            </div>
-
-        </div>
-
-        <div class="mt-10 flex justify-center">
-            <button
-                class="bg-primary rounded-full text-white font-bold px-5 py-2 hover:bg-gradient-to-b hover:from-primary hover:via-black hover:to-white">
-                Participar
-            </button>
-        </div>
 
     </div>
-
-
+    </form>
 </div>
