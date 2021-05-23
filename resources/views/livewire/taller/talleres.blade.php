@@ -19,12 +19,8 @@
                 </div>
             </div>
         </div>
-
-
     </div>
 
     <livewire:taller.taller-preview :tallerActual='$talleres[0]' :wire:key="$talleres[0]->id">
-
-    
 
 </div>
