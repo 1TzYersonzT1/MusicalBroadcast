@@ -6,12 +6,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Asistente;
 use App\Models\Taller;
+use Alert;
 
 class InscripcionesController extends Controller
 {
     public function store(Request $request)
     {
-
         $validated = $request->validate([
             'nombre' => ['required', 'string', 'max:20'],
             'apellidos' => ['required', 'string', 'max:20'],
@@ -29,6 +29,9 @@ class InscripcionesController extends Controller
         $taller->TAL_Aforo = $taller->TAL_Aforo - 1;
         $taller->save();
 
-        return redirect()->route("talleres.index");
+        alert()->success('Inscripción exitosa', $request['nombre'] . ' te has inscrito a ' . $taller->TAL_Nombre
+            . ' exitosamente. Recuerda si tienes alguna duda o consulta no olvides contactarte con el organizador.')->autoClose(8000);
+
+        return redirect()->route('talleres.index');
     }
 }

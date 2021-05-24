@@ -1,5 +1,5 @@
-<div class="lg:grid lg:grid-cols-2 mt-10 container mx-auto">
-    <div class='px-10'>
+<div class="lg:grid lg:grid-cols-2 mt-10">
+    <div class='px-5'>
         <div class="flex">
             @can('organizar') <div>
                     <button class="bg-green-500 px-5 py-1 mb-5 text-white font-bold">Crear taller</button>
@@ -24,3 +24,4 @@
     <livewire:taller.taller-preview :tallerActual='$talleres[0]' :wire:key="$talleres[0]->id">
 
 </div>
+

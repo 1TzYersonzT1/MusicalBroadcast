@@ -1,7 +1,7 @@
 <nav x-data="{ open: false }" class="bg-gray-900">
     <!-- Primary Navigation Menu -->
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="container mx-auto px-5">
         <div class="flex font-regular justify-between h-16">
             <div class="flex justify-between">
 
@@ -42,7 +42,7 @@
 
             </div>
 
-            <div class="hidden sm:flex sm:items-center sm:ml-6">
+            <div class="hidden sm:flex sm:items-center">
                 <!-- Settings Dropdown -->
 
 

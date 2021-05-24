@@ -19,4 +19,4 @@ Route::get('/', function () {
 });
 
 Route::get("/talleres", Talleres::class)->name('talleres.index');
-Route::post("/talleres", [InscripcionesController::class, 'store'])->name('taller.inscripcion');
+Route::post("/inscripcion", [InscripcionesController::class, 'store'])->name('taller.inscripcion');

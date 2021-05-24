@@ -41,10 +41,13 @@
         </div>
 
         <div class="mt-10 flex justify-center">
-            <button type='submit'
+
+            <button type='submit' 
                 class="bg-primary rounded-full text-white font-bold px-5 py-2 hover:bg-gradient-to-b hover:from-primary hover:via-black hover:to-white">
                 Participar
             </button>
+
         </div>
     </form>
 </div>
+

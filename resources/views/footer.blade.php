@@ -1,8 +1,7 @@
-<footer class="footer bg-gradient-to-b from-black to-gray-900 pt-1 mt-auto pb-10 px-6">
-    <div class="container mx-auto">
-
+<footer class="footer bg-gradient-to-b from-black to-gray-900 pt-1 mt-auto pb-10">
+    <div class="container mx-auto px-5">
         <div class="sm:flex sm:mt-8">
-            <div class="mt-8 sm:mt-0 sm:w-full sm:px-8 flex flex-col md:flex-row justify-evenly">
+            <div class="mt-8 sm:mt-0 sm:w-full flex flex-col md:flex-row justify-between">
                 <div class="flex bg-center align-center">
                     <img src="/logo-1b.png" />
                 </div>
@@ -20,5 +19,4 @@
                 </div>
             </div>
         </div>
-
 </footer>
