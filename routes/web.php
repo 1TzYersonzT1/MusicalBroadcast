@@ -3,6 +3,8 @@
 use App\Http\Livewire\Taller\Talleres;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Taller\InscripcionesController;
+use App\Http\Livewire\Taller\CrearTaller;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,6 +18,14 @@ use App\Http\Controllers\Taller\InscripcionesController;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::group(["middleware" => 'auth'], function() {
+
+    Route::group(["middleware" => "role:organizador", "prefix" => "organizador", "as" => "organizador."], function() {
+        Route::get("/crear-taller", CrearTaller::class)->name("creartaller");
+    });
+
 });
 
 Route::get("/talleres", Talleres::class)->name('talleres.index');

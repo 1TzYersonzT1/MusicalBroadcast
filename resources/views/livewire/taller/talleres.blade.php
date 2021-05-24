@@ -2,7 +2,9 @@
     <div class='px-5'>
         <div class="flex">
             @can('organizar') <div>
-                    <button class="bg-green-500 px-5 py-1 mb-5 text-white font-bold">Crear taller</button>
+                    <button class="bg-green-500 px-5 py-1 mb-5 text-white font-bold">
+                        <a href="{{ route('organizador.creartaller') }}">Crear taller</a>
+                    </button>
                 </div>
                 <div>
                     <button class="bg-yellow-500 px-5 py-1 mb-5 text-white font-bold ml-5">Estado solicitudes</button>
