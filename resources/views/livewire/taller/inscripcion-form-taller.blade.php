@@ -11,15 +11,19 @@
     </div>
 
 
-    <form method='post' action='{{ route('taller.inscripcion') }}'>
+    <form method='post' action='{{ route('taller.inscripcion') }}' autocomplete="off">
         @csrf
         <div class="grid lg:grid-cols-2 gap-8 mt-8">
-            <input id="idTaller" type="text" name="idTaller" class="rounded-full lg:w-40"
-                value='{{ $tallerSeleccionado->id }}' hidden />
+            <input id="idTaller" type="text" name="idTaller" class="hidden" value='{{ $tallerSeleccionado->id }}' />
+
+            <div class="flex flex-col">
+                <label for="rut">Rut</label>
+                <input id="rut" type="text" name="rut" class="rounded-full" required />
+            </div>
 
             <div class="flex flex-col">
                 <label for="nombre">Nombre</label>
-                <input id="nombre" type="text" name="nombre" class="rounded-full lg:w-40" required />
+                <input id="nombre" type="text" name="nombre" class="rounded-full " required />
             </div>
 
             <div class="flex flex-col">
@@ -42,7 +46,7 @@
 
         <div class="mt-10 flex justify-center">
 
-            <button type='submit' 
+            <button type='submit'
                 class="bg-primary rounded-full text-white font-bold px-5 py-2 hover:bg-gradient-to-b hover:from-primary hover:via-black hover:to-white">
                 Participar
             </button>
@@ -50,4 +54,3 @@
         </div>
     </form>
 </div>
-

@@ -12,25 +12,38 @@ class InscripcionesController extends Controller
 {
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'nombre' => ['required', 'string', 'max:20'],
-            'apellidos' => ['required', 'string', 'max:20'],
-        ]);
 
-        $asistente = Asistente::create([
-            'taller_id' => $request['idTaller'],
-            'nombre' => $request['nombre'],
-            'apellido' => $request['apellidos'],
-            'email' => $request['email'],
-            'telefono' => $request['telefono'],
-        ]);
+        $asistente = Asistente::updateOrCreate(
+            [
+                "rut" => $request["rut"],
+            ],
+            [
+                "nombre" => $request["nombre"],
+                "apellido" => $request["apellidos"],
+                "email" => $request["email"],
+                "telefono" => $request["telefono"]
+            ]
+        );
 
         $taller = Taller::find($request["idTaller"]);
-        $taller->TAL_Aforo = $taller->TAL_Aforo - 1;
-        $taller->save();
 
-        alert()->success('Inscripción exitosa', $request['nombre'] . ' te has inscrito a ' . $taller->TAL_Nombre
-            . ' exitosamente. Recuerda si tienes alguna duda o consulta no olvides contactarte con el organizador.')->autoClose(8000);
+        if (!$taller->asistentes()->find($asistente->rut)) {
+            $taller->TAL_Aforo = $taller->TAL_Aforo - 1;
+            $taller->asistentes()->attach($request['rut']);
+            $taller->save();
+            alert()->success(
+                'Exito',
+                $request["nombre"] . ' te has inscrito/a a ' . $taller->TAL_Nombre . ' exitosamente.'
+            )->autoClose(6000);
+        } else {
+            alert()->info(
+                'Información',
+                $request["nombre"] . ' ya estás inscrito/a a este taller. Si tienes alguna duda puedes contactar al organizador.'
+            )->autoClose(6000);
+        }
+
+
+
 
         return redirect()->route('talleres.index');
     }

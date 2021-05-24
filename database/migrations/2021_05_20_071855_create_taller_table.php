@@ -17,8 +17,7 @@ class CreateTallerTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('user');
             $table->string('TAL_Nombre', 35);
-            $table->date('TAL_Fecha');
-            $table->time('TAL_Hora');
+            $table->dateTime('TAL_Horario');
             $table->integer('TAL_Aforo');
             $table->string('TAL_Lugar', 50);
             $table->string('TAL_Requisitos', 255);
