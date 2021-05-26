@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UpdateColumnsAsistenteTable extends Migration
+class CreateRolUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class UpdateColumnsAsistenteTable extends Migration
      */
     public function up()
     {
-        Schema::table('asistente', function (Blueprint $table) {
-            $table->renameColumn('id', 'rut');
+        Schema::create('rol_user', function (Blueprint $table) {
+            $table->id("rol_id");
+            $table->string("user_rut", 9)->index();
         });
     }
 
@@ -25,8 +26,6 @@ class UpdateColumnsAsistenteTable extends Migration
      */
     public function down()
     {
-        Schema::table('asistente', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('rol_user');
     }
 }

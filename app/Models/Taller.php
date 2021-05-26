@@ -18,7 +18,7 @@ class Taller extends Model
     protected $guarded = [];
 
     public function organizador() {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class, 'user_rut', 'rut');
     }
 
     public function asistentes() {

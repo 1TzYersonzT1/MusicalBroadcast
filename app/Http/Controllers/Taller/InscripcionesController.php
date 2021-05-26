@@ -19,7 +19,7 @@ class InscripcionesController extends Controller
             ],
             [
                 "nombre" => $request["nombre"],
-                "apellido" => $request["apellidos"],
+                "apellidos" => $request["apellidos"],
                 "email" => $request["email"],
                 "telefono" => $request["telefono"]
             ]

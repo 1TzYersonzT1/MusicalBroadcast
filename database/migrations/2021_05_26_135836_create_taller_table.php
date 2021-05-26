@@ -15,14 +15,14 @@ class CreateTallerTable extends Migration
     {
         Schema::create('taller', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('user');
-            $table->string('TAL_Nombre', 35);
-            $table->dateTime('TAL_Horario');
-            $table->integer('TAL_Aforo');
-            $table->string('TAL_Lugar', 50);
-            $table->string('TAL_Requisitos', 255);
-            $table->string('TAL_Protocolo', 255);
-            $table->string('TAL_Descripcion', 255);
+            $table->string("TAL_Nombre", 30);
+            $table->string("TAL_Descripcion", 255);
+            $table->string("TAL_Requisitos", 255);
+            $table->string("TAL_Protocolo", 255);
+            $table->integer("TAL_Aforo");
+            $table->dateTime("TAL_Horario");
+            $table->string("TAL_Lugar", 55);
+            $table->string("user_rut", 9)->index("taller_user_rut_foreign");
         });
     }
 

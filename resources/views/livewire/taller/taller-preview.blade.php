@@ -8,11 +8,11 @@
 
 
     <div class="grid grid-cols-2 gap-10 mb-10">
-        <div class="col">
+       
+        <div>
             <p class="font-bold">ORGANIZADOR</p>
             <p>{{ $tallerActual->organizador->nombre }} {{ $tallerActual->organizador->apellido }}</p>
         </div>
-
         <div class="col">
             <p class="font-bold">HORARIO</p>
             <p>{{ $tallerActual->TAL_Horario }}</p>

@@ -21,21 +21,30 @@ class CreateNewUser implements CreatesNewUsers
     public function create(array $input)
     {
         Validator::make($input, [
+            'rut' => ['required', 'string', 'max:9', 'unique:user'],
             'nombre' => ['required', 'string', 'max:20'],
             'apellido' => ['required', 'string', 'max:20'],
             'email' => ['required', 'string', 'email', 'max:50', 'unique:user'],
+            'tipo_cuenta' => ['required', 'array'],
             'telefono' => ['required', 'integer'],
             'password' => $this->passwordRules(),
-            
+
             //'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['required', 'accepted'] : '', 
         ])->validate();
 
-        return User::create([
-            'nombre' => $input['nombre'],
-            'apellido' => $input['apellido'],
-            'telefono' => $input['telefono'],
-            'email' => $input['email'],
-            'password' => Hash::make($input['password']),
-        ]);
+        $usuario = User::create(
+            [
+                'rut' => $input['rut'],
+                'nombre' => $input['nombre'],
+                'apellidos' => $input['apellido'],
+                'telefono' => $input['telefono'],
+                'email' => $input['email'],
+                'password' => Hash::make($input['password']),
+            ]
+        );
+
+        $usuario->roles()->sync($input["tipo_cuenta"]);
+
+        return $usuario;
     }
 }

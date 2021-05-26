@@ -15,8 +15,8 @@ class CreateSolicitudTable extends Migration
     {
         Schema::create('solicitud', function (Blueprint $table) {
             $table->id();
-            $table->integer('estado');
-            $table->string('observacion')->nullable();
+            $table->string("observacion");
+            $table->integer("estado");
         });
     }
 

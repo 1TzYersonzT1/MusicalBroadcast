@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAsistenteTallerTable extends Migration
+class CreateRolTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateAsistenteTallerTable extends Migration
      */
     public function up()
     {
-        Schema::create('asistente_taller', function (Blueprint $table) {
-            $table->foreignId('asistente_rut')->constrained('asistente', 'rut');
-            $table->foreignId('taller_id')->constrained('taller');
+        Schema::create('rol', function (Blueprint $table) {
+            $table->id();
+            $table->string("nombre", 30);
         });
     }
 
@@ -26,6 +26,6 @@ class CreateAsistenteTallerTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('asistente_taller');
+        Schema::dropIfExists('rol');
     }
 }

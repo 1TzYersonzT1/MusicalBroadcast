@@ -16,7 +16,7 @@ class TallerPreview extends Component
 
     public function visualizar(array $tallerSeleccionado)
     {
-        $this->tallerActual = Taller::Find($tallerSeleccionado["id"]);
+        $this->tallerActual = Taller::find($tallerSeleccionado["id"]);
         $this->dispatchBrowserEvent('onContentChanged', ["slideActual" => $tallerSeleccionado['slideActual']]);
     }
 

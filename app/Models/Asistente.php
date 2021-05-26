@@ -11,6 +11,8 @@ class Asistente extends Model
 
     protected $table = 'asistente';
     protected $primaryKey = 'rut';
+    public $incrementing = false;
+    protected $keyType = 'string';
     public $timestamps = false;
 
     protected $guarded = [];

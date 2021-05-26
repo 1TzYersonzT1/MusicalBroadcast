@@ -4,6 +4,7 @@ use App\Http\Livewire\Taller\Talleres;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Taller\InscripcionesController;
 use App\Http\Livewire\Taller\CrearTaller;
+use App\Models\Taller;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,3 +31,4 @@ Route::group(["middleware" => 'auth'], function() {
 
 Route::get("/talleres", Talleres::class)->name('talleres.index');
 Route::post("/inscripcion", [InscripcionesController::class, 'store'])->name('taller.inscripcion');
+

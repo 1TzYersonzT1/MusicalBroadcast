@@ -19,11 +19,15 @@ class User extends Authenticatable
     use TwoFactorAuthenticatable;
 
     protected $table = 'user';
+    protected $primaryKey = "rut";
+    public $incrementing = false;
+    protected $keyType = 'string';
     public $timestamps = false;
 
     protected $fillable = [
+        'rut',
         'nombre',
-        'apellido',
+        'apellidos',
         'email',
         'telefono',
         'password',
@@ -41,14 +45,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    
-    protected $appends = [
-        'profile_photo_url',
-    ];
-
 
     public function roles() {
-        return $this->belongsToMany(Rol::class, 'usuario_rol', 'user_id', 'rol_id');
+        return $this->belongsToMany(Rol::class, 'rol_user', 'user_rut', 'rol_id');
     }
 
     public function is_organizador() {

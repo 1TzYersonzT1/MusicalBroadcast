@@ -9,47 +9,67 @@
         <form method="POST" action="{{ route('register') }}">
             @csrf
 
-            <div>
-                <x-jet-label for="nombre" value="{{ __('Nombre') }}" />
-                <x-jet-input id="nombre" class="block mt-1 w-full" type="text" name="nombre" :value="old('nombre')" required autofocus autocomplete="nombre" />
+            <div class="mt-4">
+                <x-jet-label for="rut" value="{{ __('Rut') }}" />
+                <x-jet-input id="rut" class="block mt-1 w-full" type="text" name="rut" :value="old('rut')"
+                    required autofocus autocomplete="rut" />
             </div>
 
-            <div>
+            <div class="mt-4">
+                <x-jet-label for="nombre" value="{{ __('Nombre') }}" />
+                <x-jet-input id="nombre" class="block mt-1 w-full" type="text" name="nombre" :value="old('nombre')"
+                    required autofocus autocomplete="nombre" />
+            </div>
+
+            <div class="mt-4">
                 <x-jet-label for="apellido" value="{{ __('Apellido') }}" />
-                <x-jet-input id="apellido" class="block mt-1 w-full" type="text" name="apellido" :value="old('apellido')" required autofocus autocomplete="apellido" />
+                <x-jet-input id="apellido" class="block mt-1 w-full" type="text" name="apellido"
+                    :value="old('apellido')" required autofocus autocomplete="apellido" />
+            </div>
+
+            <div class="mt-4">
+                <x-jet-label for="tipo_cuenta" value="{{ __('Seleccione uno o más roles') }}" />
+                <select name="tipo_cuenta[]" id="tipo_cuenta" class="block mt-1 w-full h-20" multiple>
+                    <option value="1">Organizador</option>
+                    <option value="2">Representante</option>
+                </select>
             </div>
 
             <div class="mt-4">
                 <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
+                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
+                    required />
             </div>
 
-            <div>
+            <div class="mt-4">
                 <x-jet-label for="telefono" value="{{ __('Teléfono') }}" />
-                <x-jet-input id="telefono" class="block mt-1 w-full" type="text" name="telefono" :value="old('telefono')" required autofocus autocomplete="telefono" />
+                <x-jet-input id="telefono" class="block mt-1 w-full" type="text" name="telefono"
+                    :value="old('telefono')" required autofocus autocomplete="telefono" />
             </div>
 
             <div class="mt-4">
                 <x-jet-label for="password" value="{{ __('Contraseña') }}" />
-                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
+                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required
+                    autocomplete="new-password" />
             </div>
 
             <div class="mt-4">
                 <x-jet-label for="password_confirmation" value="{{ __('Confirmar contraseña') }}" />
-                <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
+                <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password"
+                    name="password_confirmation" required autocomplete="new-password" />
             </div>
 
             @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
                 <div class="mt-4">
                     <x-jet-label for="terms">
                         <div class="flex items-center">
-                            <x-jet-checkbox name="terms" id="terms"/>
+                            <x-jet-checkbox name="terms" id="terms" />
 
                             <div class="ml-2">
                                 {!! __('I agree to the :terms_of_service and :privacy_policy', [
-                                        'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Terms of Service').'</a>',
-                                        'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Privacy Policy').'</a>',
-                                ]) !!}
+    'terms_of_service' => '<a target="_blank" href="' . route('terms.show') . '" class="underline text-sm text-gray-600 hover:text-gray-900">' . __('Terms of Service') . '</a>',
+    'privacy_policy' => '<a target="_blank" href="' . route('policy.show') . '" class="underline text-sm text-gray-600 hover:text-gray-900">' . __('Privacy Policy') . '</a>',
+]) !!}
                             </div>
                         </div>
                     </x-jet-label>

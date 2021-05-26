@@ -24,16 +24,11 @@
     <link rel="stylesheet" href="{{ mix('css/app.css') }}" />
     <link rel="stylesheet" href="{{ mix('css/extra.css') }}" />
 
-
-
 </head>
 
 <body class="font-sans antialiased bg-gradient-to-b bg-primary">
 
     <x-jet-banner />
-
-
-
 
     <div class="min-h-screen flex flex-col">
         @livewire('navigation-menu')
@@ -45,8 +40,6 @@
 
         @include('footer')
     </div>
-
-
 
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <!-- Inicializar swiper talleres -->

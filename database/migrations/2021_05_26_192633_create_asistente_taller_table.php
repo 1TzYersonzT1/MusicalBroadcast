@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAsistenteTable extends Migration
+class CreateAsistenteTallerTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateAsistenteTable extends Migration
      */
     public function up()
     {
-        Schema::create('asistente', function (Blueprint $table) {
-            $table->id();
-            $table->string('nombre', 20);
-            $table->string('apellido', 20);
-            $table->string('email', 50);
-            $table->integer('telefono');
+        Schema::create('asistente_taller', function (Blueprint $table) {
+            $table->string("asistente_rut", 9);
+            $table->foreign("asistente_rut")->references("rut")->on("asistente");
+            $table->foreignId("taller_id")->constrained("taller");
+
         });
     }
 
@@ -29,6 +28,6 @@ class CreateAsistenteTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('asistente');
+        Schema::dropIfExists('asistente_taller');
     }
 }
