@@ -11,14 +11,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;600&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    <link rel="stylesheet" href="{{ mix('css/extra.css') }}">
     <script src="{{ mix('js/app.js') }}" defer></script>
     @livewireStyles
 </head>
 
-<body class="antialiased">
+<body class="antialiased bg-primary">
 
-    @livewire('navigation-menu')
+    <div class="min-h-screen flex flex-col justify-between">
+        @livewire('navigation-menu')
 
+        @include('banner')
+        @include('novedades')
+
+        @include('footer')
+    </div>
     @livewireScripts
 
 </body>

@@ -32,7 +32,7 @@
 
     <x-jet-banner />
 
-    <div class="min-h-screen flex flex-col">
+    <div class="min-h-screen flex flex-col justify-between">
         @livewire('navigation-menu')
 
         <!-- Page Content -->

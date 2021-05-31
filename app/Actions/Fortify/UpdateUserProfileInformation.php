@@ -19,21 +19,22 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
     public function update($user, array $input)
     {
         Validator::make($input, [
-            'name' => ['required', 'string', 'max:255'],
+            'nombre' => ['required', 'string', 'max:20'],
+            'apellidos' => ['required', 'string', 'max:40'],
+            'telefono' => ['required', 'integer'],
             'email' => ['required', 'email', 'max:255'],
-            'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],
+         
         ])->validateWithBag('updateProfileInformation');
 
-        if (isset($input['photo'])) {
-            $user->updateProfilePhoto($input['photo']);
-        }
-
+     
         if ($input['email'] !== $user->email &&
             $user instanceof MustVerifyEmail) {
             $this->updateVerifiedUser($user, $input);
         } else {
             $user->forceFill([
-                'name' => $input['name'],
+                'nombre' => $input['nombre'],
+                'apellidos' => $input['apellidos'],
+                'telefono' => $input['telefono'],
                 'email' => $input['email'],
             ])->save();
         }
@@ -49,7 +50,9 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
     protected function updateVerifiedUser($user, array $input)
     {
         $user->forceFill([
-            'name' => $input['name'],
+            'nnombre' => $input['nombre'],
+            'apellidos' => $input['apellidos'],
+            'telefono' => $input['telefono'],
             'email' => $input['email'],
             'email_verified_at' => null,
         ])->save();

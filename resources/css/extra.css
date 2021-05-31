@@ -2,7 +2,7 @@
     background-color: white;
 }
 
-body{
-    background-color: red;
+.banner {
+    background-image: url('/Banner.png');
 }
 

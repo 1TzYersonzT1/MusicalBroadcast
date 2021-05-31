@@ -13,12 +13,13 @@ use Illuminate\Support\Facades\Date;
 class CrearTaller extends Component
 {
 
-    public $titulo, $descripcion, $aforo, $fecha, $tiempo, $lugar, $user_rut;
+    public $titulo, $descripcion, $aforo, $fecha, $hora, $lugar, $user_rut;
     public $protocolos, $requisitos;
 
 
     protected $rules = [
-        'descripcion' => ['required', 'string', 'max:255']
+
+        'descripcion' => ['required', 'string', 'max:255'],
     ];
 
     protected $listeners = ["updatedRequisitos", 'updatedProtocolos'];
@@ -56,10 +57,12 @@ class CrearTaller extends Component
             'TAL_Requisitos' => implode(", ", $this->requisitos),
             'TAL_Protocolo' => implode(", ", $this->protocolos),
             'TAL_Aforo' => $this->aforo,
-            'TAL_Horario' => Carbon::parse(strtotime($this->fecha))->isoFormat("Y-M-D") . " " . $this->tiempo,
+            'TAL_Horario' => Carbon::parse(strtotime($this->fecha))->isoFormat("Y-M-D") . " " . $this->hora,
             'TAL_Lugar' => $this->lugar,
             'user_rut' => Auth::user()->rut,
         ]);
+
+        $this->reset();
 
         return redirect()->route("talleres.index");
     }
