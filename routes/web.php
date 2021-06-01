@@ -6,6 +6,7 @@ use App\Http\Controllers\Taller\InscripcionesController;
 use App\Http\Livewire\Solicitudes\Solicitudes;
 use App\Http\Livewire\Organizador\MisSolicitudes;
 use App\Http\Livewire\Taller\CrearTaller;
+use App\Http\Livewire\Artista\Artistas;
 use App\Models\Taller;
 
 /*
@@ -39,4 +40,5 @@ Route::group(["middleware" => 'auth'], function() {
 
 Route::get("/talleres", Talleres::class)->name('talleres.index');
 Route::post("/inscripcion", [InscripcionesController::class, 'store'])->name('taller.inscripcion');
+Route::get("/artistas", Artistas::class)->name('artistas.index');
 

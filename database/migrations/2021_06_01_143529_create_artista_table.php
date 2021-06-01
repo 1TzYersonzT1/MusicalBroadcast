@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSolicitudTallerTable extends Migration
+class CreateArtistaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateSolicitudTallerTable extends Migration
      */
     public function up()
     {
-        Schema::create('solicitud_taller', function (Blueprint $table) {
+        Schema::create('artista', function (Blueprint $table) {
             $table->id();
-            $table->string("observacion", 255);
-            $table->integer("estado");
-            $table->foreignId("taller_id")->constrained("taller");
-
+            $table->string('ART_Nombre',30);
+            $table->string("user_rut", 9)->index("artista_user_rut_foreign");
         });
     }
 
@@ -29,6 +27,6 @@ class CreateSolicitudTallerTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('solicitud_taller');
+        Schema::dropIfExists('artista');
     }
 }
