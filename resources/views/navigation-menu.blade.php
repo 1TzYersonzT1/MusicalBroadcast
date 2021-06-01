@@ -45,95 +45,78 @@
             <div class="hidden sm:flex sm:items-center">
                 <!-- Settings Dropdown -->
 
-<<<<<<< HEAD
+                <livewire:formularios.buscar-artista>
 
-                <div class="relative lg:block sm:hidden text-gray-600 mr-5">
-                    <input type="search" name="search" placeholder="Buscar"
-                        class="bg-white h-10 px-5 pr-10 w-80 rounded-full text-sm focus:outline-none">
-                    <button type="submit" class="absolute right-0 top-0 mt-3 mr-4">
-                        <svg class="h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px"
-                            viewBox="0 0 56.966 56.966" style="enable-background:new 0 0 56.966 56.966;"
-                            xml:space="preserve" width="512px" height="512px">
-                            <path
-                                d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z" />
-                        </svg>
-                    </button>
-                </div>
-=======
-            
-            <livewire:formularios.buscar-artista>
->>>>>>> a8da563e52537cfca607a37d478218185d17cf7b
 
-                @guest
-                    <div class="lg:block sm:hidden">
-                        <x-jet-nav-link href="{{ route('login') }}">
-                            <x-slot name='slot'>
-                                <p class="text-white mr-5">{{ __('Iniciar sesión') }}</p>
-                            </x-slot>
-                        </x-jet-nav-link>
+                    @guest
+                        <div class="lg:block sm:hidden">
+                            <x-jet-nav-link href="{{ route('login') }}">
+                                <x-slot name='slot'>
+                                    <p class="text-white mr-5">{{ __('Iniciar sesión') }}</p>
+                                </x-slot>
+                            </x-jet-nav-link>
 
-                        <x-jet-nav-link href="{{ route('register') }}">
-                            <x-slot name='slot'>
-                                <p class="text-white">{{ __('Registrarse') }}</p>
-                            </x-slot>
-                        </x-jet-nav-link>
+                            <x-jet-nav-link href="{{ route('register') }}">
+                                <x-slot name='slot'>
+                                    <p class="text-white">{{ __('Registrarse') }}</p>
+                                </x-slot>
+                            </x-jet-nav-link>
+                        </div>
+                    @endguest
+
+                    <div class="ml-3 relative">
+
+                        @auth
+                            <x-jet-dropdown align="right" width="48">
+                                <x-slot name="trigger">
+                                    <span class="inline-flex rounded-md">
+                                        <button type="button"
+                                            class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-gray-900 hover:text-gray-200 focus:outline-none transition">
+                                            {{ Auth::user()->nombre }} {{ Auth::user()->apellidos }}
+
+                                            <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd"
+                                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                    clip-rule="evenodd" />
+                                            </svg>
+                                        </button>
+                                    </span>
+
+                                </x-slot>
+
+                                <x-slot name="content">
+                                    <!-- Account Management -->
+                                    <div class="block px-4 py-2 text-xs text-gray-400">
+                                        {{ __('Administración de cuenta') }}
+                                    </div>
+
+                                    <x-jet-dropdown-link href="{{ route('profile.show') }}">
+                                        {{ __('Perfil') }}
+                                    </x-jet-dropdown-link>
+
+                                    @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
+                                        <x-jet-dropdown-link href="{{ route('api-tokens.index') }}">
+                                            {{ __('API Tokens') }}
+                                        </x-jet-dropdown-link>
+                                    @endif
+
+                                    <div class="border-t border-gray-100"></div>
+
+                                    <!-- Authentication -->
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+
+                                        <x-jet-dropdown-link href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                                                                                                                this.closest('form').submit();">
+                                            {{ __('Cerrar sesión') }}
+                                        </x-jet-dropdown-link>
+                                    </form>
+                                </x-slot>
+                            </x-jet-dropdown>
+                        @endauth
                     </div>
-                @endguest
-
-                <div class="ml-3 relative">
-
-                    @auth
-                        <x-jet-dropdown align="right" width="48">
-                            <x-slot name="trigger">
-                                <span class="inline-flex rounded-md">
-                                    <button type="button"
-                                        class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-gray-900 hover:text-gray-200 focus:outline-none transition">
-                                        {{ Auth::user()->nombre }} {{ Auth::user()->apellidos }}
-
-                                        <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 20 20" fill="currentColor">
-                                            <path fill-rule="evenodd"
-                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                                clip-rule="evenodd" />
-                                        </svg>
-                                    </button>
-                                </span>
-
-                            </x-slot>
-
-                            <x-slot name="content">
-                                <!-- Account Management -->
-                                <div class="block px-4 py-2 text-xs text-gray-400">
-                                    {{ __('Administración de cuenta') }}
-                                </div>
-
-                                <x-jet-dropdown-link href="{{ route('profile.show') }}">
-                                    {{ __('Perfil') }}
-                                </x-jet-dropdown-link>
-
-                                @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
-                                    <x-jet-dropdown-link href="{{ route('api-tokens.index') }}">
-                                        {{ __('API Tokens') }}
-                                    </x-jet-dropdown-link>
-                                @endif
-
-                                <div class="border-t border-gray-100"></div>
-
-                                <!-- Authentication -->
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-
-                                    <x-jet-dropdown-link href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                                                                                                            this.closest('form').submit();">
-                                        {{ __('Cerrar sesión') }}
-                                    </x-jet-dropdown-link>
-                                </form>
-                            </x-slot>
-                        </x-jet-dropdown>
-                    @endauth
-                </div>
             </div>
 
             <!-- Hamburger -->
@@ -219,7 +202,7 @@
                         @csrf
 
                         <x-jet-responsive-nav-link href="{{ route('logout') }}" onclick="event.preventDefault();
-                                this.closest('form').submit();">
+                                    this.closest('form').submit();">
                             {{ __('Cerrar sesión') }}
                         </x-jet-responsive-nav-link>
                     </form>
