@@ -3,6 +3,8 @@
 use App\Http\Livewire\Taller\Talleres;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Taller\InscripcionesController;
+use App\Http\Livewire\Solicitudes\Solicitudes;
+use App\Http\Livewire\Organizador\MisSolicitudes;
 use App\Http\Livewire\Taller\CrearTaller;
 use App\Models\Taller;
 
@@ -25,6 +27,12 @@ Route::group(["middleware" => 'auth'], function() {
 
     Route::group(["middleware" => "role:organizador", "prefix" => "organizador", "as" => "organizador."], function() {
         Route::get("/crear-taller", CrearTaller::class)->name("creartaller");
+
+        Route::get('/mis-solicitudes', MisSolicitudes::class)->name('mis-solicitudes');
+    });
+
+    Route::group(['middleware' => 'role:administrador', 'prefix' => 'administrador', 'as' => 'administrador.'], function() {
+        Route::get('/solicitudes', Solicitudes::class)->name("solicitudes");
     });
 
 });

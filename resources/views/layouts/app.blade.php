@@ -36,7 +36,7 @@
         @livewire('navigation-menu')
 
         <!-- Page Content -->
-        <main class="mix-blend-normal container mx-auto">
+        <main class="mix-blend-normal container mx-auto px-5">
             {{ $slot }}
         </main>
 
@@ -45,29 +45,10 @@
 
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-    <!-- Inicializar swiper talleres -->
-    <script>
-        var mySwiper = {};
 
-        function initializeSwiper(slideActual) {
-            mySwiper = new Swiper('.mySwiper', {
-                loop: false,
-                slidesPerView: 'auto',
-                spaceBetween: 30,
-                observer: true,
-                initialSlide: slideActual,
-            });
-        }
 
-        window.addEventListener('onContentChanged', (event) => {
-            initializeSwiper(event.detail.slideActual);
-        });
 
-        window.onload = function() {
-            initializeSwiper(0);
-        }
 
-    </script>
     <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
     @stack('modals')
     @include('sweetalert::alert')

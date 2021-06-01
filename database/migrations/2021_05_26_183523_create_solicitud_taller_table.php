@@ -14,7 +14,9 @@ class CreateSolicitudTallerTable extends Migration
     public function up()
     {
         Schema::create('solicitud_taller', function (Blueprint $table) {
-            $table->foreignId("solicitud_id")->constrained("solicitud");
+            $table->id();
+            $table->string("observacion", 255);
+            $table->integer("estado");
             $table->foreignId("taller_id")->constrained("taller");
         });
     }

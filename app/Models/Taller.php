@@ -21,6 +21,10 @@ class Taller extends Model
         return $this->belongsTo(User::class, 'user_rut', 'rut');
     }
 
+    public function solicitudes() {
+        return $this->belongsToMany(Solicitud::class, 'solicitud_taller', 'taller_id', 'solicitud_id');
+    }
+
     public function asistentes() {
         return $this->belongsToMany(Asistente::class, 'asistente_taller', 'taller_id', 'asistente_rut');
     }

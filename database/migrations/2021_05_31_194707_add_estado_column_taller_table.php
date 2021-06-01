@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSolicitudTable extends Migration
+class AddEstadoColumnTallerTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,7 @@ class CreateSolicitudTable extends Migration
      */
     public function up()
     {
-        Schema::create('solicitud', function (Blueprint $table) {
-            $table->id();
-            $table->string("observacion");
+        Schema::table('taller', function (Blueprint $table) {
             $table->integer("estado");
         });
     }
@@ -27,6 +25,8 @@ class CreateSolicitudTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('solicitud');
+        Schema::table('taller', function (Blueprint $table) {
+            //
+        });
     }
 }

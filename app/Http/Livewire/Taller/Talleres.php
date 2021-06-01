@@ -16,6 +16,7 @@ class Talleres extends Component
         $this->talleres = Taller::orderBy('TAL_Horario', 'asc')
             ->where('TAL_Horario', '>', new DateTime())
             ->where('TAL_Aforo', '>', 0)
+            ->where("estado", 1)
             ->get();
     }
 

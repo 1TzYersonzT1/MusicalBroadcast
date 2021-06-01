@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Taller;
 use Gate;
 use Livewire\Component;
 use App\Models\Taller;
+use App\Models\SolicitudTaller;
 use Auth;
 use Alert;
 use Carbon\Carbon;
@@ -18,7 +19,6 @@ class CrearTaller extends Component
 
 
     protected $rules = [
-
         'descripcion' => ['required', 'string', 'max:255'],
     ];
 
@@ -59,10 +59,16 @@ class CrearTaller extends Component
             'TAL_Aforo' => $this->aforo,
             'TAL_Horario' => Carbon::parse(strtotime($this->fecha))->isoFormat("Y-M-D") . " " . $this->hora,
             'TAL_Lugar' => $this->lugar,
+            'estado' => 0,
             'user_rut' => Auth::user()->rut,
         ]);
 
-        $this->reset();
+        $solicitud = SolicitudTaller::create([
+            'observacion' => '',
+            'estado' => 0,
+            'taller_id' => $taller->id,
+        ]);
+
 
         return redirect()->route("talleres.index");
     }

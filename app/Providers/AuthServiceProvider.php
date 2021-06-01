@@ -32,6 +32,11 @@ class AuthServiceProvider extends ServiceProvider
         });
 
 
+        Gate::define('administrar', function(User $user) {
+            return $user->is_administrador();
+        });
+
+
 
 
     }

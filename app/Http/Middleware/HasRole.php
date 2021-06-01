@@ -22,6 +22,10 @@ class HasRole
             abort(403);
         }
 
+        if($role == 'administrador' && Auth::user()->is_administrador() != 3) {
+            abort(403);
+        }
+
         return $next($request);
     }
 }
