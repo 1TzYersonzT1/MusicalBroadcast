@@ -47,7 +47,7 @@
 
 
                 <div class="relative lg:block sm:hidden text-gray-600 mr-5">
-                    <input type="search" name="serch" placeholder="Buscar"
+                    <input type="search" name="search" placeholder="Buscar"
                         class="bg-white h-10 px-5 pr-10 w-80 rounded-full text-sm focus:outline-none">
                     <button type="submit" class="absolute right-0 top-0 mt-3 mr-4">
                         <svg class="h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg"

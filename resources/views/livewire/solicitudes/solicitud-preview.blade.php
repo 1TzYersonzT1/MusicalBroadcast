@@ -43,7 +43,7 @@
             <button wire:click="aprobarTaller"><a class="bg-green-500 rounded-full font-bold px-5 py-2 mr-5">Aprobar
                     solicitud</a></button>
             <a class="bg-yellow-500 rounded-full font-bold px-5 py-2 mr-5">Agregar observación</a>
-            <a class="bg-red-500 rounded-full font-bold px-5 py-2">Eliminar solicitudActual->taller</a>
+            <a class="bg-red-500 rounded-full font-bold px-5 py-2">Eliminar solicitud</a>
         </div>
 
     </div>
