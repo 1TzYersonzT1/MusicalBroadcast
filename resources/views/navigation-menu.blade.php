@@ -20,7 +20,7 @@
                         </x-slot>
                     </x-jet-nav-link>
 
-                    <x-jet-nav-link href="/">
+                    <x-jet-nav-link href="{{ route('artistas.index') }}">
                         <x-slot name='slot'>
                             <p class="text-white hover:transform hover:scale-125">{{ __('Artistas') }}</p>
                         </x-slot>
