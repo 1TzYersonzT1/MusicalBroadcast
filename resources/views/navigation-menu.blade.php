@@ -45,6 +45,7 @@
             <div class="hidden sm:flex sm:items-center">
                 <!-- Settings Dropdown -->
 
+<<<<<<< HEAD
 
                 <div class="relative lg:block sm:hidden text-gray-600 mr-5">
                     <input type="search" name="search" placeholder="Buscar"
@@ -59,6 +60,10 @@
                         </svg>
                     </button>
                 </div>
+=======
+            
+            <livewire:formularios.buscar-artista>
+>>>>>>> a8da563e52537cfca607a37d478218185d17cf7b
 
                 @guest
                     <div class="lg:block sm:hidden">
