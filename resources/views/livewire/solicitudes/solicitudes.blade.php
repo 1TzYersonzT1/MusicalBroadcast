@@ -1,21 +1,20 @@
 <div>
     <div class="min-h-screen mt-12">
-        <div class="swiper-container swiperSolicitudes">
-            <div class="swiper-wrapper">
-                @foreach ($solicitudes as $solicitud)
-                    <div class="swiper-slide">
-                        <livewire:solicitudes.solicitud :solicitud='$solicitud' :wire:key='$solicitud->id' />
-                    </div>
-                @endforeach
+            <div class="swiper-container swiperSolicitudes">
+                <div class="swiper-wrapper">
+                    @foreach ($solicitudes as $solicitud)
+                        <div class="swiper-slide">
+                            <livewire:solicitudes.solicitud :solicitud='$solicitud' :wire:key='$solicitud->id' />
+                        </div>
+                    @endforeach
 
+                </div>
             </div>
-        </div>
-
-        <div class="mt-12 text-white">
-            <span class="text-2xl font-bold">Detalle del taller</span>
-            <livewire:solicitudes.solicitud-preview :solicitudActual='$solicitudes[0]'
-                :wire:key='$solicitudes[0]->id' />
-        </div>
+            <div class="mt-12 text-white">
+                <span class="text-2xl font-bold">Detalle del taller</span>
+                <livewire:solicitudes.solicitud-preview :solicitudActual='$solicitudes[0]'
+                    :wire:key='$solicitudes[0]->id' />
+            </div>
     </div>
 </div>
 
