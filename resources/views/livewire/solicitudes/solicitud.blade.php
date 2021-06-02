@@ -1,6 +1,5 @@
-<div>
-    <div class="w-96">
-
+<div class="swiper-slide">
+    <div class="lg:w-96">
         <div class="bg-white rounded-br-lg rounded-tl-lg px-6 py-3">
             <span class="font-bold block">{{ $solicitud->taller->TAL_Nombre }}</span>
             <span class="font-bold text-xs">Organiza: </span>

@@ -1,6 +1,6 @@
 <div>
     <div class="lg:grid lg:grid-cols-2 mt-10">
-        <div class='px-5'>
+        <div class=''>
             <div class="flex">
                 @can('organizar')
                     <div>
@@ -27,7 +27,7 @@
                     <div class="swiper-wrapper">
                         @foreach ($talleres as $taller)
                             <livewire:taller.taller :slideActual='$loop->index' :taller='$taller'
-                                :wire:key='$taller->id'>
+                                :wire:key='$taller->id' />
                         @endforeach
                     </div>
                 </div>
@@ -46,9 +46,9 @@
     function initializeSwiper(slideActual) {
         mySwiper = new Swiper('.swiperTalleres', {
             loop: false,
-            slidesPerView: 'auto',
+            grabCursor: true,
+            slidePerView: 'auto',
             spaceBetween: 30,
-            observer: true,
             initialSlide: slideActual,
         });
     }

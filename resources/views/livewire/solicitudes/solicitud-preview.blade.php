@@ -40,8 +40,8 @@
         </div>
 
         <div class="mt-10">
-            <button wire:click="aprobarTaller"><a class="bg-green-500 rounded-full font-bold px-5 py-2 mr-5">Aprobar
-                    solicitud</a></button>
+            <a wire:click="aprobarTaller"class="bg-green-500 rounded-full hover:bg-white hover:text-green-500 cursor-pointer font-bold px-5 py-2 mr-5">Aprobar
+                    solicitud</a>
             <a class="bg-yellow-500 rounded-full font-bold px-5 py-2 mr-5">Agregar observación</a>
             <a class="bg-red-500 rounded-full font-bold px-5 py-2">Eliminar solicitud</a>
         </div>

@@ -9,6 +9,7 @@ class Estilos extends Component
 {
 
     public $estilos;
+    
     public function mount()
     {
         $this->estilos = Estilo::all();

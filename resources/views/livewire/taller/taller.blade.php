@@ -1,5 +1,5 @@
-<div>
-    <div class="swiper-slide max-w-md w-full lg:flex">
+<div class="swiper-slide">
+    <div class="max-w-md w-full lg:flex">
         <div class="h-48 lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
             style="background-image: url('https://tailwindcss.com/img/card-left.jpg')" title="Woman holding a mug">
         </div>
@@ -20,4 +20,6 @@
             </div>
         </div>
     </div>
+    <div class="swiper-pagination text-white"></div>
+
 </div>

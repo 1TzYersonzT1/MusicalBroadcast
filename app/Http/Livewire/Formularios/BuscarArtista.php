@@ -2,17 +2,26 @@
 
 namespace App\Http\Livewire\Formularios;
 
+use App\Models\Artista;
 use Livewire\Component;
 
 class BuscarArtista extends Component
 {
 
     public $buscar;
-    public $resultado;
+    public $resultados;
 
-    public function search(){
-        $this->emit("buscar",array("nombre"=>$this->buscar));
+    public function updatedBuscar()
+    {
+        $this->resultados = [
+            (object) array("ART_Nombre" => '¿Qué estás buscando?')
+        ];  
+
+        if ($this->buscar != '') {
+            $this->resultados = Artista::where("ART_Nombre", 'like', $this->buscar . '%')->get();
+        }   
     }
+
     public function render()
     {
         return view('livewire.formularios.buscar-artista');

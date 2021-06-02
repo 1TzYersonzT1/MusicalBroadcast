@@ -10,27 +10,25 @@ use Auth;
 use Alert;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Date;
+use RealRashid\SweetAlert\Toaster;
 
 class CrearTaller extends Component
 {
 
-    public $titulo, $descripcion, $aforo, $fecha, $hora, $lugar, $user_rut;
-    public $protocolos, $requisitos;
+    public $titulo, $descripcion, $aforo, $hora, $lugar, $user_rut;
+    public $fecha;
+    public $protocolos = [], $requisitos = [];
 
 
     protected $rules = [
+        'titulo' => ['required', 'string', 'max:30'],
+        'hora' => ['required', 'date_format:H:i'],
+        'aforo' => ['required', 'integer'],
+        'lugar' => ['required', 'string', 'max:55'],
         'descripcion' => ['required', 'string', 'max:255'],
     ];
 
     protected $listeners = ["updatedRequisitos", 'updatedProtocolos'];
-
-    public function mount()
-    {
-        $this->titulo = "";
-        $this->fecha = Carbon::now()->isoFormat("LL");
-        $this->protocolos = [];
-        $this->requisitos = [];
-    }
 
     public function updatedFecha()
     {
@@ -69,6 +67,7 @@ class CrearTaller extends Component
             'taller_id' => $taller->id,
         ]);
 
+        alert()->success("Exito", 'Has inscrito tu taller exitosamente, por ahora debes esperar a que un administrador apruebe tu solicitud.');
 
         return redirect()->route("talleres.index");
     }
@@ -79,6 +78,7 @@ class CrearTaller extends Component
         if (Gate::denies('organizar')) {
             abort(403);
         }
+     
         return view('livewire.taller.crear-taller');
     }
 }

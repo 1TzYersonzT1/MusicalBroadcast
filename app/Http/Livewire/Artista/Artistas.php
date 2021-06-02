@@ -8,8 +8,9 @@ use App\Models\Artista;
 class Artistas extends Component
 {
     public $artistas;
-    public function mount(){
-    $this->artistas=Artista::all();
+    public function mount()
+    {
+        $this->artistas = Artista::all();
     }
 
 

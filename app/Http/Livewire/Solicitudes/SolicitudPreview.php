@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Solicitudes;
 use Livewire\Component;
 use App\Models\SolicitudTaller;
 use App\Models\Taller;
+use Alert;
 
 class SolicitudPreview extends Component
 {
@@ -25,6 +26,10 @@ class SolicitudPreview extends Component
         $solicitud = SolicitudTaller::find($this->solicitudActual->id);
         $solicitud->estado = 3;
         $solicitud->save();
+
+        alert()->success('Taller aprobado', 'Has aprobado el taller ' . $taller->TAL_Nombre . ' exitosamente!');
+
+        return redirect()->route("administrador.solicitudes");
     }
 
     public function render()
