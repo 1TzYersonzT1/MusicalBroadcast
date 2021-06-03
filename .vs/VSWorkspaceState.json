@@ -1,0 +1,17 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\app",
+    "\\app\\Http",
+    "\\app\\Http\\Livewire",
+    "\\app\\Http\\Livewire\\Artista",
+    "\\app\\Models",
+    "\\resources",
+    "\\resources\\views",
+    "\\resources\\views\\livewire",
+    "\\resources\\views\\livewire\\taller",
+    "\\resources\\views\\livewire\\taller\\crear"
+  ],
+  "SelectedNode": "\\resources\\views\\livewire\\taller\\taller.blade.php",
+  "PreviewInSolutionExplorer": false
+}

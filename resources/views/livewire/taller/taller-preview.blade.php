@@ -4,10 +4,10 @@
         <div class="mb-4 text-4xl font-bold">
             {{ $tallerActual->TAL_Nombre }}
         </div>
+        
+        <div class="mb-10">{{ $tallerActual->TAL_Descripcion }} </div>
 
-        <div class="mb-10">{{ $tallerActual->TAL_Descripcion }}</div>
-
-
+        
         <div class="grid grid-cols-2 gap-10 mb-10">
 
             <div>
@@ -34,8 +34,8 @@
                 <p>{{ $tallerActual->TAL_Protocolo }}</p>
             </div>
         </div>
-
-        <livewire:taller.inscripcion-form-taller :tallerSeleccionado='$tallerActual' :wire:key="$tallerActual->id">
+        
+        <livewire:taller.inscripcion-form-taller :tallerSeleccionado='$tallerActual' :wire:key="$tallerActual->id"> 
 
     </div>
 </div>
