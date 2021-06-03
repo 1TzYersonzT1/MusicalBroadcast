@@ -10,7 +10,7 @@ use Alert;
 class SolicitudPreview extends Component
 {
 
-    public $solicitudActual;
+    public $solicitudActual, $observacion;
 
     protected $listeners = ['visualizarSolicitud', 'aprobarTaller'];
 
@@ -27,6 +27,17 @@ class SolicitudPreview extends Component
 
         $solicitud = SolicitudTaller::find($this->solicitudActual->id);
         $solicitud->estado = 3;
+        $solicitud->observacion = '';
+        $solicitud->save();
+
+        return redirect()->route("administrador.solicitudes");
+    }
+
+
+    public function enviarObservacion() {
+        $solicitud = SolicitudTaller::find($this->solicitudActual->id);
+        $solicitud->observacion = $this->observacion;
+        $solicitud->estado = 1;
         $solicitud->save();
 
         return redirect()->route("administrador.solicitudes");

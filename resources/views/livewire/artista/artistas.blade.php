@@ -1,10 +1,14 @@
-<div>
-    
-   @foreach ($artistas as $artista)
-    {{$artista->ART_Nombre}}
+<div class="text-white">
+
+    @foreach ($artistas as $artista)
+        {{ $artista->ART_Nombre }}
     @endforeach
 
-    <livewire:genero.generos>
+    <div class="flex- flex-col">
+        <span class="text-xl">Género</span>
+        <livewire:genero.generos>
 
-    <livewire:estilo.estilos>
+            <span class="text-xl">Estilo</span>
+            <livewire:estilo.estilos>
+    </div>
 </div>

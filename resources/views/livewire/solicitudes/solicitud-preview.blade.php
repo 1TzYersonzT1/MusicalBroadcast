@@ -42,7 +42,22 @@
             <a id="aprobarSolicitud"
                 class="bg-green-500 rounded-full hover:bg-white hover:text-green-500 cursor-pointer font-bold px-5 py-2 mr-5">Aprobar
                 solicitud</a>
-            <a class="bg-yellow-500 rounded-full font-bold px-5 py-2 mr-5">Agregar observación</a>
+            <a data-fancybox data-src="#formulario-observacion-admin"
+                class="bg-yellow-500 rounded-full font-bold px-5 py-2 mr-5">Agregar observación</a>
+
+            <div id="formulario-observacion-admin" class="hidden bg-white">
+                <div class="flex flex-col items-center">
+                    <span class="text-2xl block border-b-2">Nueva observación</span>
+                    <span>{{ $solicitudActual->taller->TAL_Nombre }}</span>
+
+                    <textarea class="mt-5 resize-none lg:w-96 bg-primary h-40 text-white"
+                        placeholder="Aregue y envíe una observación al organizador (máximo 255 caracteres)"
+                       wire:model='observacion'></textarea>
+
+                       <a class="border-primary border-2 rounded-full px-3 py-2 mt-4" wire:click='enviarObservacion'>Enviar observaciones</a>
+                </div>
+            </div>
+
             <a class="bg-red-500 rounded-full font-bold px-5 py-2">Eliminar solicitud</a>
         </div>
 
