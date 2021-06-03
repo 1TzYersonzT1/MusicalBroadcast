@@ -9,7 +9,9 @@
                         </button>
                     </div>
                     <div>
-                        <button class="bg-yellow-500 px-5 py-1 mb-5 text-white font-bold ml-5">Estado solicitudes</button>
+                        <button class="bg-yellow-500 px-5 py-1 mb-5 text-white font-bold ml-5">
+                            <a href="{{ route('organizador.mis-solicitudes') }}">Estado solicitudes</a>
+                        </button>
                     </div>
                 @endcan
 

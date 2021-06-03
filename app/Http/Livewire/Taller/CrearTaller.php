@@ -19,7 +19,6 @@ class CrearTaller extends Component
     public $fecha;
     public $protocolos = [], $requisitos = [];
 
-
     protected $rules = [
         'titulo' => ['required', 'string', 'max:30'],
         'hora' => ['required', 'date_format:H:i'],
@@ -55,7 +54,7 @@ class CrearTaller extends Component
             'TAL_Requisitos' => implode(", ", $this->requisitos),
             'TAL_Protocolo' => implode(", ", $this->protocolos),
             'TAL_Aforo' => $this->aforo,
-            'TAL_Horario' => Carbon::parse(strtotime($this->fecha))->isoFormat("Y-M-D") . " " . $this->hora,
+            'TAL_Horario' => Carbon::parse(strtotime("2021-06-29"))->isoFormat("Y-M-D") . " " . $this->hora,
             'TAL_Lugar' => $this->lugar,
             'estado' => 0,
             'user_rut' => Auth::user()->rut,

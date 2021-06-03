@@ -22,7 +22,7 @@ class Taller extends Model
     }
 
     public function solicitudes() {
-        return $this->belongsToMany(Solicitud::class, 'solicitud_taller', 'taller_id', 'solicitud_id');
+        return $this->hasMany(SolicitudTaller::class, 'taller_id');
     }
 
     public function asistentes() {

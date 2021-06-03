@@ -25,15 +25,5 @@
     <div class="swiper-pagination text-white"></div>
     </div>
   
-    @endforeach
-    </div>
-
-    <livewire:genero.generos>
-    
-    
-        
-    
-            
-        
 
 </div>

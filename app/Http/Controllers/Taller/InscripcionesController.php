@@ -12,6 +12,7 @@ class InscripcionesController extends Controller
 {
     public function store(Request $request)
     {
+        $exito = 1;
 
         $asistente = Asistente::updateOrCreate(
             [
@@ -31,20 +32,11 @@ class InscripcionesController extends Controller
             $taller->TAL_Aforo = $taller->TAL_Aforo - 1;
             $taller->asistentes()->attach($request['rut']);
             $taller->save();
-            alert()->success(
-                'Exito',
-                $request["nombre"] . ' te has inscrito/a a ' . $taller->TAL_Nombre . ' exitosamente.'
-            )->autoClose(6000);
+            $exito = 2;
         } else {
-            alert()->info(
-                'Información',
-                $request["nombre"] . ' ya estás inscrito/a a este taller. Si tienes alguna duda puedes contactar al organizador.'
-            )->autoClose(6000);
+            $exito = 3;
         }
 
-
-
-
-        return redirect()->route('talleres.index');
+        return redirect()->route('talleres.index')->with('inscripcionExitosa', $exito);
     }
 }

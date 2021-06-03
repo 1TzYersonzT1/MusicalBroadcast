@@ -44,11 +44,14 @@
     </div>
 
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-   
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
     @stack('modals')
     @include('sweetalert::alert')
     @livewireScripts
+
+    @yield("js")
+
 </body>
 
 </html>

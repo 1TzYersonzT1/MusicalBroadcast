@@ -8,6 +8,7 @@ use App\Models\Artista;
 class Artistas extends Component
 {
 
+
     public $artistas, $slideActual;
 
     public function mount()
@@ -19,7 +20,6 @@ class Artistas extends Component
     {
         $this->emit('visualizar', array('id' => $this->artista->id, 'slideActual' => $this->slideActual));
     }
-
 
     public function render()
     {
