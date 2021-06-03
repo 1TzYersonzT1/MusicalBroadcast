@@ -1,7 +1,7 @@
 <div>
     <div class='px-4 container mx-auto text-white'>
         <div class="mb-6"><span class="text-3xl">Organizar nuevo taller.</span></div>
-        @if($errors) 
+        @if ($errors)
             @foreach ($errors->all() as $message)
                 {{ $message }}
             @endforeach
@@ -22,13 +22,14 @@
                         <div class="flex mb-3">
                             <div class="flex flex-col">
                                 <span class="font-bold">Fecha</span>
-                                <x-date-picker wire:model.lazy='fecha' id="fecha" class="bg-primary text-white p-0 mr-5" />
+                                <x-date-picker wire:model.lazy='fecha' id="fecha"
+                                    class="bg-primary text-white p-0 mr-5" />
                             </div>
                             <div class="flex flex-col">
                                 <span class="font-bold">Hora</span>
                                 <div class="flex flex=col">
                                     <input type="time" class="bg-primary border-0 p-0" id="hora" wire:model="hora">
-                                   
+
                                 </div>
 
                             </div>
@@ -39,7 +40,7 @@
                             <div class="flex flex-col">
                                 <input type="number" min='1' max='12' class="bg-primary p-0 px-2 w-16 ml-3 mr-3"
                                     id="aforo" wire:model='aforo' />
-        
+
                             </div><span>personas.</span>
                         </div>
                         <div class="flex items-center mb-3 text-sm">
@@ -47,7 +48,7 @@
                             <div class="flex flex-col">
                                 <input type="text" class="border-0 bg-primary w-64 py-0 px-2"
                                     placeholder="¿Donde planeas realizar el taller?" wire:model='lugar' />
-                      
+
                             </div>
                         </div>
                         <label for="descripcion" class="font-bold lg:w-96">Descripción</label>
@@ -55,7 +56,7 @@
                             <textarea class="resize-none lg:w-96 bg-primary h-40"
                                 placeholder="Escriba una descripción (máximo 255 caracteres)"
                                 wire:model='descripcion'></textarea>
-                   
+
                         </div>
 
                     </div>
@@ -80,3 +81,11 @@
         </div>
     </div>
 </div>
+
+
+@if (session('nuevoTaller') == 'si')
+    <script>
+        alert("works");
+
+    </script>
+@endif

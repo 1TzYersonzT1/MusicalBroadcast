@@ -13,4 +13,8 @@ class Genero extends Model
     public $timestamps = false;
 
     protected $guarded= [];
+
+    public function estilos() {
+        return $this->hasMany(Estilo::class, 'genero_id', 'id');
+    }
 }

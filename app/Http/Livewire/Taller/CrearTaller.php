@@ -7,10 +7,8 @@ use Livewire\Component;
 use App\Models\Taller;
 use App\Models\SolicitudTaller;
 use Auth;
-use Alert;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Date;
-use RealRashid\SweetAlert\Toaster;
+
 
 class CrearTaller extends Component
 {
@@ -65,8 +63,6 @@ class CrearTaller extends Component
             'estado' => 0,
             'taller_id' => $taller->id,
         ]);
-
-        alert()->success("Exito", 'Has inscrito tu taller exitosamente, por ahora debes esperar a que un administrador apruebe tu solicitud.');
 
         return redirect()->route("talleres.index");
     }
