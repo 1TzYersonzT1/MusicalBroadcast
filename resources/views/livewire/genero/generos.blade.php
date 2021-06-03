@@ -1,7 +1,11 @@
 <div>
 
      @foreach ($generos as $genero)
-       <input type="checkbox" name="generos[]">{{ $genero->GEN_Nombre }}
+        <div class="shadow-md">{{$genero->GEN_Nombre}}</div>
+        <div>
+        <livewire:estilo.estilos>
+        
+        </div>
     @endforeach
 
 </div>

@@ -1,7 +1,8 @@
 <div>
-
+    
     @foreach ($estilos as $estilo)
-        {{$estilo->EST_Nombre}}
+        <div>{{$estilo->EST_Nombre}}   
+        </div>
     @endforeach
 
 </div>

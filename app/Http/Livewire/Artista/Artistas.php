@@ -7,11 +7,18 @@ use App\Models\Artista;
 
 class Artistas extends Component
 {
-    public $artistas;
+
+
+    public $artistas, $slideActual;
 
     public function mount()
     {
         $this->artistas = Artista::all();
+    }
+
+    public function mostrarArtista()
+    {
+        $this->emit('visualizar', array('id' => $this->artista->id, 'slideActual' => $this->slideActual));
     }
 
     public function render()
