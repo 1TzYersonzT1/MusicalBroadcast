@@ -24,7 +24,7 @@
 
     function initializeSwiper() {
         mySwiper = new Swiper('.swiperSolicitudes', {
-            slidesPerView: 1,
+            slidesPerView: 2,
             spaceBetween: 10,
             pagination: {
                 el: ".swiper-pagination",
@@ -32,7 +32,7 @@
             },
             breakpoints: {
                 640: {
-                    slidesPerView: 1,
+                    slidesPerView: 2,
                     spaceBetween: 10,
                 },
                 768: {

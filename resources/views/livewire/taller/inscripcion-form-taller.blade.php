@@ -11,7 +11,7 @@
     </div>
 
 
-    <form method='post' action='{{ route('taller.inscripcion') }}' autocomplete="off">
+    <form method='post' action='{{ route('taller.inscripcion') }}' autocomplete="off" class="formulario-inscripcion">
         @csrf
         <div class="grid lg:grid-cols-2 gap-8 mt-8">
             <input id="idTaller" type="text" name="idTaller" class="hidden" value='{{ $tallerSeleccionado->id }}' />
@@ -54,3 +54,34 @@
         </div>
     </form>
 </div>
+
+@section('js')
+
+    @if (session('inscripcionExitosa') == 2)
+        <script>
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Te has inscrito exitosamente',
+                showConfirmButton: false,
+                timer: 4000
+            }).then((isVisible) => {
+                location.reload();
+            });
+
+        </script>
+    @elseif(session('inscripcionExitosa') == 3)
+        <script>
+            Swal.fire({
+                position: 'center',
+                icon: 'info',
+                title: 'Ya estas inscrito',
+                showConfirmButton: false,
+                timer: 4500
+            }).then((isVisible) => {
+                location.reload();
+            });
+        </script>
+    @endif
+
+@endsection

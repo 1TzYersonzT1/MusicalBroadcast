@@ -12,13 +12,15 @@ class SolicitudPreview extends Component
 
     public $solicitudActual;
 
-    protected $listeners = ['visualizarSolicitud'];
+    protected $listeners = ['visualizarSolicitud', 'aprobarTaller'];
 
-    public function visualizarSolicitud(array $solicitudSeleccionada) {
+    public function visualizarSolicitud(array $solicitudSeleccionada)
+    {
         $this->solicitudActual = SolicitudTaller::findOrFail($solicitudSeleccionada['id']);
     }
 
-    public function aprobarTaller() {
+    public function aprobarTaller()
+    {
         $taller = Taller::find($this->solicitudActual->taller->id);
         $taller->estado = 1;
         $taller->save();
@@ -26,8 +28,6 @@ class SolicitudPreview extends Component
         $solicitud = SolicitudTaller::find($this->solicitudActual->id);
         $solicitud->estado = 3;
         $solicitud->save();
-
-        alert()->success('Taller aprobado', 'Has aprobado el taller ' . $taller->TAL_Nombre . ' exitosamente!');
 
         return redirect()->route("administrador.solicitudes");
     }
