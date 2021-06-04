@@ -10,8 +10,6 @@
                         </div>
                         <div
                             class=" object-contentborder-l border-grey-light  bg-gradient-to-tr from-black via-primary to-blue-900 rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
-
-
                             <div>
                                 <button
                                     class=" font-bold px-2 py-2 w-35 text-center text-white hover:bg-white hover:text-primary cursor-pointer"
@@ -22,7 +20,6 @@
                 </div>
             @endforeach
             <div class="swiper-pagination text-white"></div>
-
         </div>
     </div>
 </div>

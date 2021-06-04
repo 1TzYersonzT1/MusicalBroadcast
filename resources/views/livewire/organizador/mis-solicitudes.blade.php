@@ -1,4 +1,4 @@
-<div class="text-primary">
+<div id="lista-solicitudes" class="text-primary lg:grid">
     <div class="flex flex-col justify-center items-center">
         <div class="bg-white px-7 py-5 mb-5">
             @foreach ($talleres as $taller)
@@ -14,15 +14,13 @@
                         </div>
                     @endif
 
-                    @if ($solicitud->estado == 3)
-                        <div class="bg-green-400 rounded-full px-10 w-32 "><span class="text-xs">Aprobada</span>
-                        </div>
-                    @endif
-
+            
                     <span class="block mt-3 mb-2 font-bold">Observaciones:</span>
                     <span class="block w-80 mb-5">{{ $solicitud->observacion }}</span>
 
-                    <a class="mt-4 px-5 py-2 bg-primary text-white">Modificar</a>
+
+                    <a id="modificarBtn" class="mt-4 px-5 py-2 bg-primary text-white">Modificar</a>
+
                 @endforeach
             @endforeach
 
@@ -31,4 +29,28 @@
 
     </div>
 
+    <div class="px-5 text-white hidden" id="modificar-preview">
+        <div class="flex items-between justify-between mb-2">
+            <livewire:organizador.solicitud-preview :solicitudActual='$talleres[0]' :wire:key="$talleres[0]->id">
+                <button id="cerrarBtn">X</button>
+        </div>
+
+    </div>
 </div>
+
+@section('js')
+
+    <script>
+        $('#modificarBtn').on('click', function() {
+            $("#lista-solicitudes").addClass("lg:grid-cols-2");
+            $("#modificar-preview").removeClass("hidden");
+        });
+
+        $("#cerrarBtn").on('click', function() {
+            $("#lista-solicitudes").removeClass("lg:grid-cols-2");
+            $("#modificar-preview").addClass("hidden");
+        })
+
+    </script>
+
+@endsection
