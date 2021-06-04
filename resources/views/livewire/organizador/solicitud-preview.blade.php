@@ -13,13 +13,6 @@
             </div>
         </div>
 
-        <div class="flex items-center mb-3 text-sm">
-            <span class="font-bold">Lugar: </span>
-            <div class="flex flex-col">
-                <input type="text" class="border-0 bg-primary w-64 py-0 px-2"
-                    placeholder="¿Donde planeas realizar el taller?" wire:model='lugar' />
 
-            </div>
-        </div>
     </div>
 </div>
