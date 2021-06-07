@@ -20,7 +20,7 @@
 
     <div class="min-h-screen flex flex-col justify-between">
         @livewire('navigation-menu')
-
+        
         @include('banner')
         @include('novedades')
 

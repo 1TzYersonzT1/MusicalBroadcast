@@ -15,6 +15,7 @@ class Artistas extends Component
     {
         $this->artistas = Artista::all();
     }
+    
 
     public function mostrarArtista()
     {
