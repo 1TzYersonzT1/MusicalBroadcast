@@ -6,4 +6,199 @@
     background-image: url('/Banner.png');
 }
 
+.bannerART {
+    background-image: url('https://i.pinimg.com/originals/a1/bf/0e/a1bf0e58edb48197d2f620bad923cb0d.jpg');
+}
 
+/*
+CSS del artista
+*/
+.Filtro {
+    position: absolute;
+    width: 300px;
+    height: 500px;
+    left: 0px;
+    top: 593px;
+    overflow: visible;
+    
+}
+
+.Grupo_1 {
+    position: absolute;
+    width: 225px;
+    height: 654px;
+    left: 0px;
+    top: 15px;
+    overflow: visible;
+}
+
+.Grupo_gen {
+    position: absolute;
+    width: 93px;
+    height: 160px;
+    left: 13px;
+    top: 87px;
+    overflow: visible;
+}
+
+.Grupo_art {
+    position: absolute;
+    width: 220px;
+    height: 400px;
+    left: 0px;
+    top: 75px;
+    overflow: visible;
+}
+
+.Grupo_est {
+    position: absolute;
+    width: 93px;
+    height: 654px;
+    left: 0px;
+    top: 95px;
+    overflow: visible;
+}
+
+.Trazado {
+    overflow: visible;
+    position: absolute;
+    width: 238px;
+    height: 654px;
+    left: 0px;
+    top: 0px;
+    transform: matrix(1,0,0,1,0,0);
+    fill: rgba(74,103,132,1);
+}
+
+.Buscar {
+    left: 13px;
+    top: 0px;
+    position: absolute;
+    overflow: visible;
+    width: 63px;
+    white-space: nowrap;
+    text-align: left;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    color: rgba(255,255,255,1);
+}
+
+.Genero {
+    left: 0px;
+    top: 0px;
+    position: absolute;
+    overflow: visible;
+    width: 69px;
+    white-space: nowrap;
+    text-align: left;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    color: rgba(255,255,255,1);
+}
+
+
+.Genero_group {
+    position: absolute;
+    width: 220px;
+    height: 654px;
+    left: 0px;
+    top: 27px;
+    overflow: hidden;
+}
+
+.Estilo_group {
+    position: absolute;
+    width: 220px;
+    height: 654px;
+    left: 0px;
+    top: 27px;
+    overflow: hidden;
+}
+
+.Artista_group {
+    position: absolute;
+    width: 220px;
+    height: 654px;
+    left: 0px;
+    top: 27px;
+    overflow: hidden;
+}
+
+.Artista {
+    left: 0px;
+    top: 22px;
+    position: absolute;
+    overflow: visible;
+    width: 64px;
+    white-space: nowrap;
+    text-align: left;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    color: rgba(255,255,255,1);
+}
+
+.Artista_ckb {
+    left: 13px;
+    top: 20px;
+    position: absolute;
+    overflow: visible;
+    width: 65px;
+    white-space: nowrap;
+    text-align: left;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    color: rgba(255,255,255,1);
+}
+
+.Genero_ckb {
+    left: 13px;
+    top: 0px;
+    position: absolute;
+    overflow: visible;
+    width: 65px;
+    white-space: nowrap;
+    text-align: left;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    color: rgba(255,255,255,1);
+}
+
+.Estilo {
+    left: 0px;
+    top: 104px;
+    position: absolute;
+    overflow: visible;
+    width: 52px;
+    white-space: nowrap;
+    text-align: center;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    color: rgba(255,255,255,1);
+}
+
+.Estilo_ckb {
+    left: 13px;
+    top: 105px;
+    position: absolute;
+    overflow: visible;
+    width: 55px;
+    white-space: nowrap;
+    text-align: left;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    color: rgba(255,255,255,1);
+}

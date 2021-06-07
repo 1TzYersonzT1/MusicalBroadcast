@@ -34,7 +34,7 @@
 
     <div class="min-h-screen flex flex-col justify-between">
         @livewire('navigation-menu')
-
+        @yield('banner')
         <!-- Page Content -->
         <main class="mix-blend-normal container mx-auto px-5">
             {{ $slot }}
