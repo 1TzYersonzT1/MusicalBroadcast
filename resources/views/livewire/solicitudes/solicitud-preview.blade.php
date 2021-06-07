@@ -37,14 +37,15 @@
             </div>
         </div>
 
-        <div class="mt-10 flex">
+        <div class="mt-10 flex flex-col items-center justify-center lg:flex lg:flex-row lg:justify-start w-84">
 
             <a id="aprobarSolicitud"
-                class="bg-green-500 rounded-full hover:bg-white hover:text-green-500 cursor-pointer font-bold px-5 py-2 mr-5">Aprobar
+                class="bg-green-500 rounded-full hover:bg-white hover:text-green-500 cursor-pointer font-bold px-5 py-2 w-52 text-center mb-5">Aprobar
                 solicitud</a>
-            <a data-fancybox data-src="#formulario-observacion-admin"
-                class="bg-yellow-500 rounded-full font-bold px-5 py-2 mr-5">Agregar observación</a>
 
+
+            <a data-fancybox data-src="#formulario-observacion-admin"
+                class="bg-yellow-500 rounded-full font-bold px-5 py-2 cursor-pointer hover:bg-white hover:text-yellow-600 w-52 text-center lg:ml-5 mb-5">Agregar observación</a>
             <div id="formulario-observacion-admin" class="hidden bg-white">
                 <div class="flex flex-col items-center">
                     <span class="text-2xl block border-b-2">Nueva observación</span>
@@ -58,7 +59,7 @@
                 </div>
             </div>
 
-            <a class="bg-red-500 rounded-full font-bold px-5 py-2">Eliminar solicitud</a>
+            <a class="bg-red-500 rounded-full font-bold px-5 py-2 w-52 text-center lg:ml-5 mb-5">Eliminar solicitud</a>
         </div>
 
     </div>

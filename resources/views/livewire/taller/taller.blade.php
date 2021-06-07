@@ -4,7 +4,8 @@
             style="background-image: url('https://tailwindcss.com/img/card-left.jpg')" title="Woman holding a mug">
         </div>
         <div
-            class="object-contentborder-l border-grey-light  bg-gradient-to-tr from-black via-primary to-blue-900 rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+            class="object-content border-l border-grey-light 
+            w-96 bg-gradient-to-tr from-black via-primary to-blue-900 rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
             <div class="mb-8">
 
                 <div class="text-black font-bold text-xl mb-2 text-white">

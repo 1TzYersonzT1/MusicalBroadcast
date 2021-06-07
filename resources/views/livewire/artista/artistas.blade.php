@@ -1,9 +1,4 @@
 <div>
-	@section('banner')
-	@include('banner-artista')
-	@endsection
-
-
 	<div class="mt-40"></div>
 	<div class=''>
 		<div class="flex">

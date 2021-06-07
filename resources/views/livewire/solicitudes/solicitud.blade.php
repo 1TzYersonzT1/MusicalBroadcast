@@ -1,25 +1,31 @@
 <div class="swiper-slide">
     <div class="lg:w-96">
-        <div class="bg-white rounded-br-lg rounded-tl-lg px-6 py-3">
-            <span class="font-bold block">{{ $solicitud->taller->TAL_Nombre }}</span>
-            <span class="font-bold text-xs">Organiza: </span>
-            <span class="text-xs">{{ $solicitud->taller->organizador->nombre }}</span>
-            <span class="text-xs">{{ $solicitud->taller->organizador->apellidos }}</span>
-            <div class="flex flex-col mt-5 items-center">
+        <div class="bg-white rounded-br-lg rounded-tl-lg py-3">
+            <div class="flex flex-col px-5">
+                <div>
+                    <span class="font-bold block">{{ $solicitud->taller->TAL_Nombre }}</span>
+                </div>
+                <div>
+                    <span class="font-bold text-xs">Organiza: </span>
+                    <span class="text-xs">{{ $solicitud->taller->organizador->nombre }}</span>
+                    <span class="text-xs">{{ $solicitud->taller->organizador->apellidos }}</span>    
+                </div>
+            </div>
+            <div class="flex flex-col mt-5 items-center lg:w-96">
                 <span class="text-md">Estado </span>
 
                 @if ($solicitud->estado == 0)
-                    <div class="bg-yellow-300 rounded-full px-10 w-32"><span
+                    <div class="bg-yellow-300 rounded-full w-32"><span
                             class="text-xs text-purple-600">Pendiente</span> </div>
                 @endif
 
                 @if ($solicitud->estado == 1)
-                    <div class="bg-pink-400 rounded-full px-10 w-32 "><span class="text-xs">Revisada</span>
+                    <div class="bg-pink-400 rounded-full w-32 text-center"><span class="text-xs">Revisada</span>
                     </div>
                 @endif
             </div>
 
-            <div class="flex flex-col mt-3 items-center">
+            <div class="flex flex-col mt-3 items-center lg:w-96">
                 <span class="text-md">Visualizar </span>
                 <a class="hover:text-green-400" wire:click='mostrarSolicitud'><svg xmlns="http://www.w3.org/2000/svg"
                         class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
