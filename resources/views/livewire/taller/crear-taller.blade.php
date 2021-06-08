@@ -8,7 +8,7 @@
         @endif
         <div class="lg:flex">
             <div class="flex flex-col lg:mr-5">
-                <form wire:submit.prevent='nuevoTaller'>
+                <form wire:submit.prevent='nuevoTaller' enctype="multipart/form-data">
                     <div class="lg:flex">
                         <div class="flex flex-col">
                             <span class="font-bold">Titulo</span>
@@ -69,6 +69,16 @@
 
                 <livewire:taller.crear.protocolos :protocolos='$protocolos' />
 
+                <div>
+                    <label for="imagen" class="font-bold lg:w-96">Imagen</label>
+                    <div class="flex flex-col">
+                        <input type="file" />
+                    </div>
+                    <div class="">
+                        <img  id="imagenSubida" class="h-32"/>
+                    </div>
+                </div>
+
                 <div class="justify-self-center self-center">
                     <button type="submit"
                         class="border border-white px-7 py-3 my-10 lg:my-0 hover:bg-white hover:text-primary">Solicitar
@@ -84,6 +94,8 @@
 
 
 <script>
+
+
     window.addEventListener("nuevoTaller", function() {
         Swal.fire({
             position: 'center',
@@ -92,7 +104,7 @@
             showConfirmButton: false,
             timer: 4000
         }).then((isVisible) => {
-            if(!isVisible.isComfirmed) {
+            if (!isVisible.isComfirmed) {
                 location.href = "/talleres";
             }
         });

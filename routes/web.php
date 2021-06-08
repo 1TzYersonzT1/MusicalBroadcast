@@ -4,7 +4,7 @@ use App\Http\Livewire\Taller\Talleres;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Taller\InscripcionesController;
 use App\Http\Livewire\Administrador\Solicitudes\Solicitudes;
-use App\Http\Livewire\Organizador\MisSolicitudes;
+use App\Http\Livewire\Organizador\Solicitudes\MisSolicitudes;
 use App\Http\Livewire\Taller\CrearTaller;
 use App\Http\Livewire\Artista\Artistas;
 use App\Http\Livewire\Evento\Eventos;

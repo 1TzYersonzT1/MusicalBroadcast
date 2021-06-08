@@ -25,10 +25,11 @@
 
     <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     @livewireStyles
 </head>
 
-<body class="font-sans antialiased bg-gradient-to-b bg-primary">
+<body class="font-body antialiased bg-gradient-to-b bg-primary">
 
     <x-jet-banner />
 
@@ -43,7 +44,7 @@
         @include('footer')
     </div>
 
-    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
     @stack('modals')

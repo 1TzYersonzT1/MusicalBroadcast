@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Organizador;
+namespace App\Http\Livewire\Organizador\Solicitudes;
 
 use Livewire\Component;
 use App\Models\SolicitudTaller;
@@ -18,6 +18,6 @@ class SolicitudPreview extends Component
 
     public function render()
     {
-        return view('livewire.organizador.solicitud-preview');
+        return view('livewire.organizador.solicitudes.solicitud-preview');
     }
 }

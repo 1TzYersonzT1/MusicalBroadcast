@@ -15,7 +15,7 @@
                 <livewire:evento.evento-preview :eventoActual='$eventos[0]' :wire:key='$eventos[0]->id' />
             </div>
         @else
-            <span>Sin resultados</span>
+            <span class="text-white">Sin resultados</span>
         @endif
     </div>
 </div>

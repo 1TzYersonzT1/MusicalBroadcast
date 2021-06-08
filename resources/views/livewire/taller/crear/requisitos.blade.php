@@ -1,6 +1,6 @@
 <div>
     <div class="flex flex-col mb-5">
-        <span class="font-bold">REQUISITOS</span>
+        <span class="font-bold">Requisitos</span>
         <div class="flex">
             <input type="text" class="bg-primary border-0 p-0 w-36" wire:model='nuevoRequisito'
                 placeholder="Nuevo requisito" />

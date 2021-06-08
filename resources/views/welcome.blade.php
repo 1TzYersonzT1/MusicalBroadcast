@@ -7,18 +7,22 @@
 
     <title>Laravel</title>
 
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
+
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;600&display=swap" rel="stylesheet">
+
 
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     <link rel="stylesheet" href="{{ mix('css/extra.css') }}">
     <script src="{{ mix('js/app.js') }}" defer></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
     @livewireStyles
 </head>
 
-<body class="antialiased bg-primary">
+<body class="antialiased bg-primary font-body">
 
-    <div class="min-h-screen flex flex-col justify-between">
+    <div class="min-h-screen max-h-screen flex flex-col justify-between">
         @livewire('navigation-menu')
         
         @include('banner')
@@ -26,6 +30,7 @@
 
         @include('footer')
     </div>
+
     @livewireScripts
 
 </body>

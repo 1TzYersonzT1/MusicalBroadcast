@@ -1,6 +1,7 @@
 <div>
-    <div class="lg:grid lg:grid-cols-2 mt-12 min-h-screen">
+    <div class="text-white mt-6 min-h-screen">
         <div class=''>
+            <span class="text-4xl mb-8 block">Talleres disponibles</span>
             <div class="flex">
                 @can('organizar')
                     <div>
@@ -11,6 +12,11 @@
                     <div>
                         <button class="bg-yellow-500 px-5 py-1 mb-5 text-white font-bold ml-5">
                             <a href="{{ route('organizador.mis-solicitudes') }}">Estado solicitudes</a>
+                        </button>
+                    </div>
+                    <div>
+                        <button class="bg-purple-500 px-5 py-1 mb-5 text-white font-bold ml-5">
+                            <a href="{{ route('organizador.mis-solicitudes') }}">Mis talleres</a>
                         </button>
                     </div>
                 @endcan
@@ -32,6 +38,7 @@
                                 :wire:key='$taller->id' />
                         @endforeach
                     </div>
+
                 </div>
             </div>
         </div>
@@ -47,11 +54,19 @@
 
     function initializeSwiper(slideActual) {
         mySwiper = new Swiper('.swiperTalleres', {
-            loop: false,
-            grabCursor: true,
-            slidePerView: 'auto',
+            slidesPerView: 1,
             spaceBetween: 30,
-            initialSlide: slideActual,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            breakpoints: {
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 50,
+                },
+            },
+
         });
     }
 

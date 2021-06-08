@@ -8,10 +8,12 @@ use App\Models\Taller;
 use App\Models\SolicitudTaller;
 use Auth;
 use Carbon\Carbon;
-
+use Livewire\WithFileUploads;
 
 class CrearTaller extends Component
 {
+
+    use WithFileUploads;
 
     public $titulo, $descripcion, $aforo, $hora, $lugar, $user_rut;
     public $fecha;

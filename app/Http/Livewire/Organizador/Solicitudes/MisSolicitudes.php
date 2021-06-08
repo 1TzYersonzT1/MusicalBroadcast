@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Organizador;
+namespace App\Http\Livewire\Organizador\Solicitudes;
 
 use Livewire\Component;
 use Auth;
@@ -14,13 +14,20 @@ class MisSolicitudes extends Component
 
     public $solicitudes;
 
+    protected $listeners = ['busqueda'];
+
     public function mount()
     {
         $this->solicitudes = Taller::where("user_rut", auth()->user()->rut)->get();
     }
 
+    public function busqueda($resultados) {
+        $this->solicitudes = $resultados;
+    }
+
+
     public function render()
     {
-        return view('livewire.organizador.mis-solicitudes');
+        return view('livewire.organizador.solicitudes.mis-solicitudes');
     }
 }

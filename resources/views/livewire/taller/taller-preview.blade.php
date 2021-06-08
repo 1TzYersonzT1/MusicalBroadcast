@@ -1,14 +1,14 @@
 <div>
-    <div class="text-white px-10">
+    <div class="text-white">
 
-        <div class="mb-4 text-4xl font-bold">
+        <div class="mb-4 text-3xl font-bold">
             {{ $tallerActual->TAL_Nombre }}
         </div>
         
         <div class="mb-10">{{ $tallerActual->TAL_Descripcion }} </div>
 
         
-        <div class="grid grid-cols-2 gap-10 mb-10">
+        <div class="grid grid-cols-2 gap-8 mb-5">
 
             <div>
                 <p class="font-bold">ORGANIZADOR</p>
