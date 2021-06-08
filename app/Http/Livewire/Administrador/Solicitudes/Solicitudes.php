@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Solicitudes;
+namespace App\Http\Livewire\Administrador\Solicitudes;
 
 use Livewire\Component;
 use App\Models\SolicitudTaller;
@@ -17,6 +17,6 @@ class Solicitudes extends Component
 
     public function render()
     {
-        return view('livewire.solicitudes.solicitudes');
+        return view('livewire.administrador.solicitudes.solicitudes');
     }
 }

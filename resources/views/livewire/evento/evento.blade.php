@@ -1,5 +1,5 @@
 <div class="swiper-slide">
-    <div class="max-w-md w-full lg:flex">
+    <div class="lg:flex">
         <div class="h-48 lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
             style="background-image: url('https://tailwindcss.com/img/card-left.jpg')" title="Woman holding a mug">
         </div>
@@ -9,14 +9,14 @@
             <div class="mb-8">
 
                 <div class="text-black font-bold text-xl mb-2 text-white">
-                    {{ $taller->TAL_Nombre }}</div>
+                    {{ $evento->EVE_Nombre }}</div>
 
             </div>
 
             <div>
                 <button
                     class="font-bold px-2 py-2 w-40 text-center text-white hover:bg-white hover:text-primary cursor-pointer"
-                    wire:click="mostrarTaller">Más
+                    wire:click="mostrarEvento">Más
                     información</button>
             </div>
         </div>

@@ -78,9 +78,7 @@
 						<div class="Estilo_group">
 							<div>
 								<div class="Estilo_ckb">
-									<input type="checkbox" id="cbx1" value="ck2">Estilo 1</input><br>
-									<input type="checkbox" id="cbx1" value="ck2">Estilo 1</input><br>
-									<input type="checkbox" id="cbx1" value="ck2">Estilo 1</input>
+									<livewire:estilo.estilos />
 								</div>
 							</div>
 						</div>

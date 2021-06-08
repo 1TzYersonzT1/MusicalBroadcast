@@ -1,5 +1,5 @@
 <div>
-    <div class="lg:grid lg:grid-cols-2 mt-10">
+    <div class="lg:grid lg:grid-cols-2 mt-12 min-h-screen">
         <div class=''>
             <div class="flex">
                 @can('organizar')

@@ -1,5 +1,5 @@
 <div>
-    <div>
+    <div class="relative">
         <div class="relative lg:block sm:hidden text-gray-600 mr-5">
             <div>
                 <input type="search" @click="open = !open" name="search" placeholder="Escribe lo que estas buscando" wire:model="buscar"

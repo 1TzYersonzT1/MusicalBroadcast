@@ -3,16 +3,17 @@
 namespace App\Http\Livewire\Organizador;
 
 use Livewire\Component;
+use App\Models\SolicitudTaller;
 
 class SolicitudPreview extends Component
 {
 
     public $solicitudActual;
-    public $titulo, $descripcion;
 
-    public function mount() {
-        $this->titulo = $this->solicitudActual->TAL_Nombre;
-        $this->descripcion = $this->solicitudActual->TAL_Descripcion;
+    protected $listeners = ["visualizarSolicitud"];
+
+    public function visualizarSolicitud(array $solicitudSeleccionada) {
+       $this->solicitudActual = SolicitudTaller::find($solicitudSeleccionada["id"]);
     }
 
     public function render()

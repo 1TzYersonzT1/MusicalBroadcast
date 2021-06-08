@@ -12,10 +12,15 @@ class MisSolicitudes extends Component
 
     use WithPagination;
 
+    public $solicitudes;
+
+    public function mount()
+    {
+        $this->solicitudes = Taller::where("user_rut", auth()->user()->rut)->get();
+    }
+
     public function render()
     {
-        return view('livewire.organizador.mis-solicitudes', [
-            'talleres' => Taller::where('user_rut', auth()->user()->rut)->paginate(1)
-        ]);
+        return view('livewire.organizador.mis-solicitudes');
     }
 }

@@ -3,14 +3,14 @@
         <div class="swiper-container swiperSolicitudes">
             <div class="swiper-wrapper">
                 @foreach ($solicitudes as $solicitud)
-                    <livewire:solicitudes.solicitud :solicitud='$solicitud' :wire:key='$solicitud->id' />
+                    <livewire:administrador.solicitudes.solicitud :solicitud='$solicitud' :wire:key='$solicitud->id' />
                 @endforeach
 
             </div>
         </div>
         <div class="mt-12 text-white lg:w-7/12">
             <span class="text-2xl font-bold">Detalle del taller</span>
-            <livewire:solicitudes.solicitud-preview :solicitudActual='$solicitudes[0]'
+            <livewire:administrador.solicitudes.solicitud-preview :solicitudActual='$solicitudes[0]'
                 :wire:key='$solicitudes[0]->id' />
         </div>
     </div>

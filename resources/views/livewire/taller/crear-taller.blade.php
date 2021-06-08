@@ -83,9 +83,19 @@
 </div>
 
 
-@if (session('nuevoTaller') == 'si')
-    <script>
-        alert("works");
+<script>
+    window.addEventListener("nuevoTaller", function() {
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Taller creado exitosamente',
+            showConfirmButton: false,
+            timer: 4000
+        }).then((isVisible) => {
+            if(!isVisible.isComfirmed) {
+                location.href = "/talleres";
+            }
+        });
+    });
 
-    </script>
-@endif
+</script>

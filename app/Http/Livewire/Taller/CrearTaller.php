@@ -64,7 +64,7 @@ class CrearTaller extends Component
             'taller_id' => $taller->id,
         ]);
 
-        return redirect()->route("talleres.index");
+        $this->dispatchBrowserEvent("nuevoTaller");
     }
 
 
