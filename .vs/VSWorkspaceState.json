@@ -1,16 +1,18 @@
 {
   "ExpandedNodes": [
     "",
-    "\\public",
+    "\\app",
+    "\\app\\Http",
+    "\\app\\Http\\Livewire",
+    "\\app\\Http\\Livewire\\Taller",
+    "\\app\\View",
+    "\\bootstrap",
+    "\\database",
     "\\resources",
-    "\\resources\\css",
     "\\resources\\views",
-    "\\resources\\views\\layouts",
     "\\resources\\views\\livewire",
-    "\\resources\\views\\livewire\\artista",
-    "\\resources\\views\\livewire\\taller",
-    "\\resources\\views\\livewire\\taller\\crear"
+    "\\resources\\views\\livewire\\genero"
   ],
-  "SelectedNode": "\\public\\css\\extra.css",
+  "SelectedNode": "\\app\\Http\\Livewire\\Artista\\Artista.php",
   "PreviewInSolutionExplorer": false
 }
