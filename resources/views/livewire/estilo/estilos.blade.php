@@ -1,8 +1,7 @@
 <div>
     
     @foreach ($estilos as $estilo)
-        <div>{{$estilo->EST_Nombre}}   
-        </div>
+      <input type="checkbox" value="ck2" />{{$estilo->EST_Nombre}}<br>
     @endforeach
 
 </div>
