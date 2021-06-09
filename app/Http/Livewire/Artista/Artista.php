@@ -9,9 +9,9 @@ class Artista extends Component
 
     public $artista;
 
-    public function mostrarArtista()
+    public function mostrar()
     {
-        $this->emit('visualizar-ART', array('id' => $this->artista->id));
+        $this->dispatchBrowserEvent('verArtista');
     }
 
 
