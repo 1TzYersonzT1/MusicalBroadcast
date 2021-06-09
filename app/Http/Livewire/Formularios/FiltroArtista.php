@@ -6,18 +6,11 @@ use Livewire\Component;
 
 class FiltroArtista extends Component
 {
-    public $buscar;
-    public $resultados;
+    public $nombreArtista;
 
-    public function updatedBuscar()
+    public function updatedNombreArtista()
     {
-        $this->resultados = [
-            (object) array("ART_Nombre" => '¿Qué estás buscando?')
-        ];  
-
-        if ($this->buscar != '') {
-            $this->resultados = Artista::where("ART_Nombre", 'like', $this->buscar . '%')->get();
-        }   
+        $this->emitTo("artista.artistas", "updatedNombreArtista", array("nombreArtista" => $this->nombreArtista));
     }
     public function render()
     {

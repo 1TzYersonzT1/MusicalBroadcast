@@ -1,74 +1,66 @@
 <div>
+    <div class="flex lg:flex-row justify-between flex-col py-8 min-h-screen">
 
-    <div class="flex justify-between">
+        <!-- Filtro -->
+        <div class="lg:mb-0 mb-10 h-full bg-white col-span-2 lg:w-45 border-1 px-5 py-2">
+            <form class="">
+                <div class="mb-3">
+                    <span>Buscar</span><br>
+                    <livewire:formularios.filtro-artista />
+                </div>
 
-        <div class="bg-white lg:w-45 h-80 border-1">
-            <form>
-                <div class="">
-                    <div class="">
-                        <span>Buscar</span><br>
-                        <livewire:formularios.filtro-artista />
+                <div class="flex lg:flex-col justify-between">
+                    <div class="mb-3">
+                        <span>Genero</span>
+                        <livewire:genero.generos />
                     </div>
-                </div>
 
-                <div class="">
-                    <span>Genero</span>
-                </div>
-                <div class="">
-                    <div id="">
-
-                        <div class="">
-
+                    <div class="mb-3">
+                        <div>
+                            <span>Artista</span>
+                        </div>
+                        <div>
+                            <div class="flex items-center"><input type="checkbox" value="0" class="mr-2" />Solistas
+                            </div>
+                            <div class="flex items-center"><input type="checkbox" value="1" class="mr-2" />Bandas</div>
                         </div>
                     </div>
-                </div>
-                <div class="">
-                    <div class="">
-                        <span>Artista</span>
-                    </div>
-                    <div class="">
-                        <div>
-                            <div class="">
-                                <input type="checkbox" id="art1" value="ck2">Solistas</input><br>
-                                <input type="checkbox" id="art2" value="ck2">Bandas</input>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="">
-                    <div class="">
-                        <span>Estilo</span>
-                    </div>
-                    <div class="">
-                        <div>
-                            <div class="">
 
-                            </div>
+                    <div class="mb-3">
+                        <div>
+                            <span>Estilo</span>
+                        </div>
+                        <div>
+                            <livewire:estilo.estilos />
                         </div>
                     </div>
                 </div>
             </form>
         </div>
-		<div class=''>
-			<div class="flex">
-				<div class="swiper-slide">
-					<div class="grid grid-cols-4 gap-10 mb-10">
-						@foreach ($artistas as $artista)
-							<livewire:artista.artista :artista="$artista" :wire:key="$artista->id" />
-						@endforeach
-						<div class="swiper-pagination text-white">
-	
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+
+        <!-- Artistas -->
+
+        <div class='flex col-start-4 col-span-8 flex-col items-center justify-between'>
+            <div class="flex flex-col items-center justify-between">
+                <div class="swiper-slide">
+                    <div class="grid lg:grid-cols-4 md:grid-cols-2 gap-10 mb-10">
+                        @foreach ($artistas as $artista)
+                            <livewire:artista.artista :artista="$artista" :wire:key="$artista->id" />
+                        @endforeach
+                        <div class="swiper-pagination text-white"></div>
+                    </div>
+                </div>
+                <div class="justify-self-end">{{ $artistas->links() }}</div>
+            </div>
+
+          
+
+        </div>
     </div>
-   
 </div>
 
 <script>
-   window.addEventListener('verArtista', function() {
-		alert("we");
-   });
+    window.addEventListener('verArtista', function() {
+        alert("we");
+    });
 </script>

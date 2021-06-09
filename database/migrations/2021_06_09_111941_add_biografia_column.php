@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddColumnBiografia extends Migration
+class AddBiografiaColumn extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddColumnBiografia extends Migration
     public function up()
     {
         Schema::table('artista', function (Blueprint $table) {
-            //
+            $table->string("biografia", 255);
         });
     }
 

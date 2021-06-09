@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Artista;
 
 use Livewire\Component;
 use App\Models\Artista;
+
 class ArtistaPreview extends Component
 {
 
