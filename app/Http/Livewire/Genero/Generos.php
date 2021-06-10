@@ -14,6 +14,8 @@ class Generos extends Component
         $this->generos = Genero::all();
     }
 
+ 
+
     public function render()
     {
         return view('livewire.genero.generos');

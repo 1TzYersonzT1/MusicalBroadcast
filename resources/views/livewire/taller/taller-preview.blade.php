@@ -7,7 +7,6 @@
         
         <div class="mb-10">{{ $tallerActual->TAL_Descripcion }} </div>
 
-        
         <div class="grid grid-cols-2 gap-8 mb-5">
 
             <div>
@@ -34,8 +33,11 @@
                 <p>{{ $tallerActual->TAL_Protocolo }}</p>
             </div>
         </div>
-        
-        <livewire:taller.inscripcion-form-taller :tallerSeleccionado='$tallerActual' :wire:key="$tallerActual->id"> 
 
+        <livewire:taller.inscripcion-taller :tallerSeleccionado='$tallerActual' :wire:key='$tallerActual->id' />
+        
     </div>
 </div>
+
+
+

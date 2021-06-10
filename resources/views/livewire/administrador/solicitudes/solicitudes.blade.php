@@ -1,5 +1,7 @@
 <div>
-    <div class="min-h-screen mt-12">
+    <div class="min-h-screen mt-12 text-white">
+        <span class="text-4xl block mb-5">Solicitudes de taller</span>
+        @if(count($solicitudes) > 0)
         <div class="swiper-container swiperSolicitudes">
             <div class="swiper-wrapper">
                 @foreach ($solicitudes as $solicitud)
@@ -13,6 +15,9 @@
             <livewire:administrador.solicitudes.solicitud-preview :solicitudActual='$solicitudes[0]'
                 :wire:key='$solicitudes[0]->id' />
         </div>
+        @else
+            <span>Por el momento, no existen solicitudes de taller</span>
+        @endif
     </div>
 </div>
 

@@ -15,8 +15,8 @@ class CrearTaller extends Component
 
     use WithFileUploads;
 
-    public $titulo, $descripcion, $aforo, $hora, $lugar, $user_rut;
-    public $fecha;
+    public $titulo, $descripcion, $aforo, $hora, $lugar, $user_rut, $fecha;
+    public $caracteres_descripcion = 0;
     public $protocolos = [], $requisitos = [];
 
     protected $rules = [
@@ -32,6 +32,10 @@ class CrearTaller extends Component
     public function updatedFecha()
     {
         $this->fecha = Carbon::parse($this->fecha)->isoFormat("LL");
+    }
+
+    public function updatedDescripcion() {
+        $this->caracteres_descripcion = strlen($this->descripcion);
     }
 
     public function updatedRequisitos($value)

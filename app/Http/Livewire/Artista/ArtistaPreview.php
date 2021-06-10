@@ -15,7 +15,6 @@ class ArtistaPreview extends Component
     public function visualizar(array $artistaSeleccionado)
     {
         $this->artistaActual = Artista::find($artistaSeleccionado["id"]);
-  
     }
 
     public function render()

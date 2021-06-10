@@ -6,28 +6,28 @@ use Livewire\Component;
 use Auth;
 use App\Models\Taller;
 use Livewire\WithPagination;
+use Illuminate\Database\Eloquent\Builder;
 
 class MisSolicitudes extends Component
 {
 
     use WithPagination;
 
-    public $solicitudes;
+    public $talleresPendientes, $talleresRevisados;
 
-    protected $listeners = ['busqueda'];
-
-    public function mount()
-    {
-        $this->solicitudes = Taller::where("user_rut", auth()->user()->rut)->get();
+    public function mount() {
+        $this->talleresPendientes = Taller::whereHas('solicitudes', function (Builder $query) {
+            $query->where("estado", "=", 0);
+        })->get();
+        $this->talleresRevisados = Taller::whereHas('solicitudes', function (Builder $query) {
+            $query->where("estado", 1);
+        })->get();
     }
-
-    public function busqueda($resultados) {
-        $this->solicitudes = $resultados;
-    }
-
 
     public function render()
     {
-        return view('livewire.organizador.solicitudes.mis-solicitudes');
+        return view('livewire.organizador.solicitudes.mis-solicitudes', [
+          
+        ]);
     }
 }

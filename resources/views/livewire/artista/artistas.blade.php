@@ -61,6 +61,8 @@
 
 <script>
     window.addEventListener('verArtista', function() {
-        alert("we");
+       location.href = '/artista';
     });
+
+
 </script>

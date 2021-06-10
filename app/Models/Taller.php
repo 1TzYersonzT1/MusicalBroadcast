@@ -32,5 +32,4 @@ class Taller extends Model
     public function getTALHorarioAttribute($value) {
        return Carbon::parse(date_create($value))->isoFormat("LLLL");
     }
-
 }

@@ -7,7 +7,7 @@
 
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="">
+                    <a href="/">
                         <x-jet-application-mark class="block h-9 w-auto" />
                     </a>
                 </div>
@@ -148,7 +148,7 @@
         </div>
 
         <div class="pt-2 pb-3 space-y-1">
-            <x-jet-responsive-nav-link href="/">
+            <x-jet-responsive-nav-link href="{{ route('artistas.index') }}">
                 <span class="text-white flex justify-center">{{ __('Artistas') }}</span>
             </x-jet-responsive-nav-link>
         </div>

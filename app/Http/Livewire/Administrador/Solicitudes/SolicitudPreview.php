@@ -39,7 +39,7 @@ class SolicitudPreview extends Component
         $solicitud->estado = 1;
         $solicitud->save();
 
-        return redirect()->route("administrador.solicitudes");
+        $this->dispatchBrowserEvent("observacionAniadida");
     }
 
     public function render()

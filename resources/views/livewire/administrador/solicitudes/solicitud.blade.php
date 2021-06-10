@@ -1,6 +1,6 @@
 <div class="swiper-slide">
     <div class="lg:w-96">
-        <div class="bg-white rounded-br-lg rounded-tl-lg py-3">
+        <div class="bg-white text-primary rounded-br-lg rounded-tl-lg py-3">
             <div class="flex flex-col px-5">
                 <div>
                     <span class="font-bold block">{{ $solicitud->taller->TAL_Nombre }}</span>
@@ -15,12 +15,12 @@
                 <span class="text-md">Estado </span>
 
                 @if ($solicitud->estado == 0)
-                    <div class="bg-yellow-300 rounded-full w-32"><span
-                            class="text-xs text-purple-600">Pendiente</span> </div>
+                    <div class="bg-yellow-300 rounded-full w-32 py-1 text-center"><span
+                            class="text-purple-600">Pendiente</span> </div>
                 @endif
 
                 @if ($solicitud->estado == 1)
-                    <div class="bg-pink-400 rounded-full w-32 text-center"><span class="text-xs">Revisada</span>
+                    <div class="bg-pink-400 rounded-full w-32 py-1 text-center"><span class="text-xs">Revisada</span>
                     </div>
                 @endif
             </div>

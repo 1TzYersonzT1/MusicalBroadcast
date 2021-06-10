@@ -31,19 +31,25 @@
             </div>
 
             <div>
-                <div class="swiper-container swiperTalleres mb-5">
-                    <div class="swiper-wrapper">
-                        @foreach ($talleres as $taller)
-                            <livewire:taller.taller :slideActual='$loop->index' :taller='$taller'
-                                :wire:key='$taller->id' />
-                        @endforeach
+                @if (count($talleres) > 0)
+                    <div class="swiper-container swiperTalleres mb-5">
+                        <div class="swiper-wrapper">
+                            @foreach ($talleres as $taller)
+                                <livewire:taller.taller :slideActual='$loop->index' :taller='$taller'
+                                    :wire:key='$taller->id' />
+                            @endforeach
+                        </div>
+
                     </div>
 
-                </div>
+                    <livewire:taller.taller-preview :tallerActual='$talleres[0]' :wire:key="$talleres[0]->id">
+                    @else
+                    <span>Sin registros</span>
+                @endif
             </div>
         </div>
 
-        <livewire:taller.taller-preview :tallerActual='$talleres[0]' :wire:key="$talleres[0]->id">
+
 
     </div>
 </div>

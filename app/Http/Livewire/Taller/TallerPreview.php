@@ -7,12 +7,13 @@ use App\Models\Taller;
 use DateTime;
 
 
+
 class TallerPreview extends Component
 {
 
     public $tallerActual;
 
-    protected $listeners = ['visualizar'];
+    protected $listeners = ['visualizar', 'inscripcion'];
 
     public function visualizar(array $tallerSeleccionado)
     {
