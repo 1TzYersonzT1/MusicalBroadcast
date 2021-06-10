@@ -10,12 +10,9 @@ class ArtistaPreview extends Component
 
     public $artistaActual; 
 
-    protected $listeners = ['visualiza' => 'visualizar'];
-
-    public function visualizar(array $artistaSeleccionado)
-    {
-        $this->artistaActual = Artista::find($artistaSeleccionado["id"]);
-    }
+   public function mount(Artista $artista) {
+       $this->artistaActual = $artista;
+   }
 
     public function render()
     {

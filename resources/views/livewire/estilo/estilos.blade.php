@@ -1,7 +1,6 @@
 <div>
     @foreach ($estilos as $estilo)
-        <div class="flex place-items-center">
-            <input type="checkbox" value="" class="mr-2" />{{ $estilo->EST_Nombre }}
-        </div>
+        <livewire:estilo.estilo :estilo='$estilo' :wire:key='$estilo->id' />
     @endforeach
 </div>
+

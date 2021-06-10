@@ -2,14 +2,14 @@
 
 use App\Http\Livewire\Taller\Talleres;
 use Illuminate\Support\Facades\Route;
-use App\Http\Livewire\Taller\InscripcionFormTaller;
+use App\Http\Livewire\Taller\InscripcionTaller;
 use App\Http\Livewire\Administrador\Solicitudes\Solicitudes;
 use App\Http\Livewire\Organizador\Solicitudes\MisSolicitudes;
 use App\Http\Livewire\Taller\CrearTaller;
 use App\Http\Livewire\Artista\Artistas;
 use App\Http\Livewire\Artista\ArtistaPreview;
 use App\Http\Livewire\Evento\Eventos;
-use App\Models\Taller;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -41,8 +41,8 @@ Route::group(["middleware" => 'auth'], function() {
 });
 
 Route::get("/talleres", Talleres::class)->name('talleres.index');
-Route::post("/inscripcion", InscripcionFormTaller::class)->name('taller.inscripcion');
+Route::post("/inscripcion", InscripcionTaller::class)->name('taller.inscripcion');
 Route::get("/artistas", Artistas::class)->name('artistas.index');
 Route::get("/eventos", Eventos::class)->name("eventos.index");
-Route::get('/artista', ArtistaPreview::class);
+Route::get('/artista/{artista}', ArtistaPreview::class)->name("artista.show");
 

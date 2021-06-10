@@ -14,4 +14,8 @@ class Artista extends Model
 
     protected $guarded= [];
 
+    public function estilos() {
+        return $this->belongsToMany(Estilo::class, 'artista_estilo', 'artista_id', 'estilo_id');
+    }
+
 }

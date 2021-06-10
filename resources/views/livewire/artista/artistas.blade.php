@@ -40,6 +40,7 @@
 
         <!-- Artistas -->
 
+        @if(count($artistas) > 0)
         <div class='flex col-start-4 col-span-8 flex-col items-center justify-between'>
             <div class="flex flex-col items-center justify-between">
                 <div class="swiper-slide">
@@ -52,10 +53,10 @@
                 </div>
                 <div class="justify-self-end">{{ $artistas->links() }}</div>
             </div>
-
-          
-
         </div>
+        @else
+            <span>No existen coincidencias</span>
+        @endif
     </div>
 </div>
 
@@ -63,6 +64,4 @@
     window.addEventListener('verArtista', function() {
        location.href = '/artista';
     });
-
-
 </script>

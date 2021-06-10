@@ -5,5 +5,7 @@
 </div>
 
 <script>
-  
+    window.addEventListener('prueba', (event) => {
+        alert('works');
+    });
 </script>

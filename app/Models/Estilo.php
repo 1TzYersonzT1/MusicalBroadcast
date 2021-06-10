@@ -13,4 +13,8 @@ class Estilo extends Model
     public $timestamps = false;
 
     protected $guarded= [];
+
+    public function genero() {
+        return $this->belongsTo(Genero::class, 'genero_id');
+    }
 }

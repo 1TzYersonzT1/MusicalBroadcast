@@ -7,7 +7,11 @@ use Livewire\Component;
 class Genero extends Component
 {
 
-    public $genero;
+    public $genero, $generoArtista;
+
+    public function updatedGeneroArtista() {
+        $this->emitTo('artista.artistas', 'updatedGenero', array('generoArtista' => $this->generoArtista));
+    }
 
     public function render()
     {
