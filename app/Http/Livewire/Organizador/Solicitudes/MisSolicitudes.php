@@ -13,15 +13,25 @@ class MisSolicitudes extends Component
 
     use WithPagination;
 
-    public $talleresPendientes, $talleresRevisados;
+    public $talleresPendientes, $talleresRevisados, $talleresAprobados;
 
     public function mount() {
         $this->talleresPendientes = Taller::whereHas('solicitudes', function (Builder $query) {
-            $query->where("estado", "=", 0);
-        })->get();
+            $query->where("estado", 0);
+        })
+        ->where("user_rut", auth()->user()->rut)
+        ->get();
         $this->talleresRevisados = Taller::whereHas('solicitudes', function (Builder $query) {
             $query->where("estado", 1);
-        })->get();
+        })
+        ->where("user_rut", auth()->user()->rut)
+        ->get();
+        $this->talleresAprobados = Taller::whereHas('solicitudes', function (Builder $query) {
+            $query->where("estado", 3);
+        })
+        ->where("user_rut", auth()->user()->rut)
+        ->get();
+
     }
 
     public function render()

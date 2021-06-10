@@ -1,5 +1,5 @@
 <div>
-    <div class="text-white mt-6 min-h-screen">
+    <div class="text-white mt-12 min-h-screen">
         <div class=''>
             <span class="text-4xl mb-8 block">Talleres disponibles</span>
             <div class="flex">
@@ -16,7 +16,7 @@
                     </div>
                     <div>
                         <button class="bg-purple-500 px-5 py-1 mb-5 text-white font-bold ml-5">
-                            <a href="{{ route('organizador.mis-solicitudes') }}">Mis talleres</a>
+                            <a href="{{ route('organizador.taller/asistentes') }}">Mis talleres</a>
                         </button>
                     </div>
                 @endcan

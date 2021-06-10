@@ -9,6 +9,7 @@ use App\Http\Livewire\Taller\CrearTaller;
 use App\Http\Livewire\Artista\Artistas;
 use App\Http\Livewire\Artista\ArtistaPreview;
 use App\Http\Livewire\Evento\Eventos;
+use App\Http\Livewire\Taller\Asistentes\Asistentes;
 
 
 /*
@@ -32,6 +33,8 @@ Route::group(["middleware" => 'auth'], function() {
         Route::get("/crear-taller", CrearTaller::class)->name("creartaller");
 
         Route::get('/mis-solicitudes', MisSolicitudes::class)->name('mis-solicitudes');
+
+        Route::get("/asistentes", Asistentes::class)->name("taller/asistentes");
     });
 
     Route::group(['middleware' => 'role:administrador', 'prefix' => 'administrador', 'as' => 'administrador.'], function() {
@@ -42,7 +45,11 @@ Route::group(["middleware" => 'auth'], function() {
 
 Route::get("/talleres", Talleres::class)->name('talleres.index');
 Route::post("/inscripcion", InscripcionTaller::class)->name('taller.inscripcion');
-Route::get("/artistas", Artistas::class)->name('artistas.index');
 Route::get("/eventos", Eventos::class)->name("eventos.index");
+
+
+
+Route::get("/artistas", Artistas::class)->name('artistas.index');
 Route::get('/artista/{artista}', ArtistaPreview::class)->name("artista.show");
+
 
