@@ -13,10 +13,9 @@ class Artistas extends Component
     use WithPagination;
 
     public $nombreArtista = '';
-    public $genero = "Rock";
-    public $estilo = '';
+    public $estilos = null;
 
-    protected $listeners = ["updatedNombreArtista", "updatedGenero", "updatedEstilo"];
+    protected $listeners = ["updatedNombreArtista", "updatedGenero", "updatedEstilos"];
 
     public function updatedNombreArtista(array $busqueda)
     {
@@ -24,26 +23,31 @@ class Artistas extends Component
         $this->resetPage();
     }
 
-    public function updatedGenero(array $busqueda)
-    {
-        $this->genero = $busqueda["generoArtista"];
-        $this->resetPage();
-    }
-
-    public function updatedEstilo(array $busqueda)
-    {
-        $this->estilo = $busqueda["estiloArtista"];
-        $this->resetPage();
+    public function updatedEstilos(array $estilos) {
+        $this->estilos = $estilos["seleccionados"];
     }
 
     public function render()
     {
+
+        $artistas = Artista::where("ART_Nombre", "like", $this->nombreArtista . "%")
+        ->when($this->estilos, function ($query) {
+            return $query->whereHas("estilos", function (Builder $query) {
+                return $query->whereIn("EST_Nombre", $this->estilos);
+            });
+        })
+        ->paginate(8);
+
         return view('livewire.artista.artistas', [
-            'artistas' => Artista::whereHas('estilos', function (Builder $query) {
-                $query->where("EST_Nombre", "=", $this->estilo);
-            })
-            ->orWhere("ART_Nombre", 'like', $this->nombreArtista . '%')
-            ->paginate(8),
+            'artistas' => $artistas
         ]);
+
+        /* 
+        when($this->estilo, function($query){
+                    return $query->whereHas("estilos", function(Builder $query) {
+                        return $query->where("EST_Nombre", $this->estilo);
+                    });
+                    ;where("ART_Nombre", "like", $this->nombreArtista . "%")
+        */
     }
 }

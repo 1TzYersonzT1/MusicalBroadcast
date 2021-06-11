@@ -8,15 +8,28 @@ use App\Models\Estilo;
 class Estilos extends Component
 {
 
-    public $estilos;
-    
-    public function mount()
-    {
+    public $estilos, $seleccionados = [];
+
+
+    public function mount() {
         $this->estilos = Estilo::all();
     }
 
+    public function updated() {
+        foreach($this->seleccionados as $index => $seleccionado) {
+            if($this->seleccionados[$index] == false) {
+                unset($this->seleccionados[$index]);
+            }
+        }
+    }
+
+    public function updatedSeleccionados() {
+        $this->emit("updatedEstilos", array("seleccionados" => $this->seleccionados));
+    }
+
+
     public function render()
     {
-        return view('livewire.estilo.estilos');
+       return view('livewire.estilo.estilos');
     }
 }

@@ -1,5 +1,5 @@
 <div>
-    <div class="flex lg:flex-row justify-between flex-col py-8 min-h-screen">
+    <div class="flex lg:flex-row flex-col lg:justify-between py-8 min-h-screen w-full">
 
         <!-- Filtro -->
         <div class="lg:mb-0 mb-10 h-full bg-white col-span-2 lg:w-45 border-1 px-5 py-2">
@@ -55,13 +55,8 @@
             </div>
         </div>
         @else
-            <span>No existen coincidencias</span>
+            <span class="text-white">No existen coincidencias</span>
         @endif
     </div>
 </div>
 
-<script>
-    window.addEventListener('verArtista', function() {
-       location.href = '/artista';
-    });
-</script>
