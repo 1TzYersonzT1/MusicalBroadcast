@@ -64,20 +64,26 @@
         <div class="grid grid-cols-12">
             <div class="lg:col-start-4 lg:col-span-6 col-start-3 col-span-8 px-4 py-6">
                 <div class="grid lg:grid-cols-3">
+
+                    <!-- Talleres aprobados -->
                     <div class="bg-green-400 px-4">
-                        <div class="flex flex-col items-center py-5">
+                        <div class="flex flex-col items-center py-5" >
+                            <div class="flex flex-col items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M5 13l4 4L19 7" />
                             </svg>
-                            <div class="flex flex-col items-center">
-                                <span class="block mb-1">Talleres aprobados</span>
-                                <span>{{ count($talleresAprobados) }}</span>
+                                <div class="flex flex-col items-center">
+                                    <span class="block mb-1">Talleres aprobados</span>
+                                    <span>{{ count($talleresAprobados) }}</span>
+                                </div>
                             </div>
+                       
                         </div>
-
                     </div>
+
+                     <!-- Talleres rechazados -->
                     <div class="bg-red-600">
                         <div class="flex flex-col items-center py-5">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
@@ -92,6 +98,8 @@
                             </div>
                         </div>
                     </div>
+
+                       <!-- Talleres reportados -->
                     <div class="bg-yellow-500">
                         <div class="flex flex-col items-center py-5">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
@@ -143,3 +151,4 @@
     });
 
 </script>
+
