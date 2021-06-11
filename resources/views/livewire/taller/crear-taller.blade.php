@@ -57,7 +57,8 @@
                             <label for="descripcion" class="font-bold lg:w-96">Descripción</label>
                             <div class="flex flex-col">
                                 <textarea placeholder="Escriba una descripción (máximo 255 caracteres)"
-                                    wire:model='descripcion' maxlength="255" class="resize-none lg:w-96 bg-primary h-40 mt-1 mb-1"></textarea>
+                                    wire:model='descripcion' maxlength="255"
+                                    class="resize-none lg:w-96 bg-primary h-40 mt-1 mb-1"></textarea>
                                 <span>{{ $caracteres_descripcion }} / 255</span>
                             </div>
                         </div>
@@ -66,6 +67,13 @@
 
 
             <div class="grid lg:grid-cols-2 lg:grid-rows-2 lg:mt-0 mt-5">
+
+                <div><input type="file" wire:model="imagen" />
+                    @if ($imagen)
+                        Photo Preview:
+                        <img src="{{ $imagen->temporaryUrl() }}">
+                    @endif
+                </div>
 
                 <livewire:taller.crear.requisitos :requisitos='$requisitos' />
 

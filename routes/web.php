@@ -53,3 +53,7 @@ Route::get("/artistas", Artistas::class)->name('artistas.index');
 Route::get('/artista/{artista}', ArtistaPreview::class)->name("artista.show");
 
 
+Route::get("/reglamento", function() {
+    return view("terms");
+})->name("reglamento");
+

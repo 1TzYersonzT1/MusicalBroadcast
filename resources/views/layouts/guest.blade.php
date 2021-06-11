@@ -20,9 +20,9 @@
     @livewireStyles
 </head>
 
-<body>
+<body >
 
-    <div style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('Fondo.png'); background-position: center; background-size: cover"
+    <div style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('Fondo.png'); background-position: center; background-size:cover"
         class="font-sans bg-gray-900 antialiased px-5">
         @livewire('navigation-menu')
         {{ $slot }}

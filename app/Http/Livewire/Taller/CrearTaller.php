@@ -15,7 +15,7 @@ class CrearTaller extends Component
 
     use WithFileUploads;
 
-    public $titulo, $descripcion, $aforo, $hora, $lugar, $user_rut, $fecha;
+    public $titulo, $descripcion, $aforo, $hora, $lugar, $user_rut, $fecha, $imagen;
     public $caracteres_descripcion = 0;
     public $protocolos = [], $requisitos = [];
 
@@ -25,6 +25,7 @@ class CrearTaller extends Component
         'aforo' => ['required', 'integer'],
         'lugar' => ['required', 'string', 'max:55'],
         'descripcion' => ['required', 'string', 'max:255'],
+        'imagen' => ['required', 'image', 'max:2048'],
     ];
 
     protected $listeners = ["updatedRequisitos", 'updatedProtocolos'];
@@ -48,6 +49,13 @@ class CrearTaller extends Component
         $this->protocolos = $value['protocolos'];
     }
 
+    public function updatedPhoto()
+    {
+        $this->validate([
+            'imagen' => 'image|max:1024',
+        ]);
+    }
+
     public function nuevoTaller()
     {
         $this->validate();
@@ -63,6 +71,8 @@ class CrearTaller extends Component
             'estado' => 0,
             'user_rut' => Auth::user()->rut,
         ]);
+
+        $this->imagen->save();
 
         $solicitud = SolicitudTaller::create([
             'observacion' => '',

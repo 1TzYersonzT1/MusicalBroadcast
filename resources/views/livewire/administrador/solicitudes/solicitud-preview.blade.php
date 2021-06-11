@@ -62,7 +62,9 @@
                 </div>
             </div>
 
-            <a class="bg-red-500 rounded-full font-bold px-5 py-2 w-52 text-center lg:ml-5 mb-5">Eliminar solicitud</a>
+            <a id="rechazarSolicitud"
+                class="bg-red-500 rounded-full font-bold px-5 py-2 w-52 text-center lg:ml-5 mb-5 cursor-pointer hover:text-red-500 hover:bg-white">
+                Eliminar solicitud</a>
         </div>
 
     </div>
@@ -90,10 +92,34 @@
                         'Aprobado',
                         'El taller ha sido aprobado con exito.',
                         'success'
-                    )
+                    );
                 }
             });
         });
+
+        $("#rechazarSolicitud").on("click", function() {
+            Swal.fire({
+                title: '¿Está seguro?',
+                text: 'Estás a punto de rechazar una solicitud',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Rechazar'
+            }).then((result) => {
+                async function() {
+                    const text = await Swal.fire({
+                        input: 'textarea',
+                        inputLabel: 'Message',
+                        inputPlaceholder: 'Type your message here...',
+                        inputAttributes: {
+                            'aria-label': 'Type your message here'
+                        },
+                        showCancelButton: true
+                    });
+                }
+            });
+        })
 
         window.addEventListener("observacionAniadida", function() {
             $.fancybox.close();
