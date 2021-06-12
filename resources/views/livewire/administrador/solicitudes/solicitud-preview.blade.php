@@ -71,7 +71,7 @@
 </div>
 
 
-@section('js')
+
 
     <script>
         $("#aprobarSolicitud").on('click', function() {
@@ -97,30 +97,6 @@
             });
         });
 
-        $("#rechazarSolicitud").on("click", function() {
-            Swal.fire({
-                title: '¿Está seguro?',
-                text: 'Estás a punto de rechazar una solicitud',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Rechazar'
-            }).then((result) => {
-                async function() {
-                    const text = await Swal.fire({
-                        input: 'textarea',
-                        inputLabel: 'Message',
-                        inputPlaceholder: 'Type your message here...',
-                        inputAttributes: {
-                            'aria-label': 'Type your message here'
-                        },
-                        showCancelButton: true
-                    });
-                }
-            });
-        })
-
         window.addEventListener("observacionAniadida", function() {
             $.fancybox.close();
             Swal.fire({
@@ -138,4 +114,3 @@
 
     </script>
 
-@endsection

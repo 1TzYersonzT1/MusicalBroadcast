@@ -25,7 +25,7 @@ class CrearTaller extends Component
         'aforo' => ['required', 'integer'],
         'lugar' => ['required', 'string', 'max:55'],
         'descripcion' => ['required', 'string', 'max:255'],
-        'imagen' => ['required', 'image', 'max:2048'],
+        'imagen' => 'required|image|mimes:jpeg,png,svg,jpg,gif|max:1024',
     ];
 
     protected $listeners = ["updatedRequisitos", 'updatedProtocolos'];
@@ -49,16 +49,19 @@ class CrearTaller extends Component
         $this->protocolos = $value['protocolos'];
     }
 
-    public function updatedPhoto()
-    {
+
+    public function updatedImagen() {
         $this->validate([
-            'imagen' => 'image|max:1024',
+            'imagen' => 'required|image|mimes:jpeg,png,svg,jpg,gif|max:1024',
         ]);
     }
+
 
     public function nuevoTaller()
     {
         $this->validate();
+
+        $imagen = $this->imagen->store("/talleres/organizador/".auth()->user()->rut);
 
         $taller = Taller::create([
             'TAL_Nombre' => $this->titulo,
@@ -70,10 +73,9 @@ class CrearTaller extends Component
             'TAL_Lugar' => $this->lugar,
             'estado' => 0,
             'user_rut' => Auth::user()->rut,
+            'imagen' => "storage/" . $imagen,
         ]);
-
-        $this->imagen->save();
-
+        
         $solicitud = SolicitudTaller::create([
             'observacion' => '',
             'estado' => 0,

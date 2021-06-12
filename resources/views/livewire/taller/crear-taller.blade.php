@@ -65,15 +65,24 @@
                     </div>
             </div>
 
-
-            <div class="grid lg:grid-cols-2 lg:grid-rows-2 lg:mt-0 mt-5">
-
-                <div><input type="file" wire:model="imagen" />
-                    @if ($imagen)
-                        Photo Preview:
-                        <img src="{{ $imagen->temporaryUrl() }}">
+            <div class="w-80"><input type="file" wire:model="imagen" />
+                <div wire:loading wire:target="imagen" 
+                        class="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3" role="alert">
+                    <p class="font-bold">Cargando imagen</p>
+                  </div>
+             
+                @error('imagen')
+                
+                @else
+                    @if ($imagen )
+                    <img src="{{ $imagen->temporaryUrl() }}" class="mt-5">
                     @endif
-                </div>
+                @enderror
+            </div>
+
+            <div class="grid lg:grid-cols-2 lg:grid-rows-2 lg:mt-0 mt-5 ml-5">
+
+         
 
                 <livewire:taller.crear.requisitos :requisitos='$requisitos' />
 
