@@ -1,3 +1,6 @@
+@section('banner')
+	@include('banner-artista')
+	@endsection
 <div>
     <div class="flex lg:flex-row flex-col lg:justify-between py-8 min-h-screen w-full">
 
