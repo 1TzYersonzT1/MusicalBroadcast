@@ -29,7 +29,7 @@ class Taller extends Model
         return $this->belongsToMany(Asistente::class, 'asistente_taller', 'taller_id', 'asistente_rut');
     }
 
-    public function getTALHorarioAttribute($value) {
+    public function getTALFechaAttribute($value) {
        return Carbon::parse(date_create($value))->isoFormat("LLLL");
     }
 }

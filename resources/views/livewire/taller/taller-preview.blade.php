@@ -28,7 +28,7 @@
 
             <div>
                 <p class="font-bold">HORARIO</p>
-                <p>{{ $tallerActual->TAL_Horario }}</p>
+                <p>{{ $tallerActual->TAL_Fecha }}</p>
             </div>
 
             <div>

@@ -13,8 +13,8 @@ class Talleres extends Component
 
     public function mount()
     {
-        $this->talleres = Taller::orderBy('TAL_Horario', 'asc')
-            ->where('TAL_Horario', '>', new DateTime())
+        $this->talleres = Taller::orderBy('TAL_Fecha', 'asc')
+            ->where('TAL_Fecha', '>', new DateTime())
             ->where('TAL_Aforo', '>', 0)
             ->where("estado", 1)
             ->get();
