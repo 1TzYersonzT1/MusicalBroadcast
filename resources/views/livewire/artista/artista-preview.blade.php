@@ -1,5 +1,5 @@
-<div>
-    <div class="h-full flex-none bg-cover bg-no-repeat w-full static bottom-0 left-10 "style="background-image: url('https://mexico-grlk5lagedl.stackpathdns.com/production/mexico/images/1547572747299933-Carlos-Maycotte.jpg?w=1920&h=800&fit=crop&crop=focalpoint&auto=%5B%22format%22%2C%20%22compress%22%5D&cs=srgb')">
+@section('banner')
+    <div class="bg-cover bg-no-repeat" style="background-image: url('https://mexico-grlk5lagedl.stackpathdns.com/production/mexico/images/1547572747299933-Carlos-Maycotte.jpg?w=1920&h=800&fit=crop&crop=focalpoint&auto=%5B%22format%22%2C%20%22compress%22%5D&cs=srgb')">
         <div class="flex lg:flex-row justify-around flex-col py-6 h-full ">
             <div class="text-white px-10 py-10 text-center">
                 <div class=" h-60 lg:w-60 flex-none bg-cover rounded-full lg:rounded-t-full lg:rounded-1 text-center overflow-hidden"
@@ -22,35 +22,27 @@
             </div>
         </div>
     </div>
-
-                    
-
-
-
-
+@endsection
+    
+<div>
     <div class="flex lg:flex-row justify-around flex-col py-6 h-full">
 
-
-
         <div class="px-5 py-2 ">
-            <div class="text-white px-5">
+            <div class="text-white px-5 flex flex-col items-center">
                 <div class="bg-black px-2 py-1 relative">
                     <div class="top-5 mb-3 text-4xl font-bold">
                         Discografía
                         
                     </div>
                 </div>
-                <div>
+                <div class="lg:w-96 w-20">
                      <div class=" h-40 lg:w-40 flex-none bg-cover rounded-full lg:rounded-t-full lg:rounded-1 text-center overflow-hidden"
                     style="background-image: url('https://tailwindcss.com/img/card-left.jpg')" title="Woman holding a mug">
                     </div>
-
+                    {{ $artistaActual->biografia }}
                 </div>
             </div>
         </div>
-
-
-
 
         <div class="py-2 ">
             <div class="text-white px-flex ">
@@ -70,18 +62,10 @@
                 </div>
             </div>
         </div>
-
-
-
     </div>
 
 
-
-
-
     <div class="flex lg:flex-row justify-around flex-col py-8 h-full">
-
-        
             <div class="px-5 py-2 ">
                 <div class="text-white px-5">
                     <div class="bg-black px-2 py-1">
@@ -96,9 +80,6 @@
                 </div>
             </div>
         
-
-
-    
             <div class=" py-2 ">
                 <div class="text-white px-flex">
                     <div class="bg-black px-5 py-1">
@@ -110,8 +91,7 @@
                     </div>
                 </div>
             </div>
-
     </div>
-
 </div>
+
 <script src="https://apis.google.com/js/platform.js"></script>
