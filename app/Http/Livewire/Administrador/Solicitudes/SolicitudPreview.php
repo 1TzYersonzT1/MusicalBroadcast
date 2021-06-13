@@ -16,6 +16,7 @@ class SolicitudPreview extends Component
     public function visualizarSolicitud(array $solicitudSeleccionada)
     {
         $this->solicitudActual = SolicitudTaller::findOrFail($solicitudSeleccionada['id']);
+        $this->dispatchBrowserEvent("mostrarSolicitud", array("slideActual" => $solicitudSeleccionada["slideActual"]));
     }
 
     public function aprobarTaller()

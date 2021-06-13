@@ -28,12 +28,14 @@
 
             <div>
                 <p class="font-bold">HORARIO</p>
-                <p>{{ $tallerActual->TAL_Fecha }}</p>
+                <p>{{ $tallerActual->TAL_Fecha }} {{ $tallerActual->TAL_Hora }}</p>
             </div>
 
             <div>
                 <p class="font-bold">REQUISITOS</p>
-                <p>{{ $tallerActual->TAL_Requisitos }}</p>
+                @foreach($tallerActual->TAL_Requisitos as $requisito)
+                    <p>{{ $requisito }}</p>
+                @endforeach
             </div>
 
             <div>

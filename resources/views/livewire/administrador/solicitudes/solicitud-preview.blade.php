@@ -18,7 +18,7 @@
 
             <div class="col">
                 <p class="font-bold">HORARIO</p>
-                <p>{{ $solicitudActual->taller->TAL_Horario }}</p>
+                <p>{{ $solicitudActual->taller->TAL_Fecha }} {{ $solicitudActual->taller->TAL_Hora }}</p>
             </div>
 
             <div class="col">

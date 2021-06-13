@@ -7,9 +7,10 @@
                 <a wire:click='nuevoItem'>Agregar</a>
         </div>
         <ul class="mt-2 mb-2">
-            @foreach ($requisitos as $requisito)
-                <li :wire:key='$loop->index'>{{ $requisito }}</li>
+            @foreach ($requisitos as $index => $requisito)
+                <livewire:taller.crear.requisito.requisito :requisito='$requisito' :wire:key="$index" />
             @endforeach
         </ul>
     </div>
 </div>
+

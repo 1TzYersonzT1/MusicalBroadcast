@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Taller\InscripcionTaller;
 use App\Http\Livewire\Administrador\Solicitudes\Solicitudes;
 use App\Http\Livewire\Organizador\Solicitudes\MisSolicitudes;
+use App\Http\Livewire\Organizador\Solicitudes\ModificarSolicitud;
 use App\Http\Livewire\Taller\CrearTaller;
 use App\Http\Livewire\Artista\Artistas;
 use App\Http\Livewire\Artista\ArtistaPreview;
@@ -33,6 +34,7 @@ Route::group(["middleware" => 'auth'], function() {
         Route::get("/crear-taller", CrearTaller::class)->name("creartaller");
 
         Route::get('/mis-solicitudes', MisSolicitudes::class)->name('mis-solicitudes');
+        Route::get("/modificar-solicitud/{id}", ModificarSolicitud::class)->name("modificar-solicitud");
 
         Route::get("/asistentes", Asistentes::class)->name("taller/asistentes");
     });

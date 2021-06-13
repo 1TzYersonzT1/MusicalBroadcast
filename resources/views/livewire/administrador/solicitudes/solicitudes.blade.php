@@ -5,7 +5,9 @@
         <div class="swiper-container swiperSolicitudes">
             <div class="swiper-wrapper">
                 @foreach ($solicitudes as $solicitud)
-                    <livewire:administrador.solicitudes.solicitud :solicitud='$solicitud' :wire:key='$solicitud->id' />
+                    <livewire:administrador.solicitudes.solicitud 
+                    :solicitud='$solicitud' :slideActual="$loop->index"
+                    :wire:key='$solicitud->id' />
                 @endforeach
 
             </div>
@@ -25,30 +27,26 @@
 <script>
     var mySwiper = {};
 
-    function initializeSwiper() {
+    function initializeSwiper(slideActual) {
         mySwiper = new Swiper('.swiperSolicitudes', {
+            initialSlide: slideActual,
             slidesPerView: 'auto',
-            freeMode: true,
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-            },
             breakpoints: {
                 640: {
                     slidesPerView: 'auto',
                  
                 },
-                768: {
-                    slidesPerView: 2,
-                
-                },
                 1024: {
-                    slidesPerView: 'auto',
+                    slidesPerView: 3,
                     spaceBetween: 10,
                 },
             },
         });
     }
+
+    window.addEventListener("mostrarSolicitud", (event) => {
+        initializeSwiper(event.detail.slideActual);
+    });
 
     window.onload = function() {
         initializeSwiper(0);

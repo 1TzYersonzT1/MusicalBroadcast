@@ -30,11 +30,6 @@ class CrearTaller extends Component
 
     protected $listeners = ["updatedRequisitos", 'updatedProtocolos'];
 
-    public function updatedFecha()
-    {
-        $this->fecha = Carbon::parse($this->fecha)->isoFormat("LL");
-    }
-
     public function updatedDescripcion() {
         $this->caracteres_descripcion = strlen($this->descripcion);
     }
@@ -69,7 +64,7 @@ class CrearTaller extends Component
             'TAL_Requisitos' => implode(", ", $this->requisitos),
             'TAL_Protocolo' => implode(", ", $this->protocolos),
             'TAL_Aforo' => $this->aforo,
-            'TAL_Fecha' => Carbon::parse(strtotime("2021-06-29"))->isoFormat("Y-M-D"),
+            'TAL_Fecha' => Carbon::parse(date_create($this->fecha))->isoFormat("Y-M-D"),
             'TAL_Hora' =>  $this->hora,
             'TAL_Lugar' => $this->lugar,
             'estado' => 0,

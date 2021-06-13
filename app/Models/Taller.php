@@ -30,6 +30,10 @@ class Taller extends Model
     }
 
     public function getTALFechaAttribute($value) {
-       return Carbon::parse(date_create($value))->isoFormat("LLLL");
+       return Carbon::parse(date_create($value))->isoFormat("LL");
+    }
+
+    public function getTALRequisitosAttribute($value) {
+        return explode(", ", $value);
     }
 }

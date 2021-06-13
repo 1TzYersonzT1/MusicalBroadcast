@@ -23,7 +23,7 @@
                         <div class="flex mb-3">
                             <div class="flex flex-col mt-3">
                                 <span class="font-bold">Fecha</span>
-                                <x-date-picker wire:model.lazy='fecha' id="fecha"
+                                <input type="date" wire:model="fecha"
                                     class="bg-primary text-white p-0 mr-5 mt-1" />
                             </div>
                             <div class="flex flex-col mt-3">
@@ -84,7 +84,7 @@
 
          
 
-                <livewire:taller.crear.requisitos :requisitos='$requisitos' />
+                <livewire:taller.crear.requisito.requisitos :requisitos='$requisitos' />
 
                 <livewire:taller.crear.protocolos :protocolos='$protocolos' />
 

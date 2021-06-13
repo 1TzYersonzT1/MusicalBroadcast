@@ -6,6 +6,7 @@ use Livewire\Component;
 use DateTime;
 use App\Models\Taller;
 
+
 class Talleres extends Component
 {
 
@@ -14,7 +15,7 @@ class Talleres extends Component
     public function mount()
     {
         $this->talleres = Taller::orderBy('TAL_Fecha', 'asc')
-            ->where('TAL_Fecha', '>', new DateTime())
+            ->whereDate('TAL_Fecha', '>=', new DateTime())
             ->where('TAL_Aforo', '>', 0)
             ->where("estado", 1)
             ->get();

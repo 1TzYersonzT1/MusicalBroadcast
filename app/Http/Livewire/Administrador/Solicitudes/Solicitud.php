@@ -7,10 +7,10 @@ use Livewire\Component;
 class Solicitud extends Component
 {
 
-    public $solicitud;
+    public $solicitud, $slideActual;
 
     public function mostrarSolicitud() {
-        $this->emit('visualizarSolicitud', array('id' => $this->solicitud->id));
+        $this->emit('visualizarSolicitud', array('id' => $this->solicitud->id, 'slideActual' => $this->slideActual));
     }
 
     public function render()

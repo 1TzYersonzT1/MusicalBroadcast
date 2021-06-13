@@ -15,7 +15,6 @@
         </div>
         <button>
             <a href="{{ route('organizador.modificar-solicitud', $tallerRevisado->id) }}">Modificar</a></button>
-     
     </div>
 </div>
 
