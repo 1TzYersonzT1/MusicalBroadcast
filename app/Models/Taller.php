@@ -36,4 +36,8 @@ class Taller extends Model
     public function getTALRequisitosAttribute($value) {
         return explode(", ", $value);
     }
+
+    public function getTALProtocoloAttribute($value) {
+        return explode(", ", $value);
+    }
 }

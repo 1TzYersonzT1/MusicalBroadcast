@@ -23,7 +23,9 @@
 
             <div class="col">
                 <p class="font-bold">REQUISITOS</p>
-                <p>{{ $solicitudActual->taller->TAL_Requisitos }}</p>
+                @foreach ($solicitudActual->taller->TAL_Requisitos  as $requisito)
+                    <p>{{ $requisito }}</p>
+                @endforeach
             </div>
 
             <div class="col">
@@ -33,7 +35,9 @@
 
             <div class="col">
                 <p class="font-bold">PROTOCOLO COVID</p>
-                <p>{{ $solicitudActual->taller->TAL_Protocolo }}</p>
+                @foreach ($solicitudActual->taller->TAL_Protocolo as $protocolo)
+                <p>{{ $protocolo }}</p>
+                @endforeach
             </div>
         </div>
 

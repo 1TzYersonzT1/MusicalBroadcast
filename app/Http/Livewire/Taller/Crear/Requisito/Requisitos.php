@@ -21,8 +21,8 @@ class Requisitos extends Component
         }
     }
 
-    public function eliminarRequisito(array $req) {
-        $key = array_search($req["requisito"], $this->requisitos);
+    public function eliminarRequisito(array $seleccionado) {
+        $key = array_search($seleccionado["requisito"], $this->requisitos);
         unset($this->requisitos[$key]);
         $this->emit("updatedRequisitos", array("requisitos" => $this->requisitos));
     }

@@ -1,7 +1,9 @@
 <div>
     <div class="text-white mt-12 min-h-screen">
         <div class=''>
-            <span class="text-4xl mb-8 block">Talleres disponibles</span>
+            <span class="text-4xl mb-8 block">
+                Talleres disponibles ({{ count($talleres)}})
+            </span>
             <div class="flex">
                 @can('organizar')
                     <div>

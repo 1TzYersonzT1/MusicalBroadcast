@@ -12,7 +12,7 @@
         </div>
         <div class="lg:flex">
             <div class="flex flex-col lg:mr-5">
-                <form wire:submit.prevent='nuevoTaller' enctype="multipart/form-data">
+                <form wire:submit.prevent='modificarTaller' enctype="multipart/form-data">
                     <div class="lg:flex">
                         <div class="flex flex-col">
                             <span class="font-bold">Titulo</span>
@@ -78,10 +78,11 @@
 
                 <livewire:taller.crear.requisito.requisitos :requisitos="$taller->TAL_Requisitos" />
 
+                <livewire:taller.crear.protocolo.protocolos :protocolos="$taller->TAL_Protocolo" />
+
                 <div class="justify-self-center self-center">
                     <button type="submit"
-                        class="border border-white px-7 py-3 my-10 lg:my-0 hover:bg-white hover:text-primary">Solicitar
-                        permiso</button>
+                        class="border border-white px-7 py-3 my-10 lg:my-0 hover:bg-white hover:text-primary">Modificar taller</button>
                 </div>
 
             </div>
@@ -90,3 +91,13 @@
         </div>
     </div>
 </div>
+
+<script>
+
+    window.addEventListener("prueba", (event) => {
+        alert(event.detail.test);
+    })
+
+</script>
+
+    

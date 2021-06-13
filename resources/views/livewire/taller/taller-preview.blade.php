@@ -45,7 +45,9 @@
 
             <div>
                 <p class="font-bold">PROTOCOLO COVID</p>
-                <p>{{ $tallerActual->TAL_Protocolo }}</p>
+                @foreach($tallerActual->TAL_Protocolo as $protocolo)
+                <p>{{ $protocolo }}</p>
+                @endforeach
             </div>
 
  

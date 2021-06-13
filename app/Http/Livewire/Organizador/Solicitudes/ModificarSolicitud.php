@@ -10,6 +10,9 @@ class ModificarSolicitud extends Component
 {
 
     public $taller, $caracteres_descripcion = 0;
+    public $requisitos = [], $protocolos = [];
+
+    protected $listeners = ["updatedRequisitos", "updatedProtocolos"];
 
     protected $rules = [
         "taller.TAL_Nombre" => 'required|string',
@@ -23,10 +26,36 @@ class ModificarSolicitud extends Component
     public function mount($id) {
         
         $this->taller = Taller::find($id);
-
+        $this->requisitos = $this->taller->TAL_Requisitos;
+        $this->protocolos = $this->taller->TAL_Protocolo;
+        $this->caracteres_descripcion = strlen($this->taller->TAL_Descripcion);
         if($this->taller->user_rut != auth()->user()->rut) {
             abort(403);
         }
+    }
+
+    public function updatedTallerTalDescripcion() {
+        $this->caracteres_descripcion = strlen($this->taller->TAL_Descripcion);
+    }
+
+    public function updatedRequisitos($value) {
+        $this->requisitos = $value["requisitos"];
+    }
+
+    public function updatedProtocolos($value) {
+        $this->protocolos = $value["protocolos"];
+    }
+
+    public function modificarTaller() {
+        $taller = Taller::find($this->taller->id);
+        $taller = $this->taller;
+        $taller->TAL_Requisitos = implode(", ", $this->requisitos);
+        $taller->TAL_Protocolo = implode(", ", $this->protocolos);
+        $taller->solicitudes[0]->estado = 4;
+        $taller->solicitudes[0]->save();
+        $taller->save();
+
+        return redirect()->route("organizador.mis-solicitudes");
     }
 
     public function render()

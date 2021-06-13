@@ -86,7 +86,7 @@
 
                 <livewire:taller.crear.requisito.requisitos :requisitos='$requisitos' />
 
-                <livewire:taller.crear.protocolos :protocolos='$protocolos' />
+                <livewire:taller.crear.protocolo.protocolos :protocolos='$protocolos' />
 
                 <div class="justify-self-center self-center">
                     <button type="submit"

@@ -10,7 +10,6 @@ class Estilos extends Component
 
     public $estilos, $seleccionados = [];
 
-
     public function mount() {
         $this->estilos = Estilo::all();
     }

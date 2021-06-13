@@ -7,10 +7,10 @@ use Livewire\Component;
 class Solicitud extends Component
 {
 
-    public $tallerRevisado;
+    public $taller;
 
     public function mostrar() {
-        $this->emitTo("organizador.solicitudes.solicitud-preview", "mostrarTaller", array("id" => $this->tallerRevisado->id));
+        $this->emitTo("organizador.solicitudes.solicitud-preview", "mostrarTaller", array("id" => $this->taller->id));
     }
 
     public function render()

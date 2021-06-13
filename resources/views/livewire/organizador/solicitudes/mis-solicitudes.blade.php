@@ -35,7 +35,24 @@
                 <div class="swiper-container swiperRevisadas">
                     <div class="swiper-wrapper">
                         @foreach ($talleresRevisados as $tallerRevisado)
-                            <livewire:organizador.solicitudes.solicitud :tallerRevisado='$tallerRevisado' :wire:key="$tallerRevisado->id" />
+                            <livewire:organizador.solicitudes.solicitud :taller='$tallerRevisado' :wire:key="$tallerRevisado->id" />
+                        @endforeach
+                    </div>
+                </div>
+            @else
+                <span>No tienes solicitudes revisadas</span>
+            @endif
+        </div>
+
+        <div class="mt-10 mb-16">
+            <div>
+                <span class="text-4xl block mb-5">Solicitudes modificadas</span>
+            </div>
+            @if (count($talleresModificados) > 0)
+                <div class="swiper-container swiperRevisadas">
+                    <div class="swiper-wrapper">
+                        @foreach ($talleresModificados as $tallerModificado)
+                            <livewire:organizador.solicitudes.solicitud :taller='$tallerModificado' :wire:key="$tallerModificado->id" />
                         @endforeach
                     </div>
                 </div>

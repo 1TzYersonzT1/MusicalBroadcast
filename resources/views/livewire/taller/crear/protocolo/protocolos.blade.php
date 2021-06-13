@@ -7,8 +7,8 @@
             <a wire:click='nuevoItem'>Agregar</a>
         </div>
         <ul class="mt-2 mb-2">
-            @foreach ($protocolos as $protocolo)
-                <li :wire:key="{{ $loop->index }}">{{ $protocolo }}</li>
+            @foreach ($protocolos as $index => $protocolo)
+                <livewire:taller.crear.protocolo.protocolo :protocolo="$protocolo" :wire:key="$index" />
             @endforeach
         </ul>
     </div>
