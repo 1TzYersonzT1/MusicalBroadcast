@@ -1,10 +1,10 @@
 <div id="cuerpo">
-    <div class="mt-10">
+    <div class="mt-4">
 
         <div class="lg:w-5/6 flex lg:flex-row flex-col justify-between items-center"> 
             <div> 
                 <img src="{{ asset('storage/'.$solicitudActual->taller->imagen) }}" 
-                class="h-56 w-60 lg:m-0 mb-5 mr-5"/>
+                class="h-80 w-96 lg:m-0 mb-5 mr-5"/>
             </div>
 
             <div class="grid grid-cols-2 gap-4">
@@ -49,7 +49,7 @@
         </div>
     
 
-        <div class="mt-10 flex flex-col items-center justify-center lg:flex lg:flex-row lg:justify-start w-84">
+        <div class="mt-6 flex flex-col items-center justify-center lg:flex lg:flex-row lg:justify-start w-84">
 
             <a id="aprobarSolicitud"
                 class="bg-green-500 rounded-full hover:bg-white hover:text-green-500 cursor-pointer font-bold px-5 py-2 w-52 text-center mb-5">Aprobar

@@ -1,5 +1,5 @@
 <div>
-    <div class="min-h-screen mt-12 text-white">
+    <div class="min-h-screen py-5 text-white">
         <span class="text-4xl block mb-5">Solicitudes de taller</span>
         @if(count($solicitudes) > 0)
         <div class="swiper-container swiperSolicitudes">
@@ -12,7 +12,7 @@
 
             </div>
         </div>
-        <div class="mt-12 text-white lg:w-7/12">
+        <div class="mt-8 text-white lg:w-7/12">
             <span class="text-2xl font-bold">Detalle del taller</span>
             <livewire:administrador.solicitudes.solicitud-preview :solicitudActual='$solicitudes[0]'
                 :wire:key='$solicitudes[0]->id' />

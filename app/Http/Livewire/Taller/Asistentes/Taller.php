@@ -10,13 +10,10 @@ class Taller extends Component
 
     public $taller;
 
-    protected $listeners = ["confirmarEliminarAsistente"];
+    protected $listeners = ["eliminarAsistente"];
 
-    public function confirmarEliminarAsistente(array $asistente) {
-        $taller = ModelsTaller::find($this->taller->id);
-        $taller->TAL_Aforo = $taller->TAL_Aforo + 1;
-        $taller->save();
-        $taller->asistentes()->detach($asistente["rut"]);
+    public function eliminarAsistente(array $seleccionado) {
+        $this->dispatchBrowserEvent("prueba", array("test"=>$seleccionado));
     }
 
     public function render()

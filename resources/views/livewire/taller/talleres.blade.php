@@ -1,5 +1,5 @@
 <div>
-    <div class="text-white mt-12 min-h-screen">
+    <div class="text-white py-5 min-h-screen">
         <div class=''>
             <span class="text-4xl mb-8 block">
                 Talleres disponibles ({{ count($talleres)}})

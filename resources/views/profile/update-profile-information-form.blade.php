@@ -10,7 +10,7 @@
     <x-slot name="form">
         <!-- Name -->
         <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="nombre" value="{{ __('Nombre') }}" />
+            <x-jet-label for="nombre" value="{{ __('Nombre') }}" class="text-primary" />
             <x-jet-input id="nombre" type="text" class="mt-1 block w-full" wire:model.defer="state.nombre"
                 autocomplete="nombre" />
             <x-jet-input-error for="nombre" class="mt-2" />
@@ -18,7 +18,7 @@
 
         <!-- Apellidos -->
         <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="apellidos" value="{{ __('Apellidos') }}" />
+            <x-jet-label for="apellidos" value="{{ __('Apellidos') }}" class="text-primary" />
             <x-jet-input id="apellidos" type="text" class="mt-1 block w-full" wire:model.defer="state.apellidos"
                 autocomplete="apellidos" />
             <x-jet-input-error for="apellidos" class="mt-2" />
@@ -26,7 +26,7 @@
 
         <!-- Telefono -->
         <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="telefono" value="{{ __('Teléfono') }}" />
+            <x-jet-label for="telefono" value="{{ __('Teléfono') }}" class="text-primary" />
             <x-jet-input id="telefono" type="tel"  pattern="[0-9]{9}" class="mt-1 block w-full" wire:model.defer="state.telefono"
                 autocomplete="telefono" />
             <x-jet-input-error for="telefono" class="mt-2" />
@@ -34,7 +34,7 @@
 
         <!-- Email -->
         <div class="col-span-6 sm:col-span-4">
-            <x-jet-label for="email" value="{{ __('Email') }}" />
+            <x-jet-label for="email" value="{{ __('Email') }}" class="text-primary" />
             <x-jet-input id="email" type="email" class="mt-1 block w-full" wire:model.defer="state.email" />
             <x-jet-input-error for="email" class="mt-2" />
         </div>
