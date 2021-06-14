@@ -1,7 +1,7 @@
 <div class="swiper-slide">
     <div class="lg:flex">
-        <div class="h-48 lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
-            style="background-image: url('https://tailwindcss.com/img/card-left.jpg')" title="Woman holding a mug">
+        <div class="h-48 lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden">
+            <img src="{{ asset($evento->imagen) }}" />
         </div>
         <div
             class="object-content border-l border-grey-light 

@@ -12,8 +12,9 @@ class Eventos extends Component
     public $eventos;
 
     public function mount() {
-        $this->eventos = Evento::orderBy("EVE_Horario", "asc")
-        ->where("EVE_Horario", ">", new DateTime())
+        $this->eventos = Evento::orderBy("EVE_Fecha", "asc")
+        ->where("EVE_Fecha", ">=", new DateTime())
+        ->where("estado", 1)
         ->get();
     }
 

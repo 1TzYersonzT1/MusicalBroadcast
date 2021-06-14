@@ -12,7 +12,7 @@
 
             <div class="col">
                 <p class="font-bold">HORARIO</p>
-                <p>{{ $eventoActual->EVE_Horario }}</p>
+                <p>{{ $eventoActual->EVE_Fecha }} {{ $eventoActual->EVE_Hora }}</p>
             </div>
 
             <div class="col">

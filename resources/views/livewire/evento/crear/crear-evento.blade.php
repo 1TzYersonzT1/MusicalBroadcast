@@ -1,6 +1,6 @@
-<div>
-    <div class='container mx-auto py-5 text-white'>
-        <div class="mb-6 lg:mt-0 mt-5"><span class="text-4xl">Organizar nuevo taller.</span></div>
+<div class="py-5">
+    <div class='container mx-auto text-white'>
+        <div class="mb-6 lg:mt-0 mt-5"><span class="text-4xl">Organizar nuevo evento.</span></div>
         @if ($errors)
             @foreach ($errors->all() as $message)
                 {{ $message }}
@@ -8,13 +8,13 @@
         @endif
         <div class="lg:flex">
             <div class="flex flex-col lg:mr-5">
-                <form wire:submit.prevent='nuevoTaller' enctype="multipart/form-data">
+                <form wire:submit.prevent='nuevoEvento' enctype="multipart/form-data">
                     <div class="lg:flex">
                         <div class="flex flex-col">
                             <span class="font-bold">Titulo</span>
                             <div class="flex flex-col mt-1">
                                 <input type="text" class="border-0 bg-primary px-0 py-1 font-light lg:w-96"
-                                    wire:model='titulo' maxlength="30"
+                                    wire:model='nombre' maxlength="30"
                                     placeholder="Escriba el titulo del taller (máximo 30 caracteres)" />
                             </div>
                         </div>
@@ -36,14 +36,7 @@
                             </div>
 
                         </div>
-                        <div class="flex items-center mb-2 mt-3">
-                            <span class="font-bold">Aforo:</span>
-                            <div class="flex flex-col">
-                                <input type="number" min='1' max='12' id="aforo" wire:model='aforo'
-                                    class="bg-primary p-0 px-2 w-16 ml-3 mr-3" />
-
-                            </div><span>personas.</span>
-                        </div>
+                        
                         <div class="flex items-center mb-3 mt-3 text-sm">
                             <span class="font-bold">Lugar: </span>
                             <div class="flex flex-col">
@@ -65,33 +58,29 @@
                     </div>
             </div>
 
-            <div class="w-80"><input type="file" wire:model="imagen" />
-                <div wire:loading wire:target="imagen" 
-                        class="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3" role="alert">
-                    <p class="font-bold">Cargando imagen</p>
-                  </div>
-             
-                @error('imagen')
+            <div class="flex justify-between">
+                <div class="flex flex-col">
+                    <input type="file" wire:model="imagen" />
+                    <div wire:loading wire:target="imagen" 
+                            class="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3" role="alert">
+                        <p class="font-bold">Cargando imagen</p>
+                    </div>
                 
-                @else
-                    @if ($imagen )
-                    <img src="{{ $imagen->temporaryUrl() }}" class="mt-5">
-                    @endif
-                @enderror
-            </div>
+                    @error('imagen')
+                    
+                    @else
+                        @if ($imagen )
+                        <img src="{{ $imagen->temporaryUrl() }}" class="mt-5 w-80 h-80">
+                        @endif
+                    @enderror
+                </div>
 
-            <div class="grid lg:grid-cols-2 lg:grid-rows-2 lg:mt-0 mt-5 ml-5">
-
-                <livewire:taller.crear.requisito.requisitos :requisitos='$requisitos' />
-
-                <livewire:taller.crear.protocolo.protocolos :protocolos='$protocolos' />
-
-                <div class="justify-self-center self-center">
+                <div class="ml-10">
                     <button type="submit"
                         class="border border-white px-7 py-3 my-10 lg:my-0 hover:bg-white hover:text-primary">Solicitar
                         permiso</button>
                 </div>
-
+                
             </div>
 
             </form>
@@ -99,19 +88,19 @@
     </div>
 </div>
 
+
 <script>
-    window.addEventListener("nuevoTaller", function() {
+
+    window.addEventListener("nuevoEvento", () => {
         Swal.fire({
-            position: 'center',
+            title: 'Exito',
+            text: `Solicitud enviada con exito, recuerda que debes esperar a que
+            un administrador revise y apruebe el evento.`,
             icon: 'success',
-            title: 'Solicitud enviada',
-            text: `Recuerda que debes esperar a que se apruebe el taller, puedes
-            revisar el estado de tu solicitud en todo momento o contactarte con soporte si tienes alguna duda`,
-            showConfirmButton: false,
-            timer: 10000
-        }).then((isVisible) => {
-            if (!isVisible.isComfirmed) {
-                location.href = "/talleres";
+            time: 4000,
+        }).then((result) => {
+            if(!result.isVisible) {
+                location.href = '/eventos';
             }
         });
     });
