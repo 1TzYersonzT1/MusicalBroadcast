@@ -25,73 +25,77 @@
 @endsection
     
 <div>
-    <div class="flex lg:flex-row justify-around flex-col py-6 h-full">
-
-        <div class="px-5 py-2 ">
-            <div class="text-white px-5 flex flex-col items-center">
-                <div class="bg-black px-2 py-1 relative">
-                    <div class="top-5 mb-3 text-4xl font-bold">
-                        Discografía
-                        
-                    </div>
-                </div>
-                <div class="lg:w-96 w-20">
-                     <div class=" h-40 lg:w-40 flex-none bg-cover rounded-full lg:rounded-t-full lg:rounded-1 text-center overflow-hidden"
+    <div class="grid lg:grid-cols-8 gap-5 text-white py-4 flex-col">
+        <div class=" col-span-6">
+            <div class="bg-black px-2 py-1 ">
+                <span class="top-5 mb-3 text-4xl font-bold">Discofrafia</span>
+                
+            </div><br>
+            <div class=" h-40 lg:w-40 flex-none bg-cover rounded-full lg:rounded-t-full lg:rounded-1 text-center overflow-hidden"
                     style="background-image: url('https://tailwindcss.com/img/card-left.jpg')" title="Woman holding a mug">
-                    </div>
-                    {{ $artistaActual->biografia }}
-                </div>
             </div>
+            
         </div>
-
-        <div class="py-2 ">
-            <div class="text-white px-flex ">
-                <div class="bg-black px-4 py-1">
-                    <div class="mb-3 text-4xl font-bold">
-                        Musica
-                    </div>
+        <div class="lg:col-span-2 "> 
+            <div class="bg-black px-2 py-1">
+                <div class="text-4xl font-bold ">
+                    <span class="text-white">Musica</span>
                 </div>
-                <div ><br>
-                    <div>
-                        <iframe src="https://open.spotify.com/follow/1/?uri=spotify:artist:4zig82wPnO2yb43Lx4x8s6?si=RaGP9uHPTDu-UBlrrVzSNQ&dl_branch=1&size=detail&theme=dark&show-count=0" width="300" height="56" scrolling="no" frameborder="0" style="border:none; overflow:hidden;" allowtransparency="true"></iframe>
-                    </div>
-                    <br>
-                    <div class="g-ytsubscribe" data-channelid="UCpLP_h0sHPynXomznPGto2g" data-layout="full" data-theme="dark" data-count="hidden">
+            </div> 
+            <div ><br>
+                <div class="grid grid-cols-8 gap-5 text-white py-4">
+                    <iframe src="https://open.spotify.com/follow/1/?uri=spotify:artist:4zig82wPnO2yb43Lx4x8s6?si=RaGP9uHPTDu-UBlrrVzSNQ&dl_branch=1&size=detail&theme=dark&show-count=0" width="300" height="56" scrolling="no" frameborder="0" style="border:none; overflow:hidden;" allowtransparency="true"></iframe>
+                </div><br>
+                <div class="g-ytsubscribe" data-channelid="UCpLP_h0sHPynXomznPGto2g" data-layout="full" data-theme="dark" data-count="hidden">                
+                </div>  
+            </div>
                     
-                    </div>  
-                </div>
+        </div>
+    </div>
+
+    <div class="grid lg:grid-cols-8 gap-5 text-white py-4">
+        <div class=" lg:col-span-6">
+            <div class="bg-black px-2 py-1 ">
+                <span class="top-5 mb-3 text-4xl font-bold">Biografia</span>
+                
+            </div><br>
+            <div >
+                {{ $artistaActual->biografia }}
             </div>
+            
+        </div>
+        <div class="lg:col-span-2"> 
+            <div class="bg-black px-2 py-1">
+                <div class="text-4xl font-bold">
+                    <span class="text-white">Proximo Evento</span>
+                </div>
+            </div> 
+            <div ><br>
+                {{ $artistaActual->biografia }}
+            </div>
+                    
         </div>
     </div>
 
 
-    <div class="flex lg:flex-row justify-around flex-col py-8 h-full">
-            <div class="px-5 py-2 ">
-                <div class="text-white px-5">
-                    <div class="bg-black px-2 py-1">
-                        <div class="top-5 mb-3 text-4xl font-bold ">
-                            Biografia
-                        </div>
-                    </div>
-
-                    <div>
-                        {{ $artistaActual->biografia }}
-                    </div>
-                </div>
-            </div>
-        
-            <div class=" py-2 ">
-                <div class="text-white px-flex">
-                    <div class="bg-black px-5 py-1">
-                        <div class="top-5 mb-3 text-4xl font-bold ">
-                             Proximo<br>
-                             Evento
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-    </div>
+    <div class="py-2" style="float:left">
+        <a href="https://es-la.facebook.com/">
+        <div style="float:left">
+            <img src="/face.png" width="40" height="40" > 
+        </div>         
+        </a>
+        <a href="https://www.instagram.com/?hl=es-la">
+        <div style="float:left">
+            <img src="/insta.png" width="40" height="40">
+        </div>                 
+        </a>
+        <a href="https://twitter.com/?lang=es">
+        <div style="float:left">
+            <img src="/twiter.png" width="40" height="40">
+        </div>
+        </a>
+    </div>  
+    
 </div>
 
 <script src="https://apis.google.com/js/platform.js"></script>
