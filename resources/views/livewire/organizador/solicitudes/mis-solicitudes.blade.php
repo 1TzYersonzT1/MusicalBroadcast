@@ -1,5 +1,5 @@
 <div>
-    <div class="min-h-screen text-white py-10">
+    <div class="min-h-screen text-white py-5">
         <div class="">
             <div>
                 <span class="text-4xl block mb-5">Solicitudes pendientes</span>

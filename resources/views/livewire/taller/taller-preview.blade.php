@@ -31,27 +31,26 @@
                 <p>{{ $tallerActual->TAL_Fecha }} {{ $tallerActual->TAL_Hora }}</p>
             </div>
 
-            <div>
-                <p class="font-bold">REQUISITOS</p>
-                @foreach($tallerActual->TAL_Requisitos as $requisito)
-                    <p>{{ $requisito }}</p>
-                @endforeach
+            <div class="flex justify-between w-80">
+                <div>
+                    <span class="font-bold">REQUISITOS</span>
+                    @foreach($tallerActual->TAL_Requisitos as $requisito)
+                        <p>{{ $requisito }}</p>
+                    @endforeach
+                </div>
+
+                <div>
+                    <span class="font-bold">PROTOCOLO COVID</span>
+                    @foreach($tallerActual->TAL_Protocolo as $protocolo)
+                    <p>{{ $protocolo }}</p>
+                    @endforeach
+                </div>
             </div>
 
             <div>
                 <p class="font-bold">LUGAR</p>
                 <p>{{ $tallerActual->TAL_Lugar }}</p>
             </div>
-
-            <div>
-                <p class="font-bold">PROTOCOLO COVID</p>
-                @foreach($tallerActual->TAL_Protocolo as $protocolo)
-                <p>{{ $protocolo }}</p>
-                @endforeach
-            </div>
-
- 
-
         </div>
 
         <livewire:taller.inscripcion-taller :tallerSeleccionado='$tallerActual' :wire:key='$tallerActual->id' />

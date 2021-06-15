@@ -1,7 +1,19 @@
 <div>
-    <div class="mt-12 min-h-screen w-full">
+    <div class="py-5 min-h-screen w-full text-white">
+        <div> 
+            <span class="text-4xl mb-8 block">
+                Eventos disponibles ({{ count($eventos) }})
+            </span>
+            @can('organizar')
+            <div>
+                <button class="bg-green-500 px-5 py-1 mb-5 text-white font-bold">
+                    <a href="{{ route('organizador.crearevento') }}">Crear evento</a>
+                </button>
+            </div>
+            @endcan
+        </div>
         @if(count($eventos) > 0)
-            <div class="lg:grid lg:grid-cols-2 gap-5">
+            <div class="gap-5">
                 <div>
                     <div class="swiper-container swiperEventos mb-5">
                         <div class="swiper-wrapper">

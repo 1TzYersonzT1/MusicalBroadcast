@@ -9,6 +9,7 @@ use App\Http\Livewire\Organizador\Solicitudes\ModificarSolicitud;
 use App\Http\Livewire\Taller\CrearTaller;
 use App\Http\Livewire\Artista\Artistas;
 use App\Http\Livewire\Artista\ArtistaPreview;
+use App\Http\Livewire\Evento\Crear\CrearEvento;
 use App\Http\Livewire\Evento\Eventos;
 use App\Http\Livewire\Taller\Asistentes\Asistentes;
 
@@ -37,6 +38,9 @@ Route::group(["middleware" => 'auth'], function() {
         Route::get("/modificar-solicitud/{id}", ModificarSolicitud::class)->name("modificar-solicitud");
 
         Route::get("/asistentes", Asistentes::class)->name("taller/asistentes");
+
+
+        Route::get("/crear-evento", CrearEvento::class)->name("crearevento");
     });
 
     Route::group(['middleware' => 'role:administrador', 'prefix' => 'administrador', 'as' => 'administrador.'], function() {

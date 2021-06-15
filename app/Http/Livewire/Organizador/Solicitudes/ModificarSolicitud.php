@@ -5,19 +5,27 @@ namespace App\Http\Livewire\Organizador\Solicitudes;
 use Livewire\Component;
 use App\Models\Taller;
 use Auth;
+use Illuminate\Support\Facades\Storage;
+use Livewire\WithFileUploads;
 
 class ModificarSolicitud extends Component
 {
 
-    public $taller, $caracteres_descripcion = 0;
+    use WithFileUploads;
+
+    public $taller, $caracteres_descripcion = 0, $nuevaImagen;
     public $requisitos = [], $protocolos = [];
 
-    protected $listeners = ["updatedRequisitos", "updatedProtocolos"];
+    protected $listeners = [
+        "updatedRequisitos", 
+        "updatedProtocolos",
+        "modificarTallerConfirmado",
+    ];
 
     protected $rules = [
         "taller.TAL_Nombre" => 'required|string',
-        'taller.TAL_Fecha' => 'required|date_format:dd-mm-aaaa',
-        'taller.TAL_Hora' => 'required|date_format:H:i',
+        'taller.TAL_Fecha' => 'required',
+        'taller.TAL_Hora' => 'required',
         'taller.TAL_Aforo' => 'required|integer',
         'taller.TAL_Lugar' => 'required|string',
         'taller.TAL_Descripcion' => 'required|string',
@@ -46,16 +54,34 @@ class ModificarSolicitud extends Component
         $this->protocolos = $value["protocolos"];
     }
 
+    public function updatedNuevaImagen() {
+        $this->validate([
+            'nuevaImagen' => 'image|mimes:jpeg,png,svg,jpg,gif|max:1024',
+        ]);
+    }
+
     public function modificarTaller() {
+        $this->dispatchBrowserEvent("prueba");
+    }
+
+    public function modificarTallerConfirmado() {
+
+        $this->validate();
+
         $taller = Taller::find($this->taller->id);
         $taller = $this->taller;
         $taller->TAL_Requisitos = implode(", ", $this->requisitos);
         $taller->TAL_Protocolo = implode(", ", $this->protocolos);
         $taller->solicitudes[0]->estado = 4;
         $taller->solicitudes[0]->save();
-        $taller->save();
 
-        return redirect()->route("organizador.mis-solicitudes");
+        if($this->nuevaImagen != null) {
+            Storage::delete($taller->imagen);
+            $nuevaImagen = $this->nuevaImagen->store("/talleres/organizador/".auth()->user()->rut);
+            $taller->imagen = "storage/" . $nuevaImagen;
+        }
+        
+        $taller->save();
     }
 
     public function render()

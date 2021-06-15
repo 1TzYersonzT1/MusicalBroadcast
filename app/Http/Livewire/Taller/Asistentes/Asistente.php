@@ -12,11 +12,10 @@ class Asistente extends Component
 
     public $asistente;
 
-    protected $listeners = ["eliminarAsistente"];
+    protected $listeners = ["eliminarConfirmado"];
 
-    public function eliminarAsistente()
-    {
-        $this->emit("confirmarEliminarAsistente", array("rut" => $this->asistente->rut));
+    public function eliminar() {
+        $this->emit("eliminarAsistente", array("rut" => $this->asistente->rut));
     }
 
     public function render()

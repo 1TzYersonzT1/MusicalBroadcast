@@ -5,13 +5,22 @@ namespace App\Http\Livewire\Administrador\Solicitudes;
 use Livewire\Component;
 use App\Models\SolicitudTaller;
 use App\Models\Taller;
+use Illuminate\Support\Facades\Storage;
 
 class SolicitudPreview extends Component
 {
 
     public $solicitudActual, $observacion;
 
-    protected $listeners = ['visualizarSolicitud', 'aprobarTaller'];
+    protected $rules = [
+        'observacion' => 'required|string|min:10|max:255|',
+    ];
+
+    protected $listeners = [
+        'visualizarSolicitud', 
+        'aprobarTaller',
+        'eliminarTaller',
+    ];
 
     public function visualizarSolicitud(array $solicitudSeleccionada)
     {
@@ -35,12 +44,22 @@ class SolicitudPreview extends Component
 
 
     public function enviarObservacion() {
+
+        $this->validate();
+
         $solicitud = SolicitudTaller::find($this->solicitudActual->id);
         $solicitud->observacion = $this->observacion;
         $solicitud->estado = 1;
         $solicitud->save();
 
         $this->dispatchBrowserEvent("observacionAniadida");
+    }
+
+    public function eliminarTaller() {
+        $taller = Taller::find($this->solicitudActual->taller->id);
+        Storage::delete($taller->imagen);
+        $taller->solicitudes()->delete();
+        $taller->delete();
     }
 
     public function render()
