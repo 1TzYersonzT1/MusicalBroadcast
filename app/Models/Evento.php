@@ -27,6 +27,12 @@ class Evento extends Model
         return Carbon::parse(date_create($value))->isoFormat("LL");
      }
 
+     public function getImagenAttribute($value) {
+         $url = explode("/", $value);
+         unset($url[array_search("storage", $url)]);
+         return implode("/", $url);
+     }
+
 
 
 }

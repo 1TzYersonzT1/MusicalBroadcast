@@ -5,10 +5,18 @@
                 Eventos disponibles ({{ count($eventos) }})
             </span>
             @can('organizar')
-            <div>
-                <button class="bg-green-500 px-5 py-1 mb-5 text-white font-bold">
-                    <a href="{{ route('organizador.crearevento') }}">Crear evento</a>
-                </button>
+            <div class="flex"> 
+                <div>
+                    <button class="bg-green-500 px-5 py-1 mb-5 text-white font-bold">
+                        <a href="{{ route('organizador.crearevento') }}">Crear evento</a>
+                    </button>
+                </div>
+    
+                <div>
+                    <button class="bg-yellow-500 px-5 py-1 mb-5 ml-5 text-white font-bold">
+                        <a href="{{ route('organizador.mis-eventos') }}">Mis solicitudes</a>
+                    </button>
+                </div>
             </div>
             @endcan
 
