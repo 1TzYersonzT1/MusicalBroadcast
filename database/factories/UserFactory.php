@@ -25,12 +25,22 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name,
+            'rut' => "12345678",
+            'nombre' => $this->faker->firstName('male'),
+            'apellidos' => $this->faker->lastName() . " " . $this->faker->lastName(),
             'email' => $this->faker->unique()->safeEmail,
-            'email_verified_at' => now(),
+            'telefono' => 123456789,
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
         ];
+    }
+
+    public function organizador_2() {
+        return $this->state(function (array $attributes) {
+            return [
+                'rut' => '87654321',
+            ];
+        });
     }
 
     /**

@@ -14,7 +14,8 @@ class CreateRolUserTable extends Migration
     public function up()
     {
         Schema::create('rol_user', function (Blueprint $table) {
-            $table->id("rol_id");
+            $table->id();
+            $table->foreignId("rol_id")->constrainer("rol");
             $table->string("user_rut", 9)->index();
         });
     }

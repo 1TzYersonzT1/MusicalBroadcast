@@ -14,6 +14,7 @@ class CreateArtistaEstiloTable extends Migration
     public function up()
     {
         Schema::create('artista_estilo', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('artista_id')->constrained('artista');
             $table->foreignId('estilo_id')->constrained('estilo');
         });
