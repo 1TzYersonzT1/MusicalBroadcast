@@ -5,12 +5,28 @@
                 Eventos disponibles ({{ count($eventos) }})
             </span>
             @can('organizar')
-            <div>
-                <button class="bg-green-500 px-5 py-1 mb-5 text-white font-bold">
-                    <a href="{{ route('organizador.crearevento') }}">Crear evento</a>
-                </button>
+            <div class="flex"> 
+                <div>
+                    <button class="bg-green-500 px-5 py-1 mb-5 text-white font-bold">
+                        <a href="{{ route('organizador.crearevento') }}">Crear evento</a>
+                    </button>
+                </div>
+    
+                <div>
+                    <button class="bg-yellow-500 px-5 py-1 mb-5 ml-5 text-white font-bold">
+                        <a href="{{ route('organizador.mis-eventos') }}">Mis solicitudes</a>
+                    </button>
+                </div>
             </div>
             @endcan
+
+            @can('administrar')
+            <div>
+                <button class="bg-green-500 px-5 py-1 mb-5 text-white font-bold">
+                    <a href="{{ route('administrador.eventos') }}">Administrar eventos</a>
+                </button>
+            </div>
+        @endcan
         </div>
         @if(count($eventos) > 0)
             <div class="gap-5">
@@ -42,6 +58,16 @@
             slidePerView: 'auto',
             spaceBetween: 30,
             initialSlide: slideActual,
+            breakpoints: {
+                640: {
+                    slidesPerView: 'auto',
+                 
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 10,
+                },
+            },
         });
     }
 
