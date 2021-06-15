@@ -9,7 +9,6 @@ class Solicitudes extends Component
 {
 
     public $solicitudes = [];
-    public $mensaje;
 
     public function mount() {
         $this->solicitudes = SolicitudTaller::where('estado', '!=', 3)->get();

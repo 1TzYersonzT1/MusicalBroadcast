@@ -11,6 +11,14 @@
                 </button>
             </div>
             @endcan
+
+            @can('administrar')
+            <div>
+                <button class="bg-green-500 px-5 py-1 mb-5 text-white font-bold">
+                    <a href="{{ route('administrador.eventos') }}">Administrar eventos</a>
+                </button>
+            </div>
+        @endcan
         </div>
         @if(count($eventos) > 0)
             <div class="gap-5">
@@ -42,6 +50,16 @@
             slidePerView: 'auto',
             spaceBetween: 30,
             initialSlide: slideActual,
+            breakpoints: {
+                640: {
+                    slidesPerView: 'auto',
+                 
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 10,
+                },
+            },
         });
     }
 

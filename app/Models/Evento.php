@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Evento extends Model
 {
@@ -21,5 +22,11 @@ class Evento extends Model
     public function solicitudes() {
         return $this->hasMany(SolicitudEvento::class, 'evento_id');
     }
+
+    public function getEVEFechaAttribute($value) {
+        return Carbon::parse(date_create($value))->isoFormat("LL");
+     }
+
+
 
 }

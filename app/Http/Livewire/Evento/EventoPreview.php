@@ -10,7 +10,10 @@ class EventoPreview extends Component
 
     public $eventoActual;
 
-    protected $listeners = ["visualizar-evento" => 'visualizar'];
+    protected $listeners = [
+        "visualizar-evento" => 'visualizar',
+        'aprobarEvento',
+    ];
 
     public function visualizar(array $eventoSeleccionado) {
         $this->eventoActual = Evento::find($eventoSeleccionado["id"]);

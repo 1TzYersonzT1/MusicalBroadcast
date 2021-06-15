@@ -1,11 +1,11 @@
 <div class="swiper-slide">
-    <div class="lg:flex">
-        <div class="h-48 lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden">
-            <img src="{{ asset($evento->imagen) }}" />
+    <div class="lg:flex lg:w-96">
+        <div class="flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden">
+            <img src="{{ asset($evento->imagen) }}" class="h-48 lg:w-48 w-80" />
         </div>
         <div
             class="object-content border-l border-grey-light 
-            w-96 bg-gradient-to-tr from-black via-primary to-blue-900 rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+            lg:w-96 bg-gradient-to-tr from-black via-primary to-blue-900 rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
             <div class="mb-8">
 
                 <div class="text-black font-bold text-xl mb-2 text-white">

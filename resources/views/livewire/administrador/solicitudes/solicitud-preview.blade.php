@@ -65,7 +65,7 @@
                     <span>{{ $solicitudActual->taller->TAL_Nombre }}</span>
 
                     <textarea maxlength='255'
-                        placeholder="Aregue y envíe una observación al organizador (máximo 255 caracteres)"
+                        placeholder="Agregue y envíe una observación al organizador (máximo 255 caracteres)"
                         wire:model='observacion' class="mt-5 resize-none lg:w-96 bg-primary h-40 text-white"></textarea>
 
                     @error('observacion')
@@ -78,7 +78,7 @@
                                     icon: 'error',
                                 }).then((result) => {
                                     if (result.isConfirmed) {
-                                    location.href = '/administrador/solicitudes';
+                                    location.href = '/administrador/solicitudes/talleres';
                                 }
                             });
                         </script>
@@ -134,7 +134,7 @@
                 timer: 8000
             }).then((result) => {
                 if (!result.isConfirmed) {
-                    location.href = "/administrador/solicitudes";
+                    location.href = "/administrador/solicitudes/talleres";
                 }
             })
         });
@@ -161,7 +161,7 @@
                     }
                     ).then((result) => {
                         if(!result.isVisible) {
-                            location.href = "/administrador/solicitudes";
+                            location.href = "/administrador/solicitudes/talleres";
                         }
                     });
                 }
