@@ -12,7 +12,7 @@ class Artistas extends Component
 
     use WithPagination;
 
-    public $nombreArtista = '';
+    public $nombreArtista;
     public $estilos = null;
 
     protected $listeners = ["updatedNombreArtista", "updatedGenero", "updatedEstilos"];

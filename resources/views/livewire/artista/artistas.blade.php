@@ -1,8 +1,7 @@
-@section('banner')
-	@include('banner-artista')
-	@endsection
-<div>
-    <div class="flex lg:flex-row flex-col lg:justify-between py-8 min-h-screen w-full">
+<div class="flex lg:flex-row flex-col lg:justify-between py-8 min-h-screen w-full">
+        @section("banner")
+            @include("banner-artista");
+        @endsection 
 
         <!-- Filtro -->
         <div class="lg:mb-0 mb-10 h-full bg-white col-span-2 lg:w-45 border-1 px-5 py-2">
@@ -60,6 +59,7 @@
         @else
             <span class="text-white">No existen coincidencias</span>
         @endif
-    </div>
 </div>
+
+
 

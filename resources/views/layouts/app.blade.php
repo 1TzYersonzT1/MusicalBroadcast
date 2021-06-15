@@ -35,7 +35,10 @@
 
     <div class="min-h-screen flex flex-col justify-between">
         @livewire('navigation-menu')
-        @yield('banner')
+        
+        <div>
+            @yield("banner")
+        </div>
 
         <!-- Page Content -->
         <main class="mix-blend-normal container mx-auto px-5">

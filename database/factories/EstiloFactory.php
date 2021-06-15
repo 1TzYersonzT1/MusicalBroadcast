@@ -2,17 +2,18 @@
 
 namespace Database\Factories;
 
-use App\Models\Rol;
+use App\Models\Estilo;
+use App\Models\Genero;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class RolFactory extends Factory
+class EstiloFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Rol::class;
+    protected $model = Estilo::class;
 
     /**
      * Define the model's default state.
@@ -22,8 +23,8 @@ class RolFactory extends Factory
     public function definition()
     {
         return [
-            "id" => '',
-            "nombre" => '',
+            'EST_Nombre' => '',
+            'genero_id' => '',
         ];
     }
 }
