@@ -1,13 +1,13 @@
 <div id="cuerpo">
     <div class="mt-4">
 
-        <div class="lg:w-5/6 flex lg:flex-row flex-col justify-between items-center"> 
+        <div class="flex lg:flex-row flex-col justify-between items-center"> 
             <div> 
                 <img src="{{ asset('storage/'.$solicitudActual->taller->imagen) }}" 
                 class="h-80 w-96 lg:m-0 mb-5 mr-5"/>
             </div>
 
-            <div class="grid grid-cols-2 gap-4">
+            <div class="grid grid-cols-2 lg:gap-10 gap-5">
                 <div>
                     <p class="font-bold">TITULO</p>
                     <p>{{ $solicitudActual->taller->TAL_Nombre }}</p>

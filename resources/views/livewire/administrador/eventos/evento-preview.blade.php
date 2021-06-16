@@ -1,24 +1,24 @@
 <div id="cuerpo">
     <div class="mt-4">
-        <div class="lg:w-5/6 flex lg:flex-row flex-col justify-between"> 
+        <div class="flex lg:flex-row flex-col justify-between w-full"> 
             <div> 
                 <img src="{{ asset('storage/' . $solicitudActual->evento->imagen) }}" 
                 class="h-80 w-80 lg:m-0 mb-5 mr-5"/>
             </div>
 
-            <div class="grid grid-cols-2 gap-4">
+            <div class="grid grid-cols-2 gap-10">
                 <div>
                     <p class="font-bold">TITULO</p>
-                    <p>{{ $solicitudActual->evento->EVE_Nombre }}</p>
+                    <p class="w-40">{{ $solicitudActual->evento->EVE_Nombre }}</p>
                 </div>
                 <div>
                     <p class="font-bold">ORGANIZADOR</p>
                     <p>{{ $solicitudActual->evento->organizador->nombre }}
                         {{ $solicitudActual->evento->organizador->apellidos }}</p>
                 </div>
-                <div>
-                    <p class="font-bold col-span-2">DESCRIPCIÓN</p>
-                    <p>{{ $solicitudActual->evento->EVE_Descripcion }}</p>
+                <div class="col-span-2">
+                    <p class="font-bold">DESCRIPCIÓN</p>
+                    <p claas="lg:w-96">{{ $solicitudActual->evento->EVE_Descripcion }}</p>
                 </div>
     
                 <div class="col">
@@ -71,6 +71,10 @@
                         observaciones</a>
                 </div>
             </div>
+
+            <a id="rechazarEvento"
+                class="bg-red-500 rounded-full font-bold px-5 py-2 w-52 text-center lg:ml-5 mb-5 cursor-pointer hover:text-red-500 hover:bg-white">
+                Eliminar solicitud</a>
         </div>
 
     </div>
@@ -115,5 +119,34 @@
                 }
             })
     });
+
+    $("#rechazarEvento").on("click", function() {
+            Swal.fire({
+                title: '¿Está seguro?',
+                text: "Estas a punto de rechazar un evento",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Si, rechazar'
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    Livewire.emit('eliminarEvento');
+
+                    Swal.fire({
+                        title: 'Rechazado',
+                        text: 'El evento ha sido rechazado con exito.',
+                        icon: 'success',
+                        timer: 3000,
+                    }
+                    ).then((result) => {
+                        if(!result.isVisible) {
+                            location.href = "/administrador/solicitudes/eventos";
+                        }
+                    });
+                }
+            });
+        });
   
   </script>

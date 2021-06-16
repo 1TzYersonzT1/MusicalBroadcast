@@ -111,7 +111,7 @@
             cancelButtonText: 'Cancelar',
         }).then((result) => {
             if(result.isConfirmed) {
-                Livewire.emit("modificarEventorConfirmado");
+                Livewire.emit("modificarEventoConfirmado");
                 Swal.fire({
                     title: 'Taller modificado',
                     text: 'El taller se ha modificado con exito y su revisión está en proceso.',
@@ -119,7 +119,7 @@
                     time: 4000,
                 }).then((result) => {
                     if(!result.isVisible) {
-                        location.href = "/organizador/mis-solicitudes";
+                        location.href = "/organizador/eventos/mis-solicitudes";
                     }
                 });
             }

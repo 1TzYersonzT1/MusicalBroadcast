@@ -52,7 +52,7 @@
                 <div class="swiper-container swiperRevisadas">
                     <div class="swiper-wrapper">
                         @foreach ($eventosModificados as $eventoModificado)
-                            
+                            <livewire:organizador.eventos.evento :evento="$eventoModificado" :wire:key="$eventoModificado->rut" />
                         @endforeach
                     </div>
                 </div>

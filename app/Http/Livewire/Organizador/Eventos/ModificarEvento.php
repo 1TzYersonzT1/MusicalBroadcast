@@ -44,13 +44,13 @@ class ModificarEvento extends Component
 
     public function modificarEvento()
     {
+        $this->validate();
         $this->dispatchBrowserEvent("confirmarModificarEvento");
     }
 
     public function modificarEventoConfirmado()
     {
-        $this->validate();
-
+    
         $evento = Evento::find($this->evento->id);
         $evento = $this->evento;
 
@@ -60,6 +60,8 @@ class ModificarEvento extends Component
             $evento->imagen = "storage/" . $nuevaImagen;
         }
 
+        $evento->solicitudes[0]->estado = 4;
+        $evento->solicitudes[0]->save();
         $evento->save();
 
         $this->dispatchBrowserEvent("eventoModificado");
