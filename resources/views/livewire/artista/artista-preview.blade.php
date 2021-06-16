@@ -31,9 +31,10 @@
                 <span class="top-5 mb-3 text-4xl font-bold">Discografia</span>
                 
             </div><br>
-            <div class=" h-40 lg:w-40 flex-none bg-cover rounded-full lg:rounded-t-full lg:rounded-1 text-center overflow-hidden"
-                    style="background-image: url('https://tailwindcss.com/img/card-left.jpg')" title="Woman holding a mug">
-            </div>
+            {{ $artistaActual->albumes }}
+            @foreach ($artistaActual->albumes as $album)
+                {{ $album->canciones }}
+            @endforeach
             
         </div>
         <div class="lg:col-span-2 "> 
