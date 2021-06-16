@@ -4,9 +4,13 @@ namespace App\Http\Livewire\Organizador\Eventos;
 
 use Livewire\Component;
 use App\Models\Evento;
+use Illuminate\Support\Facades\Storage;
+use Livewire\WithFileUploads;
 
 class ModificarEvento extends Component
 {
+
+    use WithFileUploads;
 
     public $evento, $nuevaImagen, $caracteres_descripcion = 0;
 
@@ -18,29 +22,47 @@ class ModificarEvento extends Component
         "evento.EVE_Lugar" => 'required|string|max:40',
     ];
 
-    public function mount($id) {
-        $this->evento = Evento::find($id); 
+    protected $listeners = ["modificarEventoConfirmado"];
+
+    public function mount($id)
+    {
+        $this->evento = Evento::find($id);
         $this->caracteres_descripcion = strlen($this->evento->EVE_Descripcion);
     }
 
-    public function updatedNuevaImagen() {
+    public function updatedNuevaImagen()
+    {
         $this->validate([
             "nuevaImagen" => 'image|mimes:jpeg,jpg,png,gif,svg|max:1024',
         ]);
     }
 
-    public function updatedEventoEVEDescripcion() {
+    public function updatedEventoEVEDescripcion()
+    {
         $this->caracteres_descripcion = strlen($this->evento->EVE_Descripcion);
     }
 
-    public function modificarEvento() 
+    public function modificarEvento()
+    {
+        $this->dispatchBrowserEvent("confirmarModificarEvento");
+    }
+
+    public function modificarEventoConfirmado()
     {
         $this->validate();
 
         $evento = Evento::find($this->evento->id);
         $evento = $this->evento;
 
+        if ($this->nuevaImagen) {
+            Storage::delete($evento->imagen);
+            $nuevaImagen = $this->nuevaImagen->store("/eventos/organizador/" . auth()->user()->rut);
+            $evento->imagen = "storage/" . $nuevaImagen;
+        }
+
         $evento->save();
+
+        $this->dispatchBrowserEvent("eventoModificado");
     }
 
     public function render()

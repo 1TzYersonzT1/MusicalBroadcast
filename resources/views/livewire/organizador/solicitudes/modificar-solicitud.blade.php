@@ -111,7 +111,7 @@
 
 <script>
 
-    window.addEventListener("prueba", (event) => {
+    window.addEventListener("confirmarModificarTaller", (event) => {
         Swal.fire({
             title: '¿Está seguro?',
             text: `Los cambios se guardarán y tu solicitud será revisada por soporte.`,

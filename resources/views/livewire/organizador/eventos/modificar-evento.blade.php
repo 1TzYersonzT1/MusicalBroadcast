@@ -99,7 +99,7 @@
 
 <script>
 
-    window.addEventListener("prueba", (event) => {
+    window.addEventListener("confirmarModificarEvento", (event) => {
         Swal.fire({
             title: '¿Está seguro?',
             text: `Los cambios se guardarán y tu solicitud será revisada por soporte.`,
@@ -111,7 +111,7 @@
             cancelButtonText: 'Cancelar',
         }).then((result) => {
             if(result.isConfirmed) {
-                Livewire.emit("modificarTallerConfirmado");
+                Livewire.emit("modificarEventorConfirmado");
                 Swal.fire({
                     title: 'Taller modificado',
                     text: 'El taller se ha modificado con exito y su revisión está en proceso.',

@@ -2,7 +2,7 @@
     <div class="mt-4">
         <div class="lg:w-5/6 flex lg:flex-row flex-col justify-between"> 
             <div> 
-                <img src="{{ asset($solicitudActual->evento->imagen) }}" 
+                <img src="{{ asset('storage/' . $solicitudActual->evento->imagen) }}" 
                 class="h-80 w-80 lg:m-0 mb-5 mr-5"/>
             </div>
 

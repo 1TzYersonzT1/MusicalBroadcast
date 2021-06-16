@@ -61,7 +61,7 @@ class ModificarSolicitud extends Component
     }
 
     public function modificarTaller() {
-        $this->dispatchBrowserEvent("prueba");
+        $this->dispatchBrowserEvent("confirmarModificarTaller");
     }
 
     public function modificarTallerConfirmado() {

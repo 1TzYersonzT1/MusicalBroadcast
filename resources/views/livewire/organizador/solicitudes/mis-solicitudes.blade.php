@@ -122,16 +122,7 @@
 
 
 <script>
-    $('#modificarBtn').on('click', function() {
-        $("#lista-solicitudes").addClass("lg:grid-cols-2");
-        $("#modificar-preview").removeClass("hidden");
-    });
-
-    $("#cerrarBtn").on('click', function() {
-        $("#lista-solicitudes").removeClass("lg:grid-cols-2");
-        $("#modificar-preview").addClass("hidden");
-    });
-
+    
     var swiper = new Swiper(".swiperPendientes", {
         slidesPerView: 3,
         spaceBetween: 30,
