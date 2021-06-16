@@ -30,6 +30,11 @@
                     @endforeach
                 </div>
             </div>
+
+            <div>
+                <span>¿Tienes problemas para llevar a cabo este taller?</span>
+                <button wire:click="prueba">Posponer</button>
+            </div>
         </div>
     </div>
 
