@@ -27,8 +27,8 @@
 <div>
     <div class="grid lg:grid-cols-8 gap-5 text-white py-4 flex-col">
         <div class=" col-span-6">
-            <div class="bg-black px-2 py-1 ">
-                <span class="top-5 mb-3 text-4xl font-bold">Discofrafia</span>
+            <div class="bg-black bg-opacity-20 px-2 py-1 ">
+                <span class="top-5 mb-3 text-4xl font-bold">Discografia</span>
                 
             </div><br>
             <div class=" h-40 lg:w-40 flex-none bg-cover rounded-full lg:rounded-t-full lg:rounded-1 text-center overflow-hidden"

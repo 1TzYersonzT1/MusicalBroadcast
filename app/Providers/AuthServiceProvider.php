@@ -26,12 +26,14 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        // Gates para organizador
         Gate::define('organizar', function(User $user) {
             return $user->is_organizador();
         });
 
-
+        Gate::define('representar', function(User $user) {
+            return $user->is_representante();
+        });
+        
         Gate::define('administrar', function(User $user) {
             return $user->is_administrador();
         });

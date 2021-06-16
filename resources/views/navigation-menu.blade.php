@@ -20,12 +20,50 @@
                         </x-slot>
                     </x-jet-nav-link>
 
-                    <x-jet-nav-link href="{{ route('artistas.index') }}">
+                @can("representar")
+                <div class="hidden sm:flex sm:items-center">   
+                    <div class="relative" x-data="{ open: false }" @click.away="open = false" @close.stop="open = false">
+                        <span class="inline-flex rounded-md">
+                                    <button type="button"
+                                        class="inline-flex items-center px-3 pt-1 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-gray-900 hover:text-gray-200 focus:outline-none transition">
+                                        Artista
+                                        
+                                        <svg @click="open=!open" class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd"
+                                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                clip-rule="evenodd" />
+                                            
+                                        </svg>
+                                        
+                                    </button>
+                        </span>
+                        
+                        <div x-show="open" class="absolute z-50 mt-2 bg-white">
+                                <!-- Account Management -->
+                                
+                                <div class="block px-4 py-2 text-xs text-gray-400">
+                                    {{ __('Gestion de artistas') }}
+                                </div>
+                                
+                                <x-jet-dropdown-link href="{{ route('representante.crearartista') }}">
+                                    {{ __('Tus artistas') }}
+                                </x-jet-dropdown-link>
+
+                                <x-jet-dropdown-link href="{{ route('artistas.index') }}">
+                                    {{ __('Artistas') }}
+                                </x-jet-dropdown-link>
+                                
+                        </div>
+                    </div>
+                </div>
+                @else
+                <x-jet-nav-link href="{{ route('artistas.index') }}">
                         <x-slot name='slot'>
                             <p class="text-white hover:transform hover:scale-125">{{ __('Artistas') }}</p>
                         </x-slot>
                     </x-jet-nav-link>
-
+                @endcan
                     <x-jet-nav-link href="{{ route('talleres.index') }}">
                         <x-slot name='slot'>
                             <p class="text-white hover:transform hover:scale-125">{{ __('Talleres') }}</p>
