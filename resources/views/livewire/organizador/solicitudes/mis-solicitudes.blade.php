@@ -94,7 +94,7 @@
                             <div class="flex flex-col items-center">
 
                                 <span class="block mb-1">Eliminados/Rechazados</span>
-                                <span>1</span>
+                                <span>{{ $hojaVida[0]->talleres_rechazados }}</span>
                             </div>
                         </div>
                     </div>
@@ -110,7 +110,7 @@
                             <div class="flex flex-col items-center">
 
                                 <span class="block mb-1">Reportados</span>
-                                <span>1</span>
+                                <span>{{ $hojaVida[0]->talleres_reportados }}</span>
                             </div>
                         </div>
                     </div>

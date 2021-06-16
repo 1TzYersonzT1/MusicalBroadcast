@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Organizador\Solicitudes;
 
+use App\Models\HojaVida;
 use Livewire\Component;
 use Auth;
 use App\Models\Taller;
@@ -13,9 +14,16 @@ class MisSolicitudes extends Component
 
     use WithPagination;
 
-    public $talleresPendientes, $talleresRevisados, $talleresAprobados, $talleresModificados;
+    public $talleresPendientes, 
+    $talleresRevisados, 
+    $talleresAprobados, 
+    $talleresModificados,
+    $hojaVida;
 
     public function mount() {
+
+        $this->hojaVida = HojaVida::where("user_rut", auth()->user()->rut)->get();
+
         $this->talleresPendientes = Taller::whereHas('solicitudes', function (Builder $query) {
             $query->where("estado", 0);
         })

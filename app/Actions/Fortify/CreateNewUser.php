@@ -2,6 +2,7 @@
 
 namespace App\Actions\Fortify;
 
+use App\Models\HojaVida;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -42,6 +43,16 @@ class CreateNewUser implements CreatesNewUsers
                 'password' => Hash::make($input['password']),
             ]
         );
+
+        $hojavida = new HojaVida([
+            "user_rut" => $usuario->rut,
+            "talleres_rechazados" => 0,
+            "talleres_reportados" => 0,
+            "eventos_rechazados" => 0,
+            "eventos_reportados" => 0, 
+        ]);
+
+        $usuario->hojavida()->save($hojavida);
 
         $usuario->roles()->sync($input["tipo_cuenta"]);
 

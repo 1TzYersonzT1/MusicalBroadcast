@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Administrador\Solicitudes;
 use Livewire\Component;
 use App\Models\SolicitudTaller;
 use App\Models\Taller;
+use App\Models\HojaVida;
 use Illuminate\Support\Facades\Storage;
 
 class SolicitudPreview extends Component
@@ -58,6 +59,11 @@ class SolicitudPreview extends Component
     public function eliminarTaller() {
         $taller = Taller::find($this->solicitudActual->taller->id);
         Storage::delete($taller->imagen);
+
+        $hojaVida = HojaVida::where("user_rut", $taller->user_rut)->get();
+        $hojaVida[0]->talleres_rechazados = $hojaVida[0]->talleres_rechazados + 1;
+        $hojaVida[0]->save();
+
         $taller->solicitudes()->delete();
         $taller->delete();
     }

@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Administrador\Eventos;
 use Livewire\Component;
 use App\Models\SolicitudEvento;
 use App\Models\Evento;
+use App\Models\HojaVida;
 use Illuminate\Support\Facades\Storage;
 
 class EventoPreview extends Component
@@ -39,7 +40,7 @@ class EventoPreview extends Component
         $solicitud->estado = 3;
         $solicitud->save();
 
-        return redirect()->to("administrador.eventos");
+        return redirect()->route("administrador.eventos");
     }
 
     public function enviarObservacion()
@@ -57,9 +58,13 @@ class EventoPreview extends Component
 
     public function eliminarEvento()
     {
-
         $evento = Evento::find($this->solicitudActual->evento->id);
         Storage::delete($evento->imagen);
+
+        $hojaVida = HojaVida::where("user_rut", $this->solicitudActual->evento->user_rut)->get();
+        $hojaVida[0]->eventos_rechazados = $hojaVida[0]->eventos_rechazados + 1;
+        $hojaVida[0]->save();
+
         $evento->solicitudes()->delete();
         $evento->delete();
     }

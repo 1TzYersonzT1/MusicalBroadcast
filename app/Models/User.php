@@ -61,6 +61,10 @@ class User extends Authenticatable
     public function is_administrador() {
         return $this->roles()->find(3) ? true : false;
     }
+
+    public function hojavida() {
+        return $this->hasOne(HojaVida::class, "user_rut");
+    }
     
 
 }
