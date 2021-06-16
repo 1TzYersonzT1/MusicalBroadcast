@@ -26,18 +26,43 @@
     
 <div>
     <div class="grid lg:grid-cols-8 gap-5 text-white py-4 flex-col">
+    
         <div class=" col-span-6">
-            <div class="bg-black bg-opacity-20 px-2 py-1 ">
-                <span class="top-5 mb-3 text-4xl font-bold">Discografia</span>
-                
-            </div><br>
-            <div class=" h-40 lg:w-40 flex-none bg-cover rounded-full lg:rounded-t-full lg:rounded-1 text-center overflow-hidden"
-                    style="background-image: url('https://tailwindcss.com/img/card-left.jpg')" title="Woman holding a mug">
-            </div>
+                    <div class="bg-black bg-opacity-20 px-2 py-1 ">
+                        <span class="top-5 mb-3 text-4xl font-bold">Discografia</span>
+                        
+                    </div><br>
+                    <div class="swiper-container swiperDiscografia">
+                        <div class="swiper-wrapper ">
+
+                            <div class="swiper-slide w-80">
+                                <div class=" h-40 lg:w-40 w-80 flex-none bg-cover rounded-full lg:rounded-t-full lg:rounded-1 text-center overflow-hidden"
+                                    style="background-image: url('https://tailwindcss.com/img/card-left.jpg')"
+                                    title="Woman holding a mug">
+                                </div>  
+                            </div>
+                            <div class="swiper-slide w-80">
+                                <div class=" h-40 lg:w-40 w-80 flex-none bg-cover rounded-full lg:rounded-t-full lg:rounded-1 text-center overflow-hidden"
+                                    style="background-image: url('https://tailwindcss.com/img/card-left.jpg')"
+                                    title="Woman holding a mug">
+                                </div>  
+                            </div>
+                            <div class="swiper-slide w-80">
+                                <div class=" h-40 lg:w-40 w-80 flex-none bg-cover rounded-full lg:rounded-t-full lg:rounded-1 text-center overflow-hidden"
+                                    style="background-image: url('https://tailwindcss.com/img/card-left.jpg')"
+                                    title="Woman holding a mug">
+                                </div>  
+                            </div>
+                              
+                                  
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
             
         </div>
+
         <div class="lg:col-span-2 "> 
-            <div class="bg-black px-2 py-1">
+            <div class="bg-black bg-opacity-20 px-2 py-1">
                 <div class="text-4xl font-bold ">
                     <span class="text-white">Musica</span>
                 </div>
@@ -55,7 +80,7 @@
 
     <div class="grid lg:grid-cols-8 gap-5 text-white py-4">
         <div class=" lg:col-span-6">
-            <div class="bg-black px-2 py-1 ">
+            <div class="bg-black bg-opacity-20 px-2 py-1 ">
                 <span class="top-5 mb-3 text-4xl font-bold">Biografia</span>
                 
             </div><br>
@@ -65,7 +90,7 @@
             
         </div>
         <div class="lg:col-span-2"> 
-            <div class="bg-black px-2 py-1">
+            <div class="bg-black bg-opacity-20 px-2 py-1">
                 <div class="text-4xl font-bold">
                     <span class="text-white">Proximo Evento</span>
                 </div>
@@ -99,3 +124,22 @@
 </div>
 
 <script src="https://apis.google.com/js/platform.js"></script>
+
+<script>
+      var swiper = new Swiper(".swiperDiscografia", {
+        effect: "coverflow",
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: "auto",
+        coverflowEffect: {
+          rotate: 50,
+          stretch: 0,
+          depth: 100,
+          modifier: 1,
+          slideShadows: true,
+        },
+        pagination: {
+          el: ".swiper-pagination",
+        },
+      });
+    </script>
