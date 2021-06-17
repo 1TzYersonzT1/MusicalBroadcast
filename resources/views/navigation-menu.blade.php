@@ -43,11 +43,11 @@
                                 <!-- Account Management -->
                                 
                                 <div class="block px-4 py-2 text-xs text-gray-400">
-                                    {{ __('Gestion de artistas') }}
+                                    {{ __('Menu artistas') }}
                                 </div>
                                 
                                 <x-jet-dropdown-link href="{{ route('representante.crearartista') }}">
-                                    {{ __('Tus artistas') }}
+                                    {{ __('ingresar artista') }}
                                 </x-jet-dropdown-link>
 
                                 <x-jet-dropdown-link href="{{ route('artistas.index') }}">
