@@ -1,6 +1,6 @@
 <div>
     @foreach ($generos as $index => $genero)
-    <div class="flex items-center">
+    <div>
         <input type="checkbox" wire:model='seleccionados.{{ $index }}' 
             value="{{ $genero->id }}"
             class="mr-2" />

@@ -24,10 +24,16 @@
                             <span>Artista</span>
                         </div>
                         <div>
-                            <div class="flex items-center"><input type="checkbox" value="0" class="mr-2" />Solistas
-                            </div>
-                            <div class="flex items-center"><input type="checkbox" value="1" class="mr-2" />Bandas</div>
-                        </div>
+                           @foreach($tipos as $index => $tipo)
+                           <div>
+                                <input type="checkbox" 
+                                value="{{ $index + 1 }}"
+                                wire:model="tiposSeleccionados.{{ $index }}"
+                                class="mr-2" />
+                                {{ $tipo }}
+                           </div>
+                           @endforeach
+                        </div>                   
                     </div>
 
                     <div class="mb-3">
