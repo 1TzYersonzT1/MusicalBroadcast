@@ -17,7 +17,8 @@ class Asistentes extends Component
     {
         return view('livewire.taller.asistentes.asistentes', [
             'talleres' => Taller::whereHas('solicitudes', function (Builder $query) {
-                $query->where("estado", 3);
+                $query->where("estado", 3)
+                ->orWhere("estado", 5);
             })->where("user_rut", auth()->user()->rut)->paginate(1)
         ]);
     }

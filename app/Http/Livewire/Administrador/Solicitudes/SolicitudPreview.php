@@ -51,6 +51,8 @@ class SolicitudPreview extends Component
         $solicitud = SolicitudTaller::find($this->solicitudActual->id);
         $solicitud->observacion = $this->observacion;
         $solicitud->estado = 1;
+        $solicitud->taller->estado = 0;
+        $solicitud->taller->save();
         $solicitud->save();
 
         $this->dispatchBrowserEvent("observacionAniadida");

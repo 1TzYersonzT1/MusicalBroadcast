@@ -37,7 +37,8 @@ class MisSolicitudes extends Component
         ->get();
 
         $this->talleresAprobados = Taller::whereHas('solicitudes', function (Builder $query) {
-            $query->where("estado", 3);
+            $query->where("estado", 3)
+            ->orWhere('estado' , 5);
         })
         ->where("user_rut", auth()->user()->rut)
         ->get();

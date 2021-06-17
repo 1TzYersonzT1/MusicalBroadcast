@@ -3,11 +3,17 @@
         <div class="grid lg:grid-cols-2">
             <div class="mb-8 flex lg:flex-row col-span-2 flex-col justify-between lg:items-center">
                 <div class="flex flex-col">
-                    <span class="text-2xl">{{ $taller->TAL_Nombre }}</span>
+                    <span class="text-2xl">{{ $taller->TAL_Nombre }}</span>             
                     <span>Cupos restantes: {{ $taller->TAL_Aforo }}</span>
                 </div>
                 <div>
+                    
                     <span>{{ $taller->TAL_Fecha }} {{ $taller->TAL_Hora }}</span>
+                    @if($taller->solicitudes[0]->estado == 5)
+                    <div class="bg-pink-700 rounded-full w-32 py-1 text-center justify-self-end">
+                        <span class="text-white">Pospuesto</span>
+                    </div>
+                    @endif
                 </div>
             </div>
 
@@ -35,29 +41,47 @@
                 <span>¿Tienes problemas para llevar a cabo este taller?</span>
                 <button data-fancybox data-src="#posponerTallerForm" class="mt-4 bg-white text-primary px-5 py-2">Posponer</button>
                 <div id="posponerTallerForm" class="hidden bg-white lg:w-96 w-80">
-                    <div class="flex flex-col items-center">
-                       <div class="flex flex-col items-center mb-2">
-                            <span>Posponer taller</span>
-                            <span class="font-bold">{{ $taller->TAL_Nombre }}</span> 
-                       </div>
+                    <div>
+                        <form wire:submit.prevent="posponerTaller" class="flex flex-col items-center">
+                            <div class="flex flex-col items-center mb-2">
+                                <span class="text-xl">Posponer taller</span>
+                                <span>{{ $taller->TAL_Nombre }}</span> 
+                           </div>
+    
+                            <div class="flex flex-col items-center mb-5">
+                                <span>Motivo</span>
+                                <textarea maxlength='255'
+                                    placeholder="Indique el motivo por el cuál está posponiendo el taller, de esta forma los asistentes serán informados (máximo 255 caracteres)"
+                                    wire:model='observacion' class="resize-none lg:w-80 px-2 bg-primary h-40 text-white"></textarea>
+                                    @if ($errors)
+                                        @foreach ($errors->all() as $message)
+                                            <script>
+                                                $.fancybox.close();
+                                                Swal.fire({
+                                                    title: 'Error',
+                                                    text: 'Complete los campos solicitados',
+                                                    icon: 'warning',
+                                                });
+                                                location.href = location.href;
+                                            </script> 
+                                        @endforeach
+                                    @endif
+                               
 
-                        <div class="flex flex-col items-center mb-5">
-                            <span>Motivo</span>
-                            <textarea maxlength='255'
-                                placeholder="Indique el motivo por el cuál está posponiendo el taller, de esta forma los asistentes serán informados (máximo 255 caracteres)"
-                                wire:model='observacion' class="resize-none lg:w-80 px-2 bg-primary h-40 text-white"></textarea>
-                                
-                        </div>
-
-                        <div class="flex flex-col items-center mb-5">
-                            <span>Nueva fecha</span>
-                            <div class="flex justify-between">
-                                <input type="date" wire:model="fecha" />
-                                <input type="time" wire:model="hora" />
+                                    
                             </div>
-                        </div>
+    
+                            <div class="flex flex-col items-center mb-5">
+                                <span>Nueva fecha</span>
+                                <div class="flex justify-between">
+                                    <input type="date" wire:model="fecha" />
+                                    <input type="time" wire:model="hora" />
+                                </div>
+                            </div>
+                            <button type="submit" class="mt-5 px-4 py-2 rounded-full bg-primary text-white">Posponer</button>
+                        </form>
 
-                        <button id="posponerTallerAlert" class="mt-5 px-4 py-2 rounded-full bg-primary text-white">Posponer</button>
+                       
                     </div>
                 </div>
             </div>
@@ -86,20 +110,16 @@
         @endif
     </div>
     
-    @if($errors)
-        <script> 
-                alert('ooo');
-        </script>
-    @endif
+
 </div>
 
 <script>
-    $("#posponerTallerAlert").on("click", function() {
+    window.addEventListener("posponerTaller", function() {
         $.fancybox.close();
         Swal.fire({
             title: "¿Está seguro?",
             text: `Estas a punto de posponer el evento, 
-            de modo que los asistentes serán informados con 
+            de modo que los asistentes y administradores serán informados con 
             la información que acabas de escribir`,
             icon: "info",
             showCancelButton: true,
@@ -109,10 +129,19 @@
             confirmButtonText: "Si, posponer",
         }).then((result) => {
             if(result.isConfirmed) {
-                Livewire.emit("posponerTaller");
+                Livewire.emit("posponerTallerConfirmado");
+                Swal.fire({
+                    title: 'Taller pospuesto',
+                    icon: `success`,
+                    timer: 3000
+                }).then((result) => {
+                    if(result.isConfirmed) {
+                        location.href = location.href;
+                    }
+                });
             }
         });
-    })
+    });
 </script>
 
 
