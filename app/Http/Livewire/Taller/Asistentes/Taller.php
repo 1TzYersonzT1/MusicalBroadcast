@@ -5,13 +5,15 @@ namespace App\Http\Livewire\Taller\Asistentes;
 use Livewire\Component;
 use App\Models\Taller as ModelsTaller;
 use App\Mail\PosponerTaller;
+use App\Mail\EliminadoDeTaller;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Carbon;
+use DateTime;
 
 class Taller extends Component
 {
 
-    public $taller, $observacion, $fecha, $hora;
+    public $taller, $indexAsistente, $observacion, $fecha, $hora;
 
     protected $rules = [
         "observacion" => 'required|string|max:255',
@@ -20,22 +22,44 @@ class Taller extends Component
     ];
 
     protected $listeners = [
+        "eliminarAsistenteConfirmado",
         "eliminarAsistente",
         "posponerTallerConfirmado",
     ];
 
-    public function eliminarAsistente(array $seleccionado) {
-        $this->dispatchBrowserEvent("prueba", array("test"=>$seleccionado));
+
+    public function eliminar($index)
+    {
+        $this->indexAsistente = $index;
+        $this->dispatchBrowserEvent("eliminarAsistente");
     }
 
-    public function posponerTaller() 
+    public function eliminarAsistenteConfirmado()
+    {
+        $asistente = $this->taller->asistentes[$this->indexAsistente];
+        $this->taller->asistentes()->detach($asistente);
+        $this->taller->TAL_Aforo = $this->taller->TAL_Aforo + 1;
+        $this->taller->save();
+
+        $mensaje = [
+            "taller" => $this->taller->TAL_Nombre,
+            "fecha" => Carbon::parse(new DateTime())->isoFormat("LLLL"),
+            "asistente" => $asistente,
+        ];
+
+        Mail::to($asistente->email)->send(new EliminadoDeTaller($mensaje));
+        
+    }
+
+    public function posponerTaller()
     {
         $this->validate();
         $this->dispatchBrowserEvent("posponerTaller");
     }
 
-    public function posponerTallerConfirmado() {
-        
+    public function posponerTallerConfirmado()
+    {
+
         $this->taller->TAL_Fecha = Carbon::parse(date_create($this->fecha))->isoFormat("Y-M-D");
         $this->taller->TAL_Hora = $this->hora;
         $this->taller->solicitudes[0]->estado = 5;
@@ -43,8 +67,8 @@ class Taller extends Component
         $this->taller->solicitudes[0]->save();
         $this->taller->save();
 
-        
-        foreach($this->taller->asistentes as $asistente) {
+
+        foreach ($this->taller->asistentes as $asistente) {
             $mensaje = [
                 "taller" => $this->taller,
                 "asistente" => $asistente,

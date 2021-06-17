@@ -24,7 +24,7 @@
             text-align: center;
             padding: 0 0.3rem;
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
         }
 
         .mail-body {
@@ -34,6 +34,10 @@
         .grilla {
             display: grid;
             grid-auto-flow: row dense;
+        }
+
+        .bold {
+            font-weight: 700;
         }
 
     </style>
@@ -48,29 +52,14 @@
         
         <div class="mail-body">
             <p>
-                Lamentamos informarte que el organizador de un taller al cuál 
-                te has inscrito ha decidido posponerlo. A continuación te dejamos más
-                detalles.
+                Lamentamos informarte que con fecha <span class="bold">{{ $fecha }} horas </span>
+                el organizador del taller <span class="bold">{{ $taller }}</span> te ha eliminado,
+                por lo que ya no podrás asistir. 
             </p>
-
-            <div class="grilla"> 
-                <div class="grid-item"> 
-                    Taller
-                </div>
-               
-                <div class="grid-item"> 
-                    {{ $taller->TAL_Nombre }}
-                </div>
-
-                <div class="grid-item"> 
-                    Fecha
-                </div>
-                
-                <div class="grid-item"> 
-                    {{ $taller->TAL_Fecha }}  {{ $taller->TAL_Hora }}
-                </div>
-            </div>
         </div>
+
+        <p>Recuerda: Si el organizador no se ha puesto en contacto contigo o crees que esto
+            se trata de un error no dudes en contactar con <a href="{{ route('ayuda') }}">soporte</a></p>
 
     </div>
 

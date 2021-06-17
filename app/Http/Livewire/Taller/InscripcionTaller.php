@@ -13,8 +13,18 @@ class InscripcionTaller extends Component
 
     public $rut, $nombre, $apellidos, $email, $telefono;
 
+    protected $rules = [
+        "rut" => "required|string|min:8|max:9", 
+        "nombre" => "required|string|min:2|max:20",
+        'apellidos' => "required|string|min:2|max:40",
+        "email" => "required|email:rfc",
+        "telefono" => 'required|integer',
+    ];
+
     public function inscripcion()
     {
+        $this->validate();
+
         $asistente = Asistente::updateOrCreate(
             [
                 "rut" => $this->rut,
