@@ -18,6 +18,10 @@ class Artista extends Model
         return $this->belongsToMany(Estilo::class, 'artista_estilo', 'artista_id', 'estilo_id');
     }
 
+    public function evento() {
+        return $this->belongsToMany(Evento::class, "artista_evento", "artista_id", "evento_id");
+    }
+
     public function albumes() {
         return $this->hasMany(Album::class, "artista_id", "id");
     }

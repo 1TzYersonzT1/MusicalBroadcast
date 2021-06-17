@@ -26,7 +26,7 @@
                     <a href="{{ route('administrador.eventos') }}">Administrar eventos</a>
                 </button>
             </div>
-        @endcan
+             @endcan
         </div>
         @if(count($eventos) > 0)
             <div class="gap-5">
@@ -71,7 +71,7 @@
         });
     }
 
-    window.addEventListener('onContentChanged', (event) => {
+    window.addEventListener('mostrarEvento', (event) => {
         initializeSwiper(event.detail.slideActual);
     });
 

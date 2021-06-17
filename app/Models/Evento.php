@@ -23,6 +23,10 @@ class Evento extends Model
         return $this->hasMany(SolicitudEvento::class, 'evento_id');
     }
 
+    public function artistas() {
+        return $this->belongsToMany(Artista::class, "artista_evento", "evento_id", "artista_id");
+    }
+
     public function getEVEFechaAttribute($value) {
         return Carbon::parse(date_create($value))->isoFormat("LL");
      }
