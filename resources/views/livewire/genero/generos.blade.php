@@ -1,6 +1,11 @@
 <div>
-    @foreach ($generos as $genero)
-        <livewire:genero.genero :genero="$genero" :wire:key="$genero->id" />
+    @foreach ($generos as $index => $genero)
+    <div class="flex items-center">
+        <input type="checkbox" wire:model='seleccionados.{{ $index }}' 
+            value="{{ $genero->id }}"
+            class="mr-2" />
+        {{ $genero->GEN_Nombre }}
+    </div>
     @endforeach
 </div>
 

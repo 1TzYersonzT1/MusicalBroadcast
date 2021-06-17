@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Artista;
 use Illuminate\Database\Eloquent\Builder;
 use Livewire\WithPagination;
+use App\Models\Estilo;
 
 class Artistas extends Component
 {
@@ -13,9 +14,9 @@ class Artistas extends Component
     use WithPagination;
 
     public $nombreArtista;
-    public $estilos = null;
+    public $generos, $estilos;
 
-    protected $listeners = ["updatedNombreArtista", "updatedGenero", "updatedEstilos"];
+    protected $listeners = ["updatedNombreArtista", "updatedEstilos"];
 
     public function updatedNombreArtista(array $busqueda)
     {
@@ -25,17 +26,18 @@ class Artistas extends Component
 
     public function updatedEstilos(array $estilos) {
         $this->estilos = $estilos["seleccionados"];
+        $this->resetPage();
     }
 
     public function render()
     {
-
-        $artistas = Artista::where("ART_Nombre", "like", $this->nombreArtista . "%")
-        ->when($this->estilos, function ($query) {
-            return $query->whereHas("estilos", function (Builder $query) {
-                return $query->whereIn("EST_Nombre", $this->estilos);
+        $artistas = Artista::
+        when($this->estilos, function ($query) {
+            return $query->whereHas("estilos", function (Builder $query) {   
+                 return $query->whereIn("EST_Nombre", $this->estilos);
+                 
             });
-        })
+        })->where("ART_Nombre", "like", $this->nombreArtista . "%")
         ->paginate(8);
 
         return view('livewire.artista.artistas', [

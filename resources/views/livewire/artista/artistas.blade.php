@@ -14,7 +14,9 @@
                 <div class="flex lg:flex-col justify-between">
                     <div class="mb-3">
                         <span>Genero</span>
-                        <livewire:genero.generos />
+                        <div>
+                            <livewire:genero.generos />
+                        </div>
                     </div>
 
                     <div class="mb-3">
@@ -36,6 +38,8 @@
                             <livewire:estilo.estilos />
                         </div>
                     </div>
+
+                  
                 </div>
             </form>
         </div>
