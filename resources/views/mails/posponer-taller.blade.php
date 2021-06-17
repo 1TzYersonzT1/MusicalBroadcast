@@ -16,7 +16,7 @@
         <div class="flex justify-center">
             <p>
                 Lamentamos informarte que el organizador del taller 
-                {{ $taller->TAL_Nombre }} al cuál te has inscrito
+                <b>{{ $taller->TAL_Nombre }}</b> al cuál te has inscrito
                 recientemente ha decidido posponerlo.
             </p>
         </div>

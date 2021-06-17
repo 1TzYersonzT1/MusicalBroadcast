@@ -10,16 +10,27 @@ use Illuminate\Support\Facades\Mail;
 class Taller extends Component
 {
 
-    public $taller;
+    public $taller, $observacion, $fecha, $hora;
 
-    protected $listeners = ["eliminarAsistente"];
+    protected $rules = [
+        "observacion" => 'required|string|min:10|max:255',
+        "fecha" => 'required',
+        "hora" => 'required',
+    ];
+
+    protected $listeners = [
+        "eliminarAsistente",
+        "posponerTaller",
+    ];
 
     public function eliminarAsistente(array $seleccionado) {
         $this->dispatchBrowserEvent("prueba", array("test"=>$seleccionado));
     }
 
-    public function prueba() {
-     
+    public function posponerTaller() 
+    {
+
+        $this->validate();
 
         foreach($this->taller->asistentes as $asistente) {
 
@@ -30,8 +41,6 @@ class Taller extends Component
 
             Mail::to($asistente->email)->send(new PosponerTaller($mensaje));
         }
-
-      
     }
 
     public function render()
