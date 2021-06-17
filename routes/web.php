@@ -80,4 +80,7 @@ Route::get("/reglamento", function() {
 Route::get("/ayuda", function() {
     return view("help");
 })->name("ayuda");
+Route::get("/terminos-condiciones", function() {
+    return view("terms");
+})->name("terminos-condiciones");
 

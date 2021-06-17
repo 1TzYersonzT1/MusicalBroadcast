@@ -9,7 +9,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;600&display=swap" rel="stylesheet" />
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
@@ -20,12 +20,12 @@
     @livewireStyles
 </head>
 
-<body >
-
-    <div style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('Fondo.png'); background-position: center; background-size:cover"
+<body class="font-body">
+    <div
         class="font-sans bg-gray-900 antialiased">
         @livewire('navigation-menu')
         {{ $slot }}
+        @include("footer")
     </div>
 
     @livewireScripts
