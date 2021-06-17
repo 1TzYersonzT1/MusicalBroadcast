@@ -95,7 +95,7 @@
     
     
                     <div class="mb-10" id="eliminado-taller"> 
-                        <span class="text-2xl font-bold">¿Que debo hacer si fui eliminado de un taller? </span>
+                        <span class="text-2xl font-bold">¿Que debo hacer si me eliminaron de un taller? </span>
                         <div class="font-light">
                             <p>En caso de que te hayas inscrito a un taller y al tiempo después has sido notificado
                                 de que se te ha eliminado y no podrás participar debes tener en consideración

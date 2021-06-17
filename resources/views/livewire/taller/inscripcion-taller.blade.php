@@ -43,6 +43,26 @@
                 </div>
             </div>
 
+            @if ($errors)
+                @foreach ($errors->all() as $message)
+                    <script>
+                        $.fancybox.close();
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'Complete los campos solicitados correctamente',
+                            icon: 'warning',
+                            timer: 4000,
+                        }).then((result) => {
+                            if(!result.isVisible) {
+                                location.href = location.href;
+                            }
+                        });
+                        
+
+                    </script>
+                @endforeach
+            @endif
+
             <div class="mt-10 flex justify-center">
 
                 <button type='submit'

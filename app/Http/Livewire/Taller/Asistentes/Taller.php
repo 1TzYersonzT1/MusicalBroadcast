@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Taller\Asistentes;
 use Livewire\Component;
 use App\Models\Taller as ModelsTaller;
 use App\Mail\PosponerTaller;
+use App\Mail\CancelarTaller;
 use App\Mail\EliminadoDeTaller;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Carbon;
@@ -13,10 +14,10 @@ use DateTime;
 class Taller extends Component
 {
 
-    public $taller, $indexAsistente, $observacion, $fecha, $hora;
+    public $taller, $indexAsistente, $observacion_pospuesto, $observacion_cancelado, $fecha, $hora;
 
     protected $rules = [
-        "observacion" => 'required|string|max:255',
+        "observacion_pospuesto" => 'required|string|max:255',
         "fecha" => 'required',
         "hora" => 'required',
     ];
@@ -25,6 +26,7 @@ class Taller extends Component
         "eliminarAsistenteConfirmado",
         "eliminarAsistente",
         "posponerTallerConfirmado",
+        "cancelarTallerConfirmado",
     ];
 
 
@@ -59,7 +61,6 @@ class Taller extends Component
 
     public function posponerTallerConfirmado()
     {
-
         $this->taller->TAL_Fecha = Carbon::parse(date_create($this->fecha))->isoFormat("Y-M-D");
         $this->taller->TAL_Hora = $this->hora;
         $this->taller->solicitudes[0]->estado = 5;
@@ -76,6 +77,30 @@ class Taller extends Component
 
             Mail::to($asistente->email)->send(new PosponerTaller($mensaje));
         }
+    }
+
+    public function cancelarTaller() {
+        $this->validate([
+            "observacion_cancelado" => 'required|string|max:255',
+        ]);
+        $this->dispatchBrowserEvent("cancelarTaller");
+    }
+
+    public function cancelarTallerConfirmado() {
+
+        foreach($this->taller->asistentes as $asistente) {
+            $mensaje = [
+                "taller" => $this->taller,
+                "asistente" => $asistente,
+            ];
+
+            Mail::to($asistente->email)->send(new CancelarTaller($mensaje));
+        }
+
+        $this->taller->asistentes()->detach();
+        $this->taller->solicitudes[0]->delete();
+        $this->taller->save();
+        $this->taller->delete();
     }
 
     public function render()
