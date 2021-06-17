@@ -6,11 +6,11 @@
                     <span class="text-2xl">{{ $taller->TAL_Nombre }}</span>             
                     <span>Cupos restantes: {{ $taller->TAL_Aforo }}</span>
                 </div>
-                <div>
+                <div class="flex flex-col lg:mt-0 mt-4 lg:items-end">
                     
                     <span>{{ $taller->TAL_Fecha }} {{ $taller->TAL_Hora }}</span>
                     @if($taller->solicitudes[0]->estado == 5)
-                    <div class="bg-pink-700 rounded-full w-32 py-1 text-center justify-self-end">
+                    <div class="bg-pink-700 mt-1 rounded-full w-32 py-1 text-center justify-self-end">
                         <span class="text-white">Pospuesto</span>
                     </div>
                     @endif
@@ -78,7 +78,10 @@
                                     <input type="time" wire:model="hora" />
                                 </div>
                             </div>
-                            <button type="submit" class="mt-5 px-4 py-2 rounded-full bg-primary text-white">Posponer</button>
+                            <button type="submit" 
+                            class="mt-5 px-4 py-2 rounded-full bg-primary text-white hover:bg-primary hover:text-white">
+                                Posponer
+                            </button>
                         </form>
 
                        
