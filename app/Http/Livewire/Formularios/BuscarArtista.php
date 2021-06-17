@@ -11,15 +11,22 @@ class BuscarArtista extends Component
     public $buscar;
     public $resultados;
 
-    public function FiltroBuscar()
-    {
-        $this->resultados = [
-            (object) array("ART_Nombre" => '¿Qué estás buscando?')
-        ];  
+    public function mount() {
+        $this->resultados =  [
+            (object) [
+                "id" => 0,
+                "ART_Nombre" => '¿Qué estás buscando?'
+            ],
+        ];
+    }
 
+    public function updatedBuscar()
+    {
         if ($this->buscar != '') {
             $this->resultados = Artista::where("ART_Nombre", 'like', $this->buscar . '%')->get();
-        }   
+        } else  {
+            $this->mount();
+        }
     }
 
     public function render()

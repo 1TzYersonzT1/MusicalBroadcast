@@ -1,20 +1,23 @@
-<div>
-    <div class="relative">
-        <div class="relative lg:block sm:hidden text-gray-600 mr-5">
-            <div>
-                <input type="search" @click="open = !open" name="search" placeholder="Escribe lo que estas buscando" wire:model="buscar"
-                    class="bg-white h-10 px-5 pr-10 w-80 text-sm focus:outline-none">
-            </div>
-
+<div class="relative" x-data="{ open: false }" @click.away="open = false" @close.stop="open = false">
+    <div class="inline-flex rounded-md">
+        <div>
+            <input type="search" @click="open = !open" placeholder="Escribe lo que estas buscando"
+                wire:model="buscar" class="bg-white h-10 px-5 pr-10 w-80 text-sm focus:outline-none">
         </div>
-        <ul class="bg-white absolute mt-2 shadow rounded w-80 text-indigo-600" x-show="open" @click.away='open = false'
-          >
-            @if ($resultados)
-                @foreach ($resultados as $resultado)
-                    <li class="hover:bg-gray-400 px-5 py-1">{{ $resultado->ART_Nombre }}</li>
-                @endforeach
-            @endif
-        </ul>
 
     </div>
+    
+    <div x-show="open" class="absolute z-50 mt-2 bg-white">
+        
+        <ul class="w-80">
+            @foreach ($resultados as $resultado)
+                <li class="my-3 px-6 py-2 hover:bg-gray-700 h-full hover:text-gray-200 cursor-pointer">
+                    <a href="{{ route('artista.show', $resultado->id) }}">{{ $resultado->ART_Nombre }}</a>
+                </li>
+            @endforeach
+        </ul>
+    </div>
+
 </div>
+
+

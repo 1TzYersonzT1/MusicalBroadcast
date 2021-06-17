@@ -23,7 +23,7 @@ class Estilos extends Component
     }
 
     public function updatedSeleccionados() {
-        $this->emit("updatedEstilos", array("seleccionados" => $this->seleccionados));
+        $this->emitTo("artista.artistas", "updatedEstilos", array("seleccionados" => $this->seleccionados));
     }
 
 

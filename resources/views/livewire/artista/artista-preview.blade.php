@@ -83,7 +83,7 @@
                 </div>
             </div> 
             <div ><br>
-                {{ $artistaActual->biografia }}
+                {{ $artistaActual->evento }}
             </div>
                     
         </div>

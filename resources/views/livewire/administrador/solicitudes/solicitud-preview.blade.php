@@ -45,6 +45,13 @@
                     <p>{{ $protocolo }}</p>
                     @endforeach
                 </div>
+
+                @if($solicitudActual->estado == 5) 
+                <div class="col">
+                    <p class="font-bold">Motivo de posposición</p>
+                    <p>{{ $solicitudActual->observacion }}</p>
+                </div>
+                @endif
             </div>
         </div>
     

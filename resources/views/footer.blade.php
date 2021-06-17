@@ -10,12 +10,13 @@
                     <span class="my-1"><a href="#" class="text-white font-bold text-md hover:text-blue-500">Reglamento</a></span>
                     <span class="my-1"><a href="#" class="text-white font-bold text-md hover:text-blue-500">Quiénes somos</a></span>
                     <span class="my-1"><a href="#" class="text-white font-bold text-md hover:text-blue-500">Calama cultural</a></span>
+                    <span class="my-1"><a href="{{ route('terminos-condiciones') }}" class="text-white font-bold text-md hover:text-blue-500">Terminos y condiciones</a></span>
                 </div>
                 <div class="flex flex-col">
-                    <span class="my-1"><a href="#" class="text-white font-bold text-md hover:text-blue-500">Eventos</a></span>
+                    <span class="my-1"><a href="{{ route('eventos.index') }}" class="text-white font-bold text-md hover:text-blue-500">Eventos</a></span>
                     <span class="my-1"><a href="{{ route('talleres.index') }}" class="text-white font-bold text-md hover:text-blue-500">Talleres</a></span>
-                    <span class="my-1"><a href="#" class="text-white font-bold text-md hover:text-blue-500">Artistas</a></span>
-                    <span class="my-1"><a href="#" class="text-white font-bold text-md hover:text-blue-500">Ayuda</a></span>
+                    <span class="my-1"><a href="{{ route('artistas.index') }}" class="text-white font-bold text-md hover:text-blue-500">Artistas</a></span>
+                    <span class="my-1"><a href="{{ route('ayuda') }}" class="text-white font-bold text-md hover:text-blue-500">Ayuda</a></span>
                 </div>
             </div>
         </div>

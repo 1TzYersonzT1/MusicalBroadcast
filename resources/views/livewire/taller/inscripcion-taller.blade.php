@@ -17,22 +17,22 @@
             <div class="grid lg:grid-cols-2 gap-8 mt-8">
                 <div class="flex flex-col">
                     <label for="rut">Rut</label>
-                    <input type="text" wire:model="rut" class="rounded-full" />
+                    <input type="text" wire:model="rut" maxlength="9" class="rounded-full" />
                 </div>
 
                 <div class="flex flex-col">
                     <label for="nombre">Nombre</label>
-                    <input id="nombre" type="text" wire:model="nombre" class="rounded-full " />
+                    <input id="nombre" type="text" wire:model="nombre" maxlength="20" class="rounded-full " />
                 </div>
 
                 <div class="flex flex-col">
                     <label for="apellidos">Apellidos</label>
-                    <input id="apellidos" type="text" wire:model="apellidos" class="rounded-full" />
+                    <input id="apellidos" type="text" wire:model="apellidos" maxlength="40" class="rounded-full" />
                 </div>
 
                 <div class="flex flex-col">
                     <label for="email">Email</label>
-                    <input id="email" type="text" wire:model="email" class="rounded-full w-full" />
+                    <input id="email" type="email" wire:model="email" class="rounded-full w-full" />
                 </div>
 
                 <div class="flex flex-col">

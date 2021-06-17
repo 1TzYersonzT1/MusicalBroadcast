@@ -7,10 +7,10 @@ use Livewire\Component;
 class Evento extends Component
 {
 
-    public $evento;
+    public $evento, $slideActual;
 
     public function mostrarEvento() {
-        $this->emit("visualizar-evento", array("id" => $this->evento->id));
+        $this->emit("visualizar-evento", array("id" => $this->evento->id, "slideActual" => $this->slideActual));
     }
 
     public function render()

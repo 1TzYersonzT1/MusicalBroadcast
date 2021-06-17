@@ -20,14 +20,19 @@
                 @endif
 
                 @if ($solicitud->estado == 1)
-                    <div class="bg-pink-400 rounded-full w-32 py-1 text-center"><span class="text-purple-600">Revisada</span>
+                    <div class="bg-pink-400 rounded-full w-32 py-1 text-center"><span class="text-white">Revisada</span>
                     </div>
                 @endif
 
                 @if ($solicitud->estado == 4)
-                <div class="bg-blue-400 rounded-full w-32 py-1 text-center"><span class="text-purple-600">Modificada</span>
-                </div>
+                    <div class="bg-blue-400 rounded-full w-32 py-1 text-center"><span class="text-white">Modificada</span>
+                    </div>
                  @endif
+
+                 @if ($solicitud->estado == 5)
+                    <div class="bg-pink-700 rounded-full w-32 py-1 text-center"><span class="text-white">Pospuesto</span>
+                    </div>
+                  @endif
             </div>
 
             <div class="flex flex-col mt-3 items-center lg:w-96">

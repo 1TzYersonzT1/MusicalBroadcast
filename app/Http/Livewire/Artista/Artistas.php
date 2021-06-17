@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Artista;
 use Illuminate\Database\Eloquent\Builder;
 use Livewire\WithPagination;
+use App\Models\Estilo;
 
 class Artistas extends Component
 {
@@ -13,9 +14,17 @@ class Artistas extends Component
     use WithPagination;
 
     public $nombreArtista;
-    public $estilos = null;
+    public $generos, $estilos;
+    public $tipos, $tiposSeleccionados = [];
 
-    protected $listeners = ["updatedNombreArtista", "updatedGenero", "updatedEstilos"];
+    protected $listeners = ["updatedNombreArtista", "updatedEstilos"];
+
+    public function mount() {
+        $this->tipos = [
+            "Solista",
+            "Banda",
+        ];
+    }
 
     public function updatedNombreArtista(array $busqueda)
     {
@@ -25,29 +34,33 @@ class Artistas extends Component
 
     public function updatedEstilos(array $estilos) {
         $this->estilos = $estilos["seleccionados"];
+        $this->resetPage();
+    }
+
+    public function updated() {
+        foreach($this->tiposSeleccionados as $index => $seleccionado) {
+            if($this->tiposSeleccionados[$index] == false) {
+                unset($this->tiposSeleccionados[$index]);
+            }
+        }
     }
 
     public function render()
     {
-
-        $artistas = Artista::where("ART_Nombre", "like", $this->nombreArtista . "%")
-        ->when($this->estilos, function ($query) {
-            return $query->whereHas("estilos", function (Builder $query) {
-                return $query->whereIn("EST_Nombre", $this->estilos);
+        $artistas = Artista::when($this->estilos, function ($query) {
+            return $query->whereHas("estilos", function (Builder $query) {   
+                 return $query->whereIn("EST_Nombre", $this->estilos);
+                 
             });
         })
+        ->when($this->tiposSeleccionados, function($query) {
+            return $query->whereIn("tipo_artista", $this->tiposSeleccionados);
+        })
+        ->where("ART_Nombre", "like", $this->nombreArtista . "%")
         ->paginate(8);
 
         return view('livewire.artista.artistas', [
             'artistas' => $artistas
         ]);
-
-        /* 
-        when($this->estilo, function($query){
-                    return $query->whereHas("estilos", function(Builder $query) {
-                        return $query->where("EST_Nombre", $this->estilo);
-                    });
-                    ;where("ART_Nombre", "like", $this->nombreArtista . "%")
-        */
     }
 }

@@ -91,7 +91,7 @@
 
 
                 @guest
-                    <div class="lg:block sm:hidden">
+                    <div class="lg:block sm:hidden ml-5">
                         <x-jet-nav-link href="{{ route('login') }}">
                             <x-slot name='slot'>
                                 <p class="text-white mr-5">{{ __('Iniciar sesión') }}</p>
