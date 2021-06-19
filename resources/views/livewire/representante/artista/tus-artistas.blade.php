@@ -16,11 +16,15 @@
                             <a href="{{ route('organizador.mis-solicitudes') }}">Estado solicitudes</a>
                         </button>
                     </div>
-                    <div>
+                    <!-- 
+                        Creo que deberiamos sacarlo
+                        ya que la pagina en la que estamos ya muestra
+                        sus artistas
+                        <div>
                         <button class="bg-purple-500 px-5 py-1 mb-5 text-white font-bold ml-5">
                             <a href="{{ route('organizador.taller/asistentes') }}">Mis artistas</a>
                         </button>
-                    </div>
+                    </div> -->
                 @endcan
 
                 @can('administrar')
@@ -34,6 +38,8 @@
 
             <div>
                 
+
+                @json($artistas)
 
             </div>
         </div>

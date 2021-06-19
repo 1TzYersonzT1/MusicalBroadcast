@@ -22,10 +22,10 @@ module.exports = {
     },
 
     variants: {
-        extend: {
             opacity: ['disabled'],
             transform: ['hover'],
-        },
+            backgroundColor: ['checked'],
+            borderColor: ['checked'],
     },
 
     plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
