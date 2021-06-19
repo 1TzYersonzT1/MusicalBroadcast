@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Livewire\Organizador\Solicitudes;
+namespace App\Http\Livewire\Organizador\Talleres;
 
 use Livewire\Component;
 
-class Solicitud extends Component
+class Taller extends Component
 {
 
     public $taller;
@@ -15,6 +15,6 @@ class Solicitud extends Component
 
     public function render()
     {
-        return view('livewire.organizador.solicitudes.solicitud');
+        return view('livewire.organizador.talleres.taller');
     }
 }

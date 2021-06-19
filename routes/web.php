@@ -4,18 +4,23 @@ use App\Http\Livewire\Taller\Talleres;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Taller\InscripcionTaller;
 use App\Http\Livewire\Administrador\Solicitudes\Solicitudes;
-use App\Http\Livewire\Organizador\Solicitudes\MisSolicitudes;
-use App\Http\Livewire\Organizador\Solicitudes\ModificarSolicitud;
-use App\Http\Livewire\Taller\CrearTaller;
+use App\Http\Livewire\Administrador\Eventos\Eventos as AdminEvento;
+
 use App\Http\Livewire\Artista\Artistas;
 use App\Http\Livewire\Artista\ArtistaPreview;
+use App\Http\Livewire\Artista\CrearArtista;
+
+
 use App\Http\Livewire\Evento\Crear\CrearEvento;
 use App\Http\Livewire\Evento\Eventos;
-use App\Http\Livewire\Administrador\Eventos\Eventos as AdminEvento;
-use App\Http\Livewire\Artista\CrearArtista;
+
+
 use App\Http\Livewire\Organizador\Eventos\MisEventos;
 use App\Http\Livewire\Organizador\Eventos\ModificarEvento;
-use App\Http\Livewire\Taller\Asistentes\Asistentes;
+use App\Http\Livewire\Organizador\Talleres\Crear\CrearTaller;
+use App\Http\Livewire\Organizador\Talleres\MisTalleres;
+use App\Http\Livewire\Organizador\Talleres\ModificarTaller;
+use App\Http\Livewire\Organizador\Talleres\Asistentes\Asistentes;
 
 
 /*
@@ -39,8 +44,8 @@ Route::group(["middleware" => 'auth'], function() {
         // Ruta de taller
         Route::get("/crear-taller", CrearTaller::class)->name("creartaller");
 
-        Route::get('/mis-solicitudes', MisSolicitudes::class)->name('mis-solicitudes');
-        Route::get("/modificar-solicitud/{id}", ModificarSolicitud::class)->name("modificar-solicitud");
+        Route::get('/mis-solicitudes', MisTalleres::class)->name('mis-solicitudes');
+        Route::get("/modificar-taller/{id}", ModificarTaller::class)->name("modificar-taller");
 
         Route::get("/asistentes", Asistentes::class)->name("taller/asistentes");
 
@@ -58,8 +63,7 @@ Route::group(["middleware" => 'auth'], function() {
     Route::group(['middleware' => 'role:administrador', 'prefix' => 'administrador', 'as' => 'administrador.'], function() {
         Route::get('/solicitudes/talleres', Solicitudes::class)->name("solicitudes");
 
-        Route::get("/solicitudes/eventos", AdminEvento::class)->name("eventos");
-       
+        Route::get("/solicitudes/eventos", AdminEvento::class)->name("eventos");  
     });
 
 });

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Taller\Crear\Requisito;
+namespace App\Http\Livewire\Organizador\Talleres\Crear\Requisito;
 
 use Livewire\Component;
 
@@ -15,6 +15,6 @@ class Requisito extends Component
 
     public function render()
     {
-        return view('livewire.taller.crear.requisito.requisito');
+        return view('livewire.organizador.talleres.crear.requisito.requisito');
     }
 }

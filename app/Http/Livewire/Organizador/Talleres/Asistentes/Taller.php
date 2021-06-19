@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Taller\Asistentes;
+namespace App\Http\Livewire\Organizador\Talleres\Asistentes;
 
 use Livewire\Component;
 use App\Models\Taller as ModelsTaller;
@@ -105,6 +105,6 @@ class Taller extends Component
 
     public function render()
     {
-        return view('livewire.taller.asistentes.taller');
+        return view('livewire.organizador.talleres.asistentes.taller');
     }
 }

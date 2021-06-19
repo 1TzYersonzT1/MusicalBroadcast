@@ -75,27 +75,48 @@
             </div>
 
             <div class="flex flex-col">         
-                <div> 
-                    <input type="file" wire:model="nuevaImagen" class="mb-5" />
+                <div class="flex justify-between mb-3 items-center"> 
+                    <span>Imagen</span>
+                    <div wire:loading wire:target="nuevaImagen" 
+                    class="bg-blue-100 text-blue-700 px-4" role="alert">
+                        <p class="font-bold  py-1">Cargando imagen</p>
+                    </div>
                 </div>
-
                 @error('nuevaImagen')
 
                 @else
-                    @if($nuevaImagen)
-                        <img src="{{ $nuevaImagen->temporaryUrl() }}" class="h-80 w-80" />
+                    @if(~$taller->imagen)
+                        <img src="{{ asset('storage/'.$taller->imagen) }}" class="h-48 w-80"/>
                     @else
-                        <img src="{{ asset('storage/'.$taller->imagen) }}" class="h-80 w-80"/>
+                        @if ($nuevaImagen )
+                        <div class="mt-3"> 
+                            <img src="{{ $nuevaImagen->temporaryUrl() }}" class="w-80 h-48 border-2">
+                        
+                            <div class="flex justify-between">
+                                <span>{{ $nuevaImagen->getClientOriginalName() }}</span>
+                            </div>
+                        </div>
+                        @else 
+                        <label for="imagen-taller">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-48 w-80 border-2 border-light-blue-500 border-opacity-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                        </svg>
+                        </label>
+                        <input type="file" wire:model="nuevaImagen" id="imagen-taller" class="hidden w-80 h-48" wire:ignore />
+                        @endif 
                     @endif
+                    <svg wire:click="eliminarImagen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
                 @enderror
             </div>
 
             <div class="grid lg:grid-cols-2 lg:grid-rows-2 lg:mt-0 mt-5 ml-5">
 
 
-                <livewire:taller.crear.requisito.requisitos :requisitos="$taller->TAL_Requisitos" />
+                <livewire:organizador.talleres.crear.requisito.requisitos :requisitos="$taller->TAL_Requisitos" />
 
-                <livewire:taller.crear.protocolo.protocolos :protocolos="$taller->TAL_Protocolo" />
+                <livewire:organizador.talleres.crear.protocolo.protocolos :protocolos="$taller->TAL_Protocolo" />
 
                 <div class="justify-self-center self-center">
                     <button type="submit"

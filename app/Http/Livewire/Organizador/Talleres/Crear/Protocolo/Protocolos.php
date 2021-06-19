@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Taller\Crear\Protocolo;
+namespace App\Http\Livewire\Organizador\Talleres\Crear\Protocolo;
 
 use Livewire\Component;
 
@@ -29,6 +29,6 @@ class Protocolos extends Component
 
     public function render()
     {
-        return view('livewire.taller.crear.protocolo.protocolos');
+        return view('livewire.organizador.talleres.crear.protocolo.protocolos');
     }
 }

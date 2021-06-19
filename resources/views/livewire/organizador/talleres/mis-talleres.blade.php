@@ -35,7 +35,7 @@
                 <div class="swiper-container swiperRevisadas">
                     <div class="swiper-wrapper">
                         @foreach ($talleresRevisados as $tallerRevisado)
-                            <livewire:organizador.solicitudes.solicitud :taller='$tallerRevisado' :wire:key="$tallerRevisado->id" />
+                            <livewire:organizador.talleres.taller :taller='$tallerRevisado' :wire:key="$tallerRevisado->id" />
                         @endforeach
                     </div>
                 </div>
@@ -52,7 +52,7 @@
                 <div class="swiper-container swiperRevisadas">
                     <div class="swiper-wrapper">
                         @foreach ($talleresModificados as $tallerModificado)
-                            <livewire:organizador.solicitudes.solicitud :taller='$tallerModificado' :wire:key="$tallerModificado->id" />
+                            <livewire:organizador.talleres.taller :taller='$tallerModificado' :wire:key="$tallerModificado->id" />
                         @endforeach
                     </div>
                 </div>

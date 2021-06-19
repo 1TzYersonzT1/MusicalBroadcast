@@ -8,7 +8,7 @@
         </div>
         <ul class="mt-2 mb-2">
             @foreach ($requisitos as $index => $requisito)
-                <livewire:taller.crear.requisito.requisito :requisito='$requisito' :wire:key="$index" />
+                <livewire:organizador.talleres.crear.requisito.requisito :requisito='$requisito' :wire:key="$index" />
             @endforeach
         </ul>
     </div>

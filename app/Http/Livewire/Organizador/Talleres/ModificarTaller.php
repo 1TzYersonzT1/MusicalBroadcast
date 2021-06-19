@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Organizador\Solicitudes;
+namespace App\Http\Livewire\Organizador\Talleres;
 
 use Livewire\Component;
 use App\Models\Taller;
@@ -8,7 +8,7 @@ use Auth;
 use Illuminate\Support\Facades\Storage;
 use Livewire\WithFileUploads;
 
-class ModificarSolicitud extends Component
+class ModificarTaller extends Component
 {
 
     use WithFileUploads;
@@ -60,13 +60,18 @@ class ModificarSolicitud extends Component
         ]);
     }
 
+    public function eliminarImagen() {
+        $this->taller->imagen = '';
+        $this->taller->save();
+        $this->nuevaImagen =  null;
+    }
+
     public function modificarTaller() {
+        $this->validate();
         $this->dispatchBrowserEvent("confirmarModificarTaller");
     }
 
     public function modificarTallerConfirmado() {
-
-        $this->validate();
 
         $taller = Taller::find($this->taller->id);
         $taller = $this->taller;
@@ -86,6 +91,6 @@ class ModificarSolicitud extends Component
 
     public function render()
     {
-        return view('livewire.organizador.solicitudes.modificar-solicitud');
+        return view('livewire.organizador.talleres.modificar-taller');
     }
 }

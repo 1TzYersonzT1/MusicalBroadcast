@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Taller;
+namespace App\Http\Livewire\Organizador\Talleres\Crear;
 
 use Gate;
 use Livewire\Component;
@@ -51,6 +51,10 @@ class CrearTaller extends Component
         ]);
     }
 
+    public function eliminarImagen() {
+        $this->imagen = '';
+    }
+
 
     public function nuevoTaller()
     {
@@ -88,6 +92,6 @@ class CrearTaller extends Component
             abort(403);
         }
      
-        return view('livewire.taller.crear-taller');
+        return view('livewire.organizador.talleres.crear.crear-taller');
     }
 }

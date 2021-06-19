@@ -8,7 +8,7 @@
         </div>
         <ul class="mt-2 mb-2">
             @foreach ($protocolos as $index => $protocolo)
-                <livewire:taller.crear.protocolo.protocolo :protocolo="$protocolo" :wire:key="$index" />
+                <livewire:organizador.talleres.crear.protocolo.protocolo :protocolo="$protocolo" :wire:key="$index" />
             @endforeach
         </ul>
     </div>

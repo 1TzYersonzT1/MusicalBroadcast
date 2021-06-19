@@ -4,7 +4,7 @@
         @if (count($talleres) > 0)
             <div class="">
                 @foreach ($talleres as $taller)
-                    <livewire:taller.asistentes.taller :taller="$taller" :wire:key="$taller->id" />
+                    <livewire:organizador.talleres.asistentes.taller :taller="$taller" :wire:key="$taller->id" />
                 @endforeach
             </div>
 

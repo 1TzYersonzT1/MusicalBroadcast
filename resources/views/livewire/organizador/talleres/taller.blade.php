@@ -20,7 +20,7 @@
             </div>
         </div>
         <button class="mt-4 bg-primary text-white px-3 py-1 hover:bg-transparent hover:text-primary hover:border-1 hover:border-b-black flex items-center">
-            <a href="{{ route('organizador.modificar-solicitud', $taller->id) }}">
+            <a href="{{ route('organizador.modificar-taller', $taller->id) }}">
                 Modificar
             </a>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">

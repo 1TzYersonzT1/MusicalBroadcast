@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Taller\Asistentes;
+namespace App\Http\Livewire\Organizador\Talleres\Asistentes;
 
 use Livewire\Component;
 use App\Models\Taller;
@@ -15,7 +15,7 @@ class Asistentes extends Component
 
     public function render()
     {
-        return view('livewire.taller.asistentes.asistentes', [
+        return view('livewire.organizador.talleres.asistentes.asistentes', [
             'talleres' => Taller::whereHas('solicitudes', function (Builder $query) {
                 $query->where("estado", 3)
                 ->orWhere("estado", 5);

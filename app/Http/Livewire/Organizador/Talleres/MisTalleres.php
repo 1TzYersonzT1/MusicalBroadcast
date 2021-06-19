@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Organizador\Solicitudes;
+namespace App\Http\Livewire\Organizador\Talleres;
 
 use App\Models\HojaVida;
 use Livewire\Component;
@@ -9,7 +9,7 @@ use App\Models\Taller;
 use Livewire\WithPagination;
 use Illuminate\Database\Eloquent\Builder;
 
-class MisSolicitudes extends Component
+class MisTalleres extends Component
 {
 
     use WithPagination;
@@ -53,7 +53,7 @@ class MisSolicitudes extends Component
 
     public function render()
     {
-        return view('livewire.organizador.solicitudes.mis-solicitudes', [
+        return view('livewire.organizador.talleres.mis-talleres', [
           
         ]);
     }
