@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Evento\Crear;
+namespace App\Http\Livewire\Organizador\Eventos\Crear;
 
 use Livewire\Component;
 use App\Models\Evento;
@@ -62,6 +62,6 @@ class CrearEvento extends Component
 
     public function render()
     {
-        return view('livewire.evento.crear.crear-evento');
+        return view('livewire.organizador.eventos.crear.crear-evento');
     }
 }

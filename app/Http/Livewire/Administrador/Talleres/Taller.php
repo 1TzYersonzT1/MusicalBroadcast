@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Livewire\Administrador\Solicitudes;
+namespace App\Http\Livewire\Administrador\Talleres;
 
 use Livewire\Component;
 
-class Solicitud extends Component
+class Taller extends Component
 {
 
     public $solicitud, $slideActual;
@@ -15,6 +15,6 @@ class Solicitud extends Component
 
     public function render()
     {
-        return view('livewire.administrador.solicitudes.solicitud');
+        return view('livewire.administrador.talleres.taller');
     }
 }

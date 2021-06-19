@@ -5,7 +5,7 @@
         <div class="swiper-container swiperSolicitudes">
             <div class="swiper-wrapper">
                 @foreach ($solicitudes as $solicitud)
-                    <livewire:administrador.solicitudes.solicitud 
+                    <livewire:administrador.talleres.taller
                     :solicitud='$solicitud' :slideActual="$loop->index"
                     :wire:key='$solicitud->id' />
                 @endforeach
@@ -14,7 +14,7 @@
         </div>
         <div class="mt-8 text-white lg:w-7/12">
             <span class="text-2xl font-bold">Detalle del taller</span>
-            <livewire:administrador.solicitudes.solicitud-preview :solicitudActual='$solicitudes[0]'
+            <livewire:administrador.talleres.taller-preview :solicitudActual='$solicitudes[0]'
                 :wire:key='$solicitudes[0]->id' />
         </div>
         @else

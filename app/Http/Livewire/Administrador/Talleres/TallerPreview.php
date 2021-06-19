@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Administrador\Solicitudes;
+namespace App\Http\Livewire\Administrador\Talleres;
 
 use Livewire\Component;
 use App\Models\SolicitudTaller;
@@ -8,7 +8,7 @@ use App\Models\Taller;
 use App\Models\HojaVida;
 use Illuminate\Support\Facades\Storage;
 
-class SolicitudPreview extends Component
+class TallerPreview extends Component
 {
 
     public $solicitudActual, $observacion;
@@ -40,7 +40,7 @@ class SolicitudPreview extends Component
         $solicitud->observacion = '';
         $solicitud->save();
 
-        return redirect()->route("administrador.solicitudes");
+        return redirect()->route("administrador.talleres");
     }
 
 
@@ -72,6 +72,6 @@ class SolicitudPreview extends Component
 
     public function render()
     {
-        return view('livewire.administrador.solicitudes.solicitud-preview');
+        return view('livewire.administrador.talleres.taller-preview');
     }
 }
