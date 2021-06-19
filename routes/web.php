@@ -13,6 +13,7 @@ use App\Http\Livewire\Evento\Crear\CrearEvento;
 use App\Http\Livewire\Evento\Eventos;
 use App\Http\Livewire\Administrador\Eventos\Eventos as AdminEvento;
 use App\Http\Livewire\Artista\CrearArtista;
+use App\Http\Livewire\Artista\TusArtistas;
 use App\Http\Livewire\Organizador\Eventos\MisEventos;
 use App\Http\Livewire\Organizador\Eventos\ModificarEvento;
 use App\Http\Livewire\Taller\Asistentes\Asistentes;
@@ -52,6 +53,7 @@ Route::group(["middleware" => 'auth'], function() {
 
     Route::group(['middleware' => 'role:representante', 'prefix' => 'representante', 'as' => 'representante.'], function() {
         Route::get("/crear-artista", CrearArtista::class)->name("crearartista");
+        Route::get("/tus-artistas", TusArtistas::class)->name("tusartistas");
        
     });
     

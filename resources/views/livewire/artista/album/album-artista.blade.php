@@ -1,18 +1,18 @@
 <div>
     <div class="flex flex-col items-center justify-center mb-10">
-        <span class="text-2xl text-white mb-4">¿Quieres agregar a un integrante?</span>
+        <span class="text-2xl text-white mb-4">¿Quieres agregar a un album?</span>
         <button data-fancybox data-src="#formulario-integrante"
-            class="bg-gradient-to-tr from-white via-black to-primary px-5 py-2 hover:bg-gradient-to-b hover:from-primary hover:via-black hover:to-white">Agregar</button>
+            class="bg-gradient-to-tr from-white via-black to-primary px-5 py-2 hover:bg-gradient-to-b hover:from-primary hover:via-black hover:to-white">Participar</button>
     </div>
     <div id="formulario-integrante" class="hidden formulario-integrante">
 
         <div class="flex flex-col items-center">
             <span class="lg:text-2xl border-b border-gray-900">Formulario de agregacion</span>
-            
+            <span></span>
         </div>
 
 
-        <form method='post' wire:submit.prevent="inscripcion" autocomplete="off" class="formulario-inscripcion">
+        <form method='post' wire:submit.prevent="agregarAlbum" autocomplete="off" class="formulario-inscripcion">
             @csrf
             <div class="grid lg:grid-cols-2 gap-8 mt-8">
 
@@ -22,17 +22,16 @@
                 </div>
 
                 <div class="flex flex-col">
-                    <label for="apellidos">Apellidos</label>
+                    <label for="apellidos">Cantidad de canciones</label>
                     <input id="apellidos" type="text" wire:model="apellidos" class="rounded-full" />
                 </div>
 
                 <div class="lg:col-span-2  gap-5 lg:flex  justify-center py-2">
-                <span class="text-2xl font-bold text-center">Instrumentos</span>
+                <span class="text-2xl font-bold text-center">Nombre de cancion</span>
                 </div>
 
                 <div class="swiper-container swiperGeneros">
                     <div class="swiper-wrapper ">
-                   
                         
                     </div>
                     <div class="swiper-button-next"></div>

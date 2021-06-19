@@ -53,6 +53,10 @@
                                 <x-jet-dropdown-link href="{{ route('artistas.index') }}">
                                     {{ __('Artistas') }}
                                 </x-jet-dropdown-link>
+
+                                <x-jet-dropdown-link href="{{ route('representante.tusartistas') }}">
+                                    {{ __('Tus artistas') }}
+                                </x-jet-dropdown-link>
                                 
                         </div>
                     </div>

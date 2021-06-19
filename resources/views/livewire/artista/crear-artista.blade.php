@@ -2,12 +2,12 @@
     <div class="grid lg:grid-cols-5 gap-5 text-white py-4 flex-col">
         <div class="col-span-8 ">
 
-            <div class=" col-span-8 align-content-center">
+            <div class=" col-span-8 align-content-center ">
                 <div class="bg-black bg-opacity-20 px-2 py-1 text-center">
                     <span class="top-5 mb-2 text-4xl font-bold">Agrega el nombre del artista</span>
 
                 </div>
-                <div class="flex justify-center py-2">
+                <div class="flex justify-center py-2 mt-5">
                     <input type="text" name="nombreART" placeholder="Escribe el nombre del artista"
                         class="bg-white h-14 px-5 pr-2 w-96 focus:outline-none rounded-full text-black">
                 </div>
@@ -17,12 +17,12 @@
 
 
 
-            <div class="bg-black bg-opacity-20 px-2 py-1 text-center">
+            <div class="bg-black bg-opacity-20 px-2 py-1 text-center mt-5">
                 <span class="top-5 mb-3 text-4xl font-bold">Escoge un genero</span>
 
-            </div><br>
+            </div>
 
-            <div class="swiper-container swiperGeneros">
+            <div class="swiper-container swiperGeneros mt-5">
                 <div class="swiper-wrapper ">
                     @foreach ($generos as $genero)
 
@@ -75,7 +75,7 @@
             </div>
 
 
-            <div class="col-span-8 justify-center">
+            <div class="col-span-8 justify-center mt-5">
                 <div class="bg-black bg-opacity-20 px-2 py-1 text-center">
                     <span class="top-5 mb-3 text-4xl font-bold">Cuentanos ¿que tipo de artista eres?</span>
 
@@ -105,7 +105,7 @@
 
             </div>
 
-            <div class=" col-span-8 align-content-center">
+            <div class=" col-span-8 align-content-center mt-5">
                 <div class="bg-black bg-opacity-20 px-2 py-1 text-center">
                     <span class="top-5 mb-3 text-4xl font-bold">¿Tienes más integrantes? Agragalos aqui</span>
 
@@ -114,37 +114,54 @@
                     <div class=" h-40 lg:w-40  bg-cover rounded-full lg:rounded-t-full lg:rounded-1 "
                         style="background-image: url('https://tailwindcss.com/img/card-left.jpg')">
                     </div>
+                    
+                    <livewire:artista.integrante-artista />
+                    
                 </div>
 
 
             </div>
 
 
-            <div class=" col-span-8 align-content-center">
+            <div class=" col-span-8 align-content-center mt-5">
                 <div class="bg-black bg-opacity-20 px-2 py-1 text-center">
                     <span class="top-5 mb-3 text-4xl font-bold">Sube la imagen del artista</span>
 
                 </div>
-                <div class="flex justify-center">
-                    <div class=" h-40 lg:w-40  bg-cover rounded-full lg:rounded-t-full lg:rounded-1 "
+                <div class="flex justify-center gap-5">
+
+                    <div class="mt-5 h-40 lg:w-40 bg-cover rounded-full lg:rounded-t-full lg:rounded-1 "
                         style="background-image: url('https://tailwindcss.com/img/card-left.jpg')">
                     </div>
+
+                    <div class="w-80 mt-20"><input type="file" wire:model="imagen" />
+                        <div wire:loading wire:target="imagen" 
+                            class="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3" role="alert">
+                            <p class="font-bold">Cargando imagen</p>
+                        </div> 
+                    </div>
+
                 </div>
 
+                
 
             </div>
 
+
+            
             
 
-            <div class=" col-span-8 align-content-center">
+            <div class=" col-span-8 align-content-center mt-5">
                 <div class="bg-black bg-opacity-20 px-2 py-1 text-center">
                     <span class="top-5 mb-3 text-4xl font-bold">Agrega tus albums aqui</span>
 
                 </div>
-                <div class="flex justify-center">
+                <div class="flex justify-center mt-5">
                     <div class=" h-40 lg:w-40  bg-cover rounded-full lg:rounded-t-full lg:rounded-1 "
                         style="background-image: url('https://tailwindcss.com/img/card-left.jpg')">
                     </div>
+
+                    <livewire:artista.album.album-artista />
                 </div>
 
 
@@ -156,24 +173,45 @@
 
                 </div><br>
 
-                    <div class="flex justify-center py-2">
+                    <div class="flex justify-center py-2 gap-16">
                         <span class="top-5 mb-3 text-2xl font-bold mt-2">Instagram</span>
                         <input type="text" name="face" placeholder="Pega la URL del perfil del artista de instagram"
                             class="bg-white h-14 px-5 pr-2 w-96 focus:outline-none rounded-full text-black">
                     </div>
 
-                    <div class="flex justify-center py-2">
+                    <div class="flex justify-center py-2 gap-16">
                         <span class="top-5 mb-3 text-2xl font-bold mt-2">Facebook</span>
                         <input type="text" name="face" placeholder="Pega la URL del perfil del artista de facebook"
                             class="bg-white h-14 px-5 pr-2 w-96 focus:outline-none rounded-full text-black">
                     </div>
 
-                    <div class="flex justify-center py-2">
+                    <div class="flex justify-center py-2 gap-20">
                         <span class="top-5 mb-3 text-2xl font-bold mt-2">Twitter</span>
                         <input type="text" name="tw" placeholder="Pega la URL del perfil del artista de twiter"
                             class="bg-white h-14 px-5 pr-2 w-96 focus:outline-none rounded-full text-black">
                     </div>
 
+
+            </div>
+
+
+            <div class=" col-span-8 align-content-center">
+                <div class="bg-black bg-opacity-20 px-2 py-1 mt-5 text-center">
+                    <span class="top-5 mb-3 text-4xl font-bold">Canales de musica</span>
+
+                </div>
+
+                    <div class="flex justify-center py-2 gap-16 mt-5">
+                        <span class="top-5 mb-3 text-2xl font-bold mt-2">Spotify</span>
+                        <input type="text" name="face" placeholder="Pega la URL del perfil del artista de spotify"
+                            class="bg-white h-14 px-5 pr-2 w-96 focus:outline-none rounded-full text-black">
+                    </div>
+
+                    <div class="flex justify-center py-2 gap-16 mt-5">
+                        <span class="top-5 mb-3 text-2xl font-bold mt-2">Youtube</span>
+                        <input type="text" name="face" placeholder="Pega la URL del perfil del artista de youtube"
+                            class="bg-white h-14 px-5 pr-2 w-96 focus:outline-none rounded-full text-black">
+                    </div>
 
             </div>
 
