@@ -26,7 +26,7 @@
                 @can('administrar')
                     <div>
                         <button class="bg-green-500 px-5 py-1 mb-5 text-white font-bold">
-                            <a href="{{ route('administrador.solicitudes') }}">Administrar talleres</a>
+                            <a href="{{ route('administrador.talleres') }}">Administrar talleres</a>
                         </button>
                     </div>
                 @endcan
