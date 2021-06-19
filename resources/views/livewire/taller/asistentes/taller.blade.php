@@ -39,54 +39,84 @@
 
             <div class="mt-10 flex flex-col w-80 items-center">
                 <span>¿Tienes problemas para llevar a cabo este taller?</span>
-                <button data-fancybox data-src="#posponerTallerForm" class="mt-4 bg-white text-primary px-5 py-2">Posponer</button>
-                <div id="posponerTallerForm" class="hidden bg-white lg:w-96 w-80">
-                    <div>
-                        <form wire:submit.prevent="posponerTaller" class="flex flex-col items-center">
-                            <div class="flex flex-col items-center mb-2">
-                                <span class="text-xl">Posponer taller</span>
-                                <span>{{ $taller->TAL_Nombre }}</span> 
-                           </div>
-    
-                            <div class="flex flex-col items-center mb-5">
-                                <span>Motivo</span>
-                                <textarea maxlength='255'
-                                    placeholder="Indique el motivo por el cuál está posponiendo el taller, de esta forma los asistentes serán informados (máximo 255 caracteres)"
-                                    wire:model='observacion' class="resize-none lg:w-80 px-2 bg-primary h-40 text-white"></textarea>
-                                    @if ($errors)
-                                        @foreach ($errors->all() as $message)
-                                            <script>
-                                                $.fancybox.close();
-                                                Swal.fire({
-                                                    title: 'Error',
-                                                    text: 'Complete los campos solicitados',
-                                                    icon: 'warning',
-                                                });
-                                                location.href = location.href;
-                                            </script> 
-                                        @endforeach
-                                    @endif
-                               
-
-                                    
+                <div> 
+                    <button data-fancybox data-src="#posponerTallerForm" class="mt-4 mr-4 bg-white text-primary px-5 py-2">Posponer</button>
+                    <div id="posponerTallerForm" class="hidden bg-white lg:w-96 w-80">
+                        <div>
+                            <form wire:submit.prevent="posponerTaller" class="flex flex-col items-center">
+                                <div class="flex flex-col items-center mb-2">
+                                    <span class="text-xl">Posponer taller</span>
+                                    <span>{{ $taller->TAL_Nombre }}</span> 
                             </div>
-    
-                            <div class="flex flex-col items-center mb-5">
-                                <span>Nueva fecha</span>
-                                <div class="flex justify-between">
-                                    <input type="date" wire:model="fecha" />
-                                    <input type="time" wire:model="hora" />
+        
+                                <div class="flex flex-col items-center mb-5">
+                                    <span>Motivo</span>
+                                    <textarea maxlength='255'
+                                        placeholder="Indique el motivo por el cuál está posponiendo el taller, de esta forma los asistentes serán informados (máximo 255 caracteres)"
+                                        wire:model='observacion_pospuesto' class="resize-none lg:w-80 px-2 bg-primary h-40 text-white"></textarea>
+                                        @if ($errors)
+                                            @foreach ($errors->all() as $message)
+                                                <script>
+                                                    $.fancybox.close();
+                                                    Swal.fire({
+                                                        title: 'Error',
+                                                        text: 'Complete los campos solicitados',
+                                                        icon: 'warning',
+                                                        timer: 4000,
+                                                    }).then((result) => {
+                                                        if(!result.isVisible) {
+                                                            location.href = location.href;
+                                                        }
+                                                    });
+                                                </script> 
+                                            @endforeach
+                                        @endif                                                      
                                 </div>
-                            </div>
-                            <button type="submit" 
-                            class="mt-5 px-4 py-2 rounded-full bg-primary text-white hover:bg-primary hover:text-white">
-                                Posponer
-                            </button>
-                        </form>
-
-                       
+        
+                                <div class="flex flex-col items-center mb-5">
+                                    <span>Nueva fecha</span>
+                                    <div class="flex justify-between">
+                                        <input type="date" wire:model="fecha" />
+                                        <input type="time" wire:model="hora" />
+                                    </div>
+                                </div>
+                                <button type="submit" 
+                                class="mt-5 px-4 py-2 rounded-full bg-primary text-white hover:bg-primary hover:text-white">
+                                    Posponer
+                                </button>
+                            </form>           
+                        </div>
                     </div>
-                </div>
+
+                    <button data-fancybox data-src="#cancelarTallerForm" class="mt-4 bg-white text-primary px-5 py-2">
+                        Cancelar
+                    </button>
+                    <div id="cancelarTallerForm" class="hidden bg-white lg:w-96 w-80">
+                        <div>
+                            <form wire:submit.prevent="cancelarTaller" class="flex flex-col items-center">
+                                <div class="flex flex-col items-center mb-2">
+                                    <span class="text-xl">Cancelar taller</span>
+                                    <span>{{ $taller->TAL_Nombre }}</span> 
+                            </div>
+        
+                                <div class="flex flex-col items-center mb-5">
+                                    <span>Motivo</span>
+                                    <textarea maxlength='255'
+                                        placeholder="Indique el motivo por el cuál está posponiendo el taller, de esta forma los asistentes serán informados (máximo 255 caracteres)"
+                                        wire:model='observacion_cancelado' class="resize-none w-72 px-10 bg-primary h-40 text-white"></textarea>
+                                </div>
+        
+                                
+                                <button type="submit" 
+                                class="mt-5 px-4 py-2 rounded-full bg-primary text-white hover:bg-primary hover:text-white">
+                                    Cancelar taller
+                                </button>
+                            </form>
+
+                        
+                        </div>
+                    </div>
+                </div>     
             </div>
         </div>
     </div>
@@ -186,8 +216,33 @@
         });
     });
 
-    window.addEventListener('prueba', function() {
-        console.log(event.detail.test);
+    window.addEventListener("cancelarTaller", function() {
+        $.fancybox.close();
+        Swal.fire({
+            title: "¿Está seguro?",
+            text: `Estas a punto de cancelar el evento, 
+            de modo que los asistentes y administradores serán informados con 
+            la decisión que acabas de tomar.`,
+            icon: "info",
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: "Cancelar",
+            confirmButtonText: "Si, cancelar",
+        }).then((result) => {
+            if(result.isConfirmed) {
+                Livewire.emit("cancelarTallerConfirmado");
+                Swal.fire({
+                    title: 'Taller cancelado',
+                    icon: `success`,
+                    timer: 3000
+                }).then((result) => {
+                    if(result.isConfirmed) {
+                        location.href = location.href;
+                    }
+                });
+            }
+        });
     });
 </script>
 

@@ -36,6 +36,17 @@
                 </div>
 
                 <div class="my-10"> 
+                    <span class="text-2xl">Cuenta.</span>
+                    <div class="font-light">
+                        <p class="mb-5 text-justify">
+                            Tu cuenta es de uso personal y no es transferible, MusicalBroadcast no se hace responsable de las vulneralidades
+                            de seguridad que puedas experimentar, a exepción de que se trate de un ataque dirigido hacia nuestro servicio
+                            directamente.  
+                        </p>
+                    </div>
+                </div>
+
+                <div class="my-10"> 
                     <span class="text-2xl">Contenido.</span>
                     <div class="font-light">
                         <p class="mb-5 text-justify">
