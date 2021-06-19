@@ -35,7 +35,7 @@
                     <div class="swiper-container swiperDiscografia">
                         <div class="swiper-wrapper ">
                             @foreach($artistaActual->albumes as $album)
-                            <div class="swiper-slide w-80">
+                            <div class="swiper-slide w-40 text-center">
                                 <div class=" h-40 lg:w-40 w-80 flex-none bg-cover rounded-full lg:rounded-t-full lg:rounded-1 text-center overflow-hidden"
                                     style="background-image: url('https://tailwindcss.com/img/card-left.jpg')"
                                     title="Woman holding a mug">
@@ -43,7 +43,7 @@
                                 {{ $album->ALB_Nombre }}
                             </div>
                             @endforeach     
-                        </div>
+                        </div><br><br>
                         <div class="swiper-pagination"></div>
                     </div>       
         </div>
