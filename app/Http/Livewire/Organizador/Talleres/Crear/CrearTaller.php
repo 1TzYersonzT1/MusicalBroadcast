@@ -44,7 +44,6 @@ class CrearTaller extends Component
         $this->protocolos = $value['protocolos'];
     }
 
-
     public function updatedImagen() {
         $this->validate([
             'imagen' => 'required|image|mimes:jpeg,png,svg,jpg,gif|max:1024',
@@ -54,7 +53,6 @@ class CrearTaller extends Component
     public function eliminarImagen() {
         $this->imagen = '';
     }
-
 
     public function nuevoTaller()
     {
@@ -84,7 +82,6 @@ class CrearTaller extends Component
 
         $this->dispatchBrowserEvent("nuevoTaller");
     }
-
 
     public function render()
     {

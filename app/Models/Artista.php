@@ -26,4 +26,8 @@ class Artista extends Model
         return $this->hasMany(Album::class, "artista_id", "id");
     }
 
+    public function integrantes() {
+        return $this->hasMany(Integrante::class, "artista_id");
+    }
+
 }

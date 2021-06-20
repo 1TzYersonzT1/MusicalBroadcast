@@ -7,9 +7,7 @@ use Livewire\Component;
 class Estilo extends Component
 {
 
-    public $estilo, $seleccionados;
-
-  
+    public $estilo, $seleccionados = [];
 
     public function render()
     {

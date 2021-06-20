@@ -11,8 +11,9 @@
 
             <div class="mt-4">
                 <x-jet-label for="rut" value="{{ __('Rut') }}" />
-                <x-jet-input id="rut" class="block mt-1 w-full" type="text" name="rut" :value="old('rut')"
-                    required autofocus autocomplete="rut" />
+                <x-jet-input id="rut" class="block mt-1 w-full" type="text" name="rut"  maxlength="9"
+                :value="old('rut')" required autofocus autocomplete="rut" />
+                    <span class="text-white">(Sin puntos, ni guión) Ejemplo: 123456789</span>
             </div>
 
             <div class="mt-4">
@@ -43,8 +44,9 @@
 
             <div class="mt-4">
                 <x-jet-label for="telefono" value="{{ __('Teléfono') }}" />
-                <x-jet-input id="telefono" class="block mt-1 w-full" type="text" name="telefono"
-                    :value="old('telefono')" required autofocus autocomplete="telefono" />
+                <x-jet-input id="telefono" class="block mt-1 w-full" type="tel" pattern="[0-9]{9}" maxlength="9"
+                 name="telefono" :value="old('telefono')" required autofocus autocomplete="telefono" />
+                    <span class="text-white">Ejemplo: 912345678</span>
             </div>
 
             <div class="mt-4">
