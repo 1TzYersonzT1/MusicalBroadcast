@@ -24,7 +24,7 @@ module.exports = {
     variants: {
             opacity: ['disabled'],
             transform: ['hover'],
-            backgroundColor: ['checked'],
+            backgroundColor: ['checked', 'hover'],
             borderColor: ['checked'],
     },
 

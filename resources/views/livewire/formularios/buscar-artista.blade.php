@@ -1,4 +1,4 @@
-<div class="relative" x-data="{ open: false }" @click.away="open = false" @close.stop="open = false">
+<div class="relative lg:block hidden" x-data="{ open: false }" @click.away="open = false" @close.stop="open = false">
     <div class="inline-flex rounded-md">
         <div>
             <input type="search" @click="open = !open" placeholder="Escribe lo que estas buscando"

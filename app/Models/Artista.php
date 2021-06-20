@@ -30,4 +30,10 @@ class Artista extends Model
         return $this->hasMany(Integrante::class, "artista_id");
     }
 
+    public function getImagenAttribute($value) {
+        $url = explode("/", $value);
+        unset($url[array_search("storage", $url)]);
+        return implode("/", $url);
+    }
+
 }
