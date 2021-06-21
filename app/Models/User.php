@@ -66,5 +66,8 @@ class User extends Authenticatable
         return $this->hasOne(HojaVida::class, "user_rut");
     }
     
+    public function artistas() {
+        return $this->hasMany(Artista::class, 'user_rut', 'rut');
+    }
 
 }

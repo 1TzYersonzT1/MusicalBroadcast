@@ -27,6 +27,7 @@ class ArtistaFactory extends Factory
             'user_rut' => '87654321',
             'tipo_artista' => 1,
             'biografia' => $this->faker->text(200),
+            'estado' => 1,
         ];
     }
 

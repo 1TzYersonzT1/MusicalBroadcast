@@ -15,28 +15,41 @@ class Evento extends Model
     protected $guarded = [];
 
 
-    public function organizador() {
+    public function organizador()
+    {
         return $this->belongsTo(User::class, 'user_rut', 'rut');
     }
 
-    public function solicitudes() {
+    public function solicitudes()
+    {
         return $this->hasMany(SolicitudEvento::class, 'evento_id');
     }
 
-    public function artistas() {
+
+    /**
+     * Permite manipular el listado de artistas de un evento
+     *
+     * Este método es utilizado visualizar, agregar, modificar 
+     * o eliminar artistas de un evento en particular
+     * 
+     *
+     * @access public
+     * @return Artista
+     */
+    public function artistas()
+    {
         return $this->belongsToMany(Artista::class, "artista_evento", "evento_id", "artista_id");
     }
 
-    public function getEVEFechaAttribute($value) {
+    public function getEVEFechaAttribute($value)
+    {
         return Carbon::parse(date_create($value))->isoFormat("LL");
-     }
+    }
 
-     public function getImagenAttribute($value) {
-         $url = explode("/", $value);
-         unset($url[array_search("storage", $url)]);
-         return implode("/", $url);
-     }
-
-
-
+    public function getImagenAttribute($value)
+    {
+        $url = explode("/", $value);
+        unset($url[array_search("storage", $url)]);
+        return implode("/", $url);
+    }
 }

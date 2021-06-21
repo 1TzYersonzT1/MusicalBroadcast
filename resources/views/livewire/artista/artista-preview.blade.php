@@ -28,7 +28,12 @@
         <div class=" col-span-6">
                     <div class="bg-black bg-opacity-20 px-2 py-1 ">
                         <span class="top-5 mb-3 text-4xl font-bold">Discografia</span>
-                        
+                        @foreach ($artistaActual->integrantes as $integrante)
+                            <span>{{ $integrante->nombre }}</span>
+                            @foreach($integrante->instrumentos as $instrumento)
+                                {{ $instrumento }}
+                            @endforeach
+                        @endforeach
                     </div><br>
                     <div class="swiper-container swiperDiscografia">
                         <div class="swiper-wrapper ">

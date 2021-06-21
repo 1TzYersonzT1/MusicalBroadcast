@@ -24,7 +24,6 @@ class Taller extends Component
 
     protected $listeners = [
         "eliminarAsistenteConfirmado",
-        "eliminarAsistente",
         "posponerTallerConfirmado",
         "cancelarTallerConfirmado",
     ];
@@ -64,7 +63,7 @@ class Taller extends Component
         $this->taller->TAL_Fecha = Carbon::parse(date_create($this->fecha))->isoFormat("Y-M-D");
         $this->taller->TAL_Hora = $this->hora;
         $this->taller->solicitudes[0]->estado = 5;
-        $this->taller->solicitudes[0]->observacion = $this->observacion;
+        $this->taller->solicitudes[0]->observacion = $this->observacion_pospuesto;
         $this->taller->solicitudes[0]->save();
         $this->taller->save();
 

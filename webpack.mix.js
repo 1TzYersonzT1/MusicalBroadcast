@@ -16,7 +16,9 @@ mix.js('resources/js/app.js', 'public/js')
         require('postcss-import'),
         require('tailwindcss'),
     ])
-    .postCss('resources/css/extra.css', 'public/css');
+    .postCss('resources/css/extra.css', 'public/css')
+    .postCss('resources/css/mail.css', 'public/css');
+
 
 
 if (mix.inProduction()) {

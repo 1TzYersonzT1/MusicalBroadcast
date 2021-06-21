@@ -17,6 +17,12 @@
                         <a href="{{ route('organizador.mis-eventos') }}">Mis solicitudes</a>
                     </button>
                 </div>
+
+                <div>
+                    <button class="bg-purple-500 px-5 py-1 mb-5 ml-5 text-white font-bold">
+                        <a href="{{ route('organizador.evento/asistentes') }}">Mis eventos</a>
+                    </button>
+                </div>
             </div>
             @endcan
 

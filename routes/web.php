@@ -14,10 +14,12 @@ use App\Http\Livewire\Representante\Artista\TusArtistas;
 use App\Http\Livewire\Organizador\Eventos\Crear\CrearEvento;
 use App\Http\Livewire\Organizador\Eventos\MisEventos;
 use App\Http\Livewire\Organizador\Eventos\ModificarEvento;
+use App\Http\Livewire\Organizador\Eventos\Asistentes\Asistentes as AsistentesEvento;
 use App\Http\Livewire\Organizador\Talleres\Crear\CrearTaller;
 use App\Http\Livewire\Organizador\Talleres\MisTalleres;
 use App\Http\Livewire\Organizador\Talleres\ModificarTaller;
-use App\Http\Livewire\Organizador\Talleres\Asistentes\Asistentes;
+use App\Http\Livewire\Organizador\Talleres\Asistentes\Asistentes as AsistenteTaller;
+
 
 
 /*
@@ -44,12 +46,14 @@ Route::group(["middleware" => 'auth'], function() {
         Route::get('/mis-solicitudes', MisTalleres::class)->name('mis-solicitudes');
         Route::get("/modificar-taller/{id}", ModificarTaller::class)->name("modificar-taller");
 
-        Route::get("/asistentes", Asistentes::class)->name("taller/asistentes");
+        Route::get("/asistentes/taller", AsistenteTaller::class)->name("taller/asistentes");
 
         // Ruta de evento
         Route::get("/crear-evento", CrearEvento::class)->name("crearevento");
         Route::get("/eventos/mis-solicitudes", MisEventos::class)->name("mis-eventos");
         Route::get("/modificar-evento/{id}", ModificarEvento::class)->name("modificar-evento");
+
+        Route::get("/asistentes/evento", AsistentesEvento::class)->name("evento/asistentes");
     });
 
     Route::group(['middleware' => 'role:representante', 'prefix' => 'representante', 'as' => 'representante.'], function() {

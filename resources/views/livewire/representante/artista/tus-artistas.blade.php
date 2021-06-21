@@ -13,7 +13,7 @@
                     </div>
                     <div>
                         <button class="bg-yellow-500 px-5 py-1 mb-5 text-white font-bold ml-5">
-                            <a href="{{ route('organizador.mis-solicitudes') }}">Estado solicitudes</a>
+                            <a href="{{ route('representante.tusartistas') }}">Estado solicitudes</a>
                         </button>
                     </div>
                     <!-- 
@@ -22,7 +22,7 @@
                             sus artistas
                             <div>
                             <button class="bg-purple-500 px-5 py-1 mb-5 text-white font-bold ml-5">
-                                <a href="{{ route('organizador.taller/asistentes') }}">Mis artistas</a>
+                                <a href="{{-- route('organizador.taller/asistentes') --}}">Mis artistas</a>
                             </button>
                         </div> -->
                 @endcan
