@@ -30,6 +30,14 @@ class Artista extends Model
         return $this->hasMany(Integrante::class, "artista_id");
     }
 
+    public function representante() {
+        return $this->belongsTo(User::class, 'user_rut');
+    }
+
+    public function solicitud() {
+        return $this->hasOne(SolicitudArtista::class, 'artista_id', 'id');
+    }
+
     public function getImagenAttribute($value) {
         $url = explode("/", $value);
         unset($url[array_search("storage", $url)]);

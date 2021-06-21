@@ -6,6 +6,7 @@ use App\Http\Livewire\Taller\Talleres;
 use App\Http\Livewire\Taller\InscripcionTaller;
 use App\Http\Livewire\Administrador\Talleres\Talleres as AdminTaller;
 use App\Http\Livewire\Administrador\Eventos\Eventos as AdminEvento;
+use App\Http\Livewire\Administrador\Artistas\Artistas as AdminArtista;
 use App\Http\Livewire\Artista\Artistas;
 use App\Http\Livewire\Artista\ArtistaPreview;
 use App\Http\Livewire\Representante\Artista\Crear\CrearArtista;
@@ -59,8 +60,8 @@ Route::group(["middleware" => 'auth'], function() {
     
     Route::group(['middleware' => 'role:administrador', 'prefix' => 'administrador', 'as' => 'administrador.'], function() {
         Route::get('/solicitudes/talleres', AdminTaller::class)->name("talleres");
-
-        Route::get("/solicitudes/eventos", AdminEvento::class)->name("eventos");  
+        Route::get("/solicitudes/eventos", AdminEvento::class)->name("eventos"); 
+        Route::get("/solicitudes/artistas", AdminArtista::class)->name("artistas"); 
     });
 
 });

@@ -121,7 +121,7 @@
                 @foreach ($integrantes as $index => $integrante)
                     <div class="flex flex-col items-center mr-5">
                         <div class="flex">
-                            <img src="{{ asset($integrante['imagen']) }}" class="rounded-full w-28 h-28" />
+                            <img src="{{ asset('storage/' . $integrante['imagen']) }}" class="rounded-full w-28 h-28" />
                             <svg wire:click="eliminarIntegrante('{{ $index }}')"
                                 xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
@@ -303,7 +303,7 @@
     </div>
 
     <div class="col-span-8 flex justify-center mt-10">
-        <button wire:click="agregarArtista" class="bg-white text-primary py-1 px-4">
+        <button wire:click='validarAgregarArtista' class="bg-white text-primary py-1 px-4">
             <span class="text-2xl">Agregar artista</span>
         </button>
     </div>
@@ -313,6 +313,38 @@
     window.addEventListener("prueba", (event) => {
         alert("prueba en consola!!!");
         console.log(event.detail.test);
+    });
+
+    window.addEventListener('solicitudAgregarArtista', () => {
+        Swal.fire({
+            title: 'Solicitar permiso para agregar artista',
+            text: `Se enviara una solicitud a los administradores
+            con la información que nos acaba de proporcionar.`,
+            icon: 'success',
+            showCancelButton: true,
+            cancelButtonText: 'Regresar',
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Solicitar permiso',
+        }).then((result) => {
+            if(result.isConfirmed) {
+                Livewire.emit('agregarArtista');
+
+                Swal.fire({
+                    title: 'Solicitud enviada',
+                    text: `Se ha enviado la solicitud, en cuanto se haya aprobado
+                    recibirá un mensaje al correo asociado a su cuenta.`,
+                    icon: 'success',
+                    timer: 6000,
+                    showConfirmButton: true,
+                    confirmButtonText: 'Ok'
+                });
+            }
+        });
+    });
+
+    $("#agregarArtistaBtn").on("click", function() {
+       
     });
 
     function formNuevoIntegrante() {

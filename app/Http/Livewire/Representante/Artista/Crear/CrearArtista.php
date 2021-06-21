@@ -6,6 +6,7 @@ namespace App\Http\Livewire\Representante\Artista\Crear;
 use App\Models\Genero;
 use App\Models\Estilo;
 use App\Models\Artista;
+use App\Models\SolicitudArtista;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -27,7 +28,10 @@ class CrearArtista extends Component
         'imagenArtista' => 'required|image',
     ];
 
-    protected $listeners = ['updatedEstilo'];
+    protected $listeners = [
+        'updatedEstilo',
+        'agregarArtista',
+    ];
 
     public function mount()
     {
@@ -67,6 +71,7 @@ class CrearArtista extends Component
             'rutIntegrante' => 'required|string|min:8|max:9',
             'nombreIntegrante' => 'required|string|min:2|max:30',
             'apellidosIntegrante' => 'required|string|min:2|max:40',
+            'imagenIntegrante' => 'required|image|mimes:jpeg,jpg,png,svg,gif',
         ]);
 
         $imagenIntegrante = $this->imagenIntegrante
@@ -91,14 +96,18 @@ class CrearArtista extends Component
 
     public function eliminarIntegrante($index)
     {
+        Storage::delete($this->integrantes[$index]["imagen"]);
         unset($this->integrantes[$index]);
+    }
+
+    public function validarAgregarArtista() {
+        $this->validate();
+        $this->dispatchBrowserEvent('solicitudAgregarArtista');
     }
 
 
     public function agregarArtista()
     {
-        $this->validate();
-
         $imagen = $this->imagenArtista->store("representantes/" . auth()->user()->rut . "/artistas/" . $this->nombreArtista);
 
         $artista = Artista::create([
@@ -107,13 +116,21 @@ class CrearArtista extends Component
             'tipo_artista' => $this->tipoArtista,
             'user_rut' => auth()->user()->rut,
             'imagen' => "storage/" . $imagen,
+            'estado' => 0,
         ]);
 
-        /*foreach ($this->integrantes as $integrante) {
+        $solicitud = SolicitudArtista::create([
+            'artista_id' => $artista->id,
+            'observacion' => '',
+            'estado' => 1,
+        ]);
+
+        foreach ($this->integrantes as $integrante) {
             $integrante["artista_id"] = $artista->id;
-        }*/
+        }
 
         $artista->estilos()->sync($this->estilosSeleccionados);
+        $artista->integrantes()->createMany($this->integrantes);
     }
 
     public function eliminarImagenArtista()

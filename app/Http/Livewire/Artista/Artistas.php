@@ -57,6 +57,7 @@ class Artistas extends Component
             return $query->whereIn("tipo_artista", $this->tiposSeleccionados);
         })
         ->where("ART_Nombre", "like", $this->nombreArtista . "%")
+        ->where("estado", 1)
         ->paginate(8);
 
         return view('livewire.artista.artistas', [
