@@ -7,6 +7,7 @@ use App\Models\Genero;
 use App\Models\Estilo;
 use App\Models\Artista;
 use App\Models\SolicitudArtista;
+use Exception;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -16,10 +17,10 @@ class CrearArtista extends Component
 
     use WithFileUploads;
 
-    public $nombreArtista, $imagenArtista, $tipoArtista;
-    public $generos;
+    public $nombreArtista, $imagenArtista, $tipoArtista, $instagram, $facebook, $twitter;
+    public $generos, $integrantes;
     public $estilos = [], $estilosSeleccionados = [];
-    public $integrantes = [], $rutIntegrante, $nombreIntegrante, $apellidosIntegrante, $imagenIntegrante;
+
     public $albumes = [], $nombreAlbum, $imagenAlbum;
 
     protected $rules = [
@@ -28,8 +29,15 @@ class CrearArtista extends Component
         'imagenArtista' => 'required|image',
     ];
 
+    protected $messages = [
+        'instagram.regex' => 'La URL ingresada no corresponde al sitio web de instagram.',
+        'facebook.regex' => 'La URL ingresada no corresponde al sitio web de facebook.',
+        'twitter.regex' => 'La URL ingresada no corresponde al sitio web de twitter.',
+    ];
+
     protected $listeners = [
         'updatedEstilo',
+        'updatedIntegrantes',
         'agregarArtista',
     ];
 
@@ -54,54 +62,15 @@ class CrearArtista extends Component
         }
     }
 
-    public function updatedImagenIntegrante()
+    public function updatedIntegrantes(array $integrantes)
     {
-        $this->validate([
-            "imagenIntegrante" => 'required|image',
-        ]);
+        $this->integrantes = $integrantes;
     }
 
-    public function eliminarImagenIntegrante() {
-        $this->imagenIntegrante = '';
-    }
-
-    public function agregarIntegrante()
+    public function validarAgregarArtista()
     {
-        $this->validate([
-            'rutIntegrante' => 'required|string|min:8|max:9',
-            'nombreIntegrante' => 'required|string|min:2|max:30',
-            'apellidosIntegrante' => 'required|string|min:2|max:40',
-            'imagenIntegrante' => 'required|image|mimes:jpeg,jpg,png,svg,gif',
-        ]);
-
-        $imagenIntegrante = $this->imagenIntegrante
-        ->store("/representantes/" . auth()->user()->rut . "/artistas/" . $this->nombreArtista . 
-        "/integrantes");
-
-        $this->integrantes[] = [
-            "rut" => $this->rutIntegrante,
-            "artista_id" => null,
-            "nombre" => $this->nombreIntegrante,
-            'apellidos' => $this->apellidosIntegrante,
-            "imagen" => $imagenIntegrante,
-        ];
-
-        $this->rutIntegrante = '';
-        $this->nombreIntegrante = '';
-        $this->imagenIntegrante = '';
-        $this->apellidosIntegrante = '';
-
-        $this->dispatchBrowserEvent("integranteAgregado");
-    }
-
-    public function eliminarIntegrante($index)
-    {
-        Storage::delete($this->integrantes[$index]["imagen"]);
-        unset($this->integrantes[$index]);
-    }
-
-    public function validarAgregarArtista() {
         $this->validate();
+        $this->limpiarURL();
         $this->dispatchBrowserEvent('solicitudAgregarArtista');
     }
 
@@ -117,6 +86,9 @@ class CrearArtista extends Component
             'user_rut' => auth()->user()->rut,
             'imagen' => "storage/" . $imagen,
             'estado' => 0,
+            'instagram' => $this->instagram,
+            'facebook' => $this->facebook,
+            'twitter' => $this->twitter,
         ]);
 
         $solicitud = SolicitudArtista::create([
@@ -150,6 +122,18 @@ class CrearArtista extends Component
         $this->dispatchBrowserEvent("prueba", array("test" => $go));
     }
 
+    public function limpiarURL()
+    {
+        $this->validate([
+            "instagram" => "nullable|regex:/https:\/\/www.instagram.com/",
+            "facebook" => "nullable|regex:/https:\/\/www.facebook.com/",
+            "twitter" => "nullable|regex:/twitter.com/",
+        ]);
+
+        $this->instagram = preg_replace('/https:\/\/www.instagram.com/', '', $this->instagram);
+        $this->facebook = preg_replace('/https:\/\/www.facebook.com/', '',  $this->facebook);
+        $this->twitter = preg_replace('/https:\/\/twitter.com/', '',  $this->twitter);
+    }
 
     public function render()
     {

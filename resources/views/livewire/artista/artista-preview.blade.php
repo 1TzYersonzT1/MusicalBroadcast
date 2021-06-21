@@ -94,17 +94,17 @@
 
 
     <div class="py-2" style="float:left">
-        <a href="https://es-la.facebook.com/">
+        <a href="https://www.facebook.com{{ $artistaActual->facebook }}">
         <div style="float:left">
             <img src="/face.png" width="40" height="40" > 
         </div>         
         </a>
-        <a href="https://www.instagram.com/?hl=es-la">
+        <a href="https://www.instagram.com{{ $artistaActual->instagram }}">
         <div style="float:left">
             <img src="/insta.png" width="40" height="40">
         </div>                 
         </a>
-        <a href="https://twitter.com/?lang=es">
+        <a href="https://twitter.com/{{ $artistaActual->twitter }}">
         <div style="float:left">
             <img src="/twiter.png" width="40" height="40">
         </div>
