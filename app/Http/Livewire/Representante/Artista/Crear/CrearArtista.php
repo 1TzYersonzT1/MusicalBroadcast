@@ -17,11 +17,11 @@ class CrearArtista extends Component
 
     use WithFileUploads;
 
-    public $nombreArtista, $imagenArtista, $tipoArtista, $instagram, $facebook, $twitter;
+    public $nombreArtista, $imagenArtista, $tipoArtista, $instagram, $facebook, $twitter, $spotify, $youtube;
     public $generos, $integrantes;
     public $estilos = [], $estilosSeleccionados = [];
-
-    public $albumes = [], $nombreAlbum, $imagenAlbum;
+    public $albumes = [];
+    
 
     protected $rules = [
         'nombreArtista' => 'required|string|min:2|max:30',
@@ -33,12 +33,15 @@ class CrearArtista extends Component
         'instagram.regex' => 'La URL ingresada no corresponde al sitio web de instagram.',
         'facebook.regex' => 'La URL ingresada no corresponde al sitio web de facebook.',
         'twitter.regex' => 'La URL ingresada no corresponde al sitio web de twitter.',
+        'spotify.regex' => 'La URL ingresada no corresponde a la cuenta de spotify del artista.',
+        'youtube.regex' => 'La URL ingresada no corresponde al canal de youtube del artista.',
     ];
 
     protected $listeners = [
         'updatedEstilo',
         'updatedIntegrantes',
         'agregarArtista',
+        
     ];
 
     public function mount()
@@ -69,15 +72,14 @@ class CrearArtista extends Component
 
     public function validarAgregarArtista()
     {
-        $this->validate();
+        //$this->validate();
         $this->limpiarURL();
         $this->dispatchBrowserEvent('solicitudAgregarArtista');
     }
 
-
     public function agregarArtista()
     {
-        $imagen = $this->imagenArtista->store("representantes/" . auth()->user()->rut . "/artistas/" . $this->nombreArtista);
+        /*$imagen = $this->imagenArtista->store("representantes/" . auth()->user()->rut . "/artistas/" . $this->nombreArtista);
 
         $artista = Artista::create([
             'ART_Nombre' => $this->nombreArtista,
@@ -89,6 +91,8 @@ class CrearArtista extends Component
             'instagram' => $this->instagram,
             'facebook' => $this->facebook,
             'twitter' => $this->twitter,
+            'spotify' => $this->spotify,
+            'youtube' => $this->youtube,
         ]);
 
         $solicitud = SolicitudArtista::create([
@@ -102,7 +106,7 @@ class CrearArtista extends Component
         }
 
         $artista->estilos()->sync($this->estilosSeleccionados);
-        $artista->integrantes()->createMany($this->integrantes);
+        $artista->integrantes()->createMany($this->integrantes);*/
     }
 
     public function eliminarImagenArtista()
@@ -128,11 +132,15 @@ class CrearArtista extends Component
             "instagram" => "nullable|regex:/https:\/\/www.instagram.com/",
             "facebook" => "nullable|regex:/https:\/\/www.facebook.com/",
             "twitter" => "nullable|regex:/twitter.com/",
+            "spotify" => "nullable|regex:/https:\/\/open.spotify.com\/artist/",
+            "youtube" => "nullable|regex:/https:\/\/www.youtube.com\/channel/",
         ]);
 
         $this->instagram = preg_replace('/https:\/\/www.instagram.com/', '', $this->instagram);
         $this->facebook = preg_replace('/https:\/\/www.facebook.com/', '',  $this->facebook);
         $this->twitter = preg_replace('/https:\/\/twitter.com/', '',  $this->twitter);
+        $this->spotify = preg_replace('/https:\/\/open.spotify.com\/artist\//', '',  $this->spotify);
+        $this->youtube = preg_replace('/https:\/\/www.youtube.com\/channel\//', '',  $this->youtube);
     }
 
     public function render()

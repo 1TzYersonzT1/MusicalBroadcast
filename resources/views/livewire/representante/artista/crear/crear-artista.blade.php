@@ -63,7 +63,7 @@
 
         <div class="flex justify-center gap-5 mt-5">
             <div class="flex flex-col items-center genero">
-                <input type="radio" wire:model="tipoArtista" value="1" 
+                <input type="radio" wire:model="tipoArtista" value="1"
                     class="h-32 w-32 opacity-0 absolute w-32 h-32 rounded-full" />
                 <div
                     class="bg-trasparent w-32 h-32 flex rounded-full flex-shrink-0 justify-center items-center mr-2 focus-within:border-red-500">
@@ -111,64 +111,29 @@
         </div>
     </div>
 
-    <livewire:representante.artista.crear.nuevo-integrante :nombreArtista="$nombreArtista" />
+    
 
     <!-- Albumes -->
-    <div class="col-span-8 align-content-center mt-5">
-        <div class="bg-black bg-opacity-20 px-2 py-1 text-center">
-            <span class="top-5 mb-3 text-4xl font-bold">Agrega tus albums aquí</span>
-        </div>
-        <div class="flex flex-col items-center">
-            <div x-data="formNuevoAlbum()" class="flex justify-center mt-5">
-                <button @click="abrir()">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-40 w-40 border-2 border-white" fill="none"
-                        viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                    </svg>
-                </button>
+    <livewire:representante.artista.crear.album.album  :albumes="$albumes" :nombreArtista="$nombreArtista"/>
+    
 
-                <div x-show.transition="estaAbierto()" class="bg-white text-primary w-96">
-                    <div class="w-80">
-                        <div>
-                            <span class="text-2xl font-bold">Agregar album</span>
-                        </div>
+    <!-- Integrantes -->
+    
+    <livewire:representante.artista.crear.nuevo-integrante :nombreArtista="$nombreArtista" />
+|   
 
-                        @if ($imagenAlbum)
-
-                        @else
-                            <div>
-                                <label for="imagenAlbum">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-40 w-40 border-2 border-white"
-                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                                    </svg>
-                                </label>
-                                <input type="file" wire:model="imagenAlbum" id="imagenAlbum" class="hidden" />
-                            </div>
-                        @endif
-                    </div>
-                </div>
-            </div>
-            <div class="mt-5"><span>¿No sabes cual/es albumes destacar?
-                    No te preocupes, si omites este paso más adelante
-                    podrás agregar albumes a tus artistas.</span>
-            </div>
-        </div>
-    </div>
     <!-- Redes sociales -->
-    <div class=" col-span-8 align-content-center">
+    <div class=" col-span-8 align-content-center ">
         <div class="bg-black bg-opacity-20 px-2 py-1 mt-5 text-center">
             <span class="top-5 mb-3 text-4xl font-bold">Redes sociales del artista</span>
 
-        </div><br>
+        </div>
 
         <div class="flex justify-center py-2 gap-16">
             <span class="top-5 mb-3 text-2xl font-bold mt-2">Instagram</span>
             <div class="flex flex-col">
                 <input type="text" wire:model="instagram" placeholder="Pega la URL del perfil del artista de instagram"
-                    class="bg-white h-14 px-5 w-96 focus:outline-none rounded-full text-black">
+                    class="bg-white h-14 px-5 w-96 pr-2 focus:outline-none rounded-full text-black">
                 @error('instagram')
                     <span class="block">{{ $message }}</span>
                 @enderror
@@ -179,7 +144,7 @@
             <span class="top-5 mb-3 text-2xl font-bold mt-2">Facebook</span>
             <div class="flex flex-col">
                 <input type="text" wire:model="facebook" placeholder="Pega la URL del perfil del artista de facebook"
-                class="bg-white h-14 px-5 pr-2 w-96 focus:outline-none rounded-full text-black">
+                    class="bg-white h-14 px-5 pr-2 w-96 focus:outline-none rounded-full text-black">
                 @error('facebook')
                     <span class="block">{{ $message }}</span>
                 @enderror
@@ -190,9 +155,9 @@
             <span class="top-5 mb-3 text-2xl font-bold mt-2">Twitter</span>
             <div class="flex flex-col">
                 <input type="text" wire:model="twitter" placeholder="Pega la URL del perfil del artista de twiter"
-                class="bg-white h-14 px-5 pr-2 w-96 focus:outline-none rounded-full text-black">
+                    class="bg-white h-14 px-5 pr-2 w-96 focus:outline-none rounded-full text-black">
                 @error('twitter')
-                <span class="block">{{ $message }}</span>
+                    <span class="block">{{ $message }}</span>
                 @enderror
             </div>
         </div>
@@ -206,14 +171,24 @@
 
         <div class="flex justify-center py-2 gap-16 mt-5">
             <span class="top-5 mb-3 text-2xl font-bold mt-2">Spotify</span>
-            <input type="text" name="face" placeholder="Pega la URL del perfil del artista de spotify"
+            <div class="flex flex-col">
+                <input type="text" wire:model="spotify" placeholder="Pega la URL del perfil del artista de spotify"
                 class="bg-white h-14 px-5 pr-2 w-96 focus:outline-none rounded-full text-black">
+                @error('spotify')
+                    <span class="block">{{ $message }}</span>
+                @enderror
+            </div>
         </div>
 
         <div class="flex justify-center py-2 gap-16 mt-5">
             <span class="top-5 mb-3 text-2xl font-bold mt-2">Youtube</span>
-            <input type="text" name="face" placeholder="Pega la URL del perfil del artista de youtube"
+            <div class="flex flex-col">
+                <input type="text" wire:model="youtube" placeholder="Pega la URL del perfil del artista de youtube"
                 class="bg-white h-14 px-5 pr-2 w-96 focus:outline-none rounded-full text-black">
+                @error('youtube')
+                    <span class="block">{{ $message }}</span>
+                @enderror
+            </div>
         </div>
 
     </div>
@@ -243,7 +218,7 @@
             cancelButtonColor: '#d33',
             confirmButtonText: 'Solicitar permiso',
         }).then((result) => {
-            if(result.isConfirmed) {
+            if (result.isConfirmed) {
                 Livewire.emit('agregarArtista');
 
                 Swal.fire({
@@ -260,22 +235,34 @@
     });
 
     $("#agregarArtistaBtn").on("click", function() {
-       
+
     });
 
     function formNuevoIntegrante() {
         return {
-            abrir() { this.show = true},
-            cerrar() { this.show = false},
-            estaAbierto() { return this.show === true },
+            abrir() {   
+                this.show = true  
+            },
+            cerrar() {
+                this.show = false
+            },
+            estaAbierto() {
+                return this.show === true
+            },
         }
     }
 
     function formNuevoAlbum() {
         return {
-            abrir() { this.show = true},
-            cerrar() { this.show = false},
-            estaAbierto() { return this.show === true },
+            abrir() {
+                this.show = true
+            },
+            cerrar() {
+                this.show = false
+            },
+            estaAbierto() {
+                return this.show === true
+            },
         }
     }
 
@@ -291,5 +278,4 @@
     window.onload = function() {
         initializeSwiper();
     }
-
 </script>

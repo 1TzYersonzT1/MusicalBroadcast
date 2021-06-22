@@ -1,5 +1,6 @@
 @section('banner')
-    <div class="bg-cover bg-no-repeat" style="background-image: url('https://mexico-grlk5lagedl.stackpathdns.com/production/mexico/images/1547572747299933-Carlos-Maycotte.jpg?w=1920&h=800&fit=crop&crop=focalpoint&auto=%5B%22format%22%2C%20%22compress%22%5D&cs=srgb')">
+    <div class="bg-cover bg-no-repeat"
+        style="background-image: url('https://mexico-grlk5lagedl.stackpathdns.com/production/mexico/images/1547572747299933-Carlos-Maycotte.jpg?w=1920&h=800&fit=crop&crop=focalpoint&auto=%5B%22format%22%2C%20%22compress%22%5D&cs=srgb')">
         <div class="flex lg:flex-row justify-around flex-col py-6 h-full ">
             <div class="text-white px-10 py-10 text-center">
                 <div class=" h-60 lg:w-60 flex-none bg-cover rounded-full lg:rounded-t-full lg:rounded-1 text-center overflow-hidden"
@@ -15,56 +16,61 @@
                     @if ($artistaActual->tipo_artista == 0)
                         Banda
                     @endif
-                    
+
                 </div>
             </div>
         </div>
     </div>
 @endsection
-    
+
 <div>
     <div class="grid lg:grid-cols-8 gap-5 text-white py-4 flex-col">
-    
+
         <div class=" col-span-6">
-                    <div class="bg-black bg-opacity-20 px-2 py-1 ">
-                        <span class="top-5 mb-3 text-4xl font-bold">Discografia</span>
-                        @foreach ($artistaActual->integrantes as $integrante)
-                            <span>{{ $integrante->nombre }}</span>
-                            @foreach($integrante->instrumentos as $instrumento)
-                                {{ $instrumento }}
-                            @endforeach
-                        @endforeach
-                    </div><br>
-                    <div class="swiper-container swiperDiscografia">
-                        <div class="swiper-wrapper ">
-                            @foreach($artistaActual->albumes as $album)
-                            <div class="swiper-slide w-40 text-center">
-                                <div class=" h-40 lg:w-40 w-80 flex-none bg-cover rounded-full lg:rounded-t-full lg:rounded-1 text-center overflow-hidden"
-                                    style="background-image: url('https://tailwindcss.com/img/card-left.jpg')"
-                                    title="Woman holding a mug">
-                                </div>  
-                                {{ $album->ALB_Nombre }}
+            <div class="bg-black bg-opacity-20 px-2 py-1 ">
+                <span class="top-5 mb-3 text-4xl font-bold">Discografia</span>
+                
+            </div><br>
+            @if (count($artistaActual->albumes) > 0)
+            <div class="swiper-container swiperDiscografia">
+                <div class="swiper-wrapper ">
+                    @foreach ($artistaActual->albumes as $album)
+                        <div class="swiper-slide w-40 text-center">
+                            <div class=" h-40 lg:w-40 w-80 flex-none bg-cover rounded-full lg:rounded-t-full lg:rounded-1 text-center overflow-hidden"
+                                style="background-image: url('https://tailwindcss.com/img/card-left.jpg')"
+                                title="Woman holding a mug">
                             </div>
-                            @endforeach     
-                        </div><br><br>
-                        <div class="swiper-pagination"></div>
-                    </div>       
+                            {{ $album->ALB_Nombre }}
+                        </div>
+                    @endforeach
+                </div><br><br>
+                <div class="swiper-pagination"></div>
+            </div>
+            @else
+            <div>
+                <span class="top-5 mb-3 text-2xl font-bold">Proximamente..</span>
+            </div>
+            @endif
         </div>
 
-        <div class="lg:col-span-2 "> 
+        <div class="lg:col-span-2 ">
             <div class="bg-black bg-opacity-20 px-2 py-1">
                 <div class="text-4xl font-bold ">
                     <span class="text-white">Musica</span>
                 </div>
-            </div> 
-            <div ><br>
-                <div class="grid grid-cols-8 gap-5 text-white py-4">
-                    <iframe src="https://open.spotify.com/follow/1/?uri=spotify:artist:4zig82wPnO2yb43Lx4x8s6?si=RaGP9uHPTDu-UBlrrVzSNQ&dl_branch=1&size=detail&theme=dark&show-count=0" width="300" height="56" scrolling="no" frameborder="0" style="border:none; overflow:hidden;" allowtransparency="true"></iframe>
-                </div><br>
-                <div class="g-ytsubscribe" data-channelid="UCpLP_h0sHPynXomznPGto2g" data-layout="full" data-theme="dark" data-count="hidden">                
-                </div>  
             </div>
-                    
+            <div><br>
+                <div class="grid grid-cols-8 gap-5 text-white py-4">
+                    <iframe
+                        src="https://open.spotify.com/follow/1/?uri=spotify:artist:{{ $artistaActual->spotify }}&size=detail&theme=dark&show-count=0"
+                        width="300" height="56" scrolling="no" frameborder="0" style="border:none; overflow:hidden;"
+                        allowtransparency="true"></iframe>
+                </div><br>
+                <div class="g-ytsubscribe" data-channelid="{{ $artistaActual->youtube }}" data-layout="full"
+                    data-theme="dark" data-count="hidden">
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -72,64 +78,90 @@
         <div class=" lg:col-span-6">
             <div class="bg-black bg-opacity-20 px-2 py-1 ">
                 <span class="top-5 mb-3 text-4xl font-bold">Biografia</span>
-                
+
             </div><br>
-            <div >
+            <div>
                 {{ $artistaActual->biografia }}
             </div>
-            
+
         </div>
-        <div class="lg:col-span-2"> 
+        
+        <div class="lg:col-span-2">
             <div class="bg-black bg-opacity-20 px-2 py-1">
                 <div class="text-4xl font-bold">
                     <span class="text-white">Proximo Evento</span>
                 </div>
-            </div> 
-            <div ><br>
+            </div>
+            <div><br>
                 {{ $artistaActual->evento }}
             </div>
-                    
+
         </div>
     </div>
 
+    @if (count($artistaActual->integrantes) > 0)
+    <div class=" col-span-6 text-white">
+        <div class="bg-black bg-opacity-20 px-2 py-1 ">
+            <span class="top-5 mb-3 text-4xl font-bold">Integrantes</span>
+        </div>
+        <div class="swiper-container swiperDiscografia">
+            <div class="swiper-wrapper ">
+                @foreach ($artistaActual->integrantes as $integrante)
+                    <div class="swiper-slide w-40 text-center">
+                        <div class=" h-40 lg:w-40 w-80 flex-none bg-cover rounded-full lg:rounded-t-full lg:rounded-1 text-center overflow-hidden"
+                            style="background-image: url('https://tailwindcss.com/img/card-left.jpg')"
+                            title="Woman holding a mug">
+                        </div>
+                        <span>{{ $integrante->nombre }}</span>
+                    </div>
+                @endforeach
+            </div><br><br>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+    @endif
 
+    
     <div class="py-2" style="float:left">
+        
         <a href="https://www.facebook.com{{ $artistaActual->facebook }}">
-        <div style="float:left">
-            <img src="/face.png" width="40" height="40" > 
-        </div>         
+            <div style="float:left">
+                <img src="/face.png" width="40" height="40">
+            </div>
         </a>
+        
         <a href="https://www.instagram.com{{ $artistaActual->instagram }}">
-        <div style="float:left">
-            <img src="/insta.png" width="40" height="40">
-        </div>                 
+            <div style="float:left">
+                <img src="/insta.png" width="40" height="40">
+            </div>
         </a>
         <a href="https://twitter.com/{{ $artistaActual->twitter }}">
-        <div style="float:left">
-            <img src="/twiter.png" width="40" height="40">
-        </div>
+            <div style="float:left">
+                <img src="/twiter.png" width="40" height="40">
+            </div>
         </a>
-    </div>  
-    
+    </div>
+
 </div>
 
 <script src="https://apis.google.com/js/platform.js"></script>
 
 <script>
-      var swiper = new Swiper(".swiperDiscografia", {
+    var swiper = new Swiper(".swiperDiscografia", {
         effect: "coverflow",
         grabCursor: true,
         centeredSlides: true,
         slidesPerView: "auto",
         coverflowEffect: {
-          rotate: 50,
-          stretch: 0,
-          depth: 100,
-          modifier: 1,
-          slideShadows: true,
+            rotate: 50,
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows: true,
         },
         pagination: {
-          el: ".swiper-pagination",
+            el: ".swiper-pagination",
         },
-      });
-    </script>
+    });
+    
+</script>
