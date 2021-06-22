@@ -157,6 +157,7 @@
             </div>
         </div>
     </div>
+    
     <!-- Redes sociales -->
     <div class=" col-span-8 align-content-center">
         <div class="bg-black bg-opacity-20 px-2 py-1 mt-5 text-center">
