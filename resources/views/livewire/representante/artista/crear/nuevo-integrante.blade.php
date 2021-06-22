@@ -20,8 +20,9 @@
             @endforeach
         </div>
 
-        <div x-data="formNuevoIntegrante()"
-            class="relative h-32 w-32 bg-cover rounded-full lg:rounded-t-full lg:rounded-1">
+
+        <div x-data="formNuevoIntegrante()" @click.away='cerrar()' class="relative h-32 w-32 bg-cover rounded-full lg:rounded-t-full lg:rounded-1">
+
             <div>
                 <button @click="abrir()">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-32 w-32 hover:text-green-400 cursor-pointer"
