@@ -229,6 +229,10 @@
                     timer: 6000,
                     showConfirmButton: true,
                     confirmButtonText: 'Ok'
+                }).then((result) => {
+                    if(result.isConfirmed) {
+                        location.href = location.href;
+                    }
                 });
             }
         });

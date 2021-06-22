@@ -26,9 +26,9 @@
                             </div>
 
                             <div> 
-                                <button class="bg-green-500 py-1 px-2">Aprobar</button>
+                                <button wire:click="validarAprobarArtista('{{ $artistaPendiente->artista->id }}')" class="bg-green-500 py-1 px-2">Aprobar</button>
                                 <button class="bg-yellow-500 py-1 px-2">Agregar observación</button>
-                                <button class="bg-red-500 py-1 px-2">Rechazar</button>
+                                <button wire:click="validarEliminarArtista('{{ $artistaPendiente->artista->id }}')" class="bg-red-500 py-1 px-2">Rechazar</button>
                             </div>
                         </div>
 
@@ -75,6 +75,69 @@
 </div>
 
 <script>
+
+    window.addEventListener('validarAprobarArtista', function() {
+        Swal.fire({
+            title: '¿Está seguro?',
+            text: `Esta a punto de aprobar la solicitud, por lo que el artista
+            se podrá visualizar en la página.`,
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Cancelar',
+            confirmButtonText: 'Si, aprobar'
+        }).then((result) => {
+            if(result.isConfirmed) {
+                Livewire.emit('confirmarAgregarArtista');
+
+                Swal.fire({
+                    title: 'Exito',
+                    text: `Se ha aprobado la solicitud`,
+                    icon: 'success',
+                    timer: 3000,
+                }).then((result) => {
+                    if(!result.isVisible) {
+                        location.href = location.href;
+                    }
+                })
+            }
+        });
+    });
+
+    window.addEventListener('validarEliminarArtista', function() {
+        Swal.fire({
+            title: '¿Está seguro?',
+            text: `Esta a punto de rechazar la solicitud, por lo que el artista
+            no será almacenado y la información se perderá.`,
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Cancelar',
+            confirmButtonText: 'Si, rechazar'
+        }).then((result) => {
+            if(result.isConfirmed) {
+                Livewire.emit('confirmarEliminarArtista');
+
+                Swal.fire({
+                    title: 'Exito',
+                    text: `Se ha rechazado la solicitud`,
+                    icon: 'success',
+                    timer: 3000,
+                }).then((result) => {
+                    if(!result.isVisible) {
+                        location.href = location.href;
+                    }
+                })
+            }
+        });
+    });
+
+    window.addEventListener("prueba", (event) => {
+        console.log(event.detail.test);
+    })
+
     var swiper = new Swiper('.swiperIntegrantes', {
         slidesPerView: 3,
         spaceBetween: 30,
