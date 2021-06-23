@@ -12,7 +12,7 @@ use DateTime;
 class Evento extends Component
 {
 
-    public $evento, $indexSeleccionado, $observacion_pospuesto, $fecha, $hora;
+    public $evento, $indexSeleccionado, $observacion_pospuesto, $observacion_cancelado, $fecha, $hora;
 
     protected $listeners = [
         'eliminarArtistaConfirmado',
@@ -52,7 +52,12 @@ class Evento extends Component
         }
     }
 
-    public function eliminar($index)
+    public function cancelarEvento() {
+        $this->validate();
+    }
+
+
+    public function eliminarArtista($index)
     {
         $this->indexSeleccionado = $index;
         $this->dispatchBrowserEvent("eliminarArtistaEvento");

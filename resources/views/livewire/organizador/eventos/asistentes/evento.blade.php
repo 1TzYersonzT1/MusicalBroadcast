@@ -73,7 +73,7 @@
                         </div>
                     </div>
 
-                    <button data-fancybox data-src="#cancelarTallerForm" class="mt-4 bg-white text-primary px-5 py-2">
+                    <button id="cancelarTallerForm" class="mt-4 bg-white text-primary px-5 py-2">
                         Cancelar
                     </button>
                     <div id="cancelarTallerForm" class="hidden bg-white lg:w-96 w-80">
@@ -98,8 +98,6 @@
                                     Cancelar taller
                                 </button>
                             </form>
-
-
                         </div>
                     </div>
                 </div>
@@ -138,7 +136,7 @@
                             <td class="px-4 py-2">{{ $artista->representante->email }}</td>
                             <td class="px-4 py-2">{{ $artista->representante->telefono }}</td>
                             <td class="px-4 py-2">
-                                <button wire:click="eliminar('{{ $index }}')">
+                                <button wire:click="eliminarArtista('{{ $index }}')">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hover:text-red-400"
                                         fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

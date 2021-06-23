@@ -34,8 +34,9 @@
                 </button>
             </div>
 
-        
-            <div x-show.transition.out="estaAbierto()" class="bg-white w-96 absolute top-0 lg:left-40 -left-36 p-4 text-primary">
+
+            <div x-show.transition.out="estaAbierto()"
+                class="bg-white w-96 absolute top-0 lg:left-40 -left-36 p-4 text-primary">
                 <div class="flex justify-between items-center">
                     <span class="font-bold text-2xl block text-center mb-5">Agregar integrante.</span>
                     <svg @click="cerrar()" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
@@ -113,24 +114,37 @@
                     @enderror
                 </div>
 
-
-           
-
-                <livewire:representante.artista.crear.integrantes.instrumentos />
-
-                <!--<div class="swiper-container swiperInstrumentos">
-                    <div class="swiper-wrapper ">
-
-
+                <div class="flex flex-col items-center">
+                    <div class="lg:col-span-2 gap-5 lg:flex flex-col justify-center py-2">
+                        <span class="block text-2xl font-bold text-center">Instrumentos</span>
+                        @error('instrumentosSeleccionados')
+                            <span class="text-red-400">{{ $message }}</span>
+                        @enderror
                     </div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div><br><br>
-                    <div class="swiper-pagination"></div>
-                </div>-->
+
+                    <div class="flex flex-wrap w-96 my-3">
+                        @foreach ($instrumentos as $index => $instrumento)
+                            <div class="flex flex-col mx-5 my-2 items-center">
+                                <div class="flex items-center mb-2 instrumento">
+                                    <input type="checkbox" value="{{ $instrumento->id }}"
+                                        wire:model="instrumentosSeleccionados.{{ $index }}"
+                                        class="opacity-0 absolute w-10 h-10 rounded-full" />
+                                    <div
+                                        class="bg-trasparent w-10 h-10 flex flex-shrink-0 justify-center items-center focus-within:bg-green-400">
+                                        <img src="{{ $instrumento->imagen }}" />
+                                    </div>
+                                </div>
+                                <span>{{ $instrumento->INST_Nombre }}</span>
+                            </div>
+                        @endforeach
+                    </div>
+                  
+
+                </div>
 
                 <button wire:click="agregarIntegrante" class="py-1 px-5 bg-primary text-white">Agregar</button>
             </div>
-      
+
         </div>
     </div>
 </div>

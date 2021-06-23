@@ -122,8 +122,7 @@
     @endif
 
     
-    <div class="py-2" style="float:left">
-        
+    <div class="py-2" style="float:left">   
         <a href="https://www.facebook.com{{ $artistaActual->facebook }}">
             <div style="float:left">
                 <img src="/face.png" width="40" height="40">

@@ -7,6 +7,7 @@ use App\Models\Genero;
 use App\Models\Estilo;
 use App\Models\Album;
 use App\Models\Artista;
+use App\Models\Integrante;
 use App\Models\SolicitudArtista;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -115,6 +116,9 @@ class CrearArtista extends Component
 
         foreach ($this->integrantes as $integrante) {
             $integrante["artista_id"] = $artista->id;
+            $instrumentos = array_pop($integrante);
+            $nuevoIntegrante = Integrante::create($integrante);
+            $nuevoIntegrante->instrumentos()->syncWithoutDetaching($instrumentos);
         }
 
         foreach ($this->albumes as $album) {
@@ -129,7 +133,8 @@ class CrearArtista extends Component
 
 
         $artista->estilos()->sync($this->estilosSeleccionados);
-        $artista->integrantes()->createMany($this->integrantes);
+
+        $this->estilosSeleccionados = [];
     }
 
     public function eliminarImagenArtista()

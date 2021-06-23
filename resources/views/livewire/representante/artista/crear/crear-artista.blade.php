@@ -256,20 +256,18 @@
         });
     });
 
-    $("#agregarArtistaBtn").on("click", function() {
-
-    });
 
     function formularios() {
         return {
             abrir() {
-                this.show = true
+                this.show = true;
+             
             },
             cerrar() {
-                this.show = false
+                this.show = false;
             },
             estaAbierto() {
-                return this.show === true
+               return this.show ===true;
             },
         }
     }
@@ -287,8 +285,5 @@
 
     window.onload = function() {
         initializeSwiper();
-        let swiper2 = new Swiper('.swiperInstrumentos', {
-            slidesPerView: 1,
-        });
     }
 </script>
