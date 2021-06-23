@@ -20,9 +20,9 @@
             @endforeach
         </div>
 
-
         <div x-data="formularios()" @click.away='cerrar()'
             class="relative h-32 w-32 bg-cover rounded-full lg:rounded-t-full lg:rounded-1">
+
 
             <div>
                 <button @click="abrir()">
@@ -149,7 +149,6 @@
     </div>
 </div>
 
-
 <script>
     var swiper = new Swiper(".swiperInstrumentos", {
         slidesPerView: 4,
@@ -167,3 +166,4 @@
         },
     });
 </script>
+
