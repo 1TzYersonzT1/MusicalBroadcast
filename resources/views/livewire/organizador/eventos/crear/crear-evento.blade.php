@@ -88,9 +88,7 @@
     </div>
 </div>
 
-
 <script>
-
     window.addEventListener("nuevoEvento", () => {
         Swal.fire({
             title: 'Exito',
@@ -104,5 +102,4 @@
             }
         });
     });
-
 </script>

@@ -18,7 +18,7 @@ class Artista extends Model
         return $this->belongsToMany(Estilo::class, 'artista_estilo', 'artista_id', 'estilo_id');
     }
 
-    public function evento() {
+    public function eventos() {
         return $this->belongsToMany(Evento::class, "artista_evento", "artista_id", "evento_id");
     }
 
