@@ -20,7 +20,6 @@
             @endforeach
         </div>
 
-
         <div x-data="formNuevoIntegrante()" @click.away='cerrar()' class="relative h-32 w-32 bg-cover rounded-full lg:rounded-t-full lg:rounded-1">
 
             <div>
@@ -102,8 +101,6 @@
 
                 <!--<div class="swiper-container swiperInstrumentos">
                     <div class="swiper-wrapper ">
-
-
                     </div>
                     <div class="swiper-button-next"></div>
                     <div class="swiper-button-prev"></div><br><br>
@@ -115,7 +112,6 @@
         </div>
     </div>
 </div>
-
 
 <script>
     var swiper = new Swiper(".swiperInstrumentos", {

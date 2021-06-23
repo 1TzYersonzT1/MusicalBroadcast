@@ -120,7 +120,7 @@
     <!-- Integrantes -->
     
     <livewire:representante.artista.crear.nuevo-integrante :nombreArtista="$nombreArtista" />
-|   
+   
 
     <!-- Redes sociales -->
     <div class=" col-span-8 align-content-center ">
@@ -283,3 +283,5 @@
         initializeSwiper();
     }
 </script>
+
+

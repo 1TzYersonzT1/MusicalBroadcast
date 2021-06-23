@@ -56,7 +56,6 @@
                 agregar a <strong>{{ $artista->ART_Nombre }}</strong> como artista
                 ha sido <strong>aprobada</strong>
             </p>
-
             <a href="{{ route('artista.show', $artista->id) }}">Ver perfil</a>
         </div>
     </div>
