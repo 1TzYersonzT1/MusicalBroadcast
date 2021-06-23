@@ -23,8 +23,7 @@
                         <div class="flex mb-3">
                             <div class="flex flex-col mt-3">
                                 <span class="font-bold">Fecha</span>
-                                <input type="date" wire:model="fecha"
-                                    class="bg-primary text-white p-0 mr-5 mt-1" />
+                                <input type="date" wire:model="fecha" class="bg-primary text-white p-0 mr-5 mt-1" />
                             </div>
                             <div class="flex flex-col mt-3">
                                 <span class="font-bold">Hora</span>
@@ -65,34 +64,56 @@
                     </div>
             </div>
 
-            <div class="w-80">  
-                    <div class="flex justify-between mb-3 items-center"> 
-                        <span>Imagen</span>
-                        <div wire:loading wire:target="imagen" 
-                        class="bg-blue-100 text-blue-700 px-4" role="alert">
-                            <p class="font-bold  py-1">Cargando imagen</p>
-                        </div>
+            <div class="w-80">
+                <div class="flex justify-between mb-3 items-center">
+                    <span>Imagen</span>
+                    <div wire:loading wire:target="imagen" class="bg-blue-100 text-blue-700 px-4" role="alert">
+                        <p class="font-bold  py-1">Cargando imagen</p>
                     </div>
-            
-                    @if ($imagen )
-                    <div class="mt-3"> 
-                        <img src="{{ $imagen->temporaryUrl() }}" class="w-80 h-48 border-2">
-                       
-                        <div class="flex justify-between">
-                            <span>{{ $imagen->getClientOriginalName() }}</span>
-                            <svg wire:click="eliminarImagen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </div>
+
+                @error('imagen')
+                    <div>
+                        <label for="imagen-taller">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                class="h-48 w-80 border-2 border-light-blue-500 border-opacity-100" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                             </svg>
-                         </div>
+                        </label>
+                        <input type="file" wire:model="imagen" id="imagen-taller" class="hidden" wire:ignore />
                     </div>
-                    @else 
-                    <label for="imagen-taller">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-48 w-80 border-2 border-light-blue-500 border-opacity-100" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                      </svg>
-                    </label>
-                    <input type="file" wire:model="imagen" id="imagen-taller" class="hidden" wire:ignore />
+                @else
+                    @if ($imagen)
+                        <div class="mt-3">
+                            <img src="{{ $imagen->temporaryUrl() }}" class="w-80 h-48 border-2">
+
+                            <div class="flex justify-between">
+                                <span>{{ $imagen->getClientOriginalName() }}</span>
+                                <svg wire:click="eliminarImagen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"
+                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </div>
+                        </div>
                     @endif
+                    <div>
+                        <label for="imagen-taller">
+                            <svg xmlns="http://www.w3.org/2000/svg"
+                                class="h-48 w-80 border-2 border-light-blue-500 border-opacity-100" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                            </svg>
+                        </label>
+                        <input type="file" wire:model="imagen" id="imagen-taller" class="hidden" wire:ignore />
+                    </div>
+                @enderror
+
+
+
             </div>
 
             <div class="grid lg:grid-cols-2 lg:grid-rows-2 lg:mt-0 mt-5 ml-5">
@@ -130,5 +151,4 @@
             }
         });
     });
-
 </script>

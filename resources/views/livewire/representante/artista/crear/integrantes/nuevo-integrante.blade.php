@@ -21,7 +21,8 @@
         </div>
 
 
-        <div x-data="formNuevoIntegrante()" @click.away='cerrar()' class="relative h-32 w-32 bg-cover rounded-full lg:rounded-t-full lg:rounded-1">
+        <div x-data="formularios()" @click.away='cerrar()'
+            class="relative h-32 w-32 bg-cover rounded-full lg:rounded-t-full lg:rounded-1">
 
             <div>
                 <button @click="abrir()">
@@ -33,7 +34,8 @@
                 </button>
             </div>
 
-            <div x-show.transition.out="estaAbierto()" class="bg-white absolute top-0 left-40 p-4 text-primary w-96">
+        
+            <div x-show.transition.out="estaAbierto()" class="bg-white w-96 absolute top-0 lg:left-40 -left-36 p-4 text-primary">
                 <div class="flex justify-between items-center">
                     <span class="font-bold text-2xl block text-center mb-5">Agregar integrante.</span>
                     <svg @click="cerrar()" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
@@ -46,16 +48,7 @@
                 <div class="mb-5">
                     <label>Foto de perfil.</label>
 
-                    @if ($imagenIntegrante)
-                        <div class="flex mt-4">
-                            <img src="{{ $imagenIntegrante->temporaryUrl() }}" class="h-32 w-32 rounded-full" />
-                            <svg wire:click="eliminarImagenIntegrante" xmlns="http://www.w3.org/2000/svg"
-                                class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </div>
-                    @else
+                    @error('imagenIntegrante')
                         <label for="imagenIntegrante">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-32 w-32 border-2" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">
@@ -67,7 +60,32 @@
                         @error('imagenIntegrante')
                             <span class="text-red-600">{{ $message }}</span>
                         @enderror
-                    @endif
+                    @else
+                        @if ($imagenIntegrante)
+                            <div class="flex mt-4">
+                                <img src="{{ $imagenIntegrante->temporaryUrl() }}" class="h-32 w-32 rounded-full" />
+                                <svg wire:click="eliminarImagenIntegrante" xmlns="http://www.w3.org/2000/svg"
+                                    class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </div>
+                        @else
+                            <label for="imagenIntegrante">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-32 w-32 border-2" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
+                                        d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </label>
+                            <input type="file" wire:model="imagenIntegrante" id="imagenIntegrante" class="hidden" />
+                            @error('imagenIntegrante')
+                                <span class="text-red-600">{{ $message }}</span>
+                            @enderror
+                        @endif
+                    @enderror
+
+
                 </div>
 
                 <div class="mb-5 flex flex-col">
@@ -96,9 +114,9 @@
                 </div>
 
 
-                <div class="lg:col-span-2  gap-5 lg:flex  justify-center py-2">
-                    <span class="text-2xl font-bold text-center">Instrumentos</span>
-                </div>
+           
+
+                <livewire:representante.artista.crear.integrantes.instrumentos />
 
                 <!--<div class="swiper-container swiperInstrumentos">
                     <div class="swiper-wrapper ">
@@ -112,6 +130,7 @@
 
                 <button wire:click="agregarIntegrante" class="py-1 px-5 bg-primary text-white">Agregar</button>
             </div>
+      
         </div>
     </div>
 </div>
@@ -133,5 +152,4 @@
             prevEl: ".swiper-button-prev",
         },
     });
-
 </script>

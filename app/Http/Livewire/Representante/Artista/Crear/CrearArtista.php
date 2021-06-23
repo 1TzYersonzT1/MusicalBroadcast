@@ -5,10 +5,9 @@ namespace App\Http\Livewire\Representante\Artista\Crear;
 
 use App\Models\Genero;
 use App\Models\Estilo;
+use App\Models\Album;
 use App\Models\Artista;
 use App\Models\SolicitudArtista;
-use Exception;
-use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -18,18 +17,19 @@ class CrearArtista extends Component
     use WithFileUploads;
 
     public $nombreArtista, $imagenArtista, $tipoArtista, $instagram, $facebook, $twitter, $spotify, $youtube;
-    public $generos, $integrantes;
+    public $generos, $integrantes = [];
     public $estilos = [], $estilosSeleccionados = [];
     public $albumes = [];
     
-
     protected $rules = [
         'nombreArtista' => 'required|string|min:2|max:30',
         'tipoArtista' => 'required',
         'imagenArtista' => 'required|image',
+        'estilosSeleccionados' => 'required',
     ];
 
     protected $messages = [
+        'estilosSeleccionados.required' => 'Debe seleccionar al menos un estilo que represente al artista.',
         'instagram.regex' => 'La URL ingresada no corresponde al sitio web de instagram.',
         'facebook.regex' => 'La URL ingresada no corresponde al sitio web de facebook.',
         'twitter.regex' => 'La URL ingresada no corresponde al sitio web de twitter.',
@@ -39,14 +39,20 @@ class CrearArtista extends Component
 
     protected $listeners = [
         'updatedEstilo',
+        'updatedAlbumes',
         'updatedIntegrantes',
         'agregarArtista',
-        
     ];
 
     public function mount()
     {
         $this->generos = Genero::all();
+    }
+
+    public function updatedNombreArtista($value)
+    {
+        $this->emitTo("representante.artista.crear.album.album", 'updatedNombreArtista', $value);
+        $this->emitTo("representante.artista.crear.nuevo-integrante", 'updatedNombreArtista', $value);
     }
 
     public function updatedEstilo(array $estilos)
@@ -65,6 +71,11 @@ class CrearArtista extends Component
         }
     }
 
+    public function updatedAlbumes(array $albumes)
+    {
+        $this->albumes = $albumes;
+    }
+
     public function updatedIntegrantes(array $integrantes)
     {
         $this->integrantes = $integrantes;
@@ -72,14 +83,14 @@ class CrearArtista extends Component
 
     public function validarAgregarArtista()
     {
-        //$this->validate();
+        $this->validate();
         $this->limpiarURL();
         $this->dispatchBrowserEvent('solicitudAgregarArtista');
     }
 
     public function agregarArtista()
     {
-        /*$imagen = $this->imagenArtista->store("representantes/" . auth()->user()->rut . "/artistas/" . $this->nombreArtista);
+        $imagen = $this->imagenArtista->store("representantes/" . auth()->user()->rut . "/artistas/" . $this->nombreArtista);
 
         $artista = Artista::create([
             'ART_Nombre' => $this->nombreArtista,
@@ -101,12 +112,24 @@ class CrearArtista extends Component
             'estado' => 1,
         ]);
 
+
         foreach ($this->integrantes as $integrante) {
             $integrante["artista_id"] = $artista->id;
         }
 
+        foreach ($this->albumes as $album) {
+            $album["artista_id"] = $artista->id;
+            $canciones = array_pop($album);
+            $nuevoAlbum = Album::create($album);
+            foreach ($canciones as $cancion) {
+                $cancion["album_id"] = $nuevoAlbum->id;
+            }
+            $nuevoAlbum->canciones()->createMany($canciones);
+        }
+
+
         $artista->estilos()->sync($this->estilosSeleccionados);
-        $artista->integrantes()->createMany($this->integrantes);*/
+        $artista->integrantes()->createMany($this->integrantes);
     }
 
     public function eliminarImagenArtista()

@@ -31265,6 +31265,11 @@ select{
   background-color: rgba(239, 68, 68, var(--tw-bg-opacity));
 }
 
+.instrumento > input:checked + div{
+  --tw-bg-opacity: 1;
+  background-color: rgba(248, 113, 113, var(--tw-bg-opacity));
+}
+
 input:checked+div svg {
   display: block;
 }

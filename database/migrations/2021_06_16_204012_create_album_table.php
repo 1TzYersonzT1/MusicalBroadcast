@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateAlbumTable extends Migration
 {
+    
     /**
      * Run the migrations.
      *
@@ -19,7 +20,7 @@ class CreateAlbumTable extends Migration
             $table->string("ALB_Nombre", 30);
             $table->integer("ALB_CantCanciones");
             $table->date("ALB_FechaLanzamiento");
-            $table->string("imagen", 100);
+            $table->string("imagen", 200);
         });
     }
 

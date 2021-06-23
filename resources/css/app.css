@@ -7,6 +7,10 @@
     @apply bg-red-500;
 }
 
+.instrumento > input:checked + div{
+    @apply bg-red-400;
+}
+
 input:checked+div svg {
     @apply block;
 }

@@ -6,7 +6,7 @@
                 <div class=" h-60 lg:w-60 flex-none bg-cover rounded-full lg:rounded-t-full lg:rounded-1 text-center overflow-hidden"
                     style="background-image: url('https://tailwindcss.com/img/card-left.jpg')" title="Woman holding a mug">
                 </div>
-                <div class="mb-4 text-4xl font-bold">
+                <div class="mb-4 text-4xl font-bold shadow-inner">
                     {{ $artistaActual->ART_Nombre }}
                 </div>
                 <div class="py-2">
