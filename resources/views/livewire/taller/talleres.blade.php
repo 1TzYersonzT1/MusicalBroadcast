@@ -4,34 +4,6 @@
             <span class="text-4xl mb-8 block">
                 Talleres disponibles ({{ count($talleres)}})
             </span>
-            <div class="flex">
-                @can('organizar')
-                    <div>
-                        <button class="bg-green-500 px-5 py-1 mb-5 text-white font-bold">
-                            <a href="{{ route('organizador.creartaller') }}">Crear taller</a>
-                        </button>
-                    </div>
-                    <div>
-                        <button class="bg-yellow-500 px-5 py-1 mb-5 text-white font-bold ml-5">
-                            <a href="{{ route('organizador.mis-solicitudes') }}">Estado solicitudes</a>
-                        </button>
-                    </div>
-                    <div>
-                        <button class="bg-purple-500 px-5 py-1 mb-5 text-white font-bold ml-5">
-                            <a href="{{ route('organizador.taller/asistentes') }}">Mis talleres</a>
-                        </button>
-                    </div>
-                @endcan
-
-                @can('administrar')
-                    <div>
-                        <button class="bg-green-500 px-5 py-1 mb-5 text-white font-bold">
-                            <a href="{{ route('administrador.talleres') }}">Administrar talleres</a>
-                        </button>
-                    </div>
-                @endcan
-            </div>
-
             <div>
                 @if (count($talleres) > 0)
                     <div class="swiper-container swiperTalleres mb-5">

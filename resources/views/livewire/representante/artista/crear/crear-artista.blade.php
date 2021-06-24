@@ -113,10 +113,30 @@
                 </div>
             </div>
 
+            <div class="col-span-8 align-content-center">
+                <div class="bg-black bg-opacity-20 px-2 text-center">
+                    <span class="my-3 text-4xl font-bold">Agrega tu Biografia</span>
+                </div>
+                <div class=" text-center">
+
+                    <div class="flex py-2 justify-center my-5 gap-16">
+                        <textarea placeholder="Agrega la bioagrafia del artista" wire:model="biografia" maxlength="2000"
+                            class="border-2 lg:w-96 bg-white h-48 mt-1 mb-1 text-primary"></textarea>
+
+                    </div>
+                    <span class="items-center">{{ $caracteres_biografia }} / 2000</span>
+
+                </div>
+
+            </div>
+
             <!-- Albumes -->
             <livewire:representante.artista.crear.album.album :albumes="$albumes" :nombreArtista="$nombreArtista" />
             <!-- Integrantes -->
-            <livewire:representante.artista.crear.integrantes.nuevo-integrante :nombreArtista="$nombreArtista" />
+            @if (" $tipoArtista"==2)
+                <livewire:representante.artista.crear.integrantes.nuevo-integrante :nombreArtista="$nombreArtista" />
+            @endif
+
 
             <!-- Redes sociales -->
             <div class="col-span-8 align-content-center">
@@ -124,7 +144,7 @@
                     <span class="my-3 text-4xl font-bold">Redes sociales del artista</span>
                 </div>
 
-                <div class="my-5"> 
+                <div class="my-5">
                     <div class="flex justify-center py-2 gap-16">
                         <span class="top-5 mb-3 text-2xl font-bold mt-2">Instagram</span>
                         <div class="flex flex-col">
@@ -136,7 +156,7 @@
                             @enderror
                         </div>
                     </div>
-    
+
                     <div class="flex justify-center py-2 gap-16">
                         <span class="top-5 mb-3 text-2xl font-bold mt-2">Facebook</span>
                         <div class="flex flex-col">
@@ -148,7 +168,7 @@
                             @enderror
                         </div>
                     </div>
-    
+
                     <div class="flex justify-center py-2 gap-20">
                         <span class="top-5 mb-3 text-2xl font-bold mt-2">Twitter</span>
                         <div class="flex flex-col">
@@ -200,7 +220,7 @@
                     <span class="text-2xl">Agregar artista</span>
                 </button>
             </div>
-            
+
             <div class="mt-10 flex justify-center">
                 @if ($errors)
                     @foreach ($errors->all() as $message)
@@ -261,13 +281,13 @@
         return {
             abrir() {
                 this.show = true;
-             
+
             },
             cerrar() {
                 this.show = false;
             },
             estaAbierto() {
-               return this.show ===true;
+                return this.show === true;
             },
         }
     }
@@ -277,7 +297,7 @@
             slidesPerView: 5,
         });
 
-  
+
     }
     window.addEventListener('generoSeleccionado', (event) => {
         initializeSwiper();
@@ -287,5 +307,3 @@
         initializeSwiper();
     }
 </script>
-
-

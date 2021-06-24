@@ -74,7 +74,7 @@
                     <textarea maxlength='255'
                         placeholder="Agregue y envíe una observación al organizador (máximo 255 caracteres)"
                         wire:model='observacion' class="mt-5 resize-none lg:w-96 bg-primary h-40 text-white"></textarea>
-
+                        <span class="text-black">{{ $caracteres_Ataller }} / 255</span>
                     @error('observacion')
                         <script>
                             $.fancybox.close();

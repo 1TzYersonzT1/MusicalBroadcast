@@ -46,11 +46,11 @@
                 <div class="flex flex-col items-center">
                     <span class="text-2xl block border-b-2">Nueva observación</span>
                     <span>{{ $solicitudActual->evento->EVE_Nombre }}</span>
-
+                    
                     <textarea maxlength='255'
                         placeholder="Agregue y envíe una observación al organizador (máximo 255 caracteres)"
                         wire:model='observacion' class="mt-5 resize-none lg:w-96 bg-primary h-40 text-white"></textarea>
-
+                    <span class="text-black">{{ $caracteres_Aevento }} / 255</span>
                     @error('observacion')
                         <script>
                             $.fancybox.close();

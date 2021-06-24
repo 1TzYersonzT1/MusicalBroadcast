@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Storage;
 class EventoPreview extends Component
 {
 
-    public $solicitudActual, $observacion;
+    public $solicitudActual, $observacion, $caracteres_Aevento = 0;
 
     protected $rules = [
         "observacion" => 'required|string|min:10|max:255',
@@ -28,7 +28,9 @@ class EventoPreview extends Component
         $this->solicitudActual = SolicitudEvento::findOrFail($evento["id"]);
         $this->dispatchBrowserEvent("mostrarSolicitudEvento", array("slideActual" => $evento["actual"]));
     }
-
+    public function updatedAEvento() {
+        $this->caracteres_Aevento = strlen($this->observacion);
+    }
 
     public function aprobarEvento()
     {

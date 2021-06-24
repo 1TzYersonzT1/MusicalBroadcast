@@ -17,7 +17,7 @@ class CrearArtista extends Component
 
     use WithFileUploads;
 
-    public $nombreArtista, $imagenArtista, $tipoArtista, $instagram, $facebook, $twitter, $spotify, $youtube;
+    public $nombreArtista, $imagenArtista, $tipoArtista, $instagram, $facebook, $twitter, $spotify, $youtube, $biografia, $caracteres_biografia = 0;
     public $generos, $integrantes = [];
     public $estilos = [], $estilosSeleccionados = [];
     public $albumes = [];
@@ -48,6 +48,10 @@ class CrearArtista extends Component
     public function mount()
     {
         $this->generos = Genero::all();
+    }
+
+    public function updatedBiografia() {
+        $this->caracteres_biografia = strlen($this->biografia);
     }
 
     public function updatedNombreArtista($value)
@@ -95,7 +99,7 @@ class CrearArtista extends Component
 
         $artista = Artista::create([
             'ART_Nombre' => $this->nombreArtista,
-            'biografia' => '',
+            'biografia' => $this->biografia,
             'tipo_artista' => $this->tipoArtista,
             'user_rut' => auth()->user()->rut,
             'imagen' => "storage/" . $imagen,
