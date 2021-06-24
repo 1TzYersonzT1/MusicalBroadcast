@@ -2,9 +2,10 @@
     <div class="bg-cover bg-no-repeat"
         style="background-image: url('https://mexico-grlk5lagedl.stackpathdns.com/production/mexico/images/1547572747299933-Carlos-Maycotte.jpg?w=1920&h=800&fit=crop&crop=focalpoint&auto=%5B%22format%22%2C%20%22compress%22%5D&cs=srgb')">
         <div class="flex lg:flex-row justify-around flex-col py-6 h-full ">
-            <div class="text-white px-10 py-10 text-center">
-                <div class=" h-60 lg:w-60 flex-none bg-cover rounded-full lg:rounded-t-full lg:rounded-1 text-center overflow-hidden" >
-                    <img src="{{asset('storage/'.$artistaActual->imagen) }}" />
+            <div class="text-white px-10 py-10 flex flex-col items-center">
+                <div
+                    class=" h-60 w-60 flex-none bg-cover rounded-full lg:rounded-t-full lg:rounded-1 text-center overflow-hidden">
+                    <img src="{{ asset('storage/' . $artistaActual->imagen) }}" class="h-60 w-60" />
                 </div>
                 <div class="mb-4 text-4xl font-bold shadow-inner">
                     {{ $artistaActual->ART_Nombre }}
@@ -13,10 +14,9 @@
                     @if ($artistaActual->tipo_artista == 1)
                         Solista
                     @endif
-                    @if ($artistaActual->tipo_artista == 0)
+                    @if ($artistaActual->tipo_artista == 2)
                         Banda
                     @endif
-
                 </div>
             </div>
         </div>
@@ -24,9 +24,9 @@
 @endsection
 
 <div>
-    <div class="grid lg:grid-cols-8 gap-5 text-white py-4 lg:flex-col">
+    <div class="grid lg:grid-cols-8 grid-cols-6 gap-5 text-white py-4 lg:flex-col">
 
-        <div class=" lg:col-span-6 justify-between">
+        <div class="lg:col-span-6 col-span-6 justify-between">
             <div class="bg-black bg-opacity-20 px-2 py-1 lg:flex-col">
                 <span class="top-5 mb-3 text-4xl font-bold">Discografia</span>
             </div>
@@ -35,10 +35,8 @@
                     <div class="swiper-wrapper ">
 
                         @foreach ($artistaActual->albumes as $album)
-
-
-                            <div class="swiper-slide  lg:w-96">
-                                <div class="grid lg:grid-cols-2 ">
+                            <div class="swiper-slide lg:w-96">
+                                <div class="grid lg:grid-cols-2 items-center">
                                     <div class="text-center flex flex-col items-center w-full">
                                         <span class="text-white text-2xl">{{ $album->ALB_Nombre }}</span>
                                         <div class="lg:h-40 lg:w-40 w-40 mt-2 h-40 bg-cover rounded-full lg:rounded-t-full lg:rounded-1 text-center "
@@ -48,19 +46,20 @@
                                     </div>
 
 
-                                    <div>
-                                        <div class="swiper-container swipercancion lg:h-60">
-                                            <div class="swiper-wrapper text-center">
 
-                                                <div class="swiper-slide">01.Intro</div>
-
-                                            </div>
-                                            <div class="swiper-scrollbar"></div>
+                                    <div class="swiper-container swipercancion">
+                                        <div class="swiper-wrapper text-center flex items-end">
+                                            <ul>
+                                                @foreach ($album->canciones as $index => $cancion)
+                                                    <li>{{ $index + 1 }}.{{ $cancion->CAN_Nombre }}</li>
+                                                @endforeach
+                                            </ul>
                                         </div>
+                                        <div class="swiper-scrollbar"></div>
                                     </div>
+
                                 </div>
                             </div>
-
                         @endforeach
                     </div><br><br>
                     <div class="swiper-pagination"></div>
@@ -73,27 +72,27 @@
             @endif
         </div>
 
-        <div class="lg:col-span-2 ">
+        <div class="lg:col-span-2 col-span-6">
             <div class="bg-black bg-opacity-20 px-2 py-1 lg:flex-col">
                 <div class="text-4xl font-bold ">
                     <span class="text-white">Musica</span>
                 </div>
             </div>
-            <div>
-                @if ($artistaActual->spotify != '' and $artistaActual->youtube != '')
-                    <div class="grid grid-cols-8 gap-5 text-white py-4 mt-5">
+            <div class="py-5 px-2">
+                @if ($artistaActual->spotify != '' or $artistaActual->youtube != '')
+                    <div class="text-white mb-6">
                         <iframe
                             src="https://open.spotify.com/follow/1/?uri=spotify:artist:{{ $artistaActual->spotify }}&size=detail&theme=dark&show-count=0"
-                            width="300" height="56" scrolling="no" frameborder="0" style="border:none; overflow:hidden;"
-                            allowtransparency="true"></iframe>
+                            width="300" height="56" scrolling="no" frameborder="0" allowtransparency="true"></iframe>
                     </div>
-                    <br>
-                    <div class="g-ytsubscribe" data-channelid="{{ $artistaActual->youtube }}" data-layout="full"
-                        data-theme="dark" data-count="hidden">
+                    <div>
+                        <div class="g-ytsubscribe rounded-full" data-channelid="{{ $artistaActual->youtube }}"
+                            data-layout="full" data-theme="dark" data-count="hidden">
+                        </div>
                     </div>
                 @else
-                    <div class="mt-5">
-                        <span class="mb-3 text-2xl font-bold">Proximamente..</span>
+                    <div class="my-5 px-2">
+                        <span class="text-2xl font-bold">Proximamente..</span>
                     </div>
                 @endif
             </div>
@@ -101,14 +100,14 @@
         </div>
     </div>
 
-    <div class="grid lg:grid-cols-8 gap-5 text-white py-4 ">
+    <div class="grid lg:grid-cols-8 col-span-6 gap-5 text-white">
         <div class="lg:col-span-6">
-            <div class="bg-black bg-opacity-20 px-2 py-1 ">
+            <div class="bg-black bg-opacity-20 px-2 py-1">
                 <span class="top-5 mb-3 text-4xl font-bold">Biografia</span>
-
-            </div><br>
-            <div>
-                {{ $artistaActual->biografia }}
+            </div>
+            <div class="py-5">
+                <textarea disabled
+                    class="resize-none h-40 w-full bg-transparent border-0">{{ $artistaActual->biografia }}</textarea>
             </div>
 
         </div>
@@ -128,8 +127,8 @@
                     <div class="swiper-pagination"></div>
                 </div>
             @else
-                <div class="mt-5">
-                    <span class="top-5 mb-3 text-2xl font-bold">Proximamente..</span>
+                <div class="my-5">
+                    <span class="px-2 text-2xl font-bold">Proximamente..</span>
                 </div>
             @endif
         </div>
@@ -140,7 +139,7 @@
             <div class="bg-black bg-opacity-20 px-2 py-1 ">
                 <span class="top-5 mb-3 text-4xl font-bold">Integrantes</span>
             </div>
-            <div class="swiper-container swiperIntegrante">
+            <div class="swiper-container swiperIntegrante py-5">
                 <div class="swiper-wrapper ">
                     @foreach ($artistaActual->integrantes as $integrante)
                         <div class="swiper-slide w-40 text-center" x-data="{ open: false }">

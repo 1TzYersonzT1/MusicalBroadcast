@@ -1,7 +1,9 @@
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
-            <x-jet-authentication-card-logo />
+            <div class="flex-shrink-0 flex items-center">
+                <a href="/"><img src="/logo-1b.png" class="w-18 h-14" /></a>
+            </div>
         </x-slot>
 
         <x-jet-validation-errors class="mb-4" />
@@ -9,11 +11,11 @@
         <form method="POST" action="{{ route('register') }}">
             @csrf
 
-            <div class="mt-4">
+            <div class="">
                 <x-jet-label for="rut" value="{{ __('Rut') }}" />
-                <x-jet-input id="rut" class="block mt-1 w-full" type="text" name="rut"  maxlength="9"
-                :value="old('rut')" required autofocus autocomplete="rut" />
-                    <span class="text-white">(Sin puntos, ni guión) Ejemplo: 123456789</span>
+                <x-jet-input id="rut" class="block mt-1 w-full" type="text" name="rut" maxlength="9" :value="old('rut')"
+                    required autofocus autocomplete="rut" />
+                <span class="text-white">(Sin puntos, ni guión) Ejemplo: 123456789</span>
             </div>
 
             <div class="mt-4">
@@ -45,8 +47,8 @@
             <div class="mt-4">
                 <x-jet-label for="telefono" value="{{ __('Teléfono') }}" />
                 <x-jet-input id="telefono" class="block mt-1 w-full" type="tel" pattern="[0-9]{9}" maxlength="9"
-                 name="telefono" :value="old('telefono')" required autofocus autocomplete="telefono" />
-                    <span class="text-white">Ejemplo: 912345678</span>
+                    name="telefono" :value="old('telefono')" required autofocus autocomplete="telefono" />
+                <span class="text-white">Ejemplo: 912345678</span>
             </div>
 
             <div class="mt-4">
@@ -79,7 +81,7 @@
             @endif
 
             <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
+                <a class="underline text-sm text-white hover:text-gray-900" href="{{ route('login') }}">
                     {{ __('¿Ya tienes cuenta?') }}
                 </a>
 

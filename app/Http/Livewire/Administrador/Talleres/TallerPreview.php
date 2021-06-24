@@ -7,6 +7,8 @@ use App\Models\SolicitudTaller;
 use App\Models\Taller;
 use App\Models\HojaVida;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\TallerAprobado;
 
 class TallerPreview extends Component
 {
@@ -41,6 +43,13 @@ class TallerPreview extends Component
         $solicitud->estado = 3;
         $solicitud->observacion = '';
         $solicitud->save();
+
+        $mensaje = [
+            "taller" => $taller,
+            "organizador" => $taller->organizador,
+        ];
+
+        Mail::to($taller->organizador->email)->send(new TallerAprobado($mensaje));
 
         return redirect()->route("administrador.talleres");
     }

@@ -11,6 +11,7 @@
             </div>
         </div>
 
+        @if($nombreArtista != null)
         <div id="contenedor-nuevo-artista">
             <div>
                 <div class="bg-black bg-opacity-20 px-2 py-1 text-center mt-5">
@@ -20,12 +21,12 @@
                 <div class="swiper-container swiperGenerosArtista mt-5" wire:ignore>
                     <div class="swiper-wrapper">
                         @foreach ($generos as $index => $genero)
-                            <livewire:representante.artista.genero :genero="$genero" :wire:key="$genero->id" />
+                            <livewire:representante.artista.crear.elecciones.genero :genero="$genero" :wire:key="$genero->id" />
                         @endforeach
                     </div>
                 </div>
             </div>
-
+      
             @if (count($estilos) > 0)
                 <div>
                     <div class="flex flex-col justify-center my-4">
@@ -85,7 +86,7 @@
             </div>
 
             <!-- Imagen artista -->
-            <div class=" col-span-8 align-content-center mt-5">
+            <div class=" col-span-8 align-content-center my-5">
                 <div class="bg-black bg-opacity-20 px-2 py-1 text-center">
                     <span class="top-5 mb-3 text-4xl font-bold">Sube la imagen del artista</span>
                 </div>
@@ -115,13 +116,13 @@
 
             <div class="col-span-8 align-content-center">
                 <div class="bg-black bg-opacity-20 px-2 text-center">
-                    <span class="my-3 text-4xl font-bold">Agrega tu Biografia</span>
+                    <span class="my-3 text-4xl font-bold">Agrega tu biografía</span>
                 </div>
                 <div class=" text-center">
 
                     <div class="flex py-2 justify-center my-5 gap-16">
-                        <textarea placeholder="Agrega la bioagrafia del artista" wire:model="biografia" maxlength="2000"
-                            class="border-2 lg:w-96 bg-white h-48 mt-1 mb-1 text-primary"></textarea>
+                        <textarea placeholder="Agrega la biografía del artista" wire:model="biografia" maxlength="2000"
+                            class="border-2 lg:w-96 w-80 bg-white h-48 mt-1 mb-1 text-primary"></textarea>
 
                     </div>
                     <span class="items-center">{{ $caracteres_biografia }} / 2000</span>
@@ -133,48 +134,48 @@
             <!-- Albumes -->
             <livewire:representante.artista.crear.album.album :albumes="$albumes" :nombreArtista="$nombreArtista" />
             <!-- Integrantes -->
-            @if (" $tipoArtista"==2)
+            @if ($tipoArtista == 2)
                 <livewire:representante.artista.crear.integrantes.nuevo-integrante :nombreArtista="$nombreArtista" />
             @endif
 
 
             <!-- Redes sociales -->
-            <div class="col-span-8 align-content-center">
+            <div class="lg:col-span-8">
                 <div class="bg-black bg-opacity-20 px-2 text-center">
                     <span class="my-3 text-4xl font-bold">Redes sociales del artista</span>
                 </div>
 
                 <div class="my-5">
-                    <div class="flex justify-center py-2 gap-16">
-                        <span class="top-5 mb-3 text-2xl font-bold mt-2">Instagram</span>
+                    <div class="flex  justify-between py-2">
+                        <span class="mb-3 text-2xl justify-self-start font-bold mt-2">Instagram</span>
                         <div class="flex flex-col">
                             <input type="text" wire:model="instagram"
                                 placeholder="Pega la URL del perfil del artista de instagram"
-                                class="bg-white h-14 px-5 w-96 pr-2 focus:outline-none rounded-full text-black">
+                                class="bg-white h-14 px-5 lg:w-96 focus:outline-none rounded-full text-black">
                             @error('instagram')
                                 <span class="block">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
 
-                    <div class="flex justify-center py-2 gap-16">
-                        <span class="top-5 mb-3 text-2xl font-bold mt-2">Facebook</span>
+                    <div class="flex justify-between py-2">
+                        <span class="mb-3 text-2xl font-bold mt-2">Facebook</span>
                         <div class="flex flex-col">
                             <input type="text" wire:model="facebook"
                                 placeholder="Pega la URL del perfil del artista de facebook"
-                                class="bg-white h-14 px-5 pr-2 w-96 focus:outline-none rounded-full text-black">
+                                class="bg-white h-14 px-5 lg:w-96 focus:outline-none rounded-full text-black">
                             @error('facebook')
                                 <span class="block">{{ $message }}</span>
                             @enderror
                         </div>
                     </div>
 
-                    <div class="flex justify-center py-2 gap-20">
-                        <span class="top-5 mb-3 text-2xl font-bold mt-2">Twitter</span>
+                    <div class="flex justify-between py-2">
+                        <span class="mb-3 text-2xl font-bold mt-2">Twitter</span>
                         <div class="flex flex-col">
                             <input type="text" wire:model="twitter"
                                 placeholder="Pega la URL del perfil del artista de twiter"
-                                class="bg-white h-14 px-5 pr-2 w-96 focus:outline-none rounded-full text-black">
+                                class="bg-white h-14 px-5 lg:w-96 focus:outline-none rounded-full text-black">
                             @error('twitter')
                                 <span class="block">{{ $message }}</span>
                             @enderror
@@ -184,29 +185,29 @@
             </div>
 
 
-            <div class=" col-span-8 align-content-center">
+            <div class="col-span-8">
                 <div class="bg-black bg-opacity-20 px-2 py-1 mt-5 text-center">
                     <span class="top-5 mb-3 text-4xl font-bold">Canales de musica</span>
                 </div>
 
-                <div class="flex justify-center py-2 gap-16 mt-5">
-                    <span class="top-5 mb-3 text-2xl font-bold mt-2">Spotify</span>
+                <div class="flex justify-between py-2 mt-5">
+                    <span class="mb-3 text-2xl font-bold mt-2">Spotify</span>
                     <div class="flex flex-col">
                         <input type="text" wire:model="spotify"
                             placeholder="Pega la URL del perfil del artista de spotify"
-                            class="bg-white h-14 px-5 pr-2 w-96 focus:outline-none rounded-full text-black">
+                            class="bg-white h-14 px-5 lg:w-96 focus:outline-none rounded-full text-black">
                         @error('spotify')
                             <span class="block">{{ $message }}</span>
                         @enderror
                     </div>
                 </div>
 
-                <div class="flex justify-center py-2 gap-16 mt-5">
+                <div class="flex justify-between py-2 mt-5">
                     <span class="top-5 mb-3 text-2xl font-bold mt-2">Youtube</span>
                     <div class="flex flex-col">
                         <input type="text" wire:model="youtube"
                             placeholder="Pega la URL del perfil del artista de youtube"
-                            class="bg-white h-14 px-5 pr-2 w-96 focus:outline-none rounded-full text-black">
+                            class="bg-white h-14 px-5 lg:w-96 focus:outline-none rounded-full text-black">
                         @error('youtube')
                             <span class="block">{{ $message }}</span>
                         @enderror
@@ -229,20 +230,11 @@
                 @endif
             </div>
         </div>
+        @endif
     </div>
 </div>
 
 <script>
-    window.addEventListener("prueba", (event) => {
-        alert("prueba en consola!!!");
-        console.log(event.detail.test);
-    });
-
-    window.addEventListener('nombreArtistaNull', (event) => {
-        if (event.detail.value != '') {
-            $("#contenedor-nuevo-artista").removeClass("hidden");
-        }
-    });
 
     window.addEventListener('solicitudAgregarArtista', () => {
         Swal.fire({
@@ -269,7 +261,7 @@
                     confirmButtonText: 'Ok'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        location.href = location.href;
+                        location.href = "/representante/tus-artistas";
                     }
                 });
             }
@@ -294,12 +286,16 @@
 
     function initializeSwiper() {
         let swiper = new Swiper(".swiperGenerosArtista", {
-            slidesPerView: 5,
+            slidesPerView: 2,
+            breakpoints: {
+                1024: {
+                    slidesPerView: 5,
+                }
+            }
         });
-
-
     }
-    window.addEventListener('generoSeleccionado', (event) => {
+
+    window.addEventListener('onContentChanged', (event) => {
         initializeSwiper();
     });
 

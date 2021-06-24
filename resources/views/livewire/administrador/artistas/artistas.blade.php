@@ -19,7 +19,7 @@
                     </div>
 
                     <div
-                        class="lg:row-span-2 row-span-1 lg:col-start-5 lg:col-span-8 col-span-12 flex flex-col justify-between">
+                        class="lg:row-span-2 row-span-1 lg:col-start-5 lg:col-span-8 col-span-12 flex flex-col">
                         <div class="flex lg:flex-row flex-col justify-between">
                             <div class="flex">
                                 <span>Nombre artista: </span>
@@ -35,13 +35,14 @@
                             </div>
                         </div>
 
-                        <div>
+                        <div class="flex flex-col">
                             <span class="font-light">Biografia: </span>
-
-                            <p class="w-72 text-justify">{{ $artistaPendiente->artista->biografia }}</p>
+                          
+                            <textarea disabled class="resize-none p-2 h-40 bg-transparent border-0">{{ $artistaPendiente->artista->biografia }}</textarea>
+                 
                         </div>
 
-                        <div>
+                        <div class="mt-2">
                             <span class="font-light">Estilos: </span>
                             <span>
                                 @foreach ($artistaPendiente->artista->estilos as $estilo)
@@ -55,8 +56,8 @@
                         </div>
                     </div>
 
-
-                    <div class="col-span-4">
+                    @if($artistaPendiente->artista->tipoArtista == 2)
+                    <div class="lg:col-span-4 col-span-12 row-span-2">
                         <span class="block mb-2">Integrantes</span>
                         <div class="swiper-container swiperIntegrantes">
                             <div class="swiper-wrapper">
@@ -70,8 +71,9 @@
                             </div>
                         </div>
                     </div>
+                    @endif
 
-                    <div class="col-span-4">
+                    <div class="lg:col-span-4 col-span-12 row-span-2">
                         <span class="block mb-2">Albumes</span>
                         <div class="swiper-container swiperIntegrantes">
                             <div class="swiper-wrapper">
@@ -86,10 +88,9 @@
                         </div>
                     </div>
 
-                    <div class="col-span-4">
+                    <div class="lg:col-span-4 col-span-12">
                         <span class="block mb-2">Redes sociales</span>
                         <div class="py-2" style="float:left">
-
                             @if ($artistaPendiente->artista->facebook != '')
                                 <a href="https://www.facebook.com/%7B%7B $artistaActual->facebook }}" target="_blank">
                                     <div style="float:left">

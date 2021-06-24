@@ -57,7 +57,7 @@
                 ha sido <strong>rechazada</strong>
             </p>
 
-            <p>Recuerda: Si el organizador no se ha puesto en contacto contigo o crees que esto
+            <p>Recuerda: Si crees que esto
                 se trata de un error no dudes en contactar con <a href="{{ route('ayuda') }}">soporte</a></p>
        
         </div>

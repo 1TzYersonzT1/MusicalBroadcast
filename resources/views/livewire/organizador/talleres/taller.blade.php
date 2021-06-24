@@ -1,9 +1,18 @@
 <div class="swiper-slide">
     <div class="lg:w-96 w-80 bg-white text-primary py-3 px-5">
         <div class="flex justify-between items-center">
+            <img src="{{ asset('storage/'.$taller->imagen) }}" class="w-32 h-32" />
             <span>{{ $taller->TAL_Nombre }}</span>
+
+            @if ($taller->solicitudes[0]->estado == 0)
+            <div class="bg-yellow-400 text-purple-500 px-3 py-1 rounded-full">
+                <span>Pendiente</span>
+            </div>
+            @endif
+
             @if ($taller->solicitudes[0]->estado == 1)
-                <div class="bg-pink-400 rounded-full w-32 py-1 text-center"><span class="text-purple-600">Revisada</span>
+                <div class="bg-pink-400 rounded-full w-32 py-1 text-center">
+                    <span class="text-purple-600">Revisada</span>
                 </div>
              @endif
 
@@ -12,6 +21,8 @@
                 </div>
             @endif
         </div>
+
+        @if($taller->solicitudes[0]->estado != 0)
         <div class="mt-3">
             <div>
                 <span>Observaciones</span>
@@ -19,6 +30,7 @@
                 </p>
             </div>
         </div>
+        @endif
         <button class="mt-4 bg-primary text-white px-3 py-1 hover:bg-transparent hover:text-primary hover:border-1 hover:border-b-black flex items-center">
             <a href="{{ route('organizador.modificar-taller', $taller->id) }}">
                 Modificar

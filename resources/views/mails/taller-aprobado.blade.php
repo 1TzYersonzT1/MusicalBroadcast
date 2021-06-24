@@ -24,7 +24,7 @@
             text-align: center;
             padding: 0 0.3rem;
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
         }
 
         .mail-body {
@@ -36,29 +36,24 @@
             grid-auto-flow: row dense;
         }
 
-        .bold {
-            font-weight: 700;
-        }
-
     </style>
 </head>
 <body>
-  
     <div class="mail-card">
         <div class="mail-head">
             <h3>Estimado/a </h3>
-            <h4>{{ $representante->nombre }} {{ $representante->apellidos }}</h4>
+            <h4>{{ $organizador->nombre }} {{ $organizador->apellidos }}</h4>
         </div>
         
         <div class="mail-body">
             <p>
-                Queremos informarte que la solicitud pendiente para 
-                agregar a <strong>{{ $artista->ART_Nombre }}</strong> como artista
+                Nos da gusto informarte que la solicitud pendiente
+                para organizar el taller <strong>{{ $taller->TAL_Nombre }}</strong>
                 ha sido <strong>aprobada.</strong>
+                    
+                <a href="{{ route('organizador.taller/asistentes') }}"></a>
             </p>
-            <a href="{{ route('artista.show', $artista->id) }}">Ver perfil</a>
         </div>
     </div>
-
 </body>
 </html>

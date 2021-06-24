@@ -7,9 +7,7 @@
 
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="/">
-                        <x-jet-application-mark class="block h-9 w-auto" />
-                    </a>
+                   <a href="/"><img src="/logo-1b.png" class="w-18 h-14"/></a>
                 </div>
 
                 <!-- Navigation Links -->
@@ -58,6 +56,8 @@
                                         <x-jet-dropdown-link href="{{ route('representante.tusartistas') }}">
                                             {{ __('Tus artistas') }}
                                         </x-jet-dropdown-link>
+
+                                    
                                     </div>
                                 @elsecan('administrar')
                                     <div x-show="open" class="absolute z-50 mt-2 bg-white">
@@ -79,8 +79,6 @@
                         </div>
                     @endauth
 
-
-
                     @guest
                         <x-jet-nav-link href="{{ route('artistas.index') }}">
                             <x-slot name='slot'>
@@ -88,7 +86,6 @@
                             </x-slot>
                         </x-jet-nav-link>
                     @endguest
-
 
                     @auth
                         <div class="hidden sm:flex sm:items-center">
@@ -303,7 +300,7 @@
 
                                     <x-jet-dropdown-link href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                                                                                                                                    this.closest('form').submit();">
+                                                                                                                                                                                                                            this.closest('form').submit();">
                                         {{ __('Cerrar sesión') }}
                                     </x-jet-dropdown-link>
                                 </form>
@@ -337,17 +334,158 @@
             </x-jet-responsive-nav-link>
         </div>
 
-        <div class="pt-2 pb-3 space-y-1">
-            <x-jet-responsive-nav-link href="{{ route('artistas.index') }}">
-                <span class="text-white flex justify-center">{{ __('Artistas') }}</span>
-            </x-jet-responsive-nav-link>
-        </div>
+        <!-- Artistas responsive -->
+        @guest
+            <div class="pt-2 pb-3 space-y-1">
+                <x-jet-responsive-nav-link href="{{ route('artistas.index') }}">
+                    <span class="text-white flex justify-center">{{ __('Artistas') }}</span>
+                </x-jet-responsive-nav-link>
+            </div>
+        @endguest
+        @auth
+            <div class="sm:flex sm:items-center">
+                @can('representar')
+                    <div x-data="{open: false}">
+                        <div class="pt-2 pb-3 space-y-1">
+                            <x-jet-responsive-nav-link class="flex justify-center focus:border-red-500">
+                                <span class="text-white flex justify-center"> {{ __('Artistas') }}</span>
+                                <svg @click="open = !open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </x-jet-responsive-nav-link>
+                        </div>
 
-        <div class="pt-2 pb-3 space-y-1">
-            <x-jet-responsive-nav-link href="{{ route('talleres.index') }}">
-                <span class="text-white flex justify-center">{{ __('Talleres') }}</span>
-            </x-jet-responsive-nav-link>
-        </div>
+                        <div x-show="open" class="bg-primary bg-opacity-40">
+                            <div class="pt-2 pb-3 space-y-1">
+                                <x-jet-responsive-nav-link href="{{ route('artistas.index') }}">
+                                    <span class="text-white flex justify-center"> {{ __('Artistas') }}</span>
+                                </x-jet-responsive-nav-link>
+                            </div>
+
+                            <div class="pt-2 pb-3 space-y-1">
+                                <x-jet-responsive-nav-link href="{{ route('representante.crearartista') }}">
+                                    <span class="text-white flex justify-center">{{ __('Agregar artista') }}</span>
+                                </x-jet-responsive-nav-link>
+                            </div>
+
+                            <div class="pt-2 pb-3 space-y-1">
+                                <x-jet-responsive-nav-link href="{{ route('representante.tusartistas') }}">
+                                    <span class="text-white flex justify-center">{{ __('Tus artistas') }}</span>
+                                </x-jet-responsive-nav-link>
+                            </div>
+                        </div>
+                    </div>
+                @elsecan('administrar')
+                    <div x-data="{open: false}">
+                        <div class="pt-2 pb-3 space-y-1">
+                            <x-jet-responsive-nav-link class="flex justify-center focus:border-red-500">
+                                <span class="text-white flex justify-center"> {{ __('Artistas') }}</span>
+                                <svg @click="open = !open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </x-jet-responsive-nav-link>
+                        </div>
+
+                        <div x-show="open" class="bg-primary bg-opacity-40">
+                            <div class="pt-2 pb-3 space-y-1">
+                                <x-jet-responsive-nav-link href="{{ route('artistas.index') }}">
+                                    <span class="text-white flex justify-center"> {{ __('Artistas') }}</span>
+                                </x-jet-responsive-nav-link>
+                            </div>
+
+                            <div class="pt-2 pb-3 space-y-1">
+                                <x-jet-responsive-nav-link href="{{ route('administrador.artistas') }}">
+                                    <span class="text-white flex justify-center">{{ __('Nuevos artistas') }}</span>
+                                </x-jet-responsive-nav-link>
+                            </div>
+
+
+                        </div>
+                    </div>
+                @endcan
+            </div>
+        @endauth
+
+        <!-- Talleres -->
+        @guest
+            <div class="pt-2 pb-3 space-y-1">
+                <x-jet-responsive-nav-link href="{{ route('artistas.index') }}">
+                    <span class="text-white flex justify-center">{{ __('Talleres') }}</span>
+                </x-jet-responsive-nav-link>
+            </div>
+        @endguest
+
+        @auth
+            <div class="sm:flex sm:items-center">
+                @can('organizar')
+                    <div x-data="{ open: false }">
+                        <div class="pt-2 pb-3 space-y-1">
+                            <x-jet-responsive-nav-link class="flex justify-center focus:border-red-500">
+                                <span class="text-white flex justify-center"> {{ __('Talleres') }}</span>
+                                <svg @click="open = !open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </x-jet-responsive-nav-link>
+                        </div>
+
+                        <div x-show="open" class="bg-primary bg-opacity-40">
+                            <div class="pt-2 pb-3 space-y-1">
+                                <x-jet-responsive-nav-link href="{{ route('talleres.index') }}">
+                                    <span class="text-white flex justify-center"> {{ __('Talleres') }}</span>
+                                </x-jet-responsive-nav-link>
+                            </div>
+
+                            <div class="pt-2 pb-3 space-y-1">
+                                <x-jet-responsive-nav-link href="{{ route('organizador.creartaller') }}">
+                                    <span class="text-white flex justify-center">{{ __('Crear taller') }}</span>
+                                </x-jet-responsive-nav-link>
+                            </div>
+
+                            <div class="pt-2 pb-3 space-y-1">
+                                <x-jet-responsive-nav-link href="{{ route('organizador.mis-solicitudes') }}">
+                                    <span class="text-white flex justify-center">{{ __('Estado solicitud') }}</span>
+                                </x-jet-responsive-nav-link>
+                            </div>
+
+                            <div class="pt-2 pb-3 space-y-1">
+                                <x-jet-responsive-nav-link href="{{ route('organizador.taller/asistentes') }}">
+                                    <span class="text-white flex justify-center">  {{ __('Mis talleres') }}</span>
+                                </x-jet-responsive-nav-link>
+                            </div>
+                        </div>
+                    </div>
+                @elsecan('administrar')
+                    <div x-data="{open: false}">
+                        <div class="pt-2 pb-3 space-y-1">
+                            <x-jet-responsive-nav-link class="flex justify-center focus:border-red-500">
+                                <span class="text-white flex justify-center"> {{ __('Talleres') }}</span>
+                                <svg @click="open = !open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </x-jet-responsive-nav-link>
+                        </div>
+
+                        <div x-show="open" class="bg-primary bg-opacity-40">
+                            <div class="pt-2 pb-3 space-y-1">
+                                <x-jet-responsive-nav-link href="{{ route('talleres.index') }}">
+                                    <span class="text-white flex justify-center"> {{ __('Talleres') }}</span>
+                                </x-jet-responsive-nav-link>
+                            </div>
+
+                            <div class="pt-2 pb-3 space-y-1">
+                                <x-jet-responsive-nav-link href="{{ route('administrador.talleres') }}">
+                                    <span class="text-white flex justify-center">{{ __('Nuevos talleres') }}</span>
+                                </x-jet-responsive-nav-link>
+                            </div>
+                        </div>
+                    </div>
+                @endcan
+            </div>
+        @endauth
 
         <div class="pt-2 pb-3 space-y-1">
             <x-jet-responsive-nav-link href="/">
@@ -395,8 +533,9 @@
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
 
-                        <x-jet-responsive-nav-link href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                                                        this.closest('form').submit();">
+                        <x-jet-responsive-nav-link href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                                                                                                                this.closest('form').submit();">
                             {{ __('Cerrar sesión') }}
                         </x-jet-responsive-nav-link>
                     </form>

@@ -1,4 +1,4 @@
-<div class=" col-span-8 align-content-center mt-5">
+<div class="col-span-8 align-content-center my-5">
     <div class="bg-black bg-opacity-20 px-2 my-5 text-center">
         <span class="top-5 mb-3 text-4xl font-bold">¿Tienes más integrantes? Agregalos aquí</span>
     </div>
@@ -36,7 +36,7 @@
 
 
             <div x-show.transition.out="estaAbierto()"
-                class="bg-white w-96 absolute top-0 lg:left-40 -left-36 p-4 text-primary">
+                class="bg-white lg:w-96 w-80 absolute top-0 lg:left-40 -left-28 p-4 text-primary">
                 <div class="flex justify-between items-center">
                     <span class="font-bold text-2xl block text-center mb-5">Agregar integrante.</span>
                     <svg @click="cerrar()" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
@@ -122,9 +122,9 @@
                         @enderror
                     </div>
 
-                    <div class="flex flex-wrap w-96 my-3">
+                    <div class="flex flex-wrap justify-center mx-4 w-80 my-3">
                         @foreach ($instrumentos as $index => $instrumento)
-                            <div class="flex flex-col mx-5 my-2 items-center">
+                            <div class="flex flex-col mx-2 my-2 items-center">
                                 <div class="flex items-center mb-2 instrumento">
                                     <input type="checkbox" value="{{ $instrumento->id }}"
                                         wire:model="instrumentosSeleccionados.{{ $index }}"

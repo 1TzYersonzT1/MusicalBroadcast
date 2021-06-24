@@ -17,7 +17,8 @@ class CrearArtista extends Component
 
     use WithFileUploads;
 
-    public $nombreArtista, $imagenArtista, $tipoArtista, $instagram, $facebook, $twitter, $spotify, $youtube, $biografia, $caracteres_biografia = 0;
+    public $nombreArtista, $imagenArtista, $tipoArtista, $instagram, $facebook, $twitter, $spotify, $youtube, 
+    $biografia, $caracteres_biografia = 0;
     public $generos, $integrantes = [];
     public $estilos = [], $estilosSeleccionados = [];
     public $albumes = [];
@@ -26,6 +27,7 @@ class CrearArtista extends Component
         'nombreArtista' => 'required|string|min:2|max:30',
         'tipoArtista' => 'required',
         'imagenArtista' => 'required|image',
+        'biografia' => 'required|string|min:20|max:2000',
         'estilosSeleccionados' => 'required',
     ];
 
@@ -58,13 +60,14 @@ class CrearArtista extends Component
     {
         $this->emitTo("representante.artista.crear.album.album", 'updatedNombreArtista', $value);
         $this->emitTo("representante.artista.crear.nuevo-integrante", 'updatedNombreArtista', $value);
+        $this->dispatchBrowserEvent("onContentChanged");
     }
 
     public function updatedEstilo(array $estilos)
     {
         $this->estilosSeleccionados = [];
         $this->estilos = $estilos;
-        $this->dispatchBrowserEvent("generoSeleccionado");
+        $this->dispatchBrowserEvent("onContentChanged");
     }
 
     public function updatedEstilosSeleccionados()

@@ -59,6 +59,8 @@ Route::group(["middleware" => 'auth'], function() {
     Route::group(['middleware' => 'role:representante', 'prefix' => 'representante', 'as' => 'representante.'], function() {
         Route::get("/crear-artista", CrearArtista::class)->name("crearartista");
         Route::get("/tus-artistas", TusArtistas::class)->name("tusartistas");
+
+        Route::get("/artistas/mis-solicitudes");
        
     });
     

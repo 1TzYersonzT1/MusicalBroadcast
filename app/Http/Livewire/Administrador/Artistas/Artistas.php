@@ -58,7 +58,7 @@ class Artistas extends Component
 
         $this->artistaSeleccionado->solicitud()->delete();
         $this->artistaSeleccionado->estilos()->detach();
-        $this->artistaSeleccionado->evento()->delete();
+        $this->artistaSeleccionado->eventos()->delete();
         $this->artistaSeleccionado->integrantes()->delete();
         $this->artistaSeleccionado->albumes()->delete();
         $this->artistaSeleccionado->delete();
