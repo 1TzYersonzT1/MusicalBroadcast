@@ -1,4 +1,4 @@
-<div class="py-5">
+<div class="min-h-screen py-5">
     <div class='container mx-auto text-white'>
         <div class="mb-6 lg:mt-0 mt-5"><span class="text-4xl">Organizar nuevo evento.</span></div>
         @if ($errors)

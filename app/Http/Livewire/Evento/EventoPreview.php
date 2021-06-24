@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Evento;
 
 use Livewire\Component;
 use App\Models\Evento;
+use Illuminate\Support\Facades\Mail;
 
 class EventoPreview extends Component
 {
@@ -14,7 +15,8 @@ class EventoPreview extends Component
         "visualizar-evento" => 'visualizar',
         'aprobarEvento',
         'validarPeticiones',
-        'envioPeticionesConfirmado'
+        'envioPeticionesConfirmado',
+        'updatedArtistasSeleccionados',
     ];
 
     protected $messages = [
@@ -28,21 +30,28 @@ class EventoPreview extends Component
 
     public function validarPeticiones() {
         $this->validate([
-            'artistasSeleccionados' => 'required|array|min:1',
+            'artistasSeleccionados' => 'required|array|min:0',
         ]);
         $this->dispatchBrowserEvent('confirmarEnvioPeticiones');
     }
 
     public function envioPeticionesConfirmado() {
+        foreach($this->artistasSeleccionados as $artistaSeleccionado) {
+            $mensaje = [
+                'evento' => $this->eventoActual,
+                'artista' => $this->artistaSeleccionado,
+            ];
+
+            Mail::to($this->artistaSeleccionado->representante->email)->send();
+            Mail::to($this->artistaSeleccionado->representante->email)->send();
+        }
+
+
         $this->eventoActual->artistas()->syncWithoutDetaching($this->artistasSeleccionados);
     }
 
-    public function updatedArtistasSeleccionados() {
-        foreach($this->artistasSeleccionados as $index => $artistaSeleccionado) {
-            if($this->artistasSeleccionados[$index] == false) {
-                unset($this->artistasSeleccionados[$index]);
-            }
-        }
+    public function updatedArtistasSeleccionados($value) {
+        $this->artistasSeleccionados = $value;
     }
 
     public function render()

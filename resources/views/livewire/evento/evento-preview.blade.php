@@ -27,31 +27,25 @@
                 <span class="font-bold text-2xl block">¿Quieres que tu artista/as participen en este evento?</span>
                 <button @click="open = true" class="bg-white text-primary px-4 py-1 mt-2">Solicitar invitación</button>
 
-                <div x-show.transition="open" class="bg-white absolute z-40 grid grid-cols-5 text-primary px-4 py-2">
-                    <div class="col-span-5">
-                        <span class="block text-center">Evento</span>
+                <div x-show.transition="open" class="bg-white absolute z-40 grid grid-cols-8 text-primary px-4 py-2">
+                    <div class="col-span-8">
+                        <span class="block font-bold text-center">Solicitar invitación a evento</span>
                         <span class="block text-center font-light mb-2">{{ $eventoActual->EVE_Nombre }}</span>
                     </div>
 
-                    <div class="col-span-5">
-                        <span class="block text-center font-light mb-2">Busca el o los artistas que deseas seleccionar</span>
-                         <span class="block text-center font-light mb-2">Busca el o los artistas que deseas seleccionar</span>
-                         <span class="block text-center font-light mb-2">Busca el o los artistas que deseas seleccionar</span>
-                         <span class="block text-center font-light mb-2">Busca el o los artistas que deseas seleccionar</span>
-                         <span class="block text-center font-light mb-2">Busca el o los artistas que deseas seleccionar</span>
-                         <span class="block text-center font-light mb-2">Busca el o los artistas que deseas seleccionar</span>
+                    <div class="col-span-8 flex items-center justify-center">
+                        <livewire:formularios.invitar-artistas />
                     </div>
 
-                    <div class="mb-4">
-                    
-                    </div>
-
+                    <div class="col-span-8">
                     @error('artistasSeleccionados')
-                        <span class="text-red-400">{{ $message }}</span>
+                        <span class="text-red-400 w-80">{{ $message }}</span>
                     @enderror
+                    </div>
 
-                    <div class="flex justify-between">
-                        <button wire:click="validarPeticiones" class="bg-primary px-2 py-1 mt-2 text-white">Enviar petición</button>
+                    <div class="col-span-8">
+                        <button wire:click="validarPeticiones" class="bg-primary px-2 py-1 mt-2 text-white">Enviar
+                            petición</button>
                         <button @click="open = false">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
@@ -89,12 +83,11 @@
 </div>
 
 <script>
-   window.addEventListener('confirmarEnvioPeticiones', function() {
+    window.addEventListener('confirmarEnvioPeticiones', function() {
         Swal.fire({
-            title: 'Enviar peticiones',
-            text: `Se enviara una petición al organizador del evento por cada artista que
-            usted ha seleccionado, dentro de los proximos días será notificado por email
-            acerca de los resultados.`,
+            title: '¿Está seguro que deseas inscribirte?',
+            text: `Inscribirás al artista o los artistas que has seleccionado
+            al evento.`,
             icon: 'success',
             showCancelButton: true,
             cancelButtonText: 'Regresar',
@@ -106,19 +99,19 @@
                 Livewire.emit('envioPeticionesConfirmado');
 
                 Swal.fire({
-                    title: 'Peticion/es enviada',
-                    text: `Ahora debes esperar a que el organizador se contacte contigo
-                    por email o telefono.`,
+                    title: 'Artista/as inscrito',
+                    text: `Has inscrito exitosamente al artista/as.`,
                     icon: 'success',
                     timer: 6000,
                     showConfirmButton: true,
                     confirmButtonText: 'Ok'
                 }).then((result) => {
-                    if(!result.isVisible) {
+                    if (!result.isVisible) {
                         location.href = location.href;
                     }
                 });
             }
         });
     });
+
 </script>
