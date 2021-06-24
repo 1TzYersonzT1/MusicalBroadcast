@@ -73,29 +73,29 @@
                         </div>
                     </div>
 
-                    <button id="cancelarTallerForm" class="mt-4 bg-white text-primary px-5 py-2">
+                    <button data-fancybox data-src="#cancelarEventoForm" class="mt-4 bg-white text-primary px-5 py-2">
                         Cancelar
                     </button>
-                    <div id="cancelarTallerForm" class="hidden bg-white lg:w-96 w-80">
+                    <div id="cancelarEventoForm" class="hidden bg-white lg:w-96 w-80">
                         <div>
-                            <form wire:submit.prevent="cancelarTaller" class="flex flex-col items-center">
+                            <form wire:submit.prevent="cancelarEvento" class="flex flex-col items-center">
                                 <div class="flex flex-col items-center mb-2">
-                                    <span class="text-xl">Cancelar taller</span>
+                                    <span class="text-xl">Cancelar evento</span>
                                     <span>{{ $evento->EVE_Nombre }}</span>
                                 </div>
 
                                 <div class="flex flex-col items-center mb-5">
                                     <span>Motivo</span>
                                     <textarea maxlength='255'
-                                        placeholder="Indique el motivo por el cuál está posponiendo el taller, de esta forma los asistentes serán informados (máximo 255 caracteres)"
+                                        placeholder="Indique el motivo por el cuál está posponiendo el evento, de esta forma los asistentes serán informados (máximo 255 caracteres)"
                                         wire:model='observacion_cancelado'
-                                        class="resize-none w-72 px-10 bg-primary h-40 text-white"></textarea>
+                                        class="resize-none w-72 px-4 bg-primary h-40 text-white"></textarea>
                                 </div>
 
 
                                 <button type="submit"
                                     class="mt-5 px-4 py-2 rounded-full bg-primary text-white hover:bg-primary hover:text-white">
-                                    Cancelar taller
+                                    Cancelar evento
                                 </button>
                             </form>
                         </div>
@@ -213,7 +213,7 @@
         });
     });
 
-    window.addEventListener("cancelarTaller", function() {
+    window.addEventListener("cancelarEvento", function() {
         $.fancybox.close();
         Swal.fire({
             title: "¿Está seguro?",
@@ -228,9 +228,9 @@
             confirmButtonText: "Si, cancelar",
         }).then((result) => {
             if (result.isConfirmed) {
-                Livewire.emit("cancelarTallerConfirmado");
+                Livewire.emit("cancelarEventoConfirmado");
                 Swal.fire({
-                    title: 'Taller cancelado',
+                    title: 'Evento cancelado',
                     icon: `success`,
                     timer: 3000
                 }).then((result) => {

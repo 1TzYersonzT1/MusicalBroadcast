@@ -27,27 +27,23 @@
                 <span class="font-bold text-2xl block">¿Quieres que tu artista/as participen en este evento?</span>
                 <button @click="open = true" class="bg-white text-primary px-4 py-1 mt-2">Solicitar invitación</button>
 
-                <div x-show.transition="open" class="bg-white w-80 absolute -top-40 text-primary px-4 py-2">
-                    <div>
+                <div x-show.transition="open" class="bg-white absolute z-40 grid grid-cols-5 text-primary px-4 py-2">
+                    <div class="col-span-5">
                         <span class="block text-center">Evento</span>
                         <span class="block text-center font-light mb-2">{{ $eventoActual->EVE_Nombre }}</span>
                     </div>
 
-                    <div>
-                        <span class="block text-center">Tus artistas</span>
-                        <span class="block text-center font-light mb-2">Seleccione uno o más artistas.</span>
+                    <div class="col-span-5">
+                        <span class="block text-center font-light mb-2">Busca el o los artistas que deseas seleccionar</span>
+                         <span class="block text-center font-light mb-2">Busca el o los artistas que deseas seleccionar</span>
+                         <span class="block text-center font-light mb-2">Busca el o los artistas que deseas seleccionar</span>
+                         <span class="block text-center font-light mb-2">Busca el o los artistas que deseas seleccionar</span>
+                         <span class="block text-center font-light mb-2">Busca el o los artistas que deseas seleccionar</span>
+                         <span class="block text-center font-light mb-2">Busca el o los artistas que deseas seleccionar</span>
                     </div>
 
                     <div class="mb-4">
-                        <ul>
-                            @foreach (auth()->user()->artistas as $index => $artista)
-                                <li>
-                                    <input type="checkbox" value="{{ $artista->id }}" wire:model="artistasSeleccionados.{{$index}}"
-                                        class="mr-2" />
-                                    {{ $artista->ART_Nombre }}
-                                </li>
-                            @endforeach
-                        </ul>
+                    
                     </div>
 
                     @error('artistasSeleccionados')

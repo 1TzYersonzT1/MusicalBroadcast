@@ -10,6 +10,40 @@
                 <div class="mb-4 text-4xl font-bold shadow-inner">
                     {{ $artistaActual->ART_Nombre }}
                 </div>
+
+                @if ($artistaActual->estado == 0)
+                    <div x-data="{open: false}" class="relative bg-gray-700 rounded-full px-4 py-1 flex">
+                        <span class="block mr-2">Oculto</span>
+                        <svg x-on:mouseover="open = true" x-on:mouseout="open = false" xmlns="http://www.w3.org/2000/svg"
+                            class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+
+                        <div x-show="open" class="p-8 absolute bg-gray-500 bg-opacity-75 -top-40 lg:left-28 -left-28">
+                            <div class="col-span-8"> 
+                                <span>El artista no es visible para los usuarios de la página web debido
+                                    a que se encuentra con una solicitud en proceso.</span>
+    
+                                @if ($artistaActual->solicitud->estado == 0)
+    
+                                    <span class="text-yellow-500">Pendiente.</span>
+    
+                                @endif
+    
+                                @if ($artistaActual->solicitud->estado == 1)
+    
+                                    <span class="text-pink-400">Revisada.</span>
+                                    <div class="mt-4 w-72"> 
+                                        <span class="text-red-500">Cambios que debes realizar</span>
+                                        <span class="block text-justify">{{ $artistaActual->solicitud->observacion }}</span>
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                @endif
+
                 <div class="py-2">
                     @if ($artistaActual->tipo_artista == 1)
                         Solista
@@ -29,6 +63,9 @@
         <div class="lg:col-span-6 col-span-6 justify-between">
             <div class="bg-black bg-opacity-20 px-2 py-1 lg:flex-col">
                 <span class="top-5 mb-3 text-4xl font-bold">Discografia</span>
+                @can('modificar-artista', $artistaActual)
+                    <span>Modificar artista</span>
+                @endcan
             </div>
             @if (count($artistaActual->albumes) > 0)
                 <div class="swiper-container swiperDiscografia mt-5">
@@ -203,8 +240,6 @@
 
 </div>
 
-<script src="https://apis.google.com/js/platform.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 <script>
     var swiper = new Swiper(".swiperDiscografia", {
         effect: "coverflow",

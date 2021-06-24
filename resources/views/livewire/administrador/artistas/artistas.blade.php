@@ -89,26 +89,40 @@
                     </div>
 
                     <div class="lg:col-span-4 col-span-12">
-                        <span class="block mb-2">Redes sociales</span>
+                        <span class="block mb-2">Extra</span>
                         <div class="py-2" style="float:left">
                             @if ($artistaPendiente->artista->facebook != '')
-                                <a href="https://www.facebook.com/%7B%7B $artistaActual->facebook }}" target="_blank">
+                                <a href="https://www.facebook.com/{{ $artistaPendiente->artista->facebook }}" target="_blank">
                                     <div style="float:left">
                                         <img src="/face.png" width="40" height="40">
                                     </div>
                                 </a>
                             @endif
                             @if ($artistaPendiente->artista->instagram != '')
-                                <a href="https://www.instagram.com/%7B%7B $artistaActual->instagram }}" target="_blank">
+                                <a href="https://www.instagram.com/{{ $artistaPendiente->artista->instagram }}" target="_blank">
                                     <div style="float:left">
                                         <img src="/insta.png" width="40" height="40">
                                     </div>
                                 </a>
                             @endif
                             @if ($artistaPendiente->artista->twitter != '')
-                                <a href="https://twitter.com/%7B%7B $artistaActual->twitter }}" target="_blank">
+                                <a href="https://twitter.com/{{ $artistaPendiente->artista->twitter }}" target="_blank">
                                     <div style="float:left">
                                         <img src="/twiter.png" width="40" height="40">
+                                    </div>
+                                </a>
+                            @endif
+                            @if ($artistaPendiente->artista->spotify != '')
+                                <a href="https://open.spotify.com/artist/{{ $artistaPendiente->artista->spotify }}" target="_blank">
+                                    <div style="float:left">
+                                        <div>Spotify logo</div>
+                                    </div>
+                                </a>
+                            @endif
+                            @if ($artistaPendiente->artista->youtube != '')
+                                <a href="https://www.facebook.com/{{ $artistaPendiente->artista->youtube }}" target="_blank">
+                                    <div style="float:left">
+                                        <div>Spotify logo</div>
                                     </div>
                                 </a>
                             @endif

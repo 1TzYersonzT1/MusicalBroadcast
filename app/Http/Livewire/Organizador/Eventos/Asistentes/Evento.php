@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Organizador\Eventos\Asistentes;
 use Livewire\Component;
 use App\Mail\EliminadoDeEvento;
 use App\Mail\PosponerEvento;
+use App\Mail\EventoCancelado;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Carbon;
 use DateTime;
@@ -17,6 +18,7 @@ class Evento extends Component
     protected $listeners = [
         'eliminarArtistaConfirmado',
         'posponerEventoConfirmado',
+        'cancelarEventoConfirmado',
     ];
 
     protected $rules = [
@@ -53,7 +55,26 @@ class Evento extends Component
     }
 
     public function cancelarEvento() {
-        $this->validate();
+        $this->validate([
+            'observacion_cancelado' => 'required|string|min:10|max:255',
+        ]);
+        $this->dispatchBrowserEvent("cancelarEvento");
+    }
+
+    public function cancelarEventoConfirmado() {
+        foreach($this->evento->artistas as $artista) {
+            $mensaje = [
+                'representante' => $artista->representante,
+                'evento' => $this->evento,
+                'artista' => $artista->ART_Nombre,
+            ];
+
+            Mail::to($artista->representante->email)->send(new EventoCancelado($mensaje));
+        }
+
+        $this->evento->artistas()->detach();
+        $this->evento->solicitudes()->delete();
+        $this->evento->delete();
     }
 
 

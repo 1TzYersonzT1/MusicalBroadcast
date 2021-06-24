@@ -35,7 +35,7 @@ class Artista extends Model
     }
 
     public function solicitud() {
-        return $this->hasOne(SolicitudArtista::class, 'artista_id', 'id');
+        return $this->hasOne(SolicitudArtista::class, 'artista_id');
     }
 
     public function getImagenAttribute($value) {

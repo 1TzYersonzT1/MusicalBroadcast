@@ -7,13 +7,15 @@ use Livewire\Component;
 
 class TusArtistas extends Component
 {
+    public $artistas;
+
+    public function mount() {
+        $this->artistas = Artista::where("user_rut", auth()->user()->rut)->get();
+    }
 
     public function render()
     {
-        return view('livewire.representante.artista.tus-artistas', [
-            "artistas" => Artista::where("user_rut", auth()->user()->rut)
-            ->paginate(4),
-        ]);
+        return view('livewire.representante.artista.tus-artistas');
     }
     
 }

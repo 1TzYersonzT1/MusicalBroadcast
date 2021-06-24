@@ -23,7 +23,8 @@ class BuscarArtista extends Component
     public function updatedBuscar()
     {
         if ($this->buscar != '') {
-            $this->resultados = Artista::where("ART_Nombre", 'like', $this->buscar . '%')->get();
+            $this->resultados = Artista::where("estado", 1)
+            ->where("ART_Nombre", 'like', $this->buscar . '%')->get();
         } else  {
             $this->mount();
         }

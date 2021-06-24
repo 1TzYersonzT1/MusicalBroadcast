@@ -29,7 +29,7 @@
     @livewireStyles
 </head>
 
-<body class="font-body antialiased bg-gradient-to-b bg-primary">
+<body class="antialiased bg-gradient-to-b bg-primary">
 
     <x-jet-banner />
 

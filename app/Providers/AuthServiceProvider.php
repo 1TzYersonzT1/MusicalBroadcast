@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\User;
+use App\Models\Artista;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -28,6 +29,10 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('organizar', function(User $user) {
             return $user->is_organizador();
+        });
+
+        Gate::define('modificar-artista', function(User $user, Artista $artista) {
+            return ($user->is_organizador() && $user->rut == $artista->user_rut);
         });
 
         Gate::define('representar', function(User $user) {
