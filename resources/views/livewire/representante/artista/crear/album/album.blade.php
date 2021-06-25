@@ -2,7 +2,7 @@
     <div class="bg-black bg-opacity-20 px-2 py-1 text-center">
         <span class="top-5 mb-3 text-4xl font-bold">Agrega tus albums aquí</span>
     </div>
-    <div class="flex justify-center content-center mt-5">
+    <div class="flex flex-wrap justify-center content-center mt-5">
         <div class="flex">
             @foreach ($albumes as $index => $album)
                 <div class="flex flex-col items-center mr-5">
