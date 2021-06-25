@@ -11,3 +11,10 @@
     background-image: url('https://i.pinimg.com/originals/a1/bf/0e/a1bf0e58edb48197d2f620bad923cb0d.jpg');
 }
 
+.invitado {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/public/Fondo.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}

@@ -13,6 +13,8 @@ class CreateNewUser implements CreatesNewUsers
 {
     use PasswordValidationRules;
 
+    
+
     /**
      * Validate and create a newly registered user.
      *
@@ -24,14 +26,13 @@ class CreateNewUser implements CreatesNewUsers
         Validator::make($input, [
             'rut' => ['required', 'string', 'max:9', 'unique:user'],
             'nombre' => ['required', 'string', 'max:20'],
-            'apellido' => ['required', 'string', 'max:20'],
+            'apellido' => ['required', 'string', 'max:40'],
             'email' => ['required', 'string', 'email', 'max:50', 'unique:user'],
-            'tipo_cuenta' => ['required', 'array'],
+            'tipo_cuenta' => ['required', 'array', 'min:0'],
             'telefono' => ['required', 'integer'],
             'password' => $this->passwordRules(),
-
-            //'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['required', 'accepted'] : '', 
-        ])->validate();
+            'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['required', 'accepted'] : '', 
+        ], ['terms.required' => 'Debe aceptar los términos y condiciones'])->validate();
 
         $usuario = User::create(
             [

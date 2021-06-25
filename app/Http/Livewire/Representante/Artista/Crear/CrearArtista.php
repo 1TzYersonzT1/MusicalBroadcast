@@ -117,7 +117,7 @@ class CrearArtista extends Component
         $solicitud = SolicitudArtista::create([
             'artista_id' => $artista->id,
             'observacion' => '',
-            'estado' => 1,
+            'estado' => 0,
         ]);
 
 

@@ -32,14 +32,29 @@
 
             <div class="mt-4">
                 <x-jet-label for="tipo_cuenta" value="{{ __('Seleccione uno o más roles') }}" />
-                <select name="tipo_cuenta[]" id="tipo_cuenta" class="block mt-1 w-full h-20" multiple>
-                    <option value="1">Organizador</option>
-                    <option value="2">Representante</option>
-                </select>
+
+                <input type="checkbox" name="tipo_cuenta[]" value="1"><span class="text-white">Organizador</span>
+                <input type="checkbox" name="tipo_cuenta[]" value="2"><span class="text-white">Representante</span>
             </div>
 
             <div class="mt-4">
-                <x-jet-label for="email" value="{{ __('Email') }}" />
+                <div x-data="{open: false}" @click.away="open = false"
+                    class="relative flex items-center justify-between">
+                    <x-jet-label for="email" value="{{ __('Email') }}" />
+                    <svg x-on:mouseover="open = true" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white"
+                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+
+                    <div x-show="open" x-on:mouseout="open = false"
+                        class="absolute -top-40 bg-gray-600 text-white bg-opacity-75 py-2 px-4">
+                        <span>Te recomendamos crear un correo dedicado para tu cuenta
+                            ya que recibiras notificaciones y tu correo será visible
+                            para todos los usuarios del sitio web.
+                        </span>
+                    </div>
+                </div>
                 <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')"
                     required />
             </div>
@@ -70,10 +85,9 @@
                             <x-jet-checkbox name="terms" id="terms" />
 
                             <div class="ml-2">
-                                {!! __('I agree to the :terms_of_service and :privacy_policy', [
-    'terms_of_service' => '<a target="_blank" href="' . route('terms.show') . '" class="underline text-sm text-gray-600 hover:text-gray-900">' . __('Terms of Service') . '</a>',
-    'privacy_policy' => '<a target="_blank" href="' . route('policy.show') . '" class="underline text-sm text-gray-600 hover:text-gray-900">' . __('Privacy Policy') . '</a>',
-]) !!}
+                                {!! __('Acepto :terms_of_service', [
+                                    'terms_of_service' => '<a target="_blank" href="' . route('terms.show') . '" class="underline text-sm text-gray-200 hover:text-gray-500">' . __('Terminos de servicio') . '</a>',
+                                ]) !!}
                             </div>
                         </div>
                     </x-jet-label>

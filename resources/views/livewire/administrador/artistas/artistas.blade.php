@@ -26,10 +26,40 @@
                                     <span>&nbsp{{ $artistaPendiente->artista->ART_Nombre }}</span>
                                 </div>
 
-                                <div>
+                                <div class="flex">
                                     <button wire:click="validarAprobarArtista('{{ $artistaPendiente->artista->id }}')"
                                         class="bg-green-500 py-1 px-2">Aprobar</button>
-                                    <button class="bg-yellow-500 py-1 px-2">Agregar observación</button>
+
+                                    <div x-data="{open: false}" class="relative">
+                                        <button @click="open = true" class="bg-yellow-500 py-1 px-2">Agregar
+                                            observación</button>
+                                        <div x-show="open"
+                                            class="absolute mt-5 bg-white text-primary shadow-md text-white -left-28 px-4 py-2 w-80 bg-opacity-75">
+                                            <div class="flex justify-between">
+                                                <span class="font-bold">Agregar observación</span>
+                                                <svg @click="open = false" xmlns="http://www.w3.org/2000/svg"
+                                                    class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                                    stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                                </svg>
+                                            </div>
+                                            <textarea maxlength='255'
+                                                placeholder="Agregue y envíe una observación (máximo 255 caracteres)"
+                                                wire:model='observacion'
+                                                class="mt-5 resize-none lg:w-72 bg-primary h-40 text-white"></textarea>
+
+                                            @error('observacion')
+                                                <span class="text-red-400">{{ $message }}</span>
+                                            @enderror
+
+                                            <button wire:click="validarObservacionArtista('{{ $artistaPendiente->artista->id }}')"
+                                                class="bg-primary text-white px-4 py-2 mt-4">Agregar
+                                                observación</button>
+
+                                        </div>
+                                    </div>
+
                                     <button
                                         wire:click="validarEliminarArtista('{{ $artistaPendiente->artista->id }}')"
                                         class="bg-red-500 py-1 px-2">Rechazar</button>
@@ -170,10 +200,40 @@
                     if (!result.isVisible) {
                         location.href = location.href;
                     }
-                })
+                });
             }
         });
     });
+
+
+    window.addEventListener("validarObservacionArtista", function() {
+        Swal.fire({
+            title: '¿Está seguro?',
+            text: `Se modificara la solicitud actual con la observación que ha hecho`,
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Cancelar',
+            confirmButtonText: 'Agregar'
+        }).then((result) => {
+            if(result.isConfirmed) {
+                Livewire.emit('confirmarObservacionArtista');
+
+                Swal.fire({
+                    title: 'Exito',
+                    text: `Se ha agregado la observación`,
+                    icon: 'success',
+                    timer: 3000,
+                }).then((result) => {
+                    if (!result.isVisible) {
+                        location.href = location.href;
+                    }
+                });
+            }
+        });
+    });
+
 
     window.addEventListener('validarEliminarArtista', function() {
         Swal.fire({
@@ -203,10 +263,6 @@
             }
         });
     });
-
-    window.addEventListener("prueba", (event) => {
-        console.log(event.detail.test);
-    })
 
     var swiper = new Swiper('.swiperIntegrantes', {
         slidesPerView: 2,

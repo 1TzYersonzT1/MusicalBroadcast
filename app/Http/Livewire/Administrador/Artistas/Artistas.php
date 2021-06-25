@@ -12,10 +12,11 @@ use Illuminate\Support\Facades\Mail;
 class Artistas extends Component
 {
 
-    public $artistasPendientes, $artistaSeleccionado;
+    public $artistasPendientes, $artistaSeleccionado, $observacion;
 
     protected $listeners = [
         "confirmarAgregarArtista",
+        "confirmarObservacionArtista",
         "confirmarEliminarArtista",
     ];
 
@@ -40,6 +41,20 @@ class Artistas extends Component
         ];
 
         Mail::to($this->artistaSeleccionado->representante->email)->send(new ArtistaAprobado($mensaje));
+    }
+
+    public function validarObservacionArtista($id) {
+        $this->validate([
+            "observacion" => 'required|string|min:10|max:255',
+        ]);
+        $this->artistaSeleccionado = Artista::find($id);
+        $this->dispatchBrowserEvent("validarObservacionArtista");
+    }
+
+    public function confirmarObservacionArtista() {
+        $this->artistaSeleccionado->solicitud->observacion = $this->observacion;
+        $this->artistaSeleccionado->solicitud->estado = 1;
+        $this->artistaSeleccionado->solicitud->save();
     }
 
     public function validarEliminarArtista($id) {
