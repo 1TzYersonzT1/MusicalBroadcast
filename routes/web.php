@@ -19,8 +19,7 @@ use App\Http\Livewire\Organizador\Talleres\Crear\CrearTaller;
 use App\Http\Livewire\Organizador\Talleres\MisTalleres;
 use App\Http\Livewire\Organizador\Talleres\ModificarTaller;
 use App\Http\Livewire\Organizador\Talleres\Asistentes\Asistentes as AsistenteTaller;
-
-
+use App\Http\Livewire\Representante\Artista\ModificarArtista;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,7 +58,7 @@ Route::group(["middleware" => 'auth'], function() {
     Route::group(['middleware' => 'role:representante', 'prefix' => 'representante', 'as' => 'representante.'], function() {
         Route::get("/crear-artista", CrearArtista::class)->name("crearartista");
         Route::get("/tus-artistas", TusArtistas::class)->name("tusartistas");
-
+        Route::get("/modificar-artista/{id}", ModificarArtista::class)->name("modificar-artista");
         Route::get("/artistas/mis-solicitudes");
        
     });

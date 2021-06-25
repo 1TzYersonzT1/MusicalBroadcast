@@ -2,7 +2,7 @@
     <div class="bg-black bg-opacity-20 px-2 my-5 text-center">
         <span class="top-5 mb-3 text-4xl font-bold">¿Tienes más integrantes? Agregalos aquí</span>
     </div>
-    <div class="flex justify-center content-center">
+    <div class="flex justify-center flex-wrap content-center">
 
         <div class="flex">
             @foreach ($integrantes as $index => $integrante)
