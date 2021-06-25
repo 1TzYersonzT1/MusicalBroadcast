@@ -11,7 +11,7 @@ class CancelarTaller extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $taller, $asistente;
+    protected $taller, $asistente;
 
     /**
      * Create a new message instance.

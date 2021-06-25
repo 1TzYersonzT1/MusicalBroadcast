@@ -11,7 +11,7 @@ class ArtistaAprobado extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $artista, $representante;
+    protected $artista, $representante;
 
     /**
      * Create a new message instance.

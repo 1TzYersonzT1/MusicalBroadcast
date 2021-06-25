@@ -37,6 +37,8 @@
                         <livewire:formularios.invitar-artistas />
                     </div>
 
+                   
+
                     <div class="col-span-8">
                     @error('artistasSeleccionados')
                         <span class="text-red-400 w-80">{{ $message }}</span>

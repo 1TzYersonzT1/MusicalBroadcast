@@ -1,5 +1,5 @@
 <div>
-    <div class="min-h-screen mt-12 w-full text-white">
+    <div class="min-h-screen py-5 w-full text-white">
         <div class="mb-14"><span class="text-4xl border-b-4">Eventos aprobados</span></div>
         @if (count($eventos) > 0)
             <div class="">

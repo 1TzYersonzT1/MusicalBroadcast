@@ -11,7 +11,7 @@ class PosponerEvento extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $representante, $evento, $artista;
+    protected $representante, $evento, $artista;
 
     /**
      * Create a new message instance.

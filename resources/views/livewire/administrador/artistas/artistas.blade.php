@@ -3,136 +3,144 @@
         <span class="font-bold text-4xl">Solicitud de nuevos artistas</span>
     </div>
 
-    @if(count($artistasPendientes) > 0)
-    <div class="w-full">
-        @foreach ($artistasPendientes as $artistaPendiente)
-            <div class="bg-gray-200 px-4 py-2 text-primary my-4 lg:w-5/6">
+    @if (count($artistasPendientes) > 0)
+        <div class="w-full">
+            @foreach ($artistasPendientes as $artistaPendiente)
+                <div class="bg-gray-200 px-4 py-2 text-primary my-4 lg:w-5/6">
 
-                <span class="block mb-2">
-                    Solicitado por: {{ $artistaPendiente->artista->representante->nombre }}
-                    {{ $artistaPendiente->artista->representante->apellidos }}</span>
+                    <span class="block mb-2">
+                        Solicitado por: {{ $artistaPendiente->artista->representante->nombre }}
+                        {{ $artistaPendiente->artista->representante->apellidos }}</span>
 
 
-                <div class="grid grid-rows-3 grid-cols-12 gap-4">
-                    <div class="lg:row-span-2 row-span-1 lg:col-span-4 col-span-12">
-                        <img src="{{ asset('storage/' . $artistaPendiente->artista->imagen) }}" class="h-60 w-full" />
-                    </div>
+                    <div class="grid grid-rows-3 grid-cols-12 gap-4">
+                        <div class="lg:row-span-2 row-span-1 lg:col-span-4 col-span-12">
+                            <img src="{{ asset('storage/' . $artistaPendiente->artista->imagen) }}"
+                                class="h-60 w-full" />
+                        </div>
 
-                    <div
-                        class="lg:row-span-2 row-span-1 lg:col-start-5 lg:col-span-8 col-span-12 flex flex-col">
-                        <div class="flex lg:flex-row flex-col justify-between">
-                            <div class="flex">
-                                <span>Nombre artista: </span>
-                                <span>&nbsp{{ $artistaPendiente->artista->ART_Nombre }}</span>
+                        <div class="lg:row-span-2 row-span-1 lg:col-start-5 lg:col-span-8 col-span-12 flex flex-col">
+                            <div class="flex lg:flex-row flex-col justify-between">
+                                <div class="flex">
+                                    <span>Nombre artista: </span>
+                                    <span>&nbsp{{ $artistaPendiente->artista->ART_Nombre }}</span>
+                                </div>
+
+                                <div>
+                                    <button wire:click="validarAprobarArtista('{{ $artistaPendiente->artista->id }}')"
+                                        class="bg-green-500 py-1 px-2">Aprobar</button>
+                                    <button class="bg-yellow-500 py-1 px-2">Agregar observación</button>
+                                    <button
+                                        wire:click="validarEliminarArtista('{{ $artistaPendiente->artista->id }}')"
+                                        class="bg-red-500 py-1 px-2">Rechazar</button>
+                                </div>
                             </div>
 
-                            <div>
-                                <button wire:click="validarAprobarArtista('{{ $artistaPendiente->artista->id }}')"
-                                    class="bg-green-500 py-1 px-2">Aprobar</button>
-                                <button class="bg-yellow-500 py-1 px-2">Agregar observación</button>
-                                <button wire:click="validarEliminarArtista('{{ $artistaPendiente->artista->id }}')"
-                                    class="bg-red-500 py-1 px-2">Rechazar</button>
+                            <div class="flex flex-col">
+                                <span class="font-light">Biografia: </span>
+
+                                <textarea disabled
+                                    class="resize-none p-2 h-40 bg-transparent border-0">{{ $artistaPendiente->artista->biografia }}</textarea>
+
+                            </div>
+
+                            <div class="mt-2">
+                                <span class="font-light">Estilos: </span>
+                                <span>
+                                    @foreach ($artistaPendiente->artista->estilos as $estilo)
+                                        @if ($loop->last)
+                                            {{ $estilo->EST_Nombre }}.
+                                        @else
+                                            {{ $estilo->EST_Nombre }},
+                                        @endif
+                                    @endforeach
+                                </span>
                             </div>
                         </div>
 
-                        <div class="flex flex-col">
-                            <span class="font-light">Biografia: </span>
-                          
-                            <textarea disabled class="resize-none p-2 h-40 bg-transparent border-0">{{ $artistaPendiente->artista->biografia }}</textarea>
-                 
-                        </div>
-
-                        <div class="mt-2">
-                            <span class="font-light">Estilos: </span>
-                            <span>
-                                @foreach ($artistaPendiente->artista->estilos as $estilo)
-                                    @if ($loop->last)
-                                        {{ $estilo->EST_Nombre }}.
-                                    @else
-                                        {{ $estilo->EST_Nombre }},
-                                    @endif
-                                @endforeach
-                            </span>
-                        </div>
-                    </div>
-
-                    @if($artistaPendiente->artista->tipoArtista == 2)
-                    <div class="lg:col-span-4 col-span-12 row-span-2">
-                        <span class="block mb-2">Integrantes</span>
-                        <div class="swiper-container swiperIntegrantes">
-                            <div class="swiper-wrapper">
-                                @foreach ($artistaPendiente->artista->integrantes as $integrante)
-                                    <div class="swiper-slide flex flex-col items-center mr-6">
-                                        <img src="{{ asset('storage/' . $integrante->imagen) }}"
-                                            class="h-12 w-12 rounded-full" />
-                                        <span>{{ $integrante->nombre }} {{ $integrante->apellidos }} </span>
+                        @if ($artistaPendiente->artista->tipoArtista == 2)
+                            <div class="lg:col-span-4 col-span-12 row-span-2">
+                                <span class="block mb-2">Integrantes</span>
+                                <div class="swiper-container swiperIntegrantes">
+                                    <div class="swiper-wrapper">
+                                        @foreach ($artistaPendiente->artista->integrantes as $integrante)
+                                            <div class="swiper-slide flex flex-col items-center mr-6">
+                                                <img src="{{ asset('storage/' . $integrante->imagen) }}"
+                                                    class="h-12 w-12 rounded-full" />
+                                                <span>{{ $integrante->nombre }} {{ $integrante->apellidos }}
+                                                </span>
+                                            </div>
+                                        @endforeach
                                     </div>
-                                @endforeach
+                                </div>
+                            </div>
+                        @endif
+
+                        <div class="lg:col-span-4 col-span-12 row-span-2">
+                            <span class="block mb-2">Albumes</span>
+                            <div class="swiper-container swiperIntegrantes">
+                                <div class="swiper-wrapper">
+                                    @foreach ($artistaPendiente->artista->albumes as $album)
+                                        <div class="swiper-slide flex flex-col items-center mr-6">
+                                            <img src="{{ asset('storage/' . $album->imagen) }}"
+                                                class="h-12 w-12 rounded-full" />
+                                            <span>{{ $album->ALB_Nombre }}</span>
+                                        </div>
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    @endif
 
-                    <div class="lg:col-span-4 col-span-12 row-span-2">
-                        <span class="block mb-2">Albumes</span>
-                        <div class="swiper-container swiperIntegrantes">
-                            <div class="swiper-wrapper">
-                                @foreach ($artistaPendiente->artista->albumes as $album)
-                                    <div class="swiper-slide flex flex-col items-center mr-6">
-                                        <img src="{{ asset('storage/' . $album->imagen) }}"
-                                            class="h-12 w-12 rounded-full" />
-                                        <span>{{ $album->ALB_Nombre }}</span>
+                        <div class="lg:col-span-4 col-span-12">
+                            <span class="block mb-2">Extra</span>
+                            <div class="py-2 flex items-center">
+                                @if ($artistaPendiente->artista->facebook != '')
+                                    <a href="https://www.facebook.com/{{ $artistaPendiente->artista->facebook }}"
+                                        target="_blank">
+                                        <div style="float:left">
+                                            <img src="/face.png" width="40" height="40">
+                                        </div>
+                                    </a>
+                                @endif
+                                @if ($artistaPendiente->artista->instagram != '')
+                                    <a href="https://www.instagram.com/{{ $artistaPendiente->artista->instagram }}"
+                                        target="_blank">
+                                        <div style="float:left">
+                                            <img src="/insta.png" width="40" height="40">
+                                        </div>
+                                    </a>
+                                @endif
+                                @if ($artistaPendiente->artista->twitter != '')
+                                    <a href="https://twitter.com/{{ $artistaPendiente->artista->twitter }}"
+                                        target="_blank">
+                                        <div style="float:left">
+                                            <img src="/twiter.png" width="40" height="40">
+                                        </div>
+                                    </a>
+                                @endif
+
+                                @if ($artistaPendiente->artista->spotify != '' or $artistaPendiente->artista->youtube != '')
+                                    <div class="text-white mb-6" style="float:left">
+                                        <iframe
+                                            src="https://open.spotify.com/follow/1/?uri=spotify:artist:{{ $artistaPendiente->artista->spotify }}&size=detail&theme=dark&show-count=0"
+                                            width="300" height="56" scrolling="no" frameborder="0"
+                                            allowtransparency="true"></iframe>
                                     </div>
-                                @endforeach
+                                    <div>
+                                        <div class="g-ytsubscribe rounded-full"
+                                            data-channelid="{{ $artistaPendiente->artista->youtube }}"
+                                            data-layout="full" data-theme="dark" data-count="hidden">
+                                        </div>
+                                    </div>
+                                @endif
+
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="lg:col-span-4 col-span-12">
-                        <span class="block mb-2">Extra</span>
-                        <div class="py-2" style="float:left">
-                            @if ($artistaPendiente->artista->facebook != '')
-                                <a href="https://www.facebook.com/{{ $artistaPendiente->artista->facebook }}" target="_blank">
-                                    <div style="float:left">
-                                        <img src="/face.png" width="40" height="40">
-                                    </div>
-                                </a>
-                            @endif
-                            @if ($artistaPendiente->artista->instagram != '')
-                                <a href="https://www.instagram.com/{{ $artistaPendiente->artista->instagram }}" target="_blank">
-                                    <div style="float:left">
-                                        <img src="/insta.png" width="40" height="40">
-                                    </div>
-                                </a>
-                            @endif
-                            @if ($artistaPendiente->artista->twitter != '')
-                                <a href="https://twitter.com/{{ $artistaPendiente->artista->twitter }}" target="_blank">
-                                    <div style="float:left">
-                                        <img src="/twiter.png" width="40" height="40">
-                                    </div>
-                                </a>
-                            @endif
-                            @if ($artistaPendiente->artista->spotify != '')
-                                <a href="https://open.spotify.com/artist/{{ $artistaPendiente->artista->spotify }}" target="_blank">
-                                    <div style="float:left">
-                                        <div>Spotify logo</div>
-                                    </div>
-                                </a>
-                            @endif
-                            @if ($artistaPendiente->artista->youtube != '')
-                                <a href="https://www.facebook.com/{{ $artistaPendiente->artista->youtube }}" target="_blank">
-                                    <div style="float:left">
-                                        <div>Spotify logo</div>
-                                    </div>
-                                </a>
-                            @endif
                         </div>
                     </div>
                 </div>
-            </div>
-        @endforeach
-    </div>
-    @else 
+            @endforeach
+        </div>
+    @else
         <span>No hay solicitudes de nuevos artistas pendientes</span>
     @endif
 </div>

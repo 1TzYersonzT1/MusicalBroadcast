@@ -7,7 +7,7 @@
 
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
-                   <a href="/"><img src="/logo-1b.png" class="w-18 h-14"/></a>
+                    <a href="/"><img src="/logo-1b.png" class="w-18 h-14" /></a>
                 </div>
 
                 <!-- Navigation Links -->
@@ -40,7 +40,6 @@
                                 </span>
                                 @can('representar')
                                     <div x-show="open" class="absolute z-50 mt-2 bg-white">
-                                        <!-- Account Management -->
                                         <div class="block px-4 py-2 text-xs text-gray-400">
                                             {{ __('Menu artistas') }}
                                         </div>
@@ -57,7 +56,7 @@
                                             {{ __('Tus artistas') }}
                                         </x-jet-dropdown-link>
 
-                                    
+
                                     </div>
                                 @elsecan('administrar')
                                     <div x-show="open" class="absolute z-50 mt-2 bg-white">
@@ -108,7 +107,6 @@
                                 </span>
                                 @can('organizar')
                                     <div x-show="open" class="absolute z-50 mt-2 bg-white">
-                                        <!-- Account Management -->
                                         <div class="block px-4 py-2 text-xs text-gray-400">
                                             {{ __('Menu talleres') }}
                                         </div>
@@ -164,8 +162,7 @@
                                 <span class="inline-flex rounded-md">
                                     <button type="button"
                                         class="inline-flex items-center px-3 pt-1 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-gray-900 hover:text-gray-200 focus:outline-none transition">
-                                        Actividades
-
+                                        Eventos
                                         <svg @click="open=!open" class="ml-2 -mr-0.5 h-4 w-4"
                                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                             <path fill-rule="evenodd"
@@ -178,9 +175,8 @@
                                 </span>
                                 @can('organizar')
                                     <div x-show="open" class="absolute z-50 mt-2 bg-white">
-                                        <!-- Account Management -->
                                         <div class="block px-4 py-2 text-xs text-gray-400">
-                                            {{ __('Menu actividades') }}
+                                            {{ __('Menu eventos') }}
                                         </div>
 
                                         <x-jet-dropdown-link href="{{ route('eventos.index') }}">
@@ -222,7 +218,7 @@
                     @guest
                         <x-jet-nav-link href="{{ route('eventos.index') }}">
                             <x-slot name='slot'>
-                                <p class="text-white hover:transform hover:scale-125">{{ __('Actividades') }}</p>
+                                <p class="text-white hover:transform hover:scale-125">{{ __('Eventos') }}</p>
                             </x-slot>
                         </x-jet-nav-link>
                     @endguest
@@ -300,7 +296,7 @@
 
                                     <x-jet-dropdown-link href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                                                                                                                                                            this.closest('form').submit();">
+                                                                                                                                                                                                                                this.closest('form').submit();">
                                         {{ __('Cerrar sesión') }}
                                     </x-jet-dropdown-link>
                                 </form>
@@ -408,7 +404,7 @@
             </div>
         @endauth
 
-        <!-- Talleres -->
+        <!-- Talleres reponsive -->
         @guest
             <div class="pt-2 pb-3 space-y-1">
                 <x-jet-responsive-nav-link href="{{ route('artistas.index') }}">
@@ -452,7 +448,7 @@
 
                             <div class="pt-2 pb-3 space-y-1">
                                 <x-jet-responsive-nav-link href="{{ route('organizador.taller/asistentes') }}">
-                                    <span class="text-white flex justify-center">  {{ __('Mis talleres') }}</span>
+                                    <span class="text-white flex justify-center"> {{ __('Mis talleres') }}</span>
                                 </x-jet-responsive-nav-link>
                             </div>
                         </div>
@@ -487,11 +483,83 @@
             </div>
         @endauth
 
-        <div class="pt-2 pb-3 space-y-1">
-            <x-jet-responsive-nav-link href="/">
-                <span class="text-white flex justify-center">{{ __('Actividades') }}</span>
-            </x-jet-responsive-nav-link>
-        </div>
+
+        <!-- Eventos responsive -->
+        @auth
+            <div class="sm:flex sm:items-center">
+                @can('organizar')
+                    <div x-data="{ open: false }">
+                        <div class="pt-2 pb-3 space-y-1">
+
+                            <div class="pt-2 pb-3 space-y-1">
+                                <x-jet-responsive-nav-link class="flex justify-center">
+                                    <span class="text-white flex justify-center">{{ __('Eventos') }}</span>
+                                    <svg @click="open = !open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                </svg>
+                                </x-jet-responsive-nav-link>
+                            </div>
+
+                        </div>
+
+                        <div x-show="open" class="bg-primary bg-opacity-40">
+                            <div class="pt-2 pb-3 space-y-1">
+                                <x-jet-responsive-nav-link href="{{ route('eventos.index') }}">
+                                    <span class="text-white flex justify-center"> {{ __('Eventos') }}</span>
+                                </x-jet-responsive-nav-link>
+                            </div>
+
+                            <div class="pt-2 pb-3 space-y-1">
+                                <x-jet-responsive-nav-link href="{{ route('organizador.crearevento') }}">
+                                    <span class="text-white flex justify-center">{{ __('Crear evento') }}</span>
+                                </x-jet-responsive-nav-link>
+                            </div>
+
+                            <div class="pt-2 pb-3 space-y-1">
+                                <x-jet-responsive-nav-link href="{{ route('organizador.mis-eventos') }}">
+                                    <span class="text-white flex justify-center">{{ __('Mis solicitudes') }}</span>
+                                </x-jet-responsive-nav-link>
+                            </div>
+
+                            <div class="pt-2 pb-3 space-y-1">
+                                <x-jet-responsive-nav-link href="{{ route('organizador.evento/asistentes') }}">
+                                    <span class="text-white flex justify-center"> {{ __('Mis eventos') }}</span>
+                                </x-jet-responsive-nav-link>
+                            </div>
+                        </div>
+                    </div>
+                @elsecan('administrar')
+                    <div x-data="{open: false}">
+                        <div class="pt-2 pb-3 space-y-1">
+                            <x-jet-responsive-nav-link class="flex justify-center focus:border-red-500">
+                                <span class="text-white flex justify-center"> {{ __('Eventos') }}</span>
+                                <svg @click="open = !open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </x-jet-responsive-nav-link>
+                        </div>
+
+                        <div x-show="open" class="bg-primary bg-opacity-40">
+                            <div class="pt-2 pb-3 space-y-1">
+                                <x-jet-responsive-nav-link href="{{ route('eventos.index') }}">
+                                    <span class="text-white flex justify-center"> {{ __('Eventos') }}</span>
+                                </x-jet-responsive-nav-link>
+                            </div>
+
+                            <div class="pt-2 pb-3 space-y-1">
+                                <x-jet-responsive-nav-link href="{{ route('administrador.eventos') }}">
+                                    <span class="text-white flex justify-center">{{ __('Nuevos eventos') }}</span>
+                                </x-jet-responsive-nav-link>
+                            </div>
+                        </div>
+                    </div>
+                @endcan
+            </div>
+        @endauth
+
+  
 
         <!-- Responsive Settings Options -->
         <div class="pt-3 pb-5 border-t border-gray-200">
@@ -535,7 +603,7 @@
 
                         <x-jet-responsive-nav-link href="{{ route('logout') }}"
                             onclick="event.preventDefault();
-                                                                                                                this.closest('form').submit();">
+                                                                                                                    this.closest('form').submit();">
                             {{ __('Cerrar sesión') }}
                         </x-jet-responsive-nav-link>
                     </form>

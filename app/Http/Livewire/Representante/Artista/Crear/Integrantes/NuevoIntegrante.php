@@ -55,7 +55,7 @@ class NuevoIntegrante extends Component
     public function agregarIntegrante()
     {
         $this->validate([
-            'rutIntegrante' => 'required|string|min:8|max:9',
+            'rutIntegrante' => 'required|string|min:8|max:9|unique:integrante,rut',
             'nombreIntegrante' => 'required|string|min:2|max:30',
             'apellidosIntegrante' => 'required|string|min:2|max:40',
             'imagenIntegrante' => 'required|image|mimes:jpeg,jpg,png,svg,gif',
