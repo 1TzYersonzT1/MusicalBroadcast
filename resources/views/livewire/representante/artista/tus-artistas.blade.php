@@ -28,6 +28,9 @@
                             <a href="{{ route('artista.show', $artista->id) }}" class="mt-4 inline-flex px-6 py-1 bg-primary text-white">
                                 Perfil
                             </a>
+                            <a href="{{ route('representante.modificar-artista', $artista->id) }}" class="mt-4 inline-flex px-6 py-1 bg-primary text-white">
+                                Modificar Perfil
+                            </a>
                         </div>
                     @endforeach
                 </div>

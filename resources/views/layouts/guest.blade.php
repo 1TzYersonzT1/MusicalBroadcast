@@ -16,7 +16,7 @@
 
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
-
+    <script src="https://apis.google.com/js/platform.js"></script>
     @livewireStyles
 </head>
 

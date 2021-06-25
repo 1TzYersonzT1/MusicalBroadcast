@@ -1,4 +1,5 @@
-@section('banner')
+
+                @section('banner')
     <div class="bg-cover bg-no-repeat"
         style="background-image: url('https://mexico-grlk5lagedl.stackpathdns.com/production/mexico/images/1547572747299933-Carlos-Maycotte.jpg?w=1920&h=800&fit=crop&crop=focalpoint&auto=%5B%22format%22%2C%20%22compress%22%5D&cs=srgb')">
         <div class="flex lg:flex-row justify-around flex-col py-6 h-full ">
@@ -21,22 +22,23 @@
                         </svg>
 
                         <div x-show="open" class="p-8 absolute bg-gray-500 bg-opacity-75 -top-40 lg:left-28 -left-28">
-                            <div class="col-span-8"> 
+                            <div class="col-span-8">
                                 <span>El artista no es visible para los usuarios de la página web debido
                                     a que se encuentra con una solicitud en proceso.</span>
-    
+
                                 @if ($artistaActual->solicitud->estado == 0)
-    
+
                                     <span class="text-yellow-500">Pendiente.</span>
-    
+
                                 @endif
-    
+
                                 @if ($artistaActual->solicitud->estado == 1)
-    
+
                                     <span class="text-pink-400">Revisada.</span>
-                                    <div class="mt-4 w-72"> 
+                                    <div class="mt-4 w-72">
                                         <span class="text-red-500">Cambios que debes realizar</span>
-                                        <span class="block text-justify">{{ $artistaActual->solicitud->observacion }}</span>
+                                        <span
+                                            class="block text-justify">{{ $artistaActual->solicitud->observacion }}</span>
                                     </div>
                                 @endif
                             </div>
@@ -59,12 +61,21 @@
 
 <div>
     <div class="grid lg:grid-cols-8 grid-cols-6 gap-5 text-white py-4 lg:flex-col">
-
+        
         <div class="lg:col-span-6 col-span-6 justify-between">
             <div class="bg-black bg-opacity-20 px-2 py-1 lg:flex-col">
                 <span class="top-5 mb-3 text-4xl font-bold">Discografia</span>
                 @can('modificar-artista', $artistaActual)
-                    <span>Modificar artista</span>
+                        <button @click="abrir()">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </button>
+                        
+
+
                 @endcan
             </div>
             @if (count($artistaActual->albumes) > 0)
@@ -76,9 +87,9 @@
                                 <div class="grid lg:grid-cols-2 items-center">
                                     <div class="text-center flex flex-col items-center w-full">
                                         <span class="text-white text-2xl">{{ $album->ALB_Nombre }}</span>
-                                        <div class="lg:h-40 lg:w-40 w-40 mt-2 h-40 bg-cover rounded-full lg:rounded-t-full lg:rounded-1 text-center "
-                                            style="background-image: url('https://tailwindcss.com/img/card-left.jpg')"
-                                            title="Woman holding a mug">
+                                        <div
+                                            class="lg:h-40 lg:w-40 w-40 mt-2 h-40 bg-cover rounded-full lg:rounded-t-full lg:rounded-1 text-center ">
+                                            <img src="{{ asset('storage/' . $album->imagen) }}" class="h-40 w-40" />
                                         </div>
                                     </div>
 
@@ -113,6 +124,15 @@
             <div class="bg-black bg-opacity-20 px-2 py-1 lg:flex-col">
                 <div class="text-4xl font-bold ">
                     <span class="text-white">Musica</span>
+                    @can('modificar-artista', $artistaActual)
+                        <button>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </button>
+                    @endcan
                 </div>
             </div>
             <div class="py-5 px-2">
@@ -123,8 +143,8 @@
                             width="300" height="56" scrolling="no" frameborder="0" allowtransparency="true"></iframe>
                     </div>
                     <div>
-                        <div class="g-ytsubscribe rounded-full" data-channelid="{{ $artistaActual->youtube }}"
-                            data-layout="full" data-theme="dark" data-count="hidden">
+                        <div class="g-ytsubscribe" data-channelid="{{ $artistaActual->youtube }}" data-layout="full"
+                            data-theme="dark" data-count="hidden">
                         </div>
                     </div>
                 @else
@@ -141,6 +161,15 @@
         <div class="lg:col-span-6">
             <div class="bg-black bg-opacity-20 px-2 py-1">
                 <span class="top-5 mb-3 text-4xl font-bold">Biografia</span>
+                @can('modificar-artista', $artistaActual)
+                    <button>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </button>
+                @endcan
             </div>
             <div class="py-5">
                 <textarea disabled
@@ -153,6 +182,15 @@
             <div class="bg-black bg-opacity-20 px-2 py-1">
                 <div class="text-4xl font-bold">
                     <span class="text-white">Proximo Evento</span>
+                    @can('modificar-artista', $artistaActual)
+                        <button>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </button>
+                    @endcan
                 </div>
             </div>
             @if (count($artistaActual->eventos) > 0)
@@ -175,68 +213,90 @@
         <div class=" col-span-6 text-white">
             <div class="bg-black bg-opacity-20 px-2 py-1 ">
                 <span class="top-5 mb-3 text-4xl font-bold">Integrantes</span>
-            </div>
-            <div class="swiper-container swiperIntegrante py-5">
-                <div class="swiper-wrapper ">
-                    @foreach ($artistaActual->integrantes as $integrante)
-                        <div class="swiper-slide w-40 text-center" x-data="{ open: false }">
+                @can('modificar-artista', $artistaActual)
+
+                    <button @click="abrir()">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </button>
+                </div>
 
 
-                            <div x-on:mouseover="open = true" x-on:mouseout="open = false"
-                                class=" h-40 w-40 flex-none bg-cover rounded-full lg:rounded-t-full lg:rounded-1 text-center overflow-hidden"
-                                style="background-image: url('https://tailwindcss.com/img/card-left.jpg')"
-                                title="Woman holding a mug">
-                            </div>
+                </button>
 
-                            <span>{{ $integrante->nombre }}</span>
-                            <div x-show="open" @click.away="open = false"
-                                class="bg-white absolute top-12 lg:-left-36 p-4 text-primary lg:w-40"
-                                x-transition:enter="transition ease-out duration-300"
-                                x-transition:enter-start="opacity-0 transform scale-90"
-                                x-transition:enter-end="opacity-100 transform scale-100"
-                                x-transition:leave="transition ease-in duration-300"
-                                x-transition:leave-start="opacity-100 transform scale-100"
-                                x-transition:leave-end="opacity-0 transform scale-90">
+            @endcan
+        </div>
+        <div class="swiper-container swiperIntegrante py-5">
+            <div class="swiper-wrapper ">
+                @foreach ($artistaActual->integrantes as $integrante)
+                    <div class="swiper-slide w-40 text-center" x-data="{ open: false }">
 
-                                <div class="mb-5 flex flex-col">
-                                    <div>{{ $integrante->nombre }}</div>
-                                    <div>{{ $integrante->apellidos }}</div>
-                                    <div>{{ $integrante->INST_Nombre }}</div>
-                                </div>
-                            </div>
+
+                        <div x-on:mouseover="open = true" x-on:mouseout="open = false"
+                            class=" h-40 w-40 flex-none bg-cover rounded-full lg:rounded-t-full lg:rounded-1 text-center overflow-hidden">
+                            <img src="{{ asset('storage/' . $integrante->imagen) }}" class="h-40 w-40" />
                         </div>
 
-                    @endforeach
-                </div><br><br>
-                <div class="swiper-pagination"></div>
-            </div>
+                        <span>{{ $integrante->nombre }}</span>
+                        <div x-show="open" @click.away="open = false"
+                            class="bg-white absolute top-12 lg:-left-36 p-4 text-primary lg:w-40"
+                            x-transition:enter="transition ease-out duration-300"
+                            x-transition:enter-start="opacity-0 transform scale-90"
+                            x-transition:enter-end="opacity-100 transform scale-100"
+                            x-transition:leave="transition ease-in duration-300"
+                            x-transition:leave-start="opacity-100 transform scale-100"
+                            x-transition:leave-end="opacity-0 transform scale-90">
+
+                            <div class="mb-5 flex flex-col">
+                                <div>{{ $integrante->nombre }}</div>
+                                <div>{{ $integrante->apellidos }}</div>
+                                <div>{{ $integrante->INST_Nombre }}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                @endforeach
+            </div><br><br>
+            <div class="swiper-pagination"></div>
         </div>
+</div>
+@endif
+
+<div class="py-2" style="float:left">
+
+    @if ($artistaActual->facebook != '')
+        <a href="https://www.facebook.com{{ $artistaActual->facebook }}" target="_blank">
+            <div style="float:left">
+                <img src="/face.png" width="40" height="40">
+            </div>
+        </a>
     @endif
-
-    <div class="py-2" style="float:left">
-
-        @if ($artistaActual->facebook != '')
-            <a href="https://www.facebook.com{{ $artistaActual->facebook }}" target="_blank">
-                <div style="float:left">
-                    <img src="/face.png" width="40" height="40">
-                </div>
-            </a>
-        @endif
-        @if ($artistaActual->instagram != '')
-            <a href="https://www.instagram.com{{ $artistaActual->instagram }}" target="_blank">
-                <div style="float:left">
-                    <img src="/insta.png" width="40" height="40">
-                </div>
-            </a>
-        @endif
-        @if ($artistaActual->twitter != '')
-            <a href="https://twitter.com/{{ $artistaActual->twitter }}" target="_blank">
-                <div style="float:left">
-                    <img src="/twiter.png" width="40" height="40">
-                </div>
-            </a>
-        @endif
-    </div>
+    @if ($artistaActual->instagram != '')
+        <a href="https://www.instagram.com{{ $artistaActual->instagram }}" target="_blank">
+            <div style="float:left">
+                <img src="/insta.png" width="40" height="40">
+            </div>
+        </a>
+    @endif
+    @if ($artistaActual->twitter != '')
+        <a href="https://twitter.com/{{ $artistaActual->twitter }}" target="_blank">
+            <div style="float:left">
+                <img src="/twiter.png" width="40" height="40">
+            </div>
+        </a>
+    @endif
+    @can('modificar-artista', $artistaActual)
+        <button>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" class="text-white" />
+            </svg>
+        </button>
+    @endcan
+</div>
 
 </div>
 

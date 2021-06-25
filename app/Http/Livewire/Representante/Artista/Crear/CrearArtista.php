@@ -168,14 +168,12 @@ class CrearArtista extends Component
             "facebook" => "nullable|regex:/https:\/\/www.facebook.com/",
             "twitter" => "nullable|regex:/twitter.com/",
             "spotify" => "nullable|regex:/https:\/\/open.spotify.com\/artist/",
-            "youtube" => "nullable|regex:/https:\/\/www.youtube.com\/channel/",
         ]);
 
         $this->instagram = preg_replace('/https:\/\/www.instagram.com/', '', $this->instagram);
         $this->facebook = preg_replace('/https:\/\/www.facebook.com/', '',  $this->facebook);
         $this->twitter = preg_replace('/https:\/\/twitter.com/', '',  $this->twitter);
         $this->spotify = preg_replace('/https:\/\/open.spotify.com\/artist\//', '',  $this->spotify);
-        $this->youtube = preg_replace('/https:\/\/www.youtube.com\/channel\//', '',  $this->youtube);
     }
 
     public function render()
