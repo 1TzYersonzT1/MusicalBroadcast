@@ -122,7 +122,7 @@
                 <div class=" text-center">
 
                     <div class="flex py-2 justify-center my-5 gap-16">
-                        <textarea placeholder="Agrega la biografía del artista" wire:model="biografia" maxlength="2000"
+                        <textarea placeholder="Agrega la biografía del artista" wire:model="artista.biografia" maxlength="2000"
                             class="border-2 lg:w-96 w-80 bg-white h-48 mt-1 mb-1 text-primary"></textarea>
 
                     </div>
@@ -150,7 +150,7 @@
                     <div class="flex  justify-between py-2">
                         <span class="mb-3 text-2xl justify-self-start font-bold mt-2">Instagram</span>
                         <div class="flex flex-col">
-                            <input type="text" wire:model="instagram"
+                            <input type="text" wire:model="artista.instagram"
                                 placeholder="Pega la URL del perfil del artista de instagram"
                                 class="bg-white h-14 px-5 lg:w-96 focus:outline-none rounded-full text-black">
                             @error('instagram')
@@ -162,7 +162,7 @@
                     <div class="flex justify-between py-2">
                         <span class="mb-3 text-2xl font-bold mt-2">Facebook</span>
                         <div class="flex flex-col">
-                            <input type="text" wire:model="facebook"
+                            <input type="text" wire:model="artista.facebook"
                                 placeholder="Pega la URL del perfil del artista de facebook"
                                 class="bg-white h-14 px-5 lg:w-96 focus:outline-none rounded-full text-black">
                             @error('facebook')
@@ -174,7 +174,7 @@
                     <div class="flex justify-between py-2">
                         <span class="mb-3 text-2xl font-bold mt-2">Twitter</span>
                         <div class="flex flex-col">
-                            <input type="text" wire:model="twitter"
+                            <input type="text" wire:model="artista.twitter"
                                 placeholder="Pega la URL del perfil del artista de twiter"
                                 class="bg-white h-14 px-5 lg:w-96 focus:outline-none rounded-full text-black">
                             @error('twitter')
@@ -194,7 +194,7 @@
                 <div class="flex justify-between py-2 mt-5">
                     <span class="mb-3 text-2xl font-bold mt-2">Spotify</span>
                     <div class="flex flex-col">
-                        <input type="text" wire:model="spotify"
+                        <input type="text" wire:model="artista.spotify"
                             placeholder="Pega la URL del perfil del artista de spotify"
                             class="bg-white h-14 px-5 lg:w-96 focus:outline-none rounded-full text-black">
                         @error('spotify')
@@ -207,10 +207,7 @@
                     <span class="top-5 mb-3 text-2xl font-bold mt-2">Youtube</span>
                     <div class="flex flex-col">
                         <div class="flex ">
-                            <input type="text" wire:model="youtube"
-                                placeholder="Pega la URL del perfil del artista de youtube"
-                                class="bg-white h-14 px-5 lg:w-96 focus:outline-none rounded-full text-black">
-
+                            
                             <div x-data="{ open: false }">
                                 <div x-on:mouseover="open = true" x-on:mouseout="open = false">
                                     <button>
@@ -236,7 +233,9 @@
                                     </div>
                                 </div>
                             </div>
-
+                            <input type="text" wire:model="artista.youtube"
+                                placeholder="Pega el ID del canal de youtube del artisa"
+                                class="bg-white h-14 px-5 lg:w-96 focus:outline-none rounded-full text-black">
                         </div>
                         @error('youtube')
                             <span class="block">{{ $message }}</span>
