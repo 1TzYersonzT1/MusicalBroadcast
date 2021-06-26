@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\Team;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Laravel\Jetstream\Features;
 
@@ -25,22 +26,14 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'rut' => "12345678",
+            'rut' => rand(61229361, 246779890),
             'nombre' => $this->faker->firstName('male'),
             'apellidos' => $this->faker->lastName() . " " . $this->faker->lastName(),
             'email' => $this->faker->unique()->safeEmail,
             'telefono' => 123456789,
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'password' => Hash::make(123), // password
             'remember_token' => Str::random(10),
         ];
-    }
-
-    public function organizador_2() {
-        return $this->state(function (array $attributes) {
-            return [
-                'rut' => '87654321',
-            ];
-        });
     }
 
     /**

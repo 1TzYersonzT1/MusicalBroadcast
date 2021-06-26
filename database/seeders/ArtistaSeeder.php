@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Artista;
+use App\Models\User;
+use App\Models\Rol;
 
 class ArtistaSeeder extends Seeder
 {
@@ -14,10 +16,7 @@ class ArtistaSeeder extends Seeder
      */
     public function run()
     {
-        Artista::factory()->count(10)->grupo()->create();
-        Artista::factory()->count(10)->grupo()->organizador_2()->create();
-        
-        Artista::factory()->count(10)->create();
-        Artista::factory()->count(10)->organizador_2()->create();
+    
+       
     }
 }

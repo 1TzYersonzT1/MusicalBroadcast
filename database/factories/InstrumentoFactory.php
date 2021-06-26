@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\Model;
+use App\Models\Instrumento;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class InstrumentoFactory extends Factory
@@ -12,7 +12,7 @@ class InstrumentoFactory extends Factory
      *
      * @var string
      */
-    protected $model = Model::class;
+    protected $model = Instrumento::class;
 
     /**
      * Define the model's default state.
@@ -22,7 +22,8 @@ class InstrumentoFactory extends Factory
     public function definition()
     {
         return [
-            
+            'INST_Nombre' => '',
+            'imagen' => '',
         ];
     }
 }

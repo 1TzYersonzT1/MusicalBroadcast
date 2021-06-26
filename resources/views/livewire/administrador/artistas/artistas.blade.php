@@ -6,11 +6,13 @@
     @if (count($artistasPendientes) > 0)
         <div class="w-full">
             @foreach ($artistasPendientes as $artistaPendiente)
-                <div class="bg-gray-200 px-4 py-2 text-primary my-4 lg:w-5/6">
+                <div class="bg-gray-200 px-4 py-6 text-primary my-4 lg:w-5/6">
 
                     <span class="block mb-2">
-                        Solicitado por: {{ $artistaPendiente->artista->representante->nombre }}
-                        {{ $artistaPendiente->artista->representante->apellidos }}</span>
+                        <span class="font-bold">Solicitado por:</span>
+                        {{ $artistaPendiente->artista->representante->nombre }}
+                        {{ $artistaPendiente->artista->representante->apellidos }}
+                    </span>
 
 
                     <div class="grid grid-rows-3 grid-cols-12 gap-4">
@@ -22,7 +24,7 @@
                         <div class="lg:row-span-2 row-span-1 lg:col-start-5 lg:col-span-8 col-span-12 flex flex-col">
                             <div class="flex lg:flex-row flex-col justify-between">
                                 <div class="flex">
-                                    <span>Nombre artista: </span>
+                                    <span class="font-bold">Nombre artista: </span>
                                     <span>&nbsp{{ $artistaPendiente->artista->ART_Nombre }}</span>
                                 </div>
 
@@ -53,7 +55,8 @@
                                                 <span class="text-red-400">{{ $message }}</span>
                                             @enderror
 
-                                            <button wire:click="validarObservacionArtista('{{ $artistaPendiente->artista->id }}')"
+                                            <button
+                                                wire:click="validarObservacionArtista('{{ $artistaPendiente->artista->id }}')"
                                                 class="bg-primary text-white px-4 py-2 mt-4">Agregar
                                                 observación</button>
 
@@ -67,15 +70,15 @@
                             </div>
 
                             <div class="flex flex-col">
-                                <span class="font-light">Biografia: </span>
+                                <span class="font-bold">Biografia: </span>
 
                                 <textarea disabled
-                                    class="resize-none p-2 h-40 bg-transparent border-0">{{ $artistaPendiente->artista->biografia }}</textarea>
+                                    class="resize-none px-0 py-2 h-40 bg-transparent border-0">{{ $artistaPendiente->artista->biografia }}</textarea>
 
                             </div>
 
-                            <div class="mt-2">
-                                <span class="font-light">Estilos: </span>
+                            <div class="mt-1">
+                                <span class="font-bold">Estilos: </span>
                                 <span>
                                     @foreach ($artistaPendiente->artista->estilos as $estilo)
                                         @if ($loop->last)
@@ -107,7 +110,7 @@
                         @endif
 
                         <div class="lg:col-span-4 col-span-12 row-span-2">
-                            <span class="block mb-2">Albumes</span>
+                            <span class="block mb-2 font-bold">Albumes</span>
                             <div class="swiper-container swiperIntegrantes">
                                 <div class="swiper-wrapper">
                                     @foreach ($artistaPendiente->artista->albumes as $album)
@@ -122,7 +125,7 @@
                         </div>
 
                         <div class="lg:col-span-4 col-span-12">
-                            <span class="block mb-2">Extra</span>
+                            <span class="block mb-2 font-bold">Extra</span>
                             <div class="py-2 flex items-center">
                                 @if ($artistaPendiente->artista->facebook != '')
                                     <a href="https://www.facebook.com/{{ $artistaPendiente->artista->facebook }}"
@@ -149,20 +152,7 @@
                                     </a>
                                 @endif
 
-                                @if ($artistaPendiente->artista->spotify != '' or $artistaPendiente->artista->youtube != '')
-                                    <div class="text-white mb-6" style="float:left">
-                                        <iframe
-                                            src="https://open.spotify.com/follow/1/?uri=spotify:artist:{{ $artistaPendiente->artista->spotify }}&size=detail&theme=dark&show-count=0"
-                                            width="300" height="56" scrolling="no" frameborder="0"
-                                            allowtransparency="true"></iframe>
-                                    </div>
-                                    <div>
-                                        <div class="g-ytsubscribe rounded-full"
-                                            data-channelid="{{ $artistaPendiente->artista->youtube }}"
-                                            data-layout="full" data-theme="dark" data-count="hidden">
-                                        </div>
-                                    </div>
-                                @endif
+
 
                             </div>
                         </div>
@@ -217,7 +207,7 @@
             cancelButtonText: 'Cancelar',
             confirmButtonText: 'Agregar'
         }).then((result) => {
-            if(result.isConfirmed) {
+            if (result.isConfirmed) {
                 Livewire.emit('confirmarObservacionArtista');
 
                 Swal.fire({

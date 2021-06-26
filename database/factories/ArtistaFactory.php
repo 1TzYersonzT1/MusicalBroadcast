@@ -24,7 +24,7 @@ class ArtistaFactory extends Factory
     {
         return [
             'ART_Nombre' => $this->faker->firstName . ' ' . $this->faker->lastName,
-            'user_rut' => '87654321',
+            'user_rut' => '',
             'tipo_artista' => 1,
             'biografia' => $this->faker->text(200),
             'estado' => 1,
@@ -40,12 +40,5 @@ class ArtistaFactory extends Factory
         });
     }
 
-    public function organizador_2() 
-    {
-        return $this->state(function (array $attributes) {
-            return [
-                "user_rut" => "12345678",
-            ];
-        });
-    }
+
 }
