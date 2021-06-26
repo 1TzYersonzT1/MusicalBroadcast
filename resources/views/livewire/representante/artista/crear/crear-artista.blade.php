@@ -234,17 +234,21 @@
                                         x-transition:leave-end="opacity-0 transform scale-90">
                                         <div class="mb-5 flex flex-col">
                                             <img src="/youtube.PNG" class="w-96 rounded-full  " />
+                                            <div class="flex"> 
+                                                <span>Haga clic en <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"
+                                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+    
+                                                    </svg>para ir directamente al sitio que aparece en la imagen.</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                                 <input type="text" wire:model="youtube"
-                                    placeholder="Pega la URL del perfil del artista de youtube"
+                                    placeholder="Pega el ID del canal que pertenece al artista"
                                     class="bg-white h-14 px-5 lg:w-96 focus:outline-none rounded-full text-black">
                             </div>
-
-
-
-
 
                         </div>
                         @error('youtube')

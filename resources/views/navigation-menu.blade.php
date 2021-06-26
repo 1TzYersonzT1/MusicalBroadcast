@@ -73,7 +73,7 @@
                                             {{ __('Nuevos artistas') }}
                                         </x-jet-dropdown-link>
 
-                                      
+
                                     </div>
                                 @endcan
                             </div>
@@ -159,7 +159,7 @@
 
                     @auth
                         <div class="hidden sm:flex sm:items-center">
-                            <div class="relative" x-data="{ open: false }" @click.away="open = false" x-cloak 
+                            <div class="relative" x-data="{ open: false }" @click.away="open = false" x-cloak
                                 @close.stop="open = false">
                                 <span class="inline-flex rounded-md">
                                     <button type="button"
@@ -170,9 +170,7 @@
                                             <path fill-rule="evenodd"
                                                 d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
                                                 clip-rule="evenodd" />
-
                                         </svg>
-
                                     </button>
                                 </span>
                                 @can('organizar')
@@ -199,7 +197,7 @@
                                     </div>
                                 @elsecan('administrar')
                                     <div x-show="open" class="absolute z-50 mt-2 bg-white">
-                                        <!-- Account Management -->
+
                                         <div class="block px-4 py-2 text-xs text-gray-400">
                                             {{ __('Administrar evento') }}
                                         </div>
@@ -210,6 +208,16 @@
 
                                         <x-jet-dropdown-link href="{{ route('administrador.eventos') }}">
                                             {{ __('Nuevos eventos') }}
+                                        </x-jet-dropdown-link>
+                                    </div>
+                                @else
+                                    <div x-show="open" class="absolute z-50 mt-2 bg-white">
+                                        <div class="block px-4 py-2 text-xs text-gray-400">
+                                            {{ __('Menu eventos') }}
+                                        </div>
+
+                                        <x-jet-dropdown-link href="{{ route('eventos.index') }}">
+                                            {{ __('Eventos') }}
                                         </x-jet-dropdown-link>
                                     </div>
                                 @endcan
@@ -298,7 +306,7 @@
 
                                     <x-jet-dropdown-link href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                                                                                                                                                                this.closest('form').submit();">
+                                                                                                                                                                                                                                                this.closest('form').submit();">
                                         {{ __('Cerrar sesión') }}
                                     </x-jet-dropdown-link>
                                 </form>
@@ -343,7 +351,7 @@
         @auth
             <div class="sm:flex sm:items-center">
                 @can('representar')
-                    <div x-data="{open: false}" x-cloak >
+                    <div x-data="{open: false}" x-cloak>
                         <div class="pt-2 pb-3 space-y-1">
                             <x-jet-responsive-nav-link class="flex justify-center focus:border-red-500">
                                 <span class="text-white flex justify-center"> {{ __('Artistas') }}</span>
@@ -364,6 +372,12 @@
                             <div class="pt-2 pb-3 space-y-1">
                                 <x-jet-responsive-nav-link href="{{ route('representante.crearartista') }}">
                                     <span class="text-white flex justify-center">{{ __('Agregar artista') }}</span>
+                                </x-jet-responsive-nav-link>
+                            </div>
+
+                            <div class="pt-2 pb-3 space-y-1">
+                                <x-jet-responsive-nav-link href="{{ route('representante.mis-artistas') }}">
+                                    <span class="text-white flex justify-center">{{ __('Estado de solicitudes') }}</span>
                                 </x-jet-responsive-nav-link>
                             </div>
 
@@ -497,9 +511,10 @@
                                 <x-jet-responsive-nav-link class="flex justify-center">
                                     <span class="text-white flex justify-center">{{ __('Eventos') }}</span>
                                     <svg @click="open = !open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                                </svg>
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 9l-7 7-7-7" />
+                                    </svg>
                                 </x-jet-responsive-nav-link>
                             </div>
 
@@ -561,7 +576,7 @@
             </div>
         @endauth
 
-  
+
 
         <!-- Responsive Settings Options -->
         <div class="pt-3 pb-5 border-t border-gray-200">
@@ -605,7 +620,7 @@
 
                         <x-jet-responsive-nav-link href="{{ route('logout') }}"
                             onclick="event.preventDefault();
-                                                                                                                    this.closest('form').submit();">
+                                                                                                                                    this.closest('form').submit();">
                             {{ __('Cerrar sesión') }}
                         </x-jet-responsive-nav-link>
                     </form>

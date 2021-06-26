@@ -19,11 +19,11 @@
                 </div>
 
                 <div class="swiper-container swiperGenerosArtista mt-5" wire:ignore>
-                    <div class="swiper-wrapper"> 
-                        
-                                <livewire:representante.artista.crear.elecciones.genero :nombreArtista="$artista->ART_Nombre" :genero="$artista->estilos[0]->genero"
-                                 />
-                           
+                    <div class="swiper-wrapper">
+
+                        <livewire:representante.artista.crear.elecciones.genero :nombreArtista="$artista->ART_Nombre"
+                            :genero="$artista->estilos[0]->genero" />
+
                     </div>
                 </div>
             </div>
@@ -93,7 +93,7 @@
                 </div>
                 <div class="flex justify-center gap-5 mt-5">
                     @if ($artista->imagen)
-                        <img src="{{ asset ('/storage/'.$artista->imagen) }}" class="rounded-full w-32 h-32" />
+                        <img src="{{ asset('/storage/' . $artista->imagen) }}" class="rounded-full w-32 h-32" />
                         <svg wire:click="eliminarImagenArtista" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"
                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -122,7 +122,8 @@
                 <div class=" text-center">
 
                     <div class="flex py-2 justify-center my-5 gap-16">
-                        <textarea placeholder="Agrega la biografía del artista" wire:model="artista.biografia" maxlength="2000"
+                        <textarea placeholder="Agrega la biografía del artista" wire:model="artista.biografia"
+                            maxlength="2000"
                             class="border-2 lg:w-96 w-80 bg-white h-48 mt-1 mb-1 text-primary"></textarea>
 
                     </div>
@@ -133,10 +134,12 @@
             </div>
 
             <!-- Albumes -->
-            <livewire:representante.artista.crear.album.album :albumes="$artista->albumes" :nombreArtista="$artista->ART_Nombre" />
+            <livewire:representante.artista.crear.album.album :albumes="$artista->albumes"
+                :nombreArtista="$artista->ART_Nombre" />
             <!-- Integrantes -->
             @if ($artista->tipo_artista == 2)
-                <livewire:representante.artista.crear.integrantes.nuevo-integrante :nombreArtista="$artista->ART_Nombre" />
+                <livewire:representante.artista.crear.integrantes.nuevo-integrante
+                    :nombreArtista="$artista->ART_Nombre" />
             @endif
 
 
@@ -207,7 +210,7 @@
                     <span class="top-5 mb-3 text-2xl font-bold mt-2">Youtube</span>
                     <div class="flex flex-col">
                         <div class="flex ">
-                            
+
                             <div x-data="{ open: false }">
                                 <div x-on:mouseover="open = true" x-on:mouseout="open = false">
                                     <button>

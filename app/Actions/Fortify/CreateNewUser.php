@@ -48,9 +48,9 @@ class CreateNewUser implements CreatesNewUsers
         $hojavida = new HojaVida([
             "user_rut" => $usuario->rut,
             "talleres_rechazados" => 0,
-            "talleres_reportados" => 0,
+            "talleres_aprobados" => 0,
             "eventos_rechazados" => 0,
-            "eventos_reportados" => 0, 
+            "eventos_aprobados" => 0, 
         ]);
 
         $usuario->hojavida()->save($hojavida);

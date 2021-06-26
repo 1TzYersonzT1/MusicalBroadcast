@@ -11,6 +11,7 @@ use App\Http\Livewire\Artista\Artistas;
 use App\Http\Livewire\Artista\ArtistaPreview;
 use App\Http\Livewire\Representante\Artista\Crear\CrearArtista;
 use App\Http\Livewire\Representante\Artista\TusArtistas;
+use App\Http\Livewire\Representante\Artista\Solicitudes\MisSolicitudes;
 use App\Http\Livewire\Organizador\Eventos\Crear\CrearEvento;
 use App\Http\Livewire\Organizador\Eventos\MisEventos;
 use App\Http\Livewire\Organizador\Eventos\ModificarEvento;
@@ -59,7 +60,7 @@ Route::group(["middleware" => 'auth'], function() {
         Route::get("/crear-artista", CrearArtista::class)->name("crearartista");
         Route::get("/tus-artistas", TusArtistas::class)->name("tusartistas");
         Route::get("/modificar-artista/{id}", ModificarArtista::class)->name("modificar-artista");
-        Route::get("/artistas/mis-solicitudes");
+        Route::get("/artistas/mis-solicitudes", MisSolicitudes::class)->name("mis-artistas");
        
     });
     

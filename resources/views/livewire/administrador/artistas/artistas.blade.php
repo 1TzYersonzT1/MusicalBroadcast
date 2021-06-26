@@ -114,9 +114,10 @@
                                 </span>
                             </div>
                         </div>
+                        @if ($artistaPendiente->artista->tipo_artista == 2)
                         <div class="lg:col-span-4 col-span-12 h-2">
                             <span class="block mb-2 font-bold">Integrantes</span>
-                            @if ($artistaPendiente->artista->tipo_artista == 2)
+                            
                                 <div class="swiper-container swiperIntegrantes">
                                     <div class="swiper-wrapper">
                                         @foreach ($artistaPendiente->artista->integrantes as $integrante)
@@ -130,10 +131,9 @@
                                     </div>
                                 </div>
                                 <div class="swiper-pagination-integrantes"></div>
-                            @else
-
-                            @endif
+               
                         </div>
+                        @endif
 
                         <div class="lg:col-span-4 col-span-12 row-span-2">
                             <span class="block mb-2 font-bold">Albumes</span>
@@ -153,9 +153,9 @@
                             <div class="swiper-pagination-albumes"></div>
                         </div>
 
-                        <div class="lg:col-span-4 col-span-12">
+                        <div class="lg:col-span-4 col-span-12 flex flex-col">
                             <span class="block mb-2 font-bold">Extra</span>
-                            <div class="py-2 flex items-center">
+                            <div class="flex items-center">
                                 @if ($artistaPendiente->artista->facebook != '')
                                     <a href="https://www.facebook.com/{{ $artistaPendiente->artista->facebook }}"
                                         target="_blank">
@@ -180,9 +180,21 @@
                                         </div>
                                     </a>
                                 @endif
+                            </div>
+                            <div class="flex mt-2">
+                                @if ($artistaPendiente->artista->spotify != '')
+                                    <iframe
+                                        src="https://open.spotify.com/follow/1/?uri=spotify:artist:{{ $artistaPendiente->artista->spotify }}&size=detail&theme=light&show-count=0"
+                                        width="200" height="56" scrolling="no" frameborder="0"
+                                        style="border:none; overflow:hidden;" allowtransparency="true"></iframe>
+                                @endif
 
-
-
+                                @if ($artistaPendiente->artista->youtube != '')
+                                    <div class="g-ytsubscribe"
+                                        data-channelid="{{ $artistaPendiente->artista->youtube }}" data-layout="full"
+                                        data-count="hidden">
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>
