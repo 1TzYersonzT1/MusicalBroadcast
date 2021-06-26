@@ -15,7 +15,13 @@ class ModificarArtista extends Component
     protected $rules = [
         'artista.ART_Nombre' => 'required|string',
         'artista.tipo_artista'=>'required',
-        
+        'artista.biografia' => 'required|string',
+        'artista.instagram' => 'required|string',
+        'artista.facebook' => 'required|string',
+        'artista.twitter' => 'required|string',
+        'artista.spotify' => 'required|string',
+        'artista.youtube' => 'required|string',
+
     ];
 
     public function render()
