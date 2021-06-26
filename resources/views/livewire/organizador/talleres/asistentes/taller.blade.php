@@ -176,7 +176,7 @@
                 Swal.fire({
                     title: "Asistente eliminado",
                     text: 'Se ha eliminado al asistente',
-                    icon: 'sucess',
+                    icon: 'success',
                     timer: 2000,
                 }).then((result) => {
                     if(result.isConfirmed) {

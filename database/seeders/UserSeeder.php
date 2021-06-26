@@ -9,12 +9,13 @@ use App\Models\User;
 class UserSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
-     *
+     * Crea un unico administrador
      * @return void
      */
     public function run()
     {
-       
+        $role_administador = Rol::factory()->administrador()->make();
+
+        User::factory()->hasAttached($role_administador, [], 'roles')->create();
     }
 }

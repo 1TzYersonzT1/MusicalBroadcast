@@ -8,15 +8,16 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class GeneroFactory extends Factory
 {
     /**
-     * The name of the factory's corresponding model.
-     *
+     * El nombre del modelo asociado a la fabrica
      * @var string
      */
     protected $model = Genero::class;
 
     /**
-     * Define the model's default state.
-     *
+     * Define el estado por defecto para los generos
+     * musicales el cual puede ser sobrrescrito
+     * por cualquier valor de tipo cadena de 
+     * caracteres que se le indique en la fabrica
      * @return array
      */
     public function definition()
@@ -25,5 +26,4 @@ class GeneroFactory extends Factory
             'GEN_Nombre' => '',
         ];
     }
-
 }

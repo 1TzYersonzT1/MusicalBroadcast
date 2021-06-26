@@ -4,8 +4,8 @@ namespace App\Http\Livewire\Administrador\Artistas;
 
 use Livewire\Component;
 use App\Models\SolicitudArtista;
-use App\Mail\ArtistaAprobado;
-use App\Mail\ArtistaRechazado;
+use App\Mail\Artista\ArtistaAprobado;
+use App\Mail\Artista\ArtistaRechazado;
 use App\Models\Artista;
 use Illuminate\Support\Facades\Mail;
 
@@ -21,7 +21,7 @@ class Artistas extends Component
     ];
 
     public function mount() {
-        $this->artistasPendientes = SolicitudArtista::where("estado", 1)->get();
+        $this->artistasPendientes = SolicitudArtista::where("estado", '!=', 3)->get();
     }
 
     public function validarAprobarArtista($id) {

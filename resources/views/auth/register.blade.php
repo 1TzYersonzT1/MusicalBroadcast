@@ -38,16 +38,16 @@
             </div>
 
             <div class="mt-4">
-                <div x-data="{open: false}" @click.away="open = false"
+                <div x-data="{open: false}" x-cloak
                     class="relative flex items-center justify-between">
                     <x-jet-label for="email" value="{{ __('Email') }}" />
-                    <svg x-on:mouseover="open = true" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white"
+                    <svg x-on:mouseover="open = true" x-on:mouseout="open = false" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white"
                         fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
 
-                    <div x-show="open" x-on:mouseout="open = false"
+                    <div x-show.transition="open" x-on:mouseout="open = false"
                         class="absolute -top-40 bg-gray-600 text-white bg-opacity-75 py-2 px-4">
                         <span>Te recomendamos crear un correo dedicado para tu cuenta
                             ya que recibiras notificaciones y tu correo será visible

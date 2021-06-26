@@ -7,6 +7,9 @@ use App\Models\SolicitudEvento;
 use App\Models\Evento;
 use App\Models\HojaVida;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\Eventos\Administrador\EventoAprobado;
+use App\Mail\Eventos\Administrador\EventoRechazado;
 
 class EventoPreview extends Component
 {
@@ -35,9 +38,21 @@ class EventoPreview extends Component
         $evento->estado = 1;
         $evento->save();
 
+        $hojaVida = HojaVida::where("user_rut", $evento->user_rut)->get();
+        
+        $hojaVida[0]->eventos_aprobados = $hojaVida[0]->eventos_aprobados + 1;
+        $hojaVida[0]->save();
+
         $solicitud = SolicitudEvento::find($this->solicitudActual->id);
         $solicitud->estado = 3;
         $solicitud->save();
+
+        $mensaje = [
+            "evento" => $evento,
+            "organizador" => $evento->organizador,
+        ];
+
+        Mail::to($evento->organizador->email)->send(new EventoAprobado($mensaje));
 
         return redirect()->route("administrador.eventos");
     }
@@ -60,9 +75,16 @@ class EventoPreview extends Component
         $evento = Evento::find($this->solicitudActual->evento->id);
         Storage::delete($evento->imagen);
 
-        $hojaVida = HojaVida::where("user_rut", $this->solicitudActual->evento->user_rut)->get();
+        $hojaVida = HojaVida::where("user_rut", $evento->user_rut)->get();
         $hojaVida[0]->eventos_rechazados = $hojaVida[0]->eventos_rechazados + 1;
         $hojaVida[0]->save();
+
+        $mensaje = [
+            "evento" => $evento,
+            "organizador" => $evento->organizador,
+        ];
+
+        Mail::to($evento->organizador->email)->send(new EventoRechazado($mensaje));
 
         $evento->solicitudes()->delete();
         $evento->delete();

@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Mail;
+namespace App\Mail\Talleres\Administrador;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class PosponerTaller extends Mailable
+class TallerAprobado extends Mailable
 {
     use Queueable, SerializesModels;
 
-    protected $taller, $asistente;
+    protected $taller, $organizador;
 
     /**
      * Create a new message instance.
@@ -21,7 +21,7 @@ class PosponerTaller extends Mailable
     public function __construct(array $mensaje)
     {
         $this->taller = $mensaje["taller"];
-        $this->asistente = $mensaje["asistente"];
+        $this->organizador = $mensaje["organizador"];
     }
 
     /**
@@ -31,12 +31,12 @@ class PosponerTaller extends Mailable
      */
     public function build()
     {
-        return $this->from("jorge.vnarvaez@gmail.com")
-        ->subject('Taller pospuesto')
-        ->view('mails.posponer-taller')
+        return $this->from('jorge.vnarvaez@gmail.com')
+        ->subject("Solicitud de taller aprobada")
+        ->view('mails.talleres.administrador.taller-aprobado')
         ->with([
             "taller" => $this->taller,
-            'asistente' => $this->asistente,
+            "organizador" => $this->organizador,
         ]);
     }
 }

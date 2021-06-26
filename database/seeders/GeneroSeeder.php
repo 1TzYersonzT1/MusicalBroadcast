@@ -9,8 +9,7 @@ use Illuminate\Database\Eloquent\Factories\Sequence;
 class GeneroSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
-     *
+     * Se crean los generos musicales
      * @return void
      */
     public function run()

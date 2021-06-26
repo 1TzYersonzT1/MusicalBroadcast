@@ -10,12 +10,12 @@
         <div class="grid lg:grid-cols-2 md:grid-cols-2 gap-8 mb-5 lg:w-full w-80">
 
             <div class="flex lg:flex-row flex-col justify-between lg:w-96">
-                <div class="lg:mb-0 mb-3">
+                <div class="lg:mb-0 mb-3 mr-4">
                     <p class="font-bold">ORGANIZADOR</p>
                     <p>{{ $tallerActual->organizador->nombre }} {{ $tallerActual->organizador->apellidos }}</p>
                 </div>
 
-                <div class="lg:mb-0 mb-3">
+                <div class="lg:mb-0 mb-3 mr-4">
                     <p class="font-bold">Teléfono</p>
                     <p>{{ $tallerActual->organizador->telefono }}</p>
                </div>

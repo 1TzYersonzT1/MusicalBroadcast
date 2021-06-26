@@ -3,9 +3,9 @@
 namespace App\Http\Livewire\Organizador\Eventos\Asistentes;
 
 use Livewire\Component;
-use App\Mail\EliminadoDeEvento;
-use App\Mail\PosponerEvento;
-use App\Mail\EventoCancelado;
+use App\Mail\Eventos\Organizador\ArtistaEliminado;
+use App\Mail\Eventos\Organizador\PosponerEvento;
+use App\Mail\Eventos\Organizador\EventoCancelado;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Carbon;
 use DateTime;
@@ -96,7 +96,7 @@ class Evento extends Component
             'fecha' => Carbon::parse(new DateTime())->isoFormat("LLLL"),
         ];
 
-        Mail::to($artista->representante->email)->send(new EliminadoDeEvento($mensaje));
+        Mail::to($artista->representante->email)->send(new ArtistaEliminado($mensaje));
     }
 
     public function render()

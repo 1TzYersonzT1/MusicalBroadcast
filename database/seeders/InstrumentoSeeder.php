@@ -8,8 +8,9 @@ use App\Models\Instrumento;
 class InstrumentoSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
-     *
+     * Crea todos los instrumentos
+     * que serán utilizados por los integrantes
+     * de una banda.
      * @return void
      */
     public function run()
@@ -53,7 +54,5 @@ class InstrumentoSeeder extends Seeder
             "INST_Nombre" => 'Trompeta',
             'imagen' => 'https://ibb.co/fCGgn1G',
         ]);
-
-     
     }
 }

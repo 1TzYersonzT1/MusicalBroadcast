@@ -2,8 +2,8 @@
 
 namespace App\Http\Livewire\Evento;
 
-use App\Mail\NuevoAsistenteEvento;
-use App\Mail\PeticionEventoExitosa;
+use App\Mail\Eventos\Organizador\NuevoAsistenteEvento;
+use App\Mail\Eventos\PeticionEventoExitosa;
 use Livewire\Component;
 use App\Models\Evento;
 use App\Models\Artista;
@@ -42,7 +42,7 @@ class EventoPreview extends Component
 
     public function envioPeticionesConfirmado()
     {
-        foreach($this->artistasSeleccionados as $artistaSeleccionado) {
+        foreach ($this->artistasSeleccionados as $artistaSeleccionado) {
 
             $artista = Artista::find($artistaSeleccionado);
 

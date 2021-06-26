@@ -9,15 +9,16 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class EstiloFactory extends Factory
 {
     /**
-     * The name of the factory's corresponding model.
-     *
+     * El nombre del modelo asociado a la fabrica
      * @var string
      */
     protected $model = Estilo::class;
 
     /**
-     * Define the model's default state.
-     *
+     * Define el estado por defecto para los estilos
+     * musicales el cual puede ser sobreescrito por cualquier
+     * valor de tipo cadena de caracteres que se le 
+     * indique en la fabrica.
      * @return array
      */
     public function definition()

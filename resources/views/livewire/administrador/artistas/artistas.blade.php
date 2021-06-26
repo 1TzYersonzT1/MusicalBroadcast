@@ -8,17 +8,41 @@
             @foreach ($artistasPendientes as $artistaPendiente)
                 <div class="bg-gray-200 px-4 py-6 text-primary my-4 lg:w-5/6">
 
-                    <span class="block mb-2">
-                        <span class="font-bold">Solicitado por:</span>
-                        {{ $artistaPendiente->artista->representante->nombre }}
-                        {{ $artistaPendiente->artista->representante->apellidos }}
-                    </span>
+                    <div class="flex justify-between items-center mb-5">
+                        <div>
+                            <span class="font-bold">Solicitado por:</span>
+                            <span>{{ $artistaPendiente->artista->representante->nombre }}
+                                {{ $artistaPendiente->artista->representante->apellidos }}</span>
+                        </div>
 
+                        @if ($artistaPendiente->estado == 0)
+                            <div class="bg-yellow-300 rounded-full w-32 py-1 text-center"><span
+                                    class="text-purple-600">Pendiente</span> </div>
+                        @endif
+
+                        @if ($artistaPendiente->estado == 1)
+                            <div class="bg-pink-400 rounded-full w-32 py-1 text-center"><span
+                                    class="text-white">Revisada</span>
+                            </div>
+                        @endif
+
+                        @if ($artistaPendiente->estado == 4)
+                            <div class="bg-blue-400 rounded-full w-32 py-1 text-center"><span
+                                    class="text-white">Modificada</span>
+                            </div>
+                        @endif
+
+                        @if ($artistaPendiente->estado == 5)
+                            <div class="bg-pink-700 rounded-full w-32 py-1 text-center"><span
+                                    class="text-white">Pospuesto</span>
+                            </div>
+                        @endif
+                    </div>
 
                     <div class="grid grid-rows-3 grid-cols-12 gap-4">
                         <div class="lg:row-span-2 row-span-1 lg:col-span-4 col-span-12">
                             <img src="{{ asset('storage/' . $artistaPendiente->artista->imagen) }}"
-                                class="h-60 w-full" />
+                                class="h-full w-full" />
                         </div>
 
                         <div class="lg:row-span-2 row-span-1 lg:col-start-5 lg:col-span-8 col-span-12 flex flex-col">
@@ -28,11 +52,11 @@
                                     <span>&nbsp{{ $artistaPendiente->artista->ART_Nombre }}</span>
                                 </div>
 
-                                <div class="flex">
+                                <div class="flex lg:my-0 my-2">
                                     <button wire:click="validarAprobarArtista('{{ $artistaPendiente->artista->id }}')"
                                         class="bg-green-500 py-1 px-2">Aprobar</button>
 
-                                    <div x-data="{open: false}" class="relative">
+                                    <div x-data="{open: false}" x-cloak class="relative">
                                         <button @click="open = true" class="bg-yellow-500 py-1 px-2">Agregar
                                             observación</button>
                                         <div x-show="open"
@@ -90,14 +114,13 @@
                                 </span>
                             </div>
                         </div>
-
-                        @if ($artistaPendiente->artista->tipoArtista == 2)
-                            <div class="lg:col-span-4 col-span-12 row-span-2">
-                                <span class="block mb-2">Integrantes</span>
+                        <div class="lg:col-span-4 col-span-12 h-2">
+                            <span class="block mb-2 font-bold">Integrantes</span>
+                            @if ($artistaPendiente->artista->tipo_artista == 2)
                                 <div class="swiper-container swiperIntegrantes">
                                     <div class="swiper-wrapper">
                                         @foreach ($artistaPendiente->artista->integrantes as $integrante)
-                                            <div class="swiper-slide flex flex-col items-center mr-6">
+                                            <div class="swiper-slide flex flex-col items-center">
                                                 <img src="{{ asset('storage/' . $integrante->imagen) }}"
                                                     class="h-12 w-12 rounded-full" />
                                                 <span>{{ $integrante->nombre }} {{ $integrante->apellidos }}
@@ -106,22 +129,28 @@
                                         @endforeach
                                     </div>
                                 </div>
-                            </div>
-                        @endif
+                                <div class="swiper-pagination-integrantes"></div>
+                            @else
+
+                            @endif
+                        </div>
 
                         <div class="lg:col-span-4 col-span-12 row-span-2">
                             <span class="block mb-2 font-bold">Albumes</span>
-                            <div class="swiper-container swiperIntegrantes">
+                            <div class="swiper-container swiperAlbumes">
                                 <div class="swiper-wrapper">
                                     @foreach ($artistaPendiente->artista->albumes as $album)
-                                        <div class="swiper-slide flex flex-col items-center mr-6">
+                                        <div class="swiper-slide flex flex-col items-center">
+
                                             <img src="{{ asset('storage/' . $album->imagen) }}"
                                                 class="h-12 w-12 rounded-full" />
                                             <span>{{ $album->ALB_Nombre }}</span>
+
                                         </div>
                                     @endforeach
                                 </div>
                             </div>
+                            <div class="swiper-pagination-albumes"></div>
                         </div>
 
                         <div class="lg:col-span-4 col-span-12">
@@ -254,16 +283,31 @@
         });
     });
 
-    var swiper = new Swiper('.swiperIntegrantes', {
+    var swiper = new Swiper('.swiperAlbumes', {
         slidesPerView: 2,
-        spaceBetween: 30,
+        spaceBetween: 10,
         pagination: {
-            el: ".swiper-pagination",
+            el: ".swiper-pagination-albumes",
             clickable: true,
         },
         breakpoints: {
             1024: {
-                slidesPerView: 5,
+                slidesPerView: 1,
+                spaceBetween: 0,
+            },
+        },
+    });
+
+    var swiper = new Swiper('.swiperIntegrantes', {
+        slidesPerView: 2,
+        spaceBetween: 10,
+        pagination: {
+            el: ".swiper-pagination-integrantes",
+            clickable: true,
+        },
+        breakpoints: {
+            1024: {
+                slidesPerView: 1,
                 spaceBetween: 0,
             },
         },

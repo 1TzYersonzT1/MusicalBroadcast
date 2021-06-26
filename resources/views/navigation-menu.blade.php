@@ -21,7 +21,7 @@
 
                     @auth
                         <div class="hidden sm:flex sm:items-center">
-                            <div class="relative" x-data="{ open: false }" @click.away="open = false"
+                            <div class="relative" x-data="{ open: false }" @click.away="open = false" x-cloak
                                 @close.stop="open = false">
                                 <span class="inline-flex rounded-md">
                                     <button type="button"
@@ -44,12 +44,12 @@
                                             {{ __('Menu artistas') }}
                                         </div>
 
-                                        <x-jet-dropdown-link href="{{ route('representante.crearartista') }}">
-                                            {{ __('Agregar artista') }}
-                                        </x-jet-dropdown-link>
-
                                         <x-jet-dropdown-link href="{{ route('artistas.index') }}">
                                             {{ __('Artistas') }}
+                                        </x-jet-dropdown-link>
+
+                                        <x-jet-dropdown-link href="{{ route('representante.crearartista') }}">
+                                            {{ __('Agregar artista') }}
                                         </x-jet-dropdown-link>
 
                                         <x-jet-dropdown-link href="{{ route('representante.tusartistas') }}">
@@ -65,13 +65,15 @@
                                             {{ __('Administrar artistas') }}
                                         </div>
 
+                                        <x-jet-dropdown-link href="{{ route('artistas.index') }}">
+                                            {{ __('Artistas') }}
+                                        </x-jet-dropdown-link>
+
                                         <x-jet-dropdown-link href="{{ route('administrador.artistas') }}">
                                             {{ __('Nuevos artistas') }}
                                         </x-jet-dropdown-link>
 
-                                        <x-jet-dropdown-link href="{{ route('artistas.index') }}">
-                                            {{ __('Artistas') }}
-                                        </x-jet-dropdown-link>
+                                      
                                     </div>
                                 @endcan
                             </div>
@@ -88,7 +90,7 @@
 
                     @auth
                         <div class="hidden sm:flex sm:items-center">
-                            <div class="relative" x-data="{ open: false }" @click.away="open = false"
+                            <div class="relative" x-data="{ open: false }" @click.away="open = false" x-cloak
                                 @close.stop="open = false">
                                 <span class="inline-flex rounded-md">
                                     <button type="button"
@@ -157,7 +159,7 @@
 
                     @auth
                         <div class="hidden sm:flex sm:items-center">
-                            <div class="relative" x-data="{ open: false }" @click.away="open = false"
+                            <div class="relative" x-data="{ open: false }" @click.away="open = false" x-cloak 
                                 @close.stop="open = false">
                                 <span class="inline-flex rounded-md">
                                     <button type="button"
@@ -341,7 +343,7 @@
         @auth
             <div class="sm:flex sm:items-center">
                 @can('representar')
-                    <div x-data="{open: false}">
+                    <div x-data="{open: false}" x-cloak >
                         <div class="pt-2 pb-3 space-y-1">
                             <x-jet-responsive-nav-link class="flex justify-center focus:border-red-500">
                                 <span class="text-white flex justify-center"> {{ __('Artistas') }}</span>
@@ -488,7 +490,7 @@
         @auth
             <div class="sm:flex sm:items-center">
                 @can('organizar')
-                    <div x-data="{ open: false }">
+                    <div x-data="{ open: false }" x-cloak>
                         <div class="pt-2 pb-3 space-y-1">
 
                             <div class="pt-2 pb-3 space-y-1">
@@ -530,7 +532,7 @@
                         </div>
                     </div>
                 @elsecan('administrar')
-                    <div x-data="{open: false}">
+                    <div x-data="{open: false}" x-cloak>
                         <div class="pt-2 pb-3 space-y-1">
                             <x-jet-responsive-nav-link class="flex justify-center focus:border-red-500">
                                 <span class="text-white flex justify-center"> {{ __('Eventos') }}</span>

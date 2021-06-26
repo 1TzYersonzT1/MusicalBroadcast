@@ -9,15 +9,14 @@ use Illuminate\Support\Str;
 class ArtistaFactory extends Factory
 {
     /**
-     * The name of the factory's corresponding model.
+     * El nombre del modelo asociado a la fabrica.
      *
      * @var string
      */
     protected $model = Artista::class;
 
     /**
-     * Define the model's default state.
-     *
+     * Define el estado por defecto del artista
      * @return array
      */
     public function definition()
@@ -26,12 +25,16 @@ class ArtistaFactory extends Factory
             'ART_Nombre' => $this->faker->firstName . ' ' . $this->faker->lastName,
             'user_rut' => '',
             'tipo_artista' => 1,
-            'biografia' => $this->faker->text(200),
+            'biografia' => $this->faker->text(2000),
             'estado' => 1,
         ];
     }
 
-    public function grupo()
+    /**
+     * Cambia el tipo de artista a banda. 
+     * Por defecto el tipo de artista es solita.
+     */
+    public function banda()
     {
         return $this->state(function (array $attributes) {
             return [
@@ -39,6 +42,4 @@ class ArtistaFactory extends Factory
             ];
         });
     }
-
-
 }

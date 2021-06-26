@@ -9,8 +9,7 @@ use Illuminate\Database\Eloquent\Factories\Sequence;
 class EstiloSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
-     *
+     * Se crean los diferentes estilos musicales
      * @return void
      */
     public function run()

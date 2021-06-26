@@ -8,15 +8,16 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class InstrumentoFactory extends Factory
 {
     /**
-     * The name of the factory's corresponding model.
+     * El nombre de la clase asociada a la fabrica
      *
      * @var string
      */
     protected $model = Instrumento::class;
 
     /**
-     * Define the model's default state.
-     *
+     * Define el estado por defecto de los instrumentos
+     * los cuales pueden ser sobrrescritos
+     * al momento de utilizar la fabrica.
      * @return array
      */
     public function definition()

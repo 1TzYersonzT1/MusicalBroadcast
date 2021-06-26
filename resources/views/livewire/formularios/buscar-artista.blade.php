@@ -1,4 +1,4 @@
-<div class="relative lg:block hidden" x-data="{ open: false }" @click.away="open = false" @close.stop="open = false">
+<div class="relative lg:block hidden" x-data="{ open: false }" x-cloak @click.away="open = false" @close.stop="open = false">
     <div class="inline-flex rounded-md">
         <div>
             <input type="search" @click="open = !open" placeholder="Escribe lo que estas buscando"
@@ -7,7 +7,7 @@
 
     </div>
     
-    <div x-show="open" class="absolute z-50 mt-2 bg-white">
+    <div  x-show="open" class="absolute z-50 mt-2 bg-white">
         
         <ul class="w-80">
             @foreach ($resultados as $resultado)

@@ -4,7 +4,7 @@
             <span class="text-4xl mb-8 block">
                 Tus Artistas
             </span>
-
+            @if(count($artistas) > 0)
             <div class="swiper-container swiperArtistas">
                 <div class="swiper-wrapper">
                     @foreach ($artistas as $artista)
@@ -37,6 +37,9 @@
               
             </div>
             <div class="swiper-pagination"></div>
+            @else 
+                <span>No hay registro de que representes a uno o más artistas.</span>
+            @endif
         </div>
     </div>
 </div>

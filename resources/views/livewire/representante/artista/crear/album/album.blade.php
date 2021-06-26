@@ -5,16 +5,17 @@
     <div class="flex flex-wrap justify-center content-center mt-5">
         <div class="flex">
             @foreach ($albumes as $index => $album)
-                <div class="flex flex-col items-center mr-5">
-                    <div class="flex">
+                <div class="flex mr-5">
+                    <div class="flex flex-col items-center">
                         <img src="{{ asset('storage/' . $album['imagen']) }}" class="rounded-full w-28 h-28" />
-                        <svg wire:click="eliminarAlbum('{{ $index }}')" xmlns="http://www.w3.org/2000/svg"
-                            class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M6 18L18 6M6 6l12 12" />
-                        </svg>
+                        <span>{{ $album['ALB_Nombre'] }}</span>
                     </div>
-                    <span>{{ $album['ALB_Nombre'] }}</span>
+                    <svg wire:click="eliminarAlbum('{{ $index }}')" xmlns="http://www.w3.org/2000/svg"
+                    class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M6 18L18 6M6 6l12 12" />
+                </svg>
+                 
                 </div>
             @endforeach
         </div>

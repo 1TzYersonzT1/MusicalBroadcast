@@ -36,12 +36,17 @@
 
                         </div>
                         <div class="flex items-center mb-2 mt-3">
-                            <span class="font-bold">Aforo:</span>
                             <div class="flex flex-col">
-                                <input type="number" min='1' max='12' id="aforo" wire:model='aforo'
-                                    class="bg-primary p-0 px-2 w-16 ml-3 mr-3" />
+                                <div class="flex">
+                                    <span class="font-bold">Aforo:</span>
+                                    <div class="flex flex-col">
+                                        <input type="number" min='1' max='12' id="aforo" wire:model='aforo'
+                                            class="bg-primary p-0 px-2 w-16 ml-3 mr-3" />
 
-                            </div><span>personas.</span>
+                                    </div>
+                                </div>
+                                <span>Máximo 12 personas.</span>
+                            </div>
                         </div>
                         <div class="flex items-center mb-3 mt-3 text-sm">
                             <span class="font-bold">Lugar: </span>

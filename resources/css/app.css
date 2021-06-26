@@ -14,3 +14,21 @@
 input:checked+div svg {
     @apply block;
 }
+
+.swiper-pagination-integrantes > .swiper-pagination-bullet {
+    @apply bg-red-500;
+}
+
+.swiper-pagination-integrantes > .swiper-pagination-bullet-active {
+    @apply bg-white;
+}
+
+.swiper-pagination-albumes > .swiper-pagination-bullet {
+    @apply bg-red-500;
+}
+
+.swiper-pagination-albumes > .swiper-pagination-bullet-active {
+    @apply bg-white;
+}
+
+

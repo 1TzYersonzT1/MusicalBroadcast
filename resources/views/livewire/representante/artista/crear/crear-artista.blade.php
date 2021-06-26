@@ -6,7 +6,7 @@
             </div>
             <div class="flex justify-center py-1 mt-5">
                 <input type="text" wire:model="nombreArtista" id="nombreArtista"
-                    placeholder="Escribe el nombre del artista"
+                    placeholder="Escribe el nombre del artista" autocomplete="off"
                     class="bg-white h-14 px-5 w-96 focus:outline-none rounded-full text-black">
             </div>
         </div>

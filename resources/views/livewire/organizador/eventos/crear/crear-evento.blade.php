@@ -49,9 +49,7 @@
                         <div class="mt-3">
                             <label for="descripcion" class="font-bold lg:w-96">Descripción</label>
                             <div class="flex flex-col">
-                                <textarea placeholder="Escriba una descripción (máximo 255 caracteres)"
-                                    wire:model='descripcion' maxlength="255"
-                                    class="resize-none lg:w-96 bg-primary h-40 mt-1 mb-1"></textarea>
+                                <textarea placeholder="Escriba una descripción (máximo 255 caracteres)" wire:model='descripcion' maxlength="255"class="resize-none lg:w-96 bg-primary h-40 mt-1 mb-1" wrap="hard"></textarea>
                                 <span>{{ $caracteres_descripcion }} / 255</span>
                             </div>
                         </div>

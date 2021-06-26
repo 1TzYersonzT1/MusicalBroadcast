@@ -12,15 +12,18 @@ use Laravel\Jetstream\Features;
 class UserFactory extends Factory
 {
     /**
-     * The name of the factory's corresponding model.
+     * El nombre del modelo asociado a la fabrica
      *
      * @var string
      */
     protected $model = User::class;
 
     /**
-     * Define the model's default state.
-     *
+     * Define el estado por defecto del usuario,
+     * toda la información es aleatoria exceptuando
+     * la contraseña que es 123 en primera instancia.
+     * Para modificarle, debe iniciar sesión en el sitio
+     * web y modificar perfil.
      * @return array
      */
     public function definition()

@@ -12,9 +12,7 @@ class TusArtistas extends Component
 
     public function mount() {
         $this->artistas = Artista::where("user_rut", auth()->user()->rut)
-        ->whereHas('solicitud', function(Builder $query) {
-            return $query->where("estado", '!=', 0);
-        })
+        ->where("estado", 1)
         ->get();
     }
 

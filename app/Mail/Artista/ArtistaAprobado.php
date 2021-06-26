@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Mail;
+namespace App\Mail\Artista;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class CancelarTaller extends Mailable
+class ArtistaAprobado extends Mailable
 {
     use Queueable, SerializesModels;
 
-    protected $taller, $asistente;
+    protected $artista, $representante;
 
     /**
      * Create a new message instance.
@@ -20,8 +20,8 @@ class CancelarTaller extends Mailable
      */
     public function __construct(array $mensaje)
     {
-        $this->taller = $mensaje["taller"];
-        $this->asistente = $mensaje["asistente"];
+        $this->artista = $mensaje["artista"];
+        $this->representante = $mensaje["representante"];
     }
 
     /**
@@ -32,11 +32,11 @@ class CancelarTaller extends Mailable
     public function build()
     {
         return $this->from('jorge.vnarvaez@gmail.com')
-        ->subject("Taller cancelado")
-        ->view('mails.taller-cancelado')
+        ->subject("Solicitud de artista aprobada")
+        ->view('mails.artista.artista-aprobado')
         ->with([
-            "taller" => $this->taller,
-            "asistente" => $this->asistente,
+            "artista" => $this->artista,
+            "representante" => $this->representante,
         ]);
     }
 }

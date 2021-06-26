@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Mail;
+namespace App\Mail\Eventos\Organizador;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class PosponerEvento extends Mailable
+class NuevoAsistenteEvento extends Mailable
 {
     use Queueable, SerializesModels;
 
-    protected $representante, $evento, $artista;
+    protected $evento, $artista, $organizador;
 
     /**
      * Create a new message instance.
@@ -20,9 +20,9 @@ class PosponerEvento extends Mailable
      */
     public function __construct(array $mensaje)
     {
-        $this->representante = $mensaje["representante"];
         $this->evento = $mensaje["evento"];
         $this->artista = $mensaje["artista"];
+        $this->organizador = $mensaje["organizador"];
     }
 
     /**
@@ -32,13 +32,14 @@ class PosponerEvento extends Mailable
      */
     public function build()
     {
-        return $this->from("jorge.vnarvaez@gmail.com")
-        ->subject("Evento pospuesto")
-        ->view('mails.posponer-evento')
+        return $this
+        ->from("jorge.vnarvaez@gmail.com")
+        ->subject("Se ha registrado un nuevo artista a tu evento")
+        ->view('mails.eventos.organizador.nuevo-asistente')
         ->with([
-            "representante" => $this->representante,
             "evento" => $this->evento,
             "artista" => $this->artista,
+            "organizador" => $this->organizador,
         ]);
     }
 }

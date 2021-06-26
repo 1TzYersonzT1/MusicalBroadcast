@@ -8,15 +8,16 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class RolFactory extends Factory
 {
     /**
-     * The name of the factory's corresponding model.
-     *
+     * El nombre del modelo asociado a la fabrica
      * @var string
      */
     protected $model = Rol::class;
 
     /**
-     * Define the model's default state.
-     *
+     * Define el estado por defecto de los roles
+     *que se asocian a los usuarios en la aplicacion,
+     *los cuales varian su estado segun las funciones
+     *representadas debajo.
      * @return array
      */
     public function definition()
@@ -27,7 +28,11 @@ class RolFactory extends Factory
         ];
     }
 
-    public function organizador() {
+    /**
+     * Cambia el estado por defecto del rol a Organizador
+     */
+    public function organizador()
+    {
         return $this->state(function (array $attributes) {
             return [
                 'id' => 1,
@@ -36,7 +41,11 @@ class RolFactory extends Factory
         });
     }
 
-    public function representante() {
+    /**
+     * Cambia el estado por defecto del rol a Representante
+     */
+    public function representante()
+    {
         return $this->state(function (array $attributes) {
             return [
                 'id' => 2,
@@ -45,7 +54,11 @@ class RolFactory extends Factory
         });
     }
 
-    public function administrador() {
+    /**
+     * Cambia el estado por defecto del rol a Administrador
+     */
+    public function administrador()
+    {
         return $this->state(function (array $attributes) {
             return [
                 'id' => 3,

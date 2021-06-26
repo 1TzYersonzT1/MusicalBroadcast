@@ -78,7 +78,7 @@
                                 </svg>
                                 <div class="flex flex-col items-center">
                                     <span class="block mb-1">Eventos aprobados</span>
-                                    <span>{{ count($eventosAprobados) }}</span>
+                                    <span>{{ auth()->user()->hojavida->eventos_aprobados }}</span>
                                 </div>
                             </div>
 
@@ -96,7 +96,7 @@
                             <div class="flex flex-col items-center">
 
                                 <span class="block mb-1">Eliminados/Rechazados</span>
-                                <span>{{ $hojaVida[0]->eventos_rechazados }}</span>
+                                <span>{{ auth()->user()->hojavida->eventos_rechazados }}</span>
                             </div>
                         </div>
                     </div>

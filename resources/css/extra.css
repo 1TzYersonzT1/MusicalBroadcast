@@ -18,3 +18,8 @@
     background-size: cover;
     position: relative;
 }
+
+/**Es utilizado para ocultar los elementos que se despliegan con AlpineJS**/
+[x-cloak] {
+    display: none !important;
+}

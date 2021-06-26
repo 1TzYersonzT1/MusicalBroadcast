@@ -8,12 +8,14 @@ use App\Models\Rol;
 class RoleSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
-     *
+     * Crea los 3 roles que seran
+     * asignados a los distintos usuarios
      * @return void
      */
     public function run()
     {
-
+        Rol::factory()->organizador()->create();
+        Rol::factory()->representante()->create();
+        Rol::factory()->administrador()->create();
     }
 }

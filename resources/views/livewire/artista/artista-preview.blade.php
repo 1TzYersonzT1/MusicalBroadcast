@@ -1,5 +1,4 @@
-
-                @section('banner')
+@section('banner')
     <div class="bg-cover bg-no-repeat"
         style="background-image: url('https://mexico-grlk5lagedl.stackpathdns.com/production/mexico/images/1547572747299933-Carlos-Maycotte.jpg?w=1920&h=800&fit=crop&crop=focalpoint&auto=%5B%22format%22%2C%20%22compress%22%5D&cs=srgb')">
         <div class="flex lg:flex-row justify-around flex-col py-6 h-full ">
@@ -8,7 +7,7 @@
                     class=" h-60 w-60 flex-none bg-cover rounded-full lg:rounded-t-full lg:rounded-1 text-center overflow-hidden">
                     <img src="{{ asset('storage/' . $artistaActual->imagen) }}" class="h-60 w-60" />
                 </div>
-                <div class="mb-4 text-4xl font-bold shadow-inner">
+                <div class="mb-4 text-center text-4xl font-bold shadow-inner">
                     {{ $artistaActual->ART_Nombre }}
                 </div>
 
@@ -46,7 +45,7 @@
                     </div>
                 @endif
 
-                <div class="py-2">
+                <div class="py-2 font-bold">
                     @if ($artistaActual->tipo_artista == 1)
                         Solista
                     @endif
@@ -61,19 +60,19 @@
 
 <div>
     <div class="grid lg:grid-cols-8 grid-cols-6 gap-5 text-white py-4 lg:flex-col">
-        
+
         <div class="lg:col-span-6 col-span-6 justify-between">
             <div class="bg-black bg-opacity-20 px-2 py-1 lg:flex-col">
                 <span class="top-5 mb-3 text-4xl font-bold">Discografia</span>
                 @can('modificar-artista', $artistaActual)
-                        <button @click="abrir()">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                        </button>
-                        
+                    <button @click="abrir()">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </button>
+
 
 
                 @endcan
@@ -232,7 +231,7 @@
         <div class="swiper-container swiperIntegrante py-5">
             <div class="swiper-wrapper ">
                 @foreach ($artistaActual->integrantes as $integrante)
-                    <div class="swiper-slide w-40 text-center" x-data="{ open: false }">
+                    <div class="swiper-slide w-40 text-center text-white" x-data="{ open: false }">
 
 
                         <div x-on:mouseover="open = true" x-on:mouseout="open = false"
@@ -242,7 +241,7 @@
 
                         <span>{{ $integrante->nombre }}</span>
                         <div x-show="open" @click.away="open = false"
-                            class="bg-white absolute top-12 lg:-left-36 p-4 text-primary lg:w-40"
+                            class="bg-white absolute top-12 lg:-left-36 p-4 text-primary lg:w-52"
                             x-transition:enter="transition ease-out duration-300"
                             x-transition:enter-start="opacity-0 transform scale-90"
                             x-transition:enter-end="opacity-100 transform scale-100"
@@ -251,9 +250,10 @@
                             x-transition:leave-end="opacity-0 transform scale-90">
 
                             <div class="mb-5 flex flex-col">
-                                <div>{{ $integrante->nombre }}</div>
-                                <div>{{ $integrante->apellidos }}</div>
-                                <div>{{ $integrante->INST_Nombre }}</div>
+                                <span class="font-bold">Instrumentos</span>
+                                @foreach ($integrante->instrumentos as $instrumento)
+                                    <span>{{ $instrumento->INST_Nombre }}</span>
+                                @endforeach
                             </div>
                         </div>
                     </div>

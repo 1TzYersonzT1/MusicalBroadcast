@@ -26,6 +26,8 @@ class CrearTaller extends Component
         'lugar' => ['required', 'string', 'max:55'],
         'descripcion' => ['required', 'string', 'max:255'],
         'imagen' => 'required|image|mimes:jpeg,png,svg,jpg,gif|max:1024',
+        'protocolos' => 'required|array|min:1',
+        'requisitos' => 'required|array|min:1',
     ];
 
     protected $listeners = ["updatedRequisitos", 'updatedProtocolos'];

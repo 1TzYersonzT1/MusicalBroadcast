@@ -23,13 +23,25 @@
         </div>
 
         @can('representar')
-            <div x-data="{ open: false }" class="relative mb-4 flex flex-col items-center justify-center">
+            <div x-data="{ open: false }" x-cloak class="relative mb-4 flex flex-col items-center justify-center">
                 <span class="font-bold text-2xl block">¿Quieres que tu artista/as participen en este evento?</span>
+
                 <button @click="open = true" class="bg-white text-primary px-4 py-1 mt-2">Solicitar invitación</button>
 
-                <div x-show.transition="open" class="bg-white absolute z-40 grid grid-cols-8 text-primary px-4 py-2">
+                <div x-show.transition="open"
+                    class="shadow-md bg-white absolute z-40 grid grid-cols-8 text-primary px-4 py-2">
                     <div class="col-span-8">
-                        <span class="block font-bold text-center">Solicitar invitación a evento</span>
+                        <div class="flex justify-between">
+                            <div><!-- Necesario para centrar --></div>
+                            <span class="block font-bold text-center">Solicitar invitación a evento</span>
+                            <button @click="open = false">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
                         <span class="block text-center font-light mb-2">{{ $eventoActual->EVE_Nombre }}</span>
                     </div>
 
@@ -37,24 +49,18 @@
                         <livewire:formularios.invitar-artistas />
                     </div>
 
-                   
+
 
                     <div class="col-span-8">
-                    @error('artistasSeleccionados')
-                        <span class="text-red-400 w-80">{{ $message }}</span>
-                    @enderror
+                        @error('artistasSeleccionados')
+                            <span class="text-red-400 w-80">{{ $message }}</span>
+                        @enderror
                     </div>
 
                     <div class="col-span-8">
                         <button wire:click="validarPeticiones" class="bg-primary px-2 py-1 mt-2 text-white">Enviar
                             petición</button>
-                        <button @click="open = false">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </button>
+
                     </div>
                 </div>
             </div>
@@ -95,7 +101,7 @@
             cancelButtonText: 'Regresar',
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Solicitar permiso',
+            confirmButtonText: 'Inscribirse',
         }).then((result) => {
             if (result.isConfirmed) {
                 Livewire.emit('envioPeticionesConfirmado');
@@ -115,5 +121,4 @@
             }
         });
     });
-
 </script>
