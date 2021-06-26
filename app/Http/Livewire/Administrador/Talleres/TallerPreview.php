@@ -13,7 +13,7 @@ use App\Mail\TallerAprobado;
 class TallerPreview extends Component
 {
 
-    public $solicitudActual, $observacion, $caracteres_Ataller = 0;
+    public $solicitudActual, $observacion;
 
     protected $rules = [
         'observacion' => 'required|string|min:10|max:255|',
@@ -29,9 +29,6 @@ class TallerPreview extends Component
     {
         $this->solicitudActual = SolicitudTaller::findOrFail($solicitudSeleccionada['id']);
         $this->dispatchBrowserEvent("mostrarSolicitud", array("slideActual" => $solicitudSeleccionada["slideActual"]));
-    }
-    public function updatedAEvento() {
-        $this->caracteres_Ataller = strlen($this->observacion);
     }
     public function aprobarTaller()
     {

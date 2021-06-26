@@ -2,7 +2,6 @@
     @section('banner')
         @include("banner-artista");
     @endsection
-
     <!-- Filtro -->
     <div class="lg:mb-0 mb-10 h-full bg-white col-span-2 lg:w-45 border-1 px-5 py-2">
         <form class="">

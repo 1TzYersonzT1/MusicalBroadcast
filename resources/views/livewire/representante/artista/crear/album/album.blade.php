@@ -83,7 +83,7 @@
 
                 <div class="mb-5 flex flex-col">
                     <label for="nombreAlbum">Nombre del album</label>
-                    <input type="text" wire:model="nombreAlbum" class="mt-1" maxlength="9" required />
+                    <input type="text" wire:model="nombreAlbum" class="mt-1" maxlength="30" required />
                     @error('nombreAlbum')
                         <span class="text-red-600">{{ $message }}</span>
                     @enderror
