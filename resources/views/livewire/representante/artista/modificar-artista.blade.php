@@ -66,7 +66,7 @@
 
             <div>
                 <div class="bg-black bg-opacity-20 px-2 py-1 text-center mt-5">
-                    <span class="mb-3 text-4xl font-bold">Escoge un genero</span>
+                    <span class="mb-3 text-4xl font-bold">Agrega otro genero aqui</span>
                 </div>
 
                 <div class="swiper-container swiperGenerosArtista mt-5" wire:ignore>
@@ -93,7 +93,7 @@
 
             <div>
                 <div class="flex flex-col justify-center my-4">
-                    <span class="text-2xl font-bold text-center mt-4">Estilos</span>
+                    <span class="text-2xl font-bold text-center mt-4">Agrega mas estilos aqui</span>
                     <span class="text-center">
                         Por favor selecciona uno o más estilos que representen a tu artista
                     </span>
