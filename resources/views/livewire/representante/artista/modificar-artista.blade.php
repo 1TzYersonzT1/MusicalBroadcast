@@ -15,15 +15,52 @@
         <div id="contenedor-modificar-artista">
             <div>
                 <div class="bg-black bg-opacity-20 px-2 py-1 text-center mt-5">
+                    <span class="mb-3 text-4xl font-bold">Tus generos</span>
+                </div>
+
+                <div class="swiper-container swiperGenerosArtista mt-5" wire:ignore>
+                    <div class="swiper-wrapper">
+                        @foreach ($generos_actuales as $index => $genero)
+                            <div class="swiper-slide flex flex-col items-center">
+                                <div class="flex items-center genero">
+                                    <input type="checkbox" value="{{ $genero->id }}"
+                                        wire:model="generosSeleccionados.{{ $index }}"
+                                        class="opacity-0 absolute w-32 h-32 rounded-full" />
+                                    <div
+                                        class="bg-trasparent w-32 h-32 flex rounded-full flex-shrink-0 justify-center items-center mr-2 focus-within:border-red-500">
+                                        <img src="https://tailwindcss.com/img/card-left.jpg"
+                                            class="rounded-full w-28 h-28" />
+                                    </div>
+                                </div>
+                                <span>{{ $genero->GEN_Nombre }}</span>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="bg-black bg-opacity-20 px-2 py-1 text-center mt-5">
                     <span class="mb-3 text-4xl font-bold">Escoge un genero</span>
                 </div>
 
                 <div class="swiper-container swiperGenerosArtista mt-5" wire:ignore>
                     <div class="swiper-wrapper">
-
-                        <livewire:representante.artista.crear.elecciones.genero :nombreArtista="$artista->ART_Nombre"
-                            :genero="$artista->estilos[0]->genero" />
-
+                        @foreach ($generos as $index => $genero)
+                            <div class="swiper-slide flex flex-col items-center">
+                                <div class="flex items-center genero">
+                                    <input type="checkbox" value="{{ $genero->id }}"
+                                        wire:model="generosSeleccionados.{{ $index }}"
+                                        class="opacity-0 absolute w-32 h-32 rounded-full" />
+                                    <div
+                                        class="bg-trasparent w-32 h-32 flex rounded-full flex-shrink-0 justify-center items-center mr-2 focus-within:border-red-500">
+                                        <img src="https://tailwindcss.com/img/card-left.jpg"
+                                            class="rounded-full w-28 h-28" />
+                                    </div>
+                                </div>
+                                <span>{{ $genero->GEN_Nombre }}</span>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

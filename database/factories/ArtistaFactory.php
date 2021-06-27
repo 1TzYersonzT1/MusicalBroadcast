@@ -27,6 +27,7 @@ class ArtistaFactory extends Factory
             'tipo_artista' => 1,
             'biografia' => $this->faker->text(2000),
             'estado' => 1,
+            'imagen' => $this->faker->imageUrl(32, 32, 'people'),
         ];
     }
 

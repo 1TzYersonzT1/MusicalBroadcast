@@ -18,7 +18,6 @@
                         </x-slot>
                     </x-jet-nav-link>
 
-
                     @auth
                         <div class="hidden sm:flex sm:items-center">
                             <div class="relative" x-data="{ open: false }" @click.away="open = false" x-cloak
@@ -50,6 +49,10 @@
 
                                         <x-jet-dropdown-link href="{{ route('representante.crearartista') }}">
                                             {{ __('Agregar artista') }}
+                                        </x-jet-dropdown-link>
+
+                                        <x-jet-dropdown-link href="{{ route('representante.mis-artistas') }}">
+                                            {{ __('Estado solicitud') }}
                                         </x-jet-dropdown-link>
 
                                         <x-jet-dropdown-link href="{{ route('representante.tusartistas') }}">

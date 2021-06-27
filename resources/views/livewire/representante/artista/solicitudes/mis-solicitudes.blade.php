@@ -1,5 +1,5 @@
-<div>
-    <div class="min-h-screen text-white py-5">
+<div class="min-h-screen text-white py-5">
+    <div>
         <div class="">
             <div>
                 <span class="text-4xl block mb-5">Artistas pendientes</span>
@@ -8,7 +8,8 @@
                 <div class="swiper-container swiperPendientes">
                     <div class="swiper-wrapper">
                         @foreach ($artistasPendientes as $artistaPendiente)
-                           <livewire:representante.artista.solicitudes.artista :artista="$artistaPendiente" :wire:key="$artistaPendiente->id" />
+                            <livewire:representante.artista.solicitudes.artista :artista="$artistaPendiente"
+                                :wire:key="$artistaPendiente->id" />
                         @endforeach
                     </div>
                 </div>
@@ -22,12 +23,12 @@
             <div>
                 <span class="text-4xl block mb-5">Solicitudes revisadas</span>
             </div>
-            @if (count($talleresRevisados) > 0)
+            @if (count($artistasRevisados) > 0)
                 <div class="swiper-container swiperRevisadas">
                     <div class="swiper-wrapper">
-                        @foreach ($talleresRevisados as $tallerRevisado)
-                            <livewire:organizador.talleres.taller :taller='$tallerRevisado'
-                                :wire:key="$tallerRevisado->id" />
+                        @foreach ($artistasRevisados as $artistaRevisado)
+                            <livewire:representante.artista.solicitudes.artista :artista="$artistaRevisado"
+                                :wire:key="$artistaRevisado->id" />
                         @endforeach
                     </div>
                 </div>
@@ -40,12 +41,12 @@
             <div>
                 <span class="text-4xl block mb-5">Solicitudes modificadas</span>
             </div>
-            @if (count($talleresModificados) > 0)
+            @if (count($artistasModificados) > 0)
                 <div class="swiper-container swiperRevisadas">
                     <div class="swiper-wrapper">
-                        @foreach ($talleresModificados as $tallerModificado)
-                            <livewire:organizador.talleres.taller :taller='$tallerModificado'
-                                :wire:key="$tallerModificado->id" />
+                        @foreach ($artistasModificados as $artistaModificado)
+                            <livewire:representante.artista.solicitudes.artista :artista="$artistaModificado"
+                                :wire:key="$artistaModificado->id" />
                         @endforeach
                     </div>
                 </div>
@@ -76,4 +77,3 @@
         },
     });
 </script>
-

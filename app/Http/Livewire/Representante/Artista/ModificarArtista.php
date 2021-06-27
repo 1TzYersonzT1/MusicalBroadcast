@@ -4,12 +4,22 @@ namespace App\Http\Livewire\Representante\Artista;
 
 use Livewire\Component;
 use App\Models\Artista;
+use App\Models\Genero;
 
 class ModificarArtista extends Component
 {
-    public $artista ;
+    public $artista, $generos, $generos_actuales;
+
     function mount( $id){
-        $this->artista=Artista::find($id);
+
+        $this->artista = Artista::find($id);
+
+        foreach($this->artista->estilos as $estilo) {
+            $generos[] = $estilo->genero_id;
+        }
+
+        $this->generos = Genero::whereNotIn('id', $generos)->get();
+        $this->generos_actuales = Genero::whereIn('id', $generos)->get();
     }
 
     protected $rules = [

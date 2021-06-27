@@ -15,17 +15,29 @@
             <div id="contenedor-nuevo-artista">
                 <div>
                     <div class="bg-black bg-opacity-20 px-2 py-1 text-center mt-5">
-                        <span class="mb-3 text-4xl font-bold">Escoge un genero</span>
+                        <span class="mb-3 text-4xl font-bold">Escoge uno o más genero</span>
                     </div>
 
                     <div class="swiper-container swiperGenerosArtista mt-5" wire:ignore>
                         <div class="swiper-wrapper">
                             @foreach ($generos as $index => $genero)
-                                <livewire:representante.artista.crear.elecciones.genero :genero="$genero"
-                                    :wire:key="$genero->id" />
+                                <div class="swiper-slide flex flex-col items-center">
+                                    <div class="flex items-center genero">
+                                        <input type="checkbox" value="{{ $genero->id }}"
+                                            wire:model="generosSeleccionados.{{ $index }}"
+                                            class="opacity-0 absolute w-32 h-32 rounded-full" />
+                                        <div
+                                            class="bg-trasparent w-32 h-32 flex rounded-full flex-shrink-0 justify-center items-center mr-2 focus-within:border-red-500">
+                                            <img src="https://tailwindcss.com/img/card-left.jpg"
+                                                class="rounded-full w-28 h-28" />
+                                        </div>
+                                    </div>
+                                    <span>{{ $genero->GEN_Nombre }}</span>
+                                </div>
                             @endforeach
                         </div>
                     </div>
+                   
                 </div>
 
                 @if (count($estilos) > 0)
@@ -234,12 +246,14 @@
                                         x-transition:leave-end="opacity-0 transform scale-90">
                                         <div class="mb-5 flex flex-col">
                                             <img src="/youtube.PNG" class="w-96 rounded-full  " />
-                                            <div class="flex"> 
-                                                <span>Haga clic en <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"
-                                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                        d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-    
+                                            <div class="flex">
+                                                <span>Haga clic en <svg xmlns="http://www.w3.org/2000/svg"
+                                                        class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                                        stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2"
+                                                            d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+
                                                     </svg>para ir directamente al sitio que aparece en la imagen.</span>
                                             </div>
                                         </div>
@@ -339,6 +353,10 @@
 
     window.addEventListener('onContentChanged', (event) => {
         initializeSwiper();
+    });
+
+    window.addEventListener('prueba', (event) => {
+        console.log(event.detail.test);
     });
 
     window.onload = function() {

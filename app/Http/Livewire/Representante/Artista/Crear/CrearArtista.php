@@ -17,12 +17,12 @@ class CrearArtista extends Component
 
     use WithFileUploads;
 
-    public $nombreArtista, $imagenArtista, $tipoArtista, $instagram, $facebook, $twitter, $spotify, $youtube, 
-    $biografia, $caracteres_biografia = 0;
-    public $generos, $integrantes = [];
+    public $nombreArtista, $imagenArtista, $tipoArtista, $instagram, $facebook, $twitter, $spotify, $youtube,
+        $biografia, $caracteres_biografia = 0;
+    public $generos, $generosSeleccionados = [], $integrantes = [];
     public $estilos = [], $estilosSeleccionados = [];
     public $albumes = [];
-    
+
     protected $rules = [
         'nombreArtista' => 'required|string|min:2|max:30',
         'tipoArtista' => 'required',
@@ -43,6 +43,7 @@ class CrearArtista extends Component
     protected $listeners = [
         'updatedEstilo',
         'updatedAlbumes',
+        'updatedGenerosSeleccionados',
         'updatedIntegrantes',
         'agregarArtista',
     ];
@@ -52,7 +53,8 @@ class CrearArtista extends Component
         $this->generos = Genero::all();
     }
 
-    public function updatedBiografia() {
+    public function updatedBiografia()
+    {
         $this->caracteres_biografia = strlen($this->biografia);
     }
 
@@ -75,6 +77,18 @@ class CrearArtista extends Component
         foreach ($this->estilosSeleccionados as $index => $estiloSeleccionado) {
             if ($this->estilosSeleccionados[$index] == false) {
                 unset($this->estilosSeleccionados[$index]);
+            }
+        }
+    }
+
+    public function updatedGenerosSeleccionados()
+    {
+
+        $this->estilos = [];
+        $this->generos = Genero::whereIn("id", $this->generosSeleccionados)->get();
+        foreach ($this->generos as $genero) {
+            foreach ($genero->estilos as $estilo) {
+                $this->estilos[] = $estilo;
             }
         }
     }

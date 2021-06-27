@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Builder;
 class MisSolicitudes extends Component
 {
 
-    public $artistasPendientes;
+    public $artistasPendientes, $artistasRevisados, $artistasModificados;
 
     public function mount()
     {
@@ -19,8 +19,14 @@ class MisSolicitudes extends Component
             ->where("user_rut", auth()->user()->rut)
             ->get();
 
-        $this->artistasPendientes = Artista::whereHas('solicitud', function (Builder $query) {
+        $this->artistasRevisados = Artista::whereHas('solicitud', function (Builder $query) {
             $query->where("estado", 1);
+        })
+            ->where("user_rut", auth()->user()->rut)
+            ->get();
+
+        $this->artistasModificados = Artista::whereHas('solicitud', function (Builder $query) {
+            $query->where("estado", 4);
         })
             ->where("user_rut", auth()->user()->rut)
             ->get();
