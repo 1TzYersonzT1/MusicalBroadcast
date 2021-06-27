@@ -1,5 +1,5 @@
 <div>
-    <div class="min-h-screen mt-12 w-full text-white">
+    <div class="min-h-screen py-5 w-full text-white">
         <div class="mb-14"><span class="text-4xl border-b-4">Talleres aprobados</span></div>
         @if (count($talleres) > 0)
             <div class="">

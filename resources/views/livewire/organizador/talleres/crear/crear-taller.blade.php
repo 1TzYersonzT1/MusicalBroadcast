@@ -1,4 +1,4 @@
-<div>
+<div class="min-h-screen py-5">
     <div class='container mx-auto py-5 text-white'>
         <div class="mb-6 lg:mt-0 mt-5"><span class="text-4xl">Organizar nuevo taller.</span></div>
         @if ($errors)
