@@ -9,6 +9,9 @@
         <div class="lg:flex">
             <div class="flex flex-col lg:mr-5">
                 <form wire:submit.prevent='validarNuevoEvento' enctype="multipart/form-data">
+                    
+                    @csrf
+
                     <div class="lg:flex">
                         <div class="flex flex-col">
                             <span class="font-bold">Titulo</span>
@@ -23,10 +26,11 @@
                         <div class="flex mb-3">
                             <div class="flex flex-col mt-3" x-data>
                                 <span class="font-bold">Fecha</span>
-                           
-                                <input type="date" wire:model="fecha" x-bind:min="$wire.hoy" class="bg-primary text-white p-0 mr-5 mt-1" />
+
+                                <input type="date" wire:model="fecha" x-bind:min="$wire.hoy"
+                                    class="bg-primary text-white p-0 mr-5 mt-1" />
                             </div>
-                       
+
                             <div class="flex flex-col mt-3">
                                 <span class="font-bold">Hora</span>
                                 <div class="flex flex-col">
@@ -90,8 +94,6 @@
 </div>
 
 <script>
-
-
     window.addEventListener("validarNuevoEvento", () => {
         Swal.fire({
             title: '¿Está seguro?',

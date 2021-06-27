@@ -18,7 +18,7 @@ class CrearTaller extends Component
      */
     use WithFileUploads;
 
-    public $titulo, $descripcion, $aforo, $hora, $lugar, $user_rut, $fecha, $imagen;
+    public $titulo, $descripcion, $aforo, $hora, $lugar, $user_rut, $fecha, $hoy, $imagen;
     public $caracteres_descripcion = 0;
     public $protocolos = [], $requisitos = [];
 
@@ -43,6 +43,14 @@ class CrearTaller extends Component
         'updatedProtocolos',
         'nuevoTallerConfirmado',
     ];
+
+    /**
+     * Se encarga de limitar el minimo de fecha
+     * al dia actual
+     */
+    public function mount() {
+        $this->hoy = date('Y-m-d');
+    }
 
     /**
      * Cada vez que se actualiza el campo de descripcion se contabiliza
@@ -116,8 +124,6 @@ class CrearTaller extends Component
      */
     public function nuevoTallerConfirmado()
     {
-        $this->validate();
-
         $imagen = $this->imagen->store("/talleres/organizador/" . auth()->user()->rut);
 
         $taller = Taller::create([
@@ -139,8 +145,6 @@ class CrearTaller extends Component
             'estado' => 0,
             'taller_id' => $taller->id,
         ]);
-
-        $this->dispatchBrowserEvent("nuevoTaller");
     }
 
     public function render()

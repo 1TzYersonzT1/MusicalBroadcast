@@ -5,7 +5,7 @@ namespace App\Http\Livewire\Representante\Artista;
 use Livewire\Component;
 use App\Models\Artista;
 use App\Models\Genero;
-use App\Models\Estilo;      
+use App\Models\Estilo;
 
 class ModificarArtista extends Component
 {
@@ -40,17 +40,14 @@ class ModificarArtista extends Component
 
     public function updatedGenerosSeleccionados()
     {
-        $this->estilos = [];
-        $this->generos = Genero::whereIn("id", $this->generosSeleccionados)->get();
-    }
-
-    public function updated()
-    {
         foreach ($this->generosSeleccionados as $index => $generoSeleccionado) {
             if ($this->generosSeleccionados[$index] == false) {
                 unset($this->generosSeleccionados[$index]);
             }
         }
+
+        $this->estilos = [];
+        $this->generos = Genero::whereIn("id", $this->generosSeleccionados)->get();
     }
 
     public function render()

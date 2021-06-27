@@ -112,7 +112,7 @@
                         </div>
                     @endforeach
                 </div>
-                @json($estilos)
+                @json($generos)
             </div>
 
             <!-- Imagen artista -->

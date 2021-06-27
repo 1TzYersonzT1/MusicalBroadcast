@@ -8,7 +8,10 @@
         @endif
         <div class="lg:flex">
             <div class="flex flex-col lg:mr-5">
-                <form wire:submit.prevent='nuevoTaller' enctype="multipart/form-data">
+                <form wire:submit.prevent='validarNuevoTaller' enctype="multipart/form-data">
+
+                    @csrf
+
                     <div class="lg:flex">
                         <div class="flex flex-col">
                             <span class="font-bold">Titulo</span>
@@ -21,9 +24,10 @@
                     </div>
                     <div class="mt-2 flex flex-col">
                         <div class="flex mb-3">
-                            <div class="flex flex-col mt-3">
+                            <div class="flex flex-col mt-3" x-data>
                                 <span class="font-bold">Fecha</span>
-                                <input type="date" wire:model="fecha" class="bg-primary text-white p-0 mr-5 mt-1" />
+                                <input type="date" wire:model="fecha" x-bind:min="$wire.hoy"
+                                    class="bg-primary text-white p-0 mr-5 mt-1" />
                             </div>
                             <div class="flex flex-col mt-3">
                                 <span class="font-bold">Hora</span>
@@ -40,12 +44,12 @@
                                 <div class="flex">
                                     <span class="font-bold">Aforo:</span>
                                     <div class="flex flex-col">
-                                        <input type="number" min='1' max='12' id="aforo" wire:model='aforo'
+                                        <input type="number" min='1' max='10' id="aforo" wire:model='aforo'
                                             class="bg-primary p-0 px-2 w-16 ml-3 mr-3" />
 
                                     </div>
                                 </div>
-                                <span>Máximo 12 personas.</span>
+                                <span>Máximo 10 personas.</span>
                             </div>
                         </div>
                         <div class="flex items-center mb-3 mt-3 text-sm">
@@ -139,36 +143,28 @@
 </div>
 
 <script>
-    window.addEventListener("validarNuevoTaller", function() {
+    window.addEventListener("validarNuevoTaller", () => {
         Swal.fire({
-            title: '¿Está seguro?',
-            text: `Se enviara una solicitud con los datos
-            que has ingresado.`,
-            icon: 'info',
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            showConfirmButton: false,
+            title: '¿Esta seguro?',
+            text: 'Se enviara una solicitud para aprobar el taller',
+            icon: 'success',
             showCancelButton: true,
             cancelButtonText: 'Cancelar',
             confirmButtonText: 'Confirmar',
-        }).then((isVisible) => {
-            if (isVisible.isComfirmed) {
+        }).then((result) => {
+            if (result.isConfirmed) {
+
                 Livewire.emit('nuevoTallerConfirmado');
 
                 Swal.fire({
                     title: 'Exito',
-                    text: `Recuerda que los administradores deben aprobar
-                    la solicitud antes poder visualizar el taller en el
-                    sitio web`,
+                    text: `Solicitud enviada con exito, recuerda
+                    que debes esperar a que el administrador
+                    apruebe la imagen`,
                     icon: 'success',
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    showConfirmButton: false,
-                    showCancelButton: true,
-                    cancelButtonText: 'Cancelar',
                     confirmButtonText: 'Confirmar',
                 }).then((result) => {
-                    if (!result.isVisible) {
+                    if(result.isConfirmed) {
                         location.href = '/organizador/mis-solicitudes';
                     }
                 });
