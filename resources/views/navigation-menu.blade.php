@@ -75,8 +75,16 @@
                                         <x-jet-dropdown-link href="{{ route('administrador.artistas') }}">
                                             {{ __('Nuevos artistas') }}
                                         </x-jet-dropdown-link>
+                                    </div>
+                                @elsecan('organizar')
+                                    <div x-show="open" class="absolute z-50 mt-2 bg-white">
+                                        <div class="block px-4 py-2 text-xs text-gray-400">
+                                            {{ __('Ver artistas') }}
+                                        </div>
 
-
+                                        <x-jet-dropdown-link href="{{ route('artistas.index') }}">
+                                            {{ __('Ver Artistas') }}
+                                        </x-jet-dropdown-link>
                                     </div>
                                 @endcan
                             </div>
@@ -147,6 +155,16 @@
                                             {{ __('Nuevos talleres') }}
                                         </x-jet-dropdown-link>
                                     </div>
+                                @elsecan('representar')
+                                    <div x-show="open" class="absolute z-50 mt-2 bg-white">
+                                        <div class="block px-4 py-2 text-xs text-gray-400">
+                                            {{ __('Ver talleres') }}
+                                        </div>
+
+                                        <x-jet-dropdown-link href="{{ route('talleres.index') }}">
+                                            {{ __('Ver Talleres') }}
+                                        </x-jet-dropdown-link>
+                                    </div>
                                 @endcan
                             </div>
                         </div>
@@ -213,14 +231,15 @@
                                             {{ __('Nuevos eventos') }}
                                         </x-jet-dropdown-link>
                                     </div>
-                                @else
+
+                                @elsecan('representar')
                                     <div x-show="open" class="absolute z-50 mt-2 bg-white">
                                         <div class="block px-4 py-2 text-xs text-gray-400">
-                                            {{ __('Menu eventos') }}
+                                            {{ __('Ver eventos') }}
                                         </div>
 
                                         <x-jet-dropdown-link href="{{ route('eventos.index') }}">
-                                            {{ __('Eventos') }}
+                                            {{ __('Ver Eventos') }}
                                         </x-jet-dropdown-link>
                                     </div>
                                 @endcan
@@ -307,9 +326,7 @@
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
 
-                                    <x-jet-dropdown-link href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                                                                                                                                                                                                                                this.closest('form').submit();">
+                                    <x-jet-dropdown-link href="{{ route('logout') }}" onclick="event.preventDefault();">
                                         {{ __('Cerrar sesión') }}
                                     </x-jet-dropdown-link>
                                 </form>
@@ -621,9 +638,9 @@
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
 
-                        <x-jet-responsive-nav-link href="{{ route('logout') }}"
-                            onclick="event.preventDefault();
-                                                                                                                                    this.closest('form').submit();">
+                        <x-jet-responsive-nav-link href="{{ route('logout') }}" onclick="event.preventDefault();
+                                this.closest('form').submit();">
+
                             {{ __('Cerrar sesión') }}
                         </x-jet-responsive-nav-link>
                     </form>

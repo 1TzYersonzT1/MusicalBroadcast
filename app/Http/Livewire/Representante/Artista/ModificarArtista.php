@@ -31,6 +31,7 @@ class ModificarArtista extends Component
         'artista.twitter' => 'required|string',
         'artista.spotify' => 'required|string',
         'artista.youtube' => 'required|string',
+        'artista.imagen'=>'required',
 
     ];
 
