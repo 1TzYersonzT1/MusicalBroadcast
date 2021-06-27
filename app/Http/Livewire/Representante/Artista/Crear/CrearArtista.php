@@ -83,7 +83,6 @@ class CrearArtista extends Component
 
     public function updatedGenerosSeleccionados()
     {
-
         $this->estilos = [];
         $this->generos = Genero::whereIn("id", $this->generosSeleccionados)->get();
         foreach ($this->generos as $genero) {

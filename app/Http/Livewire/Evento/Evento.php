@@ -9,7 +9,12 @@ class Evento extends Component
 
     public $evento, $slideActual;
 
-    public function mostrarEvento() {
+    /**
+     * Se emite un evento al componente padre para controlar
+     * la visualizacion del evento actual y el slider
+     */
+    public function mostrarEvento()
+    {
         $this->emit("visualizar-evento", array("id" => $this->evento->id, "slideActual" => $this->slideActual));
     }
 

@@ -20,16 +20,34 @@ class Artistas extends Component
         "confirmarEliminarArtista",
     ];
 
-    public function mount() {
+    /**
+     * Al cargarse el componente se seleccionan todos los artistas
+     * que tengan una solicitud que no sea aprobada
+     */
+    public function mount()
+    {
         $this->artistasPendientes = SolicitudArtista::where("estado", '!=', 3)->get();
     }
 
-    public function validarAprobarArtista($id) {
+    /**
+     * Busca a un artista segun el id indicado,
+     * lueog envia una alerta para confirmar la accion
+     */
+    public function validarAprobarArtista($id)
+    {
         $this->artistaSeleccionado = Artista::find($id);
         $this->dispatchBrowserEvent("validarAprobarArtista");
     }
 
-    public function confirmarAgregarArtista() {
+    /**
+     * Una vez que el administrador ha confirmado la alerta
+     * se modifica el estado de la solicitud a aprobada (3)
+     * y el estado del artista pasa a activo(1), finalmente
+     * se le envia un correo al representante acerca
+     * de la accion
+     */
+    public function confirmarAgregarArtista()
+    {
         $this->artistaSeleccionado->solicitud->estado = 3;
         $this->artistaSeleccionado->solicitud->save();
         $this->artistaSeleccionado->estado = 1;
@@ -43,7 +61,13 @@ class Artistas extends Component
         Mail::to($this->artistaSeleccionado->representante->email)->send(new ArtistaAprobado($mensaje));
     }
 
-    public function validarObservacionArtista($id) {
+    /**
+     * Verifica si el administrador ha retroalimentado la solicitud
+     * con una observacion, si es correcto se selecciona el artsta de
+     * la base de datos y se envia una alerta para confirmar la accion
+     */
+    public function validarObservacionArtista($id)
+    {
         $this->validate([
             "observacion" => 'required|string|min:10|max:255',
         ]);
@@ -51,19 +75,37 @@ class Artistas extends Component
         $this->dispatchBrowserEvent("validarObservacionArtista");
     }
 
-    public function confirmarObservacionArtista() {
+    /**
+     * Una vez que el administrador ha confirmado la alerta
+     * se agrega a la solicitud la observacion que ha escrito
+     * el administrador, se modifica el estado de la solicutud
+     * a pendiente (1)
+     */
+    public function confirmarObservacionArtista()
+    {
         $this->artistaSeleccionado->solicitud->observacion = $this->observacion;
         $this->artistaSeleccionado->solicitud->estado = 1;
         $this->artistaSeleccionado->solicitud->save();
     }
 
-    public function validarEliminarArtista($id) {
+    /**
+     * Se selecciona el artista de la base de datos
+     * y se envia una alerta para confirmar la accion
+     */
+    public function validarEliminarArtista($id)
+    {
         $this->artistaSeleccionado = Artista::find($id);
         $this->dispatchBrowserEvent("validarEliminarArtista");
     }
 
-    public function confirmarEliminarArtista() {
 
+    /**
+     * Una vez que el administrador ha confirmado la accion
+     * se le envia un mensaje al representante del artista,
+     * luego se elimina toda la información asociada al artista
+     */
+    public function confirmarEliminarArtista()
+    {
         $mensaje = [
             "artista" => $this->artistaSeleccionado->ART_Nombre,
             'representante' => $this->artistaSeleccionado->representante,

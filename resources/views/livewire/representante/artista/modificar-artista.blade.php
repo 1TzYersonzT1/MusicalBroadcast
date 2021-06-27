@@ -23,8 +23,6 @@
                     @foreach ($generos_actuales as $index => $genero)
                         <div>
                             <div class="flex items-center genero">
-                                <input value="{{ $genero->id }}" wire:model="generosSeleccionados.{{ $index }}"
-                                    class="opacity-0 absolute w-32 h-32 rounded-full" />
                                 <div
                                     class="bg-trasparent w-32 h-32 flex rounded-full flex-shrink-0 justify-center items-center mr-2 focus-within:border-red-500">
                                     <img src="https://tailwindcss.com/img/card-left.jpg"
@@ -35,6 +33,9 @@
                         </div>
                     @endforeach
                 </div>
+
+
+
                 <div class="mt-4">
                     <span class="font-bold text-2xl">Tus estilos</span>
                 </div>
@@ -42,7 +43,6 @@
 
                 <div class="flex justify-center mt-1">
                     @foreach ($artista->estilos as $estilo)
-
                         <div class="flex flex-col items-center">
                             <input type="checkbox" value="{{ $estilo->id }}"
                                 class="opacity-0 absolute w-32 h-32 rounded-full" />
@@ -52,11 +52,7 @@
                             </div>
 
                             <span class="flex">
-                                @if ($loop->last)
-                                    {{ $estilo->EST_Nombre }}.
-                                @else
-                                    {{ $estilo->EST_Nombre }},
-                                @endif
+                                {{ $estilo->EST_Nombre }}
                             </span>
                         </div>
                     @endforeach
@@ -100,9 +96,9 @@
                 </div>
 
                 <div class="flex justify-center">
-                    @foreach ($artista->estilos as $index => $estilo)
+                    @foreach ($estilos as $index => $estilo)
                         <div class="flex flex-col items-center">
-                            <div class="mb-2">
+                            <div class="mb-2 genero">
                                 <input type="checkbox" value="{{ $estilo['id'] }}"
                                     wire:model="estilosSeleccionados.{{ $index }}"
                                     class="opacity-0 absolute w-32 h-32 rounded-full" />
@@ -116,6 +112,7 @@
                         </div>
                     @endforeach
                 </div>
+                @json($estilos)
             </div>
 
             <!-- Imagen artista -->
@@ -126,8 +123,7 @@
                 </div>
                 <div class="flex justify-center gap-5 mt-5">
                     @if ($artista->imagen)
-                        <img src="{{ asset('storage/' . $artista.imagen) }}"
-                            class="rounded-full w-32 h-32" />
+                        <img src="{{ asset('storage/' . $artista->imagen) }}" class="rounded-full w-32 h-32" />
                         <svg wire:click="eliminarImagenArtista" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"
                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

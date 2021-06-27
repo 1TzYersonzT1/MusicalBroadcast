@@ -10,7 +10,12 @@ class Talleres extends Component
 
     public $solicitudes = [];
 
-    public function mount() {
+    /**
+     * Selecciona todos los talleres que no se encuentren
+     * con una solicitud en estado aprobada (3)
+     */
+    public function mount()
+    {
         $this->solicitudes = SolicitudTaller::where('estado', '!=', 3)->get();
     }
 

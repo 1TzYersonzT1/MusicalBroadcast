@@ -9,7 +9,13 @@ class Taller extends Component
 
     public $solicitud, $slideActual;
 
-    public function mostrarSolicitud() {
+    /**
+     * Se emite una function definida en TallerPreview y le envia
+     * el id de la solicitud actual mas el indice para controlar
+     * el slider y la visualizacion.
+     */
+    public function mostrarSolicitud()
+    {
         $this->emit('visualizarSolicitud', array('id' => $this->solicitud->id, 'slideActual' => $this->slideActual));
     }
 

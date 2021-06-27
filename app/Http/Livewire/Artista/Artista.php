@@ -7,6 +7,10 @@ use Livewire\Component;
 class Artista extends Component
 {
 
+    /**
+     * Utilizado para bindear el artista desde un
+     * componente padre
+     */
     public $artista;
 
     public function render()

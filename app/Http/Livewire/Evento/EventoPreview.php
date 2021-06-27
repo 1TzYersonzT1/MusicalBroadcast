@@ -26,12 +26,22 @@ class EventoPreview extends Component
         'artistasSeleccionados.required' => 'Debe seleccionar al menos 1 artista antes de enviar una petición.'
     ];
 
+    /**
+     * Realiza la busqueda segun el evento que se ha seleccionado
+     * desde el componente hijo, se envia un evento al navegador
+     * con el indice actual para controlar el slider.
+     */
     public function visualizar(array $eventoSeleccionado)
     {
         $this->eventoActual = Evento::find($eventoSeleccionado["id"]);
         $this->dispatchBrowserEvent("mostrarEvento", array("slideActual" => $eventoSeleccionado["slideActual"]));
     }
 
+    /**
+     * Verifica si el representante ha seleccionado al menos
+     * un artista, si lo ha hecho se envia una alerta de confirmacion
+     * para inscribir a ese o mas artistas al evento actual.
+     */
     public function validarPeticiones()
     {
         $this->validate([
@@ -40,6 +50,15 @@ class EventoPreview extends Component
         $this->dispatchBrowserEvent('confirmarEnvioPeticiones');
     }
 
+
+    /**
+     * Una vez que el representante ha confirmado que desea
+     * inscribir al o los artistas seleccionados, se realiza
+     * una busqueda de cada uno de estos artistas y se le envia
+     * un mensaje a los respectivos representantes, asi como al
+     * organizador del evento para indicarle que tiene un
+     * nuevo pariticpante.
+     */
     public function envioPeticionesConfirmado()
     {
         foreach ($this->artistasSeleccionados as $artistaSeleccionado) {
@@ -58,6 +77,12 @@ class EventoPreview extends Component
         $this->eventoActual->artistas()->syncWithoutDetaching($this->artistasSeleccionados);
     }
 
+    /**
+     * Modifica el listado de artistas seleccionados
+     * en caso de que el representante desee
+     * agregar más de un artista en un solo
+     * click
+     */
     public function updatedArtistasSeleccionados($value)
     {
         $this->artistasSeleccionados = $value;

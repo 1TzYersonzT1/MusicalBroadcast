@@ -29,10 +29,10 @@
                     </div>
                     <div class="mt-2 flex flex-col">
                         <div class="flex mb-3">
-                            <div class="flex flex-col mt-3">
+                            <div class="flex flex-col mt-3" x-data >
                                 <span class="font-bold">Fecha</span>
                                 <input type="date" wire:model="evento.EVE_Fecha"
-                                    class="bg-primary text-white p-0 mr-5 mt-1" />
+                                    x-bind:min="$wire.hoy" class="bg-primary text-white p-0 mr-5 mt-1" />
                             </div>
                             <div class="flex flex-col mt-3">
                                 <span class="font-bold">Hora</span>
@@ -103,7 +103,7 @@
         Swal.fire({
             title: '¿Está seguro?',
             text: `Los cambios se guardarán y tu solicitud será revisada por soporte.`,
-            icon: 'warning',
+            icon: 'info',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',

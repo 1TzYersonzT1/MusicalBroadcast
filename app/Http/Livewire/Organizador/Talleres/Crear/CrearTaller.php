@@ -6,19 +6,27 @@ use Gate;
 use Livewire\Component;
 use App\Models\Taller;
 use App\Models\SolicitudTaller;
-use Auth;
+use Auth; // Es probable que indique un error pero no afecta
 use Carbon\Carbon;
 use Livewire\WithFileUploads;
 
 class CrearTaller extends Component
 {
 
+    /**
+     * Trait necesario para subir archivos
+     */
     use WithFileUploads;
 
     public $titulo, $descripcion, $aforo, $hora, $lugar, $user_rut, $fecha, $imagen;
     public $caracteres_descripcion = 0;
     public $protocolos = [], $requisitos = [];
 
+    /**
+     * Las reglas que aplican 
+     * a los campos minimos obligatorios
+     * para organizar un nuevo taller
+     */
     protected $rules = [
         'titulo' => ['required', 'string', 'max:30'],
         'hora' => ['required', 'date_format:H:i'],
@@ -30,37 +38,87 @@ class CrearTaller extends Component
         'requisitos' => 'required|array|min:1',
     ];
 
-    protected $listeners = ["updatedRequisitos", 'updatedProtocolos'];
+    protected $listeners = [
+        'updatedRequisitos',
+        'updatedProtocolos',
+        'nuevoTallerConfirmado',
+    ];
 
-    public function updatedDescripcion() {
+    /**
+     * Cada vez que se actualiza el campo de descripcion se contabiliza
+     * la cantidad de caracteres para compararlos con el maximo de 255
+     * permitidos
+     */
+    public function updatedDescripcion()
+    {
         $this->caracteres_descripcion = strlen($this->descripcion);
     }
 
+    /**
+     * Esta function es emitida desde el componente Requisitos
+     * y trae consigo el arreglo de requisitos actualizado
+     * cada vez que se aniade o elimina un nuevo requisito
+     */
     public function updatedRequisitos($value)
     {
         $this->requisitos = $value['requisitos'];
     }
 
+    /**
+     * Esta function es emitida desde el componente Protcolos
+     * y trae consigo el arreglo de protocolos actualizado
+     * cada vez que se aniade o elimina un nuevo protocolo
+     */
     public function updatedProtocolos($value)
     {
         $this->protocolos = $value['protocolos'];
     }
 
-    public function updatedImagen() {
+    /**
+     * Cada vez que se sube un archivo al campo imagen
+     * se valida que este sea solo de tipo imagen con un
+     * maximo de 1024kb
+     */
+    public function updatedImagen()
+    {
         $this->validate([
             'imagen' => 'required|image|mimes:jpeg,png,svg,jpg,gif|max:1024',
         ]);
     }
 
-    public function eliminarImagen() {
+    /**
+     * Se encarga de eliminar la vista previa de la
+     * imagen
+     */
+    public function eliminarImagen()
+    {
         $this->imagen = '';
     }
 
-    public function nuevoTaller()
+    /**
+     * Verifica que todos los campos minimos
+     * hayan sido ingresados por el organizador
+     * si es asi envia una alerta para confirmar 
+     * la accion
+     */
+    public function validarNuevoTaller()
+    {
+        $this->validate();
+        $this->dispatchBrowserEvent("validarNuevoTaller");
+    }
+
+    /** 
+     * Una vez que el organizador ha confirmado la accion
+     * almacena la imagen del taller y crea
+     * un taller en estado inactivo (0) junto a su solicitud
+     * en estado pendiente (0) finalmente envia
+     * una alerta de exito
+     */
+    public function nuevoTallerConfirmado()
     {
         $this->validate();
 
-        $imagen = $this->imagen->store("/talleres/organizador/".auth()->user()->rut);
+        $imagen = $this->imagen->store("/talleres/organizador/" . auth()->user()->rut);
 
         $taller = Taller::create([
             'TAL_Nombre' => $this->titulo,
@@ -75,7 +133,7 @@ class CrearTaller extends Component
             'user_rut' => Auth::user()->rut,
             'imagen' => "storage/" . $imagen,
         ]);
-        
+
         $solicitud = SolicitudTaller::create([
             'observacion' => '',
             'estado' => 0,
@@ -87,10 +145,6 @@ class CrearTaller extends Component
 
     public function render()
     {
-        if (Gate::denies('organizar')) {
-            abort(403);
-        }
-     
         return view('livewire.organizador.talleres.crear.crear-taller');
     }
 }

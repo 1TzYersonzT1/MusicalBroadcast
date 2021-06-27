@@ -11,10 +11,11 @@ class Novedades extends Component
 
     public $novedades;
 
-    public function mount() {
+    public function mount()
+    {
         $this->novedades = Novedad::orderBy("horario_publicacion", "asc")
-        ->where("horario_publicacion", ">", new DateTime())
-        ->get(); 
+            ->where("horario_publicacion", ">", new DateTime())
+            ->get();
     }
 
     public function render()

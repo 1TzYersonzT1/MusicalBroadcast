@@ -11,7 +11,12 @@ class BuscarArtista extends Component
     public $buscar;
     public $resultados;
 
-    public function mount() {
+    /**
+     * Determina un estado por defecto para el buscador
+     * de la barra de navegacion
+     */
+    public function mount()
+    {
         $this->resultados =  [
             (object) [
                 "id" => 0,
@@ -20,12 +25,17 @@ class BuscarArtista extends Component
         ];
     }
 
+    /**
+     * Cada vez que se modifica el input en la barra de navegacion
+     * se realiza una consulta a la base de datos para buscar
+     * conicidencias en la tabla de artistas.
+     */
     public function updatedBuscar()
     {
         if ($this->buscar != '') {
             $this->resultados = Artista::where("estado", 1)
-            ->where("ART_Nombre", 'like', $this->buscar . '%')->get();
-        } else  {
+                ->where("ART_Nombre", 'like', $this->buscar . '%')->get();
+        } else {
             $this->mount();
         }
     }

@@ -8,7 +8,7 @@
         @endif
         <div class="lg:flex">
             <div class="flex flex-col lg:mr-5">
-                <form wire:submit.prevent='nuevoEvento' enctype="multipart/form-data">
+                <form wire:submit.prevent='validarNuevoEvento' enctype="multipart/form-data">
                     <div class="lg:flex">
                         <div class="flex flex-col">
                             <span class="font-bold">Titulo</span>
@@ -21,11 +21,12 @@
                     </div>
                     <div class="mt-2 flex flex-col">
                         <div class="flex mb-3">
-                            <div class="flex flex-col mt-3">
+                            <div class="flex flex-col mt-3" x-data>
                                 <span class="font-bold">Fecha</span>
-                                <input type="date" wire:model="fecha"
-                                    class="bg-primary text-white p-0 mr-5 mt-1" />
+                           
+                                <input type="date" wire:model="fecha" x-bind:min="$wire.hoy" class="bg-primary text-white p-0 mr-5 mt-1" />
                             </div>
+                       
                             <div class="flex flex-col mt-3">
                                 <span class="font-bold">Hora</span>
                                 <div class="flex flex-col">
@@ -36,7 +37,7 @@
                             </div>
 
                         </div>
-                        
+
                         <div class="flex items-center mb-3 mt-3 text-sm">
                             <span class="font-bold">Lugar: </span>
                             <div class="flex flex-col">
@@ -49,7 +50,9 @@
                         <div class="mt-3">
                             <label for="descripcion" class="font-bold lg:w-96">Descripción</label>
                             <div class="flex flex-col">
-                                <textarea placeholder="Escriba una descripción (máximo 255 caracteres)" wire:model='descripcion' maxlength="255"class="resize-none lg:w-96 bg-primary h-40 mt-1 mb-1" wrap="hard"></textarea>
+                                <textarea placeholder="Escriba una descripción (máximo 255 caracteres)"
+                                    wire:model='descripcion' maxlength="255"
+                                    class="resize-none lg:w-96 bg-primary h-40 mt-1 mb-1" wrap="hard"></textarea>
                                 <span>{{ $caracteres_descripcion }} / 255</span>
                             </div>
                         </div>
@@ -59,16 +62,16 @@
             <div class="flex justify-between">
                 <div class="flex flex-col">
                     <input type="file" wire:model="imagen" />
-                    <div wire:loading wire:target="imagen" 
-                            class="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3" role="alert">
+                    <div wire:loading wire:target="imagen"
+                        class="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3" role="alert">
                         <p class="font-bold">Cargando imagen</p>
                     </div>
-                
+
                     @error('imagen')
-                    
+
                     @else
-                        @if ($imagen )
-                        <img src="{{ $imagen->temporaryUrl() }}" class="mt-5 w-80 h-80">
+                        @if ($imagen)
+                            <img src="{{ $imagen->temporaryUrl() }}" class="mt-5 w-80 h-80">
                         @endif
                     @enderror
                 </div>
@@ -78,7 +81,7 @@
                         class="border border-white px-7 py-3 my-10 lg:my-0 hover:bg-white hover:text-primary">Solicitar
                         permiso</button>
                 </div>
-                
+
             </div>
 
             </form>
@@ -87,16 +90,34 @@
 </div>
 
 <script>
-    window.addEventListener("nuevoEvento", () => {
+
+
+    window.addEventListener("validarNuevoEvento", () => {
         Swal.fire({
-            title: 'Exito',
-            text: `Solicitud enviada con exito, recuerda que debes esperar a que
-            un administrador revise y apruebe el evento.`,
-            icon: 'success',
-            time: 4000,
+            title: '¿Está seguro?',
+            text: `Se enviará una solicitud a los administradores
+            antes de poder visualizar el evento en el sitio web`,
+            icon: 'info',
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            showCancelButton: true,
+            cancelButtonText: 'Cancelar',
+            confirmButtonText: 'Confirmar'
         }).then((result) => {
-            if(!result.isVisible) {
-                location.href = '/eventos';
+            if (result.isConfirmed) {
+                Livewire.emit('nuevoEventoConfirmado');
+                Swal.fire({
+                    title: 'Exito',
+                    text: `Solicitud enviada con exito, recuerda que 
+                    debes esperar a que un administrador revise y 
+                    apruebe el evento.`,
+                    icon: 'success',
+                    time: 4000,
+                }).then((result) => {
+                    if (!result.isVisible) {
+                        location.href = '/organizador/eventos/mis-solicitudes';
+                    }
+                });
             }
         });
     });

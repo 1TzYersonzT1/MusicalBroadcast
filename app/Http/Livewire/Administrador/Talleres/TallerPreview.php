@@ -30,8 +30,8 @@ class TallerPreview extends Component
     ];
 
     /**
-     * Permite visualizar la solicitud que ha seleccionado
-     * el adninistrador.
+     * Permite visualizar la solicitud asociada a un taller 
+     * la cual ha sido seleccionad el adninistrador.
      */
     public function visualizarSolicitud(array $solicitudSeleccionada)
     {
@@ -45,6 +45,7 @@ class TallerPreview extends Component
      * la solicitud actual de pendiente(0) a  aprobada(3),
      * finalmente envia un correo al organizador
      * para notificar
+     * @return redirect
      */
     public function aprobarTaller()
     {
@@ -58,7 +59,7 @@ class TallerPreview extends Component
         $solicitud->save();
 
         $hojaVida = HojaVida::where("user_rut", $taller->user_rut)->get();
-        
+
         $hojaVida[0]->talleres_aprobados = $hojaVida[0]->talleres_aprobados + 1;
         $hojaVida[0]->save();
 
@@ -105,7 +106,7 @@ class TallerPreview extends Component
         Storage::delete($taller->imagen);
 
         $hojaVida = HojaVida::where("user_rut", $taller->user_rut)->get();
-        
+
         $hojaVida[0]->talleres_rechazados = $hojaVida[0]->talleres_rechazados + 1;
         $hojaVida[0]->save();
 

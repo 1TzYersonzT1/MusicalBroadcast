@@ -7,9 +7,21 @@ use Livewire\Component;
 class Protocolo extends Component
 {
 
+    /**
+     * Utilizado para bindear la informacion
+     * de cada protocolo de manera individual desde
+     * su componente padre
+     */
     public $protocolo;
 
-    public function eliminarProtocolo() {
+    /**
+     * Se emite una function hacia el componente padre
+     * Protocolos cada vez que se elimina un protocolo
+     * el cual es enviado como parametro a la function
+     * mencionada.
+     */
+    public function eliminarProtocolo()
+    {
         $this->emit("eliminarProtocolo", array("protocolo" => $this->protocolo));
     }
 

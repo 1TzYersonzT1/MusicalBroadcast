@@ -139,18 +139,39 @@
 </div>
 
 <script>
-    window.addEventListener("nuevoTaller", function() {
+    window.addEventListener("validarNuevoTaller", function() {
         Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Solicitud enviada',
-            text: `Recuerda que debes esperar a que se apruebe el taller, puedes
-            revisar el estado de tu solicitud en todo momento o contactarte con soporte si tienes alguna duda`,
+            title: '¿Está seguro?',
+            text: `Se enviara una solicitud con los datos
+            que has ingresado.`,
+            icon: 'info',
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
             showConfirmButton: false,
-            timer: 10000
+            showCancelButton: true,
+            cancelButtonText: 'Cancelar',
+            confirmButtonText: 'Confirmar',
         }).then((isVisible) => {
-            if (!isVisible.isComfirmed) {
-                location.href = "/talleres";
+            if (isVisible.isComfirmed) {
+                Livewire.emit('nuevoTallerConfirmado');
+
+                Swal.fire({
+                    title: 'Exito',
+                    text: `Recuerda que los administradores deben aprobar
+                    la solicitud antes poder visualizar el taller en el
+                    sitio web`,
+                    icon: 'success',
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    showConfirmButton: false,
+                    showCancelButton: true,
+                    cancelButtonText: 'Cancelar',
+                    confirmButtonText: 'Confirmar',
+                }).then((result) => {
+                    if (!result.isVisible) {
+                        location.href = '/organizador/mis-solicitudes';
+                    }
+                });
             }
         });
     });

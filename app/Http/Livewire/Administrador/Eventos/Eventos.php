@@ -10,6 +10,10 @@ class Eventos extends Component
 
     public $eventos;
 
+    /**
+     * Selecciona todos los eventos que no se encuentren
+     * con una solicitud en estado aprobada (3)
+     */
     public function mount() {
         $this->eventos = SolicitudEvento::where("estado", "!=", 3)->get(); 
     }
