@@ -33,8 +33,8 @@
             <div class="mt-4">
                 <x-jet-label for="tipo_cuenta" value="{{ __('Seleccione uno o más roles') }}" />
 
-                <input type="checkbox" name="tipo_cuenta[]" value="1"><span class="text-white">Organizador</span>
-                <input type="checkbox" name="tipo_cuenta[]" value="2"><span class="text-white">Representante</span>
+                <input type="checkbox" name="tipo_cuenta[]" value="1"><span class="">Organizador</span>
+                <input type="checkbox" name="tipo_cuenta[]" value="2"><span class="">Representante</span>
             </div>
 
             <div class="mt-4">
