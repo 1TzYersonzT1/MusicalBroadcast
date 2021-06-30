@@ -1,60 +1,60 @@
 <div id="cuerpo">
     <div class="mt-4">
-
-        <div class="flex lg:flex-row flex-col justify-between items-center"> 
-            <div> 
-                <img src="{{ asset('storage/'.$solicitudActual->taller->imagen) }}" 
-                class="h-80 w-96 lg:m-0 mb-5 mr-5"/>
+        <div>
+            <img src="{{ asset('storage/' . $solicitudActual->taller->imagen) }}"
+                class="h-52 w-52 lg:m-0 mb-5 mr-5" />
+        </div>
+        <div class="grid grid-cols-2 lg:gap-10 gap-5">
+            <div class="col">
+                <p class="font-bold">TITULO</p>
+                <p>{{ $solicitudActual->taller->TAL_Nombre }}</p>
+            </div>
+            <div class="col">
+                <p class="font-bold">ORGANIZADOR</p>
+                <p>{{ $solicitudActual->taller->organizador->nombre }}
+                    {{ $solicitudActual->taller->organizador->apellidos }}</p>
             </div>
 
-            <div class="grid grid-cols-2 lg:gap-10 gap-5">
-                <div>
-                    <p class="font-bold">TITULO</p>
-                    <p>{{ $solicitudActual->taller->TAL_Nombre }}</p>
-                </div>
-                <div>
-                    <p class="font-bold">ORGANIZADOR</p>
-                    <p>{{ $solicitudActual->taller->organizador->nombre }}
-                        {{ $solicitudActual->taller->organizador->apellidos }}</p>
-                </div>
-                <div>
-                    <p class="font-bold col-span-2">DESCRIPCIÓN</p>
-                    <p>{{ $solicitudActual->taller->TAL_Descripcion }}</p>
-                </div>
-    
-                <div class="col">
-                    <p class="font-bold">HORARIO</p>
-                    <p>{{ $solicitudActual->taller->TAL_Fecha }} {{ $solicitudActual->taller->TAL_Hora }}</p>
-                </div>
-    
-                <div class="col">
-                    <p class="font-bold">REQUISITOS</p>
-                    @foreach ($solicitudActual->taller->TAL_Requisitos  as $requisito)
-                        <p>{{ $requisito }}</p>
-                    @endforeach
-                </div>
-    
-                <div class="col">
-                    <p class="font-bold">LUGAR</p>
-                    <p>{{ $solicitudActual->taller->TAL_Lugar }}</p>
-                </div>
-    
-                <div class="col">
-                    <p class="font-bold">PROTOCOLO COVID</p>
-                    @foreach ($solicitudActual->taller->TAL_Protocolo as $protocolo)
-                    <p>{{ $protocolo }}</p>
-                    @endforeach
-                </div>
+            <div class="col">
+                <p class="font-bold">HORARIO</p>
+                <p>{{ $solicitudActual->taller->TAL_Fecha }} {{ $solicitudActual->taller->TAL_Hora }}</p>
+            </div>
 
-                @if($solicitudActual->estado == 5) 
+            <div class="col">
+                <p class="font-bold">PROTOCOLO COVID</p>
+                @foreach ($solicitudActual->taller->TAL_Protocolo as $protocolo)
+                    <p>{{ $protocolo }}</p>
+                @endforeach
+            </div>
+            
+            <div class="col">
+                <p class="font-bold">REQUISITOS</p>
+                @foreach ($solicitudActual->taller->TAL_Requisitos as $requisito)
+                    <p>{{ $requisito }}</p>
+                @endforeach
+            </div>
+
+            <div class="col">
+                <p class="font-bold">LUGAR</p>
+                <p>{{ $solicitudActual->taller->TAL_Lugar }}</p>
+            </div>
+
+            <div class="lg:col">
+                <p class="font-bold col-span-2">DESCRIPCIÓN</p>
+                <textarea rows="8" cols="50" class="bg-primary p-0 py-1 resize-none border-0 text-white"
+                    disabled>{{ $solicitudActual->taller->TAL_Descripcion }}</textarea>
+            </div>
+
+            @if ($solicitudActual->estado == 5)
                 <div class="col">
                     <p class="font-bold">Motivo de posposición</p>
                     <p>{{ $solicitudActual->observacion }}</p>
                 </div>
-                @endif
-            </div>
+            @endif
         </div>
-    
+
+
+
 
         <div class="mt-6 flex flex-col items-center justify-center lg:flex lg:flex-row lg:justify-start w-84">
 
@@ -78,12 +78,12 @@
                         <script>
                             $.fancybox.close();
                             Swal.fire({
-                                    title: 'Observación (*)',
-                                    text: `Debe agregar una observación detallada para que el organizador 
+                                title: 'Observación (*)',
+                                text: `Debe agregar una observación detallada para que el organizador 
                                     tenga presente que cambios debe realizar.`,
-                                    icon: 'error',
-                                }).then((result) => {
-                                    if (result.isConfirmed) {
+                                icon: 'error',
+                            }).then((result) => {
+                                if (result.isConfirmed) {
                                     location.href = '/administrador/solicitudes/talleres';
                                 }
                             });
@@ -106,73 +106,70 @@
 
 
 
-    <script>
-        $("#aprobarSolicitud").on('click', function() {
-            Swal.fire({
-                title: '¿Está seguro?',
-                text: "Estas a punto de aprobar un taller",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Si, aprobar'
-            }).then((result) => {
-                if (result.isConfirmed) {
+<script>
+    $("#aprobarSolicitud").on('click', function() {
+        Swal.fire({
+            title: '¿Está seguro?',
+            text: "Estas a punto de aprobar un taller",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, aprobar'
+        }).then((result) => {
+            if (result.isConfirmed) {
 
-                    Livewire.emit('aprobarTaller');
+                Livewire.emit('aprobarTaller');
 
-                    Swal.fire(
-                        'Aprobado',
-                        'El taller ha sido aprobado con exito.',
-                        'success'
-                    );
-                }
-            });
+                Swal.fire(
+                    'Aprobado',
+                    'El taller ha sido aprobado con exito.',
+                    'success'
+                );
+            }
         });
+    });
 
-        window.addEventListener("observacionAniadida", function() {
-            $.fancybox.close();
-            Swal.fire({
-                icon: 'success',
-                title: 'Observación agregada con exito',
-                text: `El organizador recibirá tus comentarios dentro de poco`,
-                showConfirmButton: false,
-                timer: 8000
-            }).then((result) => {
-                if (!result.isConfirmed) {
-                    location.href = "/administrador/solicitudes/talleres";
-                }
-            })
-        });
+    window.addEventListener("observacionAniadida", function() {
+        $.fancybox.close();
+        Swal.fire({
+            icon: 'success',
+            title: 'Observación agregada con exito',
+            text: `El organizador recibirá tus comentarios dentro de poco`,
+            showConfirmButton: false,
+            timer: 8000
+        }).then((result) => {
+            if (!result.isConfirmed) {
+                location.href = "/administrador/solicitudes/talleres";
+            }
+        })
+    });
 
-        $("#rechazarSolicitud").on("click", function() {
-            Swal.fire({
-                title: '¿Está seguro?',
-                text: "Estas a punto de rechazar una solicitud",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Si, rechazar'
-            }).then((result) => {
-                if (result.isConfirmed) {
+    $("#rechazarSolicitud").on("click", function() {
+        Swal.fire({
+            title: '¿Está seguro?',
+            text: "Estas a punto de rechazar una solicitud",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, rechazar'
+        }).then((result) => {
+            if (result.isConfirmed) {
 
-                    Livewire.emit('eliminarTaller');
+                Livewire.emit('eliminarTaller');
 
-                    Swal.fire({
-                        title: 'Rechazado',
-                        text: 'El taller ha sido rechazado con exito.',
-                        icon: 'success',
-                        timer: 3000,
+                Swal.fire({
+                    title: 'Rechazado',
+                    text: 'El taller ha sido rechazado con exito.',
+                    icon: 'success',
+                    timer: 3000,
+                }).then((result) => {
+                    if (!result.isVisible) {
+                        location.href = "/administrador/solicitudes/talleres";
                     }
-                    ).then((result) => {
-                        if(!result.isVisible) {
-                            location.href = "/administrador/solicitudes/talleres";
-                        }
-                    });
-                }
-            });
+                });
+            }
         });
-
+    });
 </script>
-

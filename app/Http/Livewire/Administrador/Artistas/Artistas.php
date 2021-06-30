@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Mail;
 class Artistas extends Component
 {
 
-    public $artistasPendientes, $artistaSeleccionado, $observacion;
+    public $artistasPendientes=[], $artistaSeleccionado, $observacion;
 
     protected $listeners = [
         "confirmarAgregarArtista",

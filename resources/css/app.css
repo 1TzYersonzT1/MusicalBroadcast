@@ -16,11 +16,11 @@ input:checked+div svg {
 }
 
 .swiper-pagination-integrantes > .swiper-pagination-bullet {
-    @apply bg-red-500;
+    @apply bg-yellow-500 opacity-100;
 }
 
 .swiper-pagination-integrantes > .swiper-pagination-bullet-active {
-    @apply bg-white;
+    @apply bg-black;
 }
 
 .swiper-pagination-albumes > .swiper-pagination-bullet {
