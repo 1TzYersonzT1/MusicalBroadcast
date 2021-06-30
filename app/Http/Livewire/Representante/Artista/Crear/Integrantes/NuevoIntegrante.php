@@ -82,13 +82,14 @@ class NuevoIntegrante extends Component
 
         $this->instrumentosSeleccionados = []; 
 
-        $this->emitTo('representante.artista.crear.crear-artista', 'updatedIntegrantes', $this->integrantes);
+        $this->emit('updatedIntegrantes', $this->integrantes);
     }
 
     public function eliminarIntegrante($index)
     {
         Storage::delete($this->integrantes[$index]["imagen"]);
         unset($this->integrantes[$index]);
+        $this->emit('updatedIntegrantes', $this->integrantes);
     }
 
     public function render()

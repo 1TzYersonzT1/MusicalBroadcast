@@ -9,9 +9,7 @@
         <div class="lg:flex">
             <div class="flex flex-col lg:mr-5">
                 <form wire:submit.prevent='validarNuevoTaller' enctype="multipart/form-data">
-
                     @csrf
-
                     <div class="lg:flex">
                         <div class="flex flex-col">
                             <span class="font-bold">Titulo</span>

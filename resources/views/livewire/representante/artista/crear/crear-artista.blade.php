@@ -99,7 +99,7 @@
                 </div>
 
                 <!-- Imagen artista -->
-                <div class=" col-span-8 align-content-center my-5">
+                <div class="col-span-8 align-content-center my-5">
                     <div class="bg-black bg-opacity-20 px-2 py-1 text-center">
                         <span class="top-5 mb-3 text-4xl font-bold">Sube la imagen del artista</span>
                     </div>

@@ -113,6 +113,12 @@ class CrearArtista extends Component
     {
         $imagen = $this->imagenArtista->store("representantes/" . auth()->user()->rut . "/artistas/" . $this->nombreArtista);
 
+        if($this->tipoArtista == 2) {
+            $this->validate([
+                'integrantes' => 'required|array|min:1',
+            ]);
+        }
+
         $artista = Artista::create([
             'ART_Nombre' => $this->nombreArtista,
             'biografia' => $this->biografia,

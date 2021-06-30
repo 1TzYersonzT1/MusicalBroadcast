@@ -1,37 +1,40 @@
-<div class="col-span-8 align-content-center my-5">
+<div class="col-span-8 flex flex-col items-center my-5" x-data="formularios()">
     <div class="bg-black bg-opacity-20 px-2 py-1 text-center">
         <span class="top-5 mb-3 text-4xl font-bold">Agrega tus albums aquí</span>
     </div>
-    <div class="flex flex-wrap justify-center content-center mt-5">
-        <div class="flex">
-            @foreach ($albumes as $index => $album)
-                <div class="flex mr-5">
-                    <div class="flex flex-col items-center">
-                        <img src="{{ asset('storage/' . $album['imagen']) }}" class="rounded-full w-28 h-28" />
-                        <span>{{ $album['ALB_Nombre'] }}</span>
-                    </div>
-                    <svg wire:click="eliminarAlbum('{{ $index }}')" xmlns="http://www.w3.org/2000/svg"
-                    class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M6 18L18 6M6 6l12 12" />
-                </svg>
-                 
-                </div>
-            @endforeach
-        </div>
-        <div x-data="formularios()" class="relative h-32 w-32 bg-cover rounded-full lg:rounded-t-full lg:rounded-1">
-            <div>
-                <button @click="abrir()">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-32 w-32 hover:text-green-400 cursor-pointer"
-                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                </button>
-            </div>
 
+    <div class="flex flex-wrap justify-center content-center mt-5">
+
+        @foreach ($albumes as $index => $album)
+            <div class="flex mr-5">
+                <div class="flex flex-col items-center">
+                    <img src="{{ asset('storage/' . $album['imagen']) }}" class="rounded-full w-28 h-28" />
+                    <span>{{ $album['ALB_Nombre'] }}</span>
+                </div>
+                <svg wire:click="eliminarAlbum('{{ $index }}')" xmlns="http://www.w3.org/2000/svg"
+                    class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+
+            </div>
+        @endforeach
+
+        <div>
+            <button @click="abrir()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-32 w-32 hover:text-green-400 cursor-pointer"
+                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <div class="relative h-4 bg-cover rounded-full lg:rounded-t-full lg:rounded-1">
+        <div class="absolute lg:left-40 lg:-top-40 -left-36">
             <div x-show.transition.out="estaAbierto()" @click.away='cerrar()'
-                class="bg-white absolute -top-40 left-40 p-4 text-primary w-80 border-4 shadow-md">
+                class="bg-white p-4 text-primary w-80 border-4 shadow-md">
+
                 <div class="flex justify-between items-center">
                     <span class="font-bold text-2xl block text-center mb-5">Agregar album.</span>
                     <svg @click="cerrar()" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
@@ -134,8 +137,8 @@
             </div>
         </div>
     </div>
-    
-    <div class="my-5 text-center"><span>¿No sabes cual/es albumes destacar?
+
+    <div class="block text-center"><span>¿No sabes cual/es albumes destacar?
             No te preocupes, si omites este paso más adelante
             podrás agregar albumes a tus artistas.</span>
     </div>

@@ -20,7 +20,7 @@ use App\Http\Livewire\Organizador\Talleres\Crear\CrearTaller;
 use App\Http\Livewire\Organizador\Talleres\MisTalleres;
 use App\Http\Livewire\Organizador\Talleres\ModificarTaller;
 use App\Http\Livewire\Organizador\Talleres\Asistentes\Asistentes as AsistenteTaller;
-use App\Http\Livewire\Representante\Artista\ModificarArtista;
+use App\Http\Livewire\Representante\Artista\Modificar\ModificarArtista;
 
 /*
 |--------------------------------------------------------------------------
