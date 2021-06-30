@@ -224,7 +224,6 @@
                 </div>
 
 
-                </button>
 
             @endcan
         </div>
@@ -238,8 +237,14 @@
                             class=" h-40 w-40 flex-none bg-cover rounded-full lg:rounded-t-full lg:rounded-1 text-center overflow-hidden">
                             <img src="{{ asset('storage/' . $integrante->imagen) }}" class="h-40 w-40" />
                         </div>
+                        <div>
+                            <span>{{ $integrante->nombre }}</span>
+                        </div>
+                        <div>
+                            <span>{{ $integrante->apellidos }}</span>
+                        </div>
 
-                        <span>{{ $integrante->nombre }}</span>
+
                         <div x-show="open" @click.away="open = false"
                             class="bg-white absolute top-12 lg:-left-36 p-4 text-primary lg:w-52"
                             x-transition:enter="transition ease-out duration-300"

@@ -10,6 +10,9 @@ class ArtistaPreview extends Component
 
    public $artistaActual; 
 
+    /**
+     * 
+     */
    public function mount(Artista $artista) {
        $this->artistaActual = $artista;
    }
