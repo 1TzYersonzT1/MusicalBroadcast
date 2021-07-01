@@ -145,7 +145,7 @@
         Swal.fire({
             title: '¿Esta seguro?',
             text: 'Se enviara una solicitud para aprobar el taller',
-            icon: 'success',
+            icon: 'info',
             showCancelButton: true,
             cancelButtonText: 'Cancelar',
             confirmButtonText: 'Confirmar',

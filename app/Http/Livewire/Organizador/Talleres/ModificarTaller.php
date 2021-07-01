@@ -134,7 +134,6 @@ class ModificarTaller extends Component
      */
     public function modificarTallerConfirmado()
     {
-        $taller = Taller::find($this->taller->id);
         $taller = $this->taller;
         $taller->TAL_Requisitos = implode(", ", $this->requisitos);
         $taller->TAL_Protocolo = implode(", ", $this->protocolos);

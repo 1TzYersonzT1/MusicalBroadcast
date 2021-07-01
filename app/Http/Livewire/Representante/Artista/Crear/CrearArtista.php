@@ -11,6 +11,7 @@ use App\Models\Integrante;
 use App\Models\SolicitudArtista;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Storage;
 
 class CrearArtista extends Component
 {
@@ -166,18 +167,6 @@ class CrearArtista extends Component
     public function eliminarImagenArtista()
     {
         $this->imagenArtista = '';
-    }
-
-    public function prueba()
-    {
-        $go = [
-            $this->nombreArtista,
-            $this->tipoArtista,
-            $this->integrantes,
-            $this->imagenArtista,
-            $this->estilosSeleccionados,
-        ];
-        $this->dispatchBrowserEvent("prueba", array("test" => $go));
     }
 
     public function limpiarURL()

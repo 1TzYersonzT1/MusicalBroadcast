@@ -34,6 +34,7 @@ class Album extends Component
     public function updatedNombreArtista($value)
     {
         $this->nombreArtista = $value;
+        $this->albumes = [];
     }
 
     public function agregarAlbum()

@@ -166,7 +166,7 @@
 
 
             <!-- Integrantes -->
-
+            <livewire:representante.artista.crear.integrantes.nuevo-integrante :nombreArtista="$artista->ART_Nombre" />
 
 
             <!-- Redes sociales -->
@@ -307,7 +307,19 @@
             confirmButtonText: 'Guardar cambios',
         }).then((result) => {
             if (result.isConfirmed) {
+                Livewire.emit('modificarArtistaConfirmado');
 
+                Swal.fire({
+                    title: 'Exito',
+                    text: `Cambios realizados con exito, debes esperar
+                    a que un administrador revise la solicitud nuevamente.`,
+                    icon: 'success',
+                    timer: 3000,
+                }).then((result) => {
+                    if(!result.isVisible) {
+                        location.href = '/representante/artistas/mis-solicitudes';
+                    }
+                });
             }
         });
     });

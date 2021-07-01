@@ -33,6 +33,7 @@ class ModificarArtista extends Component
     protected $listeners = [
         'updatedEstilosSeleccionados',
         'updatedIntegrantes',
+        'modificarArtistaConfirmado',
     ];
 
     function mount($id)
@@ -82,9 +83,9 @@ class ModificarArtista extends Component
         $this->artista->save();
     }
 
-    public function updatedNuevaImagen() {
-
-        $imagen = $this->imagenArtista->store("representantes/" . auth()->user()->rut . "/artistas/" . $this->nombreArtista);
+    public function updatedNuevaImagen()
+    {
+        $imagen = $this->nuevaImagen->store("representantes/" . auth()->user()->rut . "/artistas/" . $this->artista->ART_Nombre);
         $this->artista->imagen = 'storage/' . $imagen;
     }
 
@@ -100,9 +101,15 @@ class ModificarArtista extends Component
         $this->dispatchBrowserEvent("validarModificarArtista");
     }
 
-    public function modificarArtistaConfirmado() {
-        $imagen = $this->nuevaImagen->store("representantes/" . auth()->user()->rut . "/artistas/" . $this->nombreArtista);
-        
+    public function modificarArtistaConfirmado()
+    {
+        $imagen = $this->nuevaImagen->store("representantes/" . auth()->user()->rut . "/artistas/" . $this->artista->ART_Nombre);
+
+        $artista = $this->artista;
+        $artista->integrantes()->sync($this->integrantes);
+
+        $artista->imagen = 'storage/' . $imagen;
+        $artista->save();
     }
 
     public function render()
