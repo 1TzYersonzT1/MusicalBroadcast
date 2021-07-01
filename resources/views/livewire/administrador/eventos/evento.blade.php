@@ -8,7 +8,7 @@
                 <div>
                     <span class="font-bold text-xs">Organiza: </span>
                     <span class="text-xs">{{ $solicitud->evento->organizador->nombre }}</span>
-                    <span class="text-xs">{{ $solicitud->evento->organizador->apellidos }}</span>    
+                    <span class="text-xs">{{ $solicitud->evento->organizador->apellidos }}</span>
                 </div>
             </div>
             <div class="flex flex-col mt-5 items-center lg:w-96">
@@ -25,19 +25,21 @@
                 @endif
 
                 @if ($solicitud->estado == 4)
-                <div class="bg-blue-400 rounded-full w-32 py-1 text-center"><span class="text-white">Modificada</span>
-                </div>
-                 @endif
+                    <div class="bg-blue-400 rounded-full w-32 py-1 text-center"><span
+                            class="text-white">Modificada</span>
+                    </div>
+                @endif
 
-                 @if ($solicitud->estado == 5)
-                 <div class="bg-pink-700 rounded-full w-32 py-1 text-center"><span class="text-white">Pospuesto</span>
-                 </div>
+                @if ($solicitud->estado == 5)
+                    <div class="bg-pink-700 rounded-full w-32 py-1 text-center"><span
+                            class="text-white">Pospuesto</span>
+                    </div>
 
-                 <div class="flex flex-col items-center mt-4"> 
-                    <span class="text-md">Motivo </span>
-                    <p class="px-4">{{ $solicitud->observacion }}</p>
-                 </div>
-                  @endif
+                    <div class="flex flex-col items-center mt-4">
+                        <span class="text-md">Motivo </span>
+                        <p class="px-4">{{ $solicitud->observacion }}</p>
+                    </div>
+                @endif
             </div>
 
             <div class="flex flex-col mt-3 items-center lg:w-96">
@@ -54,4 +56,3 @@
 
     </div>
 </div>
-

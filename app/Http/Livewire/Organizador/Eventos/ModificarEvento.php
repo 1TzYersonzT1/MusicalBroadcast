@@ -93,9 +93,10 @@ class ModificarEvento extends Component
         $evento = $this->evento;
 
         if ($this->nuevaImagen) {
-            Storage::delete($evento->imagen);
-            $nuevaImagen = $this->nuevaImagen->store("/eventos/organizador/" . auth()->user()->rut);
-            $evento->imagen = "storage/" . $nuevaImagen;
+            $disk = Storage::disk("azure");
+            $disk->delete($evento->imagen);
+            $nuevaImagen = $this->nuevaImagen->store("/eventos/organizador/" . auth()->user()->rut . '/' .$evento->EVE_Nombre, 'azure');
+            $evento->imagen =  $nuevaImagen;
         }
 
         $evento->solicitudes[0]->estado = 4;

@@ -124,7 +124,7 @@ class CrearTaller extends Component
      */
     public function nuevoTallerConfirmado()
     {
-        $imagen = $this->imagen->store("/talleres/organizador/" . auth()->user()->rut);
+        $imagen = $this->imagen->store("/talleres/organizador/" . auth()->user()->rut . '/' . $this->titulo, 'azure');
 
         $taller = Taller::create([
             'TAL_Nombre' => $this->titulo,
@@ -137,7 +137,7 @@ class CrearTaller extends Component
             'TAL_Lugar' => $this->lugar,
             'estado' => 0,
             'user_rut' => Auth::user()->rut,
-            'imagen' => "storage/" . $imagen,
+            'imagen' => $imagen,
         ]);
 
         $solicitud = SolicitudTaller::create([

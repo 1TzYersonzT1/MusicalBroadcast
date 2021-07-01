@@ -1,7 +1,7 @@
 <div id="cuerpo">
     <div class="mt-4">
         <div>
-            <img src="{{ asset('storage/' . $solicitudActual->taller->imagen) }}"
+            <img src="{{ 'https://musicalimages.blob.core.windows.net/images/' . $solicitudActual->taller->imagen }}"
                 class="h-52 w-52 lg:m-0 mb-5 mr-5" />
         </div>
         <div class="grid grid-cols-2 lg:gap-10 gap-5">

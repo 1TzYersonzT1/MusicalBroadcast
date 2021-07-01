@@ -78,7 +78,7 @@
                     @if($nuevaImagen)
                         <img src="{{ $nuevaImagen->temporaryUrl() }}" class="h-80 w-80" />
                     @else
-                        <img src="{{ asset('storage/'.$evento->imagen) }}" class="h-80 w-80"/>
+                        <img src="{{ 'https://musicalimages.blob.core.windows.net/images/' . $evento->imagen }}" class="h-80 w-80"/>
                     @endif
                 @enderror
             </div>

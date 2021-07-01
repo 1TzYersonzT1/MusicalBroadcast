@@ -8,16 +8,8 @@
                 <div class="swiper-container swiperEventosPendientes">
                     <div class="swiper-wrapper">
                         @foreach ($eventosPendientes as $eventoPendiente)
-                            <div class="swiper-slide">
-                                <div class="lg:w-96 w-80 bg-white text-primary py-3 px-5">
-                                    <div class="flex justify-between items-center">
-                                        <span>{{ $eventoPendiente->EVE_Nombre }}</span>
-                                        <div class="bg-yellow-400 text-purple-500 px-3 py-1 rounded-full">
-                                            <span>Pendiente</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <livewire:organizador.eventos.evento :evento="$eventoPendiente"
+                            :wire:key="$eventoPendiente->id" />
                         @endforeach
                     </div>
                 </div>
