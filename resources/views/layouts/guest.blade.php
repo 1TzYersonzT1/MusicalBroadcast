@@ -21,12 +21,12 @@
     @livewireStyles
 </head>
 
-<body  class="relative bg-fixed bg-center bg-cover bg-no-repeat"
-style="background-image:linear-gradient(rgba(135, 80, 156, 0.9), rgba(135, 80, 156, 0.9)), url('Fondo.png')">
+<body  class="bg-fixed bg-center bg-cover bg-no-repeat"
+style="background-image:linear-gradient(rgba(0, 0, 0, 0), rgba(0, 52, 89, 0.9)), url('Fondo.png')">
     <div 
-        class="font-sans bg-gray-900 antialiased">
+        class="font-sans antialiased">
         @livewire('navigation-menu')
-        {{ $slot }}
+        @yield("contenido")
         @include("footer")
     </div>
 

@@ -1,11 +1,11 @@
 <div x-data="{ open: false }" class="col-span-8 align-content-center my-5">
     <div class="bg-black bg-opacity-20 px-2 py-1 text-center">
-        <span class="top-5 mb-3 text-4xl font-bold">Agrega tus albums aquÃ­</span>
+        <span class="top-5 mb-3 text-4xl font-bold">Agrega tus albums aquí</span>
     </div>
     <div class="flex flex-wrap justify-center content-center mt-5">
         <div class="flex">
             @foreach ($albumes as $index => $album)
-                <div>
+                <div >
                     <div class="flex mr-5">
                         <button @click="open = true">
                             <div class="flex flex-col items-center">
@@ -249,8 +249,8 @@
         </div>
     </div>
 
-    <div class="my-5 text-center"><span>Â¿No sabes cual/es albumes destacar?
-            No te preocupes, si omites este paso mÃ¡s adelante
-            podrÃ¡s agregar albumes a tus artistas.</span>
+    <div class="my-5 text-center"><span>¿No sabes cual/es albumes destacar?
+            No te preocupes, si omites este paso más adelante
+            podrás agregar albumes a tus artistas.</span>
     </div>
 </div>
