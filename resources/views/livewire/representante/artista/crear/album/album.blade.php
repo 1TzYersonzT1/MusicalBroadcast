@@ -9,7 +9,7 @@
                     <div class="flex mr-5">
                         <button @click="open = true">
                             <div class="flex flex-col items-center">
-                                <img src="{{ asset('storage/' . $album['imagen']) }}"
+                                <img src="{{ $album['imagen']->temporaryUrl() }}"
                                     class="rounded-full  h-32 w-32 " />
                                 <span>{{ $album['ALB_Nombre'] }}</span>
                             </div>

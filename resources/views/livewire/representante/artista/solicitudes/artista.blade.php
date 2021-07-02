@@ -1,4 +1,4 @@
-<div>
+<div class="swiper-slide">
     <div class="bg-white w-80 text-primary px-4 py-8">
         <div class="flex flex-col justify-between">
             <div class="flex justify-between">
@@ -44,7 +44,5 @@
             </button>
         </div>
     </div>
-
-</div>
 
 </div>

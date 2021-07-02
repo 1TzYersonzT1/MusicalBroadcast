@@ -36,6 +36,18 @@ class ModificarArtista extends Component
         'modificarArtistaConfirmado',
     ];
 
+    /**
+     * Busca al artista que ha
+     * sido seleccionado para modificar
+     * con su respectiva id, identifica
+     * los generos que pertenecen al artistas
+     * segun sus estilos, luego carga todos
+     * los generos musicales y agrupa los generos
+     * que tiene el artista, finalmente carga
+     * los integrantes
+     * 
+     * @param $id ID del artista a modificar
+     */
     function mount($id)
     {
         $this->artista = Artista::find($id);
@@ -49,6 +61,14 @@ class ModificarArtista extends Component
         $this->integrantes = $this->artista->integrantes;
     }
 
+    /**
+     * Cada vez que un genero es seleccionado
+     * o deseleccionado se limpia el arreglo de estilos
+     * , se eliminan aquellos valores false por defecto, 
+     * de entre los generos seleccionados se eligen
+     * sus estilos musicales pero solo se entrega la diferencia
+     * entre ese resultado y los estilos del artista
+     */
     public function updatedGenerosSeleccionados()
     {
         $this->estilos = [];
@@ -66,11 +86,24 @@ class ModificarArtista extends Component
         }
     }
 
+    /**
+     * Esta function es llamada desde el componente Estilo
+     * el cual recibe como parametro el nuevo arreglo
+     * de estilos seleccionados
+     * 
+     * @param $seleccionados Estilos seleccionados
+     */
     public function updatedEstilosSeleccionados($seleccionados)
     {
         $this->estilosSeleccionados[] = $seleccionados;
     }
 
+    /**
+     * Esta function es emitidad desde nuevo integrante
+     * y recibe el arreglo de integrantes actualizado
+     * 
+     * @param $integrantes Arreglo de integrantes actualizado
+     */
     public function updatedIntegrantes(array $integrantes)
     {
         $this->integrantes = $integrantes;
@@ -78,7 +111,6 @@ class ModificarArtista extends Component
 
     public function eliminarImagenArtista()
     {
-        Storage::delete($this->artista->imagen);
         $this->artista->imagen = '';
         $this->artista->save();
     }
