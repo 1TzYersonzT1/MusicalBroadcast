@@ -83,22 +83,25 @@
 
 
             <div>
-                <div class="flex flex-col justify-center my-4">
-                    <span class="text-2xl font-bold text-center mt-4">Agrega más estilos aquí</span>
-                    <span class="text-center">
-                        Por favor selecciona uno o más estilos que representen a tu artista
-                    </span>
-                </div>
+                @if (count($estilos) > 0)
+                    <div class="flex flex-col justify-center my-4">
+                        <span class="text-2xl font-bold text-center mt-4">Agrega más estilos aquí</span>
+                        <span class="text-center">
+                            Por favor selecciona uno o más estilos que representen a tu artista
+                        </span>
+                    </div>
 
-                <div class="flex justify-center">
-                    @foreach ($estilos as $index => $estilo)
-                        @foreach ($estilo as $index => $info)
-                            <livewire:representante.artista.modificar.estilo :info="$info" :index='$index'
-                                :wire:key="$info['id']" />
+                    <div class="flex justify-center">
+                        @foreach ($estilos as $index => $estilo)
+                            @foreach ($estilo as $index => $info)
+                                <livewire:representante.artista.modificar.estilo :info="$info" :index='$index'
+                                    :wire:key="$info['id']" />
+                            @endforeach
                         @endforeach
-                    @endforeach
-                </div>
+                    </div>
+                @endif
             </div>
+
 
             <!-- Imagen artista -->
             <div class=" col-span-8 align-content-center my-5">
@@ -109,7 +112,7 @@
 
                 <div class="flex justify-center gap-5 mt-5">
                     @if ($artista->imagen)
-                        <img wire:ignore.self src="{{ asset('storage/' . $artista->imagen) }}"
+                        <img src="{{ 'https://musicalimages.blob.core.windows.net/images/' . $artista->imagen }}"
                             class="rounded-full w-32 h-32" />
                         <svg wire:click="eliminarImagenArtista" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"
                             fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -117,27 +120,19 @@
                                 d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     @else
-                        @if ($nuevaImagen)
-                            <img wire:ignore.self src="{{ $nuevaImagen->temporaryUrl() }}"
-                                class="rounded-full w-32 h-32" />
-                            <svg wire:click="eliminarNuevaImagen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"
-                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        @else
-                            <div class="w-80 flex flex-col items-center">
-                                <label for="nuevaImagen">
-                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                        class="h-32 w-32 hover:text-green-400 cursor-pointer" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                    </svg>
-                                </label>
-                                <input type="file" wire:model="nuevaImagen" id="nuevaImagen" class="hidden" />
-                            </div>
-                        @endif
+
+                        <div class="w-80 flex flex-col items-center">
+                            <label for="nuevaImagen">
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                    class="h-32 w-32 hover:text-green-400 cursor-pointer" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </label>
+                            <input type="file" wire:model="artista.imagen" id="nuevaImagen" class="hidden" />
+                        </div>
+
                     @endif
 
                 </div>
@@ -156,17 +151,18 @@
                             class="border-2 lg:w-96 w-80 bg-white h-48 mt-1 mb-1 text-primary"></textarea>
 
                     </div>
-                    <span class="items-center">{{-- $caracteres_biografia --}} / 2000</span>
+                    <span class="items-center">{{ $caracteres_biografia }}/ 2000</span>
 
                 </div>
 
             </div>
 
             <!-- Albumes -->
+            <livewire:representante.artista.crear.album.album :albumes="$artista->albumes" :nombreArtista="$artista->ART_Nombre" />
 
 
             <!-- Integrantes -->
-            <livewire:representante.artista.crear.integrantes.nuevo-integrante :nombreArtista="$artista->ART_Nombre" />
+            <livewire:representante.artista.crear.integrantes.nuevo-integrante :integrantes="$artista->integrantes" :nombreArtista="$artista->ART_Nombre" />
 
 
             <!-- Redes sociales -->
@@ -316,7 +312,7 @@
                     icon: 'success',
                     timer: 3000,
                 }).then((result) => {
-                    if(!result.isVisible) {
+                    if (!result.isVisible) {
                         location.href = '/representante/artistas/mis-solicitudes';
                     }
                 });

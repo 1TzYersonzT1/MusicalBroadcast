@@ -4,14 +4,16 @@
             <div class="bg-black bg-opacity-20 px-2 py-1 text-center">
                 <span class="top-5 mb-2 text-4xl font-bold">Agrega el nombre del artista</span>
             </div>
-            <div class="flex justify-center py-1 mt-5">
-                <input type="text" wire:model="nombreArtista" id="nombreArtista"
-                    placeholder="Escribe el nombre del artista" autocomplete="off"
+            <div class="flex justify-center mt-5">
+                <input type="text" wire:ignore wire:model="nombreArtista" id="nombreArtista"
+                    placeholder="Escribe el nombre del artista" autocomplete="off" maxlength="30"
                     class="bg-white h-14 px-5 w-96 focus:outline-none rounded-full text-black">
+                <button id="confirmarNombre" class="bg-white text-primary py-0 px-5 ml-5">Continuar</button>
             </div>
+
         </div>
 
-        @if ($nombreArtista != null)
+        @if ($nombreConfirmado)
             <div id="contenedor-nuevo-artista">
                 <div>
                     <div class="bg-black bg-opacity-20 px-2 py-1 text-center mt-5">
@@ -37,7 +39,7 @@
                             @endforeach
                         </div>
                     </div>
-                   
+
                 </div>
 
                 @if (count($estilos) > 0)
@@ -217,25 +219,25 @@
                         </div>
                     </div>
 
-                    <div class="flex justify-between py-2 mt-5">
-                        <span class="top-5 mb-3 text-2xl font-bold mt-2">Youtube</span>
+                    <div class="flex justify-between py-2 mt-5" x-data="{ open: false }">
+                        <div class="flex flex-col">
+                            <span class="top-5 mb-3 text-2xl font-bold mt-2">Youtube</span>
+                            <div x-on:mouseover="open = true" x-on:mouseout="open = false">
+                                <a href="https://www.youtube.com/account_advanced" target="_blank">
+                                    <button>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+
+                                        </svg>
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
                         <div class="flex flex-col">
                             <div class="flex ">
-                                <div x-data="{ open: false }">
-                                    <div x-on:mouseover="open = true" x-on:mouseout="open = false">
-                                        <a href="https://www.youtube.com/account_advanced" target="_blank">
-                                            <button>
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-                                                    viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        stroke-width="2"
-                                                        d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-
-                                                </svg>
-                                            </button>
-                                        </a>
-                                    </div>
-
+                                <div>
                                     <div x-show="open" @click.away="open = false "
                                         class="bg-white absolute lg:right-52 p-4 text-primary lg:w-96"
                                         x-transition:enter="transition ease-out duration-300"
@@ -270,25 +272,21 @@
                         @enderror
                     </div>
                 </div>
-
+                <div class="col-span-8 flex justify-center mt-10">
+                    <button wire:click='validarAgregarArtista' class="bg-white text-primary py-2 px-8">
+                        <span class="text-2xl">Agregar artista</span>
+                    </button>
+                </div>
             </div>
-
-            <div class="col-span-8 flex justify-center mt-10">
-                <button wire:click='validarAgregarArtista' class="bg-white text-primary py-2 px-8">
-                    <span class="text-2xl">Agregar artista</span>
-                </button>
-            </div>
-
-            <div class="mt-10 flex justify-center">
-                @if ($errors)
-                    @foreach ($errors->all() as $message)
-                        <span class="text-red-400">{{ $message }}</span>
-                    @endforeach
-                @endif
-            </div>
+        @endif
+        <div class="mt-10 flex justify-center">
+            @if ($errors)
+                @foreach ($errors->all() as $message)
+                    <span class="text-red-400">{{ $message }}</span>
+                @endforeach
+            @endif
+        </div>
     </div>
-    @endif
-</div>
 </div>
 
 <script>
@@ -317,19 +315,45 @@
                     confirmButtonText: 'Ok'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        location.href = "/representante/tus-artistas";
+                        location.href = "representante/artistas/mis-solicitudes";
                     }
                 });
             }
         });
     });
 
+    $("#confirmarNombre").on('click', function() {
+        if ($('#nombreArtista').val()) {
+            Swal.fire({
+                title: 'Importante',
+                text: `Asegurate de que el nombre esta bien escrito, no podrás
+            volver a modificarlo más adelante.`,
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonText: 'Continuar',
+                cancelButtonText: 'Volver',
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Livewire.emit("nombreConfirmado");
+                    $("#nombreArtista").attr("disabled", "disabled");
+                }
+            });
+        } else {
+            Swal.fire({
+                title: 'Error',
+                text: `Por favor indicanos el nombre del artista.`,
+                icon: 'error',
+                timer: 3500,
+            });
+        }
+    });
 
     function formularios() {
         return {
             abrir() {
                 this.show = true;
-
             },
             cerrar() {
                 this.show = false;
@@ -353,10 +377,6 @@
 
     window.addEventListener('onContentChanged', (event) => {
         initializeSwiper();
-    });
-
-    window.addEventListener('prueba', (event) => {
-        console.log(event.detail.test);
     });
 
     window.onload = function() {

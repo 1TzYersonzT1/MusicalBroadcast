@@ -44,12 +44,14 @@ class Album extends Component
     {
         $this->validate();
 
+        $imagen = $this->imagenAlbum->store("representantes/" . auth()->user()->rut . "/artistas/" . $this->nombreArtista . "/albums", "azure");
+
         $this->albumes[] = [
             "ALB_Nombre" => $this->nombreAlbum,
             "artista_id" => null,
             "ALB_FechaLanzamiento" => Carbon::parse($this->fechaLanz)->isoFormat("Y-M-D"),
             "ALB_CantCanciones" => count($this->canciones),
-            "imagen" => $this->imagenAlbum,
+            "imagen" => $imagen,
             "canciones" => $this->canciones,
         ];
 
@@ -63,6 +65,8 @@ class Album extends Component
 
     public function eliminarAlbum($seleccionado)
     {
+        $disk = Storage::disk("azure");
+        $disk->delete($this->albumes[$seleccionado]["imagen"]);
         unset($this->albumes[$seleccionado]);
         $this->emitTo("representante.artista.crear.crear-artista", "updatedAlbumes", $this->albumes);
     }

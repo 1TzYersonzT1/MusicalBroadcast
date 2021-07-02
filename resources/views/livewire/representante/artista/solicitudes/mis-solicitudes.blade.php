@@ -60,20 +60,34 @@
 
 <script>
     var swiper = new Swiper(".swiperPendientes", {
-        slidesPerView: 3,
+        loop: false,
+        grabCursor: true,
+        slidePerView: 'auto',
         spaceBetween: 30,
-        pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
+        breakpoints: {
+            640: {
+                slidesPerView: 'auto',
+            },
+            1024: {
+                slidesPerView: 3,
+                spaceBetween: 10,
+            },
         },
     });
 
     var swiper = new Swiper(".swiperRevisadas", {
-        slidesPerView: 3,
+        loop: false,
+        grabCursor: true,
+        slidePerView: 'auto',
         spaceBetween: 30,
-        pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
+        breakpoints: {
+            640: {
+                slidesPerView: 'auto',
+            },
+            1024: {
+                slidesPerView: 3,
+                spaceBetween: 10,
+            },
         },
     });
 </script>

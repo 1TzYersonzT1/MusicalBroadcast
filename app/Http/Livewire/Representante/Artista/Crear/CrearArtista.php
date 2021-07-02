@@ -21,9 +21,10 @@ class CrearArtista extends Component
     public $generos, $generosSeleccionados = [], $integrantes = [];
     public $estilos = [], $estilosSeleccionados = [];
     public $albumes = [];
+    public $nombreConfirmado;
 
     protected $rules = [
-        'nombreArtista' => 'required|string|min:2|max:30',
+        'nombreArtista' => 'required|string|min:1|max:30',
         'tipoArtista' => 'required',
         'imagenArtista' => 'required|image',
         'biografia' => 'required|string|min:20|max:2000',
@@ -40,6 +41,7 @@ class CrearArtista extends Component
     ];
 
     protected $listeners = [
+        'nombreConfirmado',
         'updatedEstilo',
         'updatedAlbumes',
         'updatedGenerosSeleccionados',
@@ -56,6 +58,13 @@ class CrearArtista extends Component
     {
         $this->generos = Genero::all();
     }
+
+
+    public function nombreConfirmado() {
+        $this->nombreConfirmado = 1;
+        $this->dispatchBrowserEvent("onContentChanged");
+    }
+
 
     /**
      * Cada vez que el usuario actualiza
@@ -187,7 +196,6 @@ class CrearArtista extends Component
             'estado' => 0,
         ]);
 
-
         foreach ($this->integrantes as $integrante) {
             $integrante["artista_id"] = $artista->id;
             $instrumentos = array_pop($integrante);
@@ -197,8 +205,6 @@ class CrearArtista extends Component
 
         foreach ($this->albumes as $album) {
             $album["artista_id"] = $artista->id;
-            $imagen = $album["imagen"];
-            $imagen->store("representante/" . auth()->user()->rut . "/artistas/" . $artista->ART_Nombre . "/albums", "azure");
             $canciones = array_pop($album);
             $nuevoAlbum = Album::create($album);
             foreach ($canciones as $cancion) {
@@ -206,7 +212,6 @@ class CrearArtista extends Component
             }
             $nuevoAlbum->canciones()->createMany($canciones);
         }
-
 
         $artista->estilos()->sync($this->estilosSeleccionados);
 

@@ -42,7 +42,7 @@
 
                     <div class="grid grid-rows-3 grid-cols-12 gap-4">
                         <div class="lg:row-span-2 row-span-1 lg:col-span-4 col-span-12">
-                            <img src="{{ asset('storage/' . $artistaPendiente->artista->imagen) }}"
+                            <img src="{{ 'https://musicalimages.blob.core.windows.net/images/' . $artistaPendiente->artista->imagen }}"
                                 class="h-full w-full" />
                         </div>
 
@@ -126,7 +126,7 @@
                                                 x-data="{ open: false }">
 
                                                 <div x-on:mouseover="open = true" x-on:mouseout="open = false">
-                                                    <img src="{{ asset('storage/' . $integrante->imagen) }}"
+                                                    <img src="{{ 'https://musicalimages.blob.core.windows.net/images/' . $integrante->imagen }}"
                                                         class="h-12 w-12 rounded-full" />
                                                 </div>
                                                 <div>
@@ -168,7 +168,7 @@
                                     @foreach ($artistaPendiente->artista->albumes as $album)
                                         <div class="swiper-slide flex flex-col items-center">
 
-                                            <img src="{{ asset('storage/' . $album->imagen) }}"
+                                            <img src="{{ 'https://musicalimages.blob.core.windows.net/images/' . $album->imagen }}"
                                                 class="h-12 w-12 rounded-full" />
                                             <span>{{ $album->ALB_Nombre }}</span>
 

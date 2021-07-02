@@ -14,7 +14,7 @@ class ModificarArtista extends Component
 
     use WithFileUploads;
 
-    public $artista, $nuevaImagen, $integrantes = [];
+    public $artista, $nuevaImagen, $integrantes = [], $caracteres_biografia;
     public $generos, $generos_actuales, $generosSeleccionados = [];
     public $estilos = [], $estilosSeleccionados = [];
 
@@ -59,6 +59,7 @@ class ModificarArtista extends Component
         $this->generos = Genero::all();
         $this->generos_actuales = Genero::whereIn('id', $generos_artista)->get();
         $this->integrantes = $this->artista->integrantes;
+        $this->caracteres_biografia = strlen($this->artista->biografia);
     }
 
     /**
@@ -109,38 +110,84 @@ class ModificarArtista extends Component
         $this->integrantes = $integrantes;
     }
 
+    /**
+     * Se selecciona el disco de almacenamiento azure
+     * y se elimina la imagen del artista, se
+     * vacia el campo que almacena la url y se persisten
+     * los cambios
+     */
     public function eliminarImagenArtista()
     {
+        $disk = Storage::disk("azure");
+        $disk->delete($this->artista->imagen);
         $this->artista->imagen = '';
         $this->artista->save();
     }
 
+    /**
+     * Cada vez que se agrega un nuevo archivo
+     * al campo imagen artista este debe ser
+     * solo de tipo imagen con un maximo
+     * de 1024kb
+     */
     public function updatedNuevaImagen()
     {
-        $imagen = $this->nuevaImagen->store("representantes/" . auth()->user()->rut . "/artistas/" . $this->artista->ART_Nombre);
-        $this->artista->imagen = 'storage/' . $imagen;
+        $this->validate([
+            "artista.nuevaImagen" => 'images|mimes:jpg,png,svg,gif|max:1024',
+        ]);
+        $imagen = $this->nuevaImagen->store("representantes/" . auth()->user()->rut . "/artistas/" . $this->artista->ART_Nombre, "azure");
+        $this->artista->imagen = $imagen;
+        $this->artista->save();
     }
 
+    /**
+     * Elimina la vista previa de la nueva imagen
+     * para el artista
+     */
     public function eliminarNuevaImagen()
     {
         $this->nuevaImagen = '';
     }
 
+    /**
+     * Cada vez que se actualiza la biografia del artista
+     * se compara la cantidad de caracteres introducidos 
+     * versus el maximo permitido de 2000
+     */
+    public function updatedArtistaBiografia()
+    {
+        $this->caracteres_biografia = strlen($this->artista->biografia);
+    }
 
+
+    /**
+     * Verifica que ningun campo haya quedado vacio
+     * luego de la modificacion, si no hay campos
+     * vacios se emite una alerta para confirmar la accion
+     * de lo contrario se despliegan los errores
+     * al final de la pagina
+     */
     public function validarModificarArtista()
     {
         $this->validate();
         $this->dispatchBrowserEvent("validarModificarArtista");
     }
 
+    /**
+     * Una vez que el representante ha confirmado los cambios
+     * estos se utilizan para actualizar el registro
+     * del artista seleccionado
+     */
     public function modificarArtistaConfirmado()
     {
-        $imagen = $this->nuevaImagen->store("representantes/" . auth()->user()->rut . "/artistas/" . $this->artista->ART_Nombre);
-
+        
         $artista = $this->artista;
+
+        
+        
         $artista->integrantes()->sync($this->integrantes);
 
-        $artista->imagen = 'storage/' . $imagen;
+      
         $artista->save();
     }
 

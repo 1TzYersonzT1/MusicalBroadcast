@@ -11,7 +11,7 @@
                         <div class="swiper-slide bg-gray-200 h-full w-80 py-2 px-3 text-primary">
                             <div class="flex flex-col items-center mb-2">
                                 <span class="text-xl block mb-2">{{ $artista->ART_Nombre }}</span>
-                                <img src="{{ asset('storage/' . $artista->imagen) }}" class="w-72 h-60" />
+                                <img src="{{ 'https://musicalimages.blob.core.windows.net/images/' . $artista->imagen }}" class="w-72 h-60" />
                             </div>
                             <div class="flex flex-col">
                                 <span class="text-xl">Estilos</span>

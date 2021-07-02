@@ -94,12 +94,14 @@ class NuevoIntegrante extends Component
             'instrumentosSeleccionados' => 'required|array|min:1',
         ]);
 
+        $imagen = $this->imagenIntegrante->store("representantes/" . auth()->user()->rut . "/artistas/" . $this->nombreArtista . "/integrantes", "azure");
+
         $this->integrantes[] = [
             "rut" => $this->rutIntegrante,
             "artista_id" => null,
             "nombre" => $this->nombreIntegrante,
             'apellidos' => $this->apellidosIntegrante,
-            "imagen" => $this->imagenIntegrante,
+            "imagen" => $imagen,
             'instrumentos' => $this->instrumentosSeleccionados,
         ];
 
@@ -119,6 +121,8 @@ class NuevoIntegrante extends Component
      */
     public function eliminarIntegrante($index)
     {
+        $disk = Storage::disk("azure");
+        $disk->delete($this->integrantes[$index]["imagen"]);
         unset($this->integrantes[$index]);
         $this->emit('updatedIntegrantes', $this->integrantes);
     }
