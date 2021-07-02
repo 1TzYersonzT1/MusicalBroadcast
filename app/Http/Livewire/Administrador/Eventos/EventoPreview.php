@@ -105,8 +105,8 @@ class EventoPreview extends Component
     public function eliminarEvento()
     {
         $evento = Evento::find($this->solicitudActual->evento->id);
-        Storage::delete($evento->imagen);
-
+        $disk = Storage::disk("azure");
+        $disk->delete($evento->imagen);
         $hojaVida = HojaVida::where("user_rut", $evento->user_rut)->get();
         $hojaVida[0]->eventos_rechazados = $hojaVida[0]->eventos_rechazados + 1;
         $hojaVida[0]->save();

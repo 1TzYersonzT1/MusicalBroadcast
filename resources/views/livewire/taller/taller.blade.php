@@ -1,7 +1,7 @@
 <div class="swiper-slide">
     <div class="lg:flex">
         <div class="flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
-            title="Woman holding a mug"><img src="{{ asset('storage/'.$taller->imagen) }}" class="h-48 lg:w-48 w-80" />
+            title="Woman holding a mug"><img src="{{ 'https://musicalimages.blob.core.windows.net/images/' . $taller->imagen }}" class="h-48 lg:w-48 w-80" />
         </div>
         <div
             class="object-content border-l border-grey-light 

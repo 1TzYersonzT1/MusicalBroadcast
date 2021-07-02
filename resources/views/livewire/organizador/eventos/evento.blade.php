@@ -1,7 +1,11 @@
 <div class="swiper-slide">
     <div class="lg:w-96 w-80 bg-white text-primary py-3 px-5">
         <div class="flex justify-between items-center">
-            <span>{{ $evento->EVE_Nombre }}</span>
+            <div> 
+                <img src="{{ 'https://musicalimages.blob.core.windows.net/images/' . $evento->imagen }}"
+                class="h-32 w-48" />
+                <span>{{ $evento->EVE_Nombre }}</span>
+            </div>
 
             @if ($evento->solicitudes[0]->estado == 0)
                 <div class="bg-yellow-400 text-purple-500 px-3 py-1 rounded-full">

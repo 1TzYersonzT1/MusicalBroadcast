@@ -315,7 +315,7 @@
                     confirmButtonText: 'Ok'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        location.href = "representante/artistas/mis-solicitudes";
+                        location.href = "/representante/artistas/mis-solicitudes";
                     }
                 });
             }

@@ -9,7 +9,7 @@
                     <div class="swiper-wrapper">
                         @foreach ($eventosPendientes as $eventoPendiente)
                             <livewire:organizador.eventos.evento :evento="$eventoPendiente"
-                            :wire:key="$eventoPendiente->id" />
+                                :wire:key="$eventoPendiente->id" />
                         @endforeach
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                 <span class="text-4xl block mb-5">Solicitudes modificadas</span>
             </div>
             @if (count($eventosModificados) > 0)
-                <div class="swiper-container swiperRevisadas">
+                <div class="swiper-container swiperEventosModificados">
                     <div class="swiper-wrapper">
                         @foreach ($eventosModificados as $eventoModificado)
                             <livewire:organizador.eventos.evento :evento="$eventoModificado"
@@ -107,6 +107,12 @@
             el: ".swiper-pagination",
             clickable: true,
         },
+        breakpoints: {
+            1024: {
+                slidesPerView: 4,
+                spaceBetween: 50,
+            },
+        },
     });
 
     var swiper = new Swiper(".swiperEventosRevisados", {
@@ -115,6 +121,27 @@
         pagination: {
             el: ".swiper-pagination",
             clickable: true,
+        },
+        breakpoints: {
+            1024: {
+                slidesPerView: 4,
+                spaceBetween: 50,
+            },
+        },
+    });
+
+    var swiper = new Swiper(".swiperEventosModificados", {
+        slidesPerView: 3,
+        spaceBetween: 30,
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        breakpoints: {
+            1024: {
+                slidesPerView: 4,
+                spaceBetween: 50,
+            },
         },
     });
 </script>
