@@ -26,7 +26,7 @@
             <div x-data="{ open: false }" x-cloak class="relative mb-4 flex flex-col items-center justify-center">
                 <span class="font-bold text-2xl block">¿Quieres que tu artista/as participen en este evento?</span>
 
-                <button @click="open = true" class="bg-white text-primary px-4 py-1 mt-2">Solicitar invitación</button>
+                <button @click="open = true" class="bg-white text-primary px-4 py-1 mt-2 rounded-lg">Solicitar invitación</button>
 
                 <div x-show.transition="open"
                     class="shadow-md bg-white absolute z-40 grid grid-cols-8 text-primary px-4 py-2">
@@ -75,9 +75,8 @@
                     @foreach ($eventoActual->artistas as $artista)
                         <a href="{{ route('artista.show', $artista->id) }}"
                             class="flex flex-col lg:col-span-2 col-span-4 items-center mb-5 transform hover:scale-110 cursor-pointer">
-                            <div class="h-20 w-20 flex-none bg-cover rounded-full rounded-t-full rounded-1 text-center overflow-hidden"
-                                style="background-image: url('https://tailwindcss.com/img/card-left.jpg')"
-                                title="Woman holding a mug">
+                            <div class="h-20 w-20 flex-none bg-cover rounded-full rounded-t-full rounded-1 text-center overflow-hidden">
+                            <img src="{{'https://musicalimages.blob.core.windows.net/images/' . $artista->imagen }}" />
                             </div>
                             <span>{{ $artista->ART_Nombre }}</span>
                         </a>

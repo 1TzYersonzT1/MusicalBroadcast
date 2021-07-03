@@ -8,7 +8,7 @@
                 <input type="text" wire:ignore wire:model="nombreArtista" id="nombreArtista"
                     placeholder="Escribe el nombre del artista" autocomplete="off" maxlength="30"
                     class="bg-white h-14 px-5 w-96 focus:outline-none rounded-full text-black">
-                <button id="confirmarNombre" class="bg-white text-primary py-0 px-5 ml-5">Continuar</button>
+                <button id="confirmarNombre" class="bg-white text-primary py-0 px-5 ml-5 rounded-full">Continuar</button>
             </div>
 
         </div>
@@ -273,7 +273,7 @@
                     </div>
                 </div>
                 <div class="col-span-8 flex justify-center mt-10">
-                    <button wire:click='validarAgregarArtista' class="bg-white text-primary py-2 px-8">
+                    <button wire:click='validarAgregarArtista' class="bg-white text-primary py-2 px-8 rounded-full">
                         <span class="text-2xl">Agregar artista</span>
                     </button>
                 </div>

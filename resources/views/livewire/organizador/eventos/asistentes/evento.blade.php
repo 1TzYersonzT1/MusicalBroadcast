@@ -24,7 +24,7 @@
                 <span>¿Tienes problemas para llevar a cabo este evento?</span>
                 <div>
                     <button data-fancybox data-src="#posponerEventoForm"
-                        class="mt-4 mr-4 bg-white text-primary px-5 py-2">Posponer</button>
+                        class="mt-4 mr-4 bg-white text-primary px-5 py-2 rounded-full">Posponer</button>
                     <div id="posponerEventoForm" class="hidden bg-white lg:w-96 w-80">
                         <div>
                             <form wire:submit.prevent="posponerEvento" class="flex flex-col items-center">
@@ -73,7 +73,7 @@
                         </div>
                     </div>
 
-                    <button data-fancybox data-src="#cancelarEventoForm" class="mt-4 bg-white text-primary px-5 py-2">
+                    <button data-fancybox data-src="#cancelarEventoForm" class="mt-4 bg-white text-primary px-5 py-2 rounded-full">
                         Cancelar
                     </button>
                     <div id="cancelarEventoForm" class="hidden bg-white lg:w-96 w-80">

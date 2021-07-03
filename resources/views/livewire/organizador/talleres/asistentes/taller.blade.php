@@ -40,7 +40,7 @@
             <div class="mt-10 flex flex-col w-80 items-center">
                 <span>¿Tienes problemas para llevar a cabo este taller?</span>
                 <div> 
-                    <button data-fancybox data-src="#posponerTallerForm" class="mt-4 mr-4 bg-white text-primary px-5 py-2">Posponer</button>
+                    <button data-fancybox data-src="#posponerTallerForm" class="mt-4 mr-4 bg-white text-primary px-5 py-2 rounded-lg">Posponer</button>
                     <div id="posponerTallerForm" class="hidden bg-white lg:w-96 w-80">
                         <div>
                             <form wire:submit.prevent="posponerTaller" class="flex flex-col items-center">
@@ -88,7 +88,7 @@
                         </div>
                     </div>
 
-                    <button data-fancybox data-src="#cancelarTallerForm" class="mt-4 bg-white text-primary px-5 py-2">
+                    <button data-fancybox data-src="#cancelarTallerForm" class="mt-4 bg-white text-primary px-5 py-2 rounded-lg">
                         Cancelar
                     </button>
                     <div id="cancelarTallerForm" class="hidden bg-white lg:w-96 w-80">
@@ -126,7 +126,7 @@
         @if(count($taller->asistentes) > 0)
         <table class="text-primary">
             <thead class="bg-gray-200">
-                <th class="px-8 py-2">Rut</th>
+                <th class="px-8 py-2 ">Rut</th>
                 <th class="px-8 py-2">Nombre</th>
                 <th class="px-8 py-2">Email</th>
                 <th class="px-8 py-2">Teléfono</th>
