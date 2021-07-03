@@ -61,6 +61,7 @@ class EventoPreview extends Component
      */
     public function envioPeticionesConfirmado()
     {
+        $this->eventoActual->artistas()->syncWithoutDetaching($this->artistasSeleccionados);
         foreach ($this->artistasSeleccionados as $artistaSeleccionado) {
 
             $artista = Artista::find($artistaSeleccionado);
@@ -74,7 +75,6 @@ class EventoPreview extends Component
             Mail::to($this->eventoActual->organizador)->send(new NuevoAsistenteEvento($mensaje));
             Mail::to($artista->representante->email)->send(new PeticionEventoExitosa($mensaje));
         }
-        $this->eventoActual->artistas()->syncWithoutDetaching($this->artistasSeleccionados);
     }
 
     /**

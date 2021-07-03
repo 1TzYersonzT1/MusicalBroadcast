@@ -1,5 +1,5 @@
 <div class="min-h-screen py-5">
-    <div class='container mx-auto py-5 text-white'>
+    <div class='container mx-auto py-5 text-white bg-black bg-opacity-20 px-5'>
         <div class="mb-6 lg:mt-0 mt-5"><span class="text-4xl">Organizar nuevo taller.</span></div>
         @if ($errors)
             @foreach ($errors->all() as $message)
@@ -14,7 +14,7 @@
                         <div class="flex flex-col">
                             <span class="font-bold">Titulo</span>
                             <div class="flex flex-col mt-1">
-                                <input type="text" class="border-0 bg-primary px-0 py-1 font-light lg:w-96"
+                                <input type="text" class="border-1 border-white bg-primary px-0 py-1 px-5 rounded-lg font-light lg:w-96"
                                     wire:model='titulo' maxlength="30"
                                     placeholder="Escriba el titulo del taller (máximo 30 caracteres)" />
                             </div>
@@ -25,12 +25,12 @@
                             <div class="flex flex-col mt-3" x-data>
                                 <span class="font-bold">Fecha</span>
                                 <input type="date" wire:model="fecha" x-bind:min="$wire.hoy"
-                                    class="bg-primary text-white p-0 mr-5 mt-1" />
+                                    class="bg-primary text-white p-0 mr-8 px-5 mt-1 rounded-lg border-1 border-white" />
                             </div>
                             <div class="flex flex-col mt-3">
                                 <span class="font-bold">Hora</span>
-                                <div class="flex flex-col">
-                                    <input type="time" id="hora" wire:model="hora" class="bg-primary border-0 p-0 mt-1">
+                                <div class="flex flex-col rounded-full">
+                                    <input type="time" id="hora" wire:model="hora" class="bg-primary rounded-lg px-5 border-1 border-white p-0 mt-1">
 
                                 </div>
 
@@ -43,7 +43,7 @@
                                     <span class="font-bold">Aforo:</span>
                                     <div class="flex flex-col">
                                         <input type="number" min='1' max='10' id="aforo" wire:model='aforo'
-                                            class="bg-primary p-0 px-2 w-16 ml-3 mr-3" />
+                                            class="bg-primary border-1 border-white rounded-lg px-3 p-0 px-2 w-20 ml-3 mr-3" />
 
                                     </div>
                                 </div>
@@ -54,7 +54,7 @@
                             <span class="font-bold">Lugar: </span>
                             <div class="flex flex-col">
                                 <input type="text" placeholder="¿Donde planeas realizar el taller?" wire:model='lugar'
-                                    class="border-0 bg-primary w-64 py-0 px-2" />
+                                    class="border-1 border-white bg-primary w-64 py-0 rounded-lg px-2" />
 
                             </div>
                         </div>
@@ -64,7 +64,7 @@
                             <div class="flex flex-col">
                                 <textarea placeholder="Escriba una descripción (máximo 255 caracteres)"
                                     wire:model='descripcion' maxlength="255"
-                                    class="resize-none lg:w-96 bg-primary h-40 mt-1 mb-1"></textarea>
+                                    class="resize-none lg:w-96 border-1 border-white rounded-lg bg-primary h-40 mt-1 mb-1"></textarea>
                                 <span>{{ $caracteres_descripcion }} / 255</span>
                             </div>
                         </div>
@@ -83,7 +83,7 @@
                     <div>
                         <label for="imagen-taller">
                             <svg xmlns="http://www.w3.org/2000/svg"
-                                class="h-48 w-80 border-2 border-light-blue-500 border-opacity-100" fill="none"
+                                class="h-48 w-80 border-2 border-white rounded-lg border-light-blue-500 border-opacity-100" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
@@ -96,7 +96,7 @@
                         <div>
                             <label for="imagen-taller">
                                 <svg xmlns="http://www.w3.org/2000/svg"
-                                    class="h-48 w-80 border-2 border-light-blue-500 border-opacity-100" fill="none"
+                                    class="h-48 w-80 border-2 border-white rounded-lg border-light-blue-500 border-opacity-100" fill="none"
                                     viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M12 6v6m0 0v6m0-6h6m-6 0H6" />

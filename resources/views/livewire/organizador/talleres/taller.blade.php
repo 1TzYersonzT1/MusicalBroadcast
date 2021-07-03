@@ -1,5 +1,5 @@
 <div class="swiper-slide">
-    <div class="lg:w-96 w-80 bg-white text-primary py-3 px-5">
+    <div class="lg:w-96 w-80 bg-white text-primary py-3 px-5 rounded-lg">
         <div class="flex justify-between items-center">
             <div class="flex flex-col">
                 <img src="{{ 'https://musicalimages.blob.core.windows.net/images/' . $taller->imagen }}" class="w-32 h-32" />
@@ -35,7 +35,7 @@
             </div>
         @endif
         <button
-            class="mt-4 bg-primary text-white px-3 py-1 hover:bg-transparent hover:text-primary hover:border-1 hover:border-b-black flex items-center">
+            class="mt-4 bg-primary rounded-lg text-white px-3 py-1 hover:bg-transparent hover:text-primary hover:border-1 hover:border-b-black flex items-center">
             <a href="{{ route('organizador.modificar-taller', $taller->id) }}">
                 Modificar
             </a>
