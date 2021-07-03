@@ -18,6 +18,7 @@
                 <div class="flex flex-col">
                     <label for="rut">Rut</label>
                     <input type="text" wire:model="rut" maxlength="9" class="rounded-full" />
+                    <span>Ejemplo: 123456789 (Sin puntos, ni guión)</span>
                 </div>
 
                 <div class="flex flex-col">
@@ -38,7 +39,7 @@
                 <div class="flex flex-col">
                     <label for="telefono">Teléfono</label>
                     <input id="telefono" type="tel" wire:model="telefono" pattern="[0-9]{9}"
-                        class="rounded-full w-full" />
+                        class="rounded-full w-full" maxlength="9" />
                     <span>Ejemplo: 912345678</span>
                 </div>
             </div>
