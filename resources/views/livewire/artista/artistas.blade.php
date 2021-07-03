@@ -24,7 +24,7 @@
                     </div>
                 </div>
 
-                <div x-data="{open: false}" class="mb-3">
+                <div x-data="{open: false}" class="mb-3" x-cloak>
                     <div class="flex justify-between">
                         <span>Tipo artista</span>
                         <svg @click="open=!open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"

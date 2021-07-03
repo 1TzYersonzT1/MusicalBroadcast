@@ -14,14 +14,15 @@
                         <div class="flex flex-col">
                             <span class="font-bold">Titulo</span>
                             <div class="flex flex-col mt-1">
-                                <input type="text" class="border-1 border-white bg-primary px-0 py-1 px-5 rounded-lg font-light lg:w-96"
+                                <input type="text"
+                                    class="border-1 border-white bg-primary px-0 py-1 px-5 rounded-lg font-light lg:w-96"
                                     wire:model='titulo' maxlength="30"
                                     placeholder="Escriba el titulo del taller (máximo 30 caracteres)" />
                             </div>
                         </div>
                     </div>
                     <div class="mt-2 flex flex-col">
-                        <div class="flex mb-3">
+                        <div class="flex flex-col lg:flex-row mb-3">
                             <div class="flex flex-col mt-3" x-data>
                                 <span class="font-bold">Fecha</span>
                                 <input type="date" wire:model="fecha" x-bind:min="$wire.hoy"
@@ -29,8 +30,9 @@
                             </div>
                             <div class="flex flex-col mt-3">
                                 <span class="font-bold">Hora</span>
-                                <div class="flex flex-col rounded-full">
-                                    <input type="time" id="hora" wire:model="hora" class="bg-primary rounded-lg px-5 border-1 border-white p-0 mt-1">
+                                <div class="rounded-full">
+                                    <input type="time" id="hora" wire:model="hora"
+                                        class="bg-primary rounded-lg px-5 border-1 border-white p-0 mt-1">
 
                                 </div>
 
@@ -83,8 +85,8 @@
                     <div>
                         <label for="imagen-taller">
                             <svg xmlns="http://www.w3.org/2000/svg"
-                                class="h-48 w-80 border-2 border-white rounded-lg border-light-blue-500 border-opacity-100" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
+                                class="h-40 lg:w-96 border-2 border-white rounded-lg border-light-blue-500 border-opacity-100"
+                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                             </svg>
@@ -96,8 +98,8 @@
                         <div>
                             <label for="imagen-taller">
                                 <svg xmlns="http://www.w3.org/2000/svg"
-                                    class="h-48 w-80 border-2 border-white rounded-lg border-light-blue-500 border-opacity-100" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    class="h-40 lg:w-80 border-2 border-white rounded-lg border-light-blue-500 border-opacity-100"
+                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                                 </svg>
@@ -106,7 +108,7 @@
                         </div>
                     @else
                         <div class="mt-3">
-                            <img src="{{ $imagen->temporaryUrl() }}" class="w-80 h-48 border-2">
+                            <img src="{{ $imagen->temporaryUrl() }}" class="h-40 lg:w-80 border-2">
 
                             <div class="flex justify-between">
                                 <span>{{ $imagen->getClientOriginalName() }}</span>
@@ -121,18 +123,20 @@
                 @enderror
             </div>
 
-            <div class="grid lg:grid-cols-2 lg:grid-rows-2 lg:mt-0 mt-5 ml-5">
+            <div class="grid lg:grid-cols-2 lg:grid-rows-2 lg:mt-0 mt-5 lg:ml-5">
 
                 <livewire:organizador.talleres.crear.requisito.requisitos :requisitos='$requisitos' />
 
                 <livewire:organizador.talleres.crear.protocolo.protocolos :protocolos='$protocolos' />
 
-                <div class="justify-self-center self-center">
-                    <button type="submit"
-                        class="border border-white px-7 py-3 my-10 lg:my-0 hover:bg-white hover:text-primary">Solicitar
-                        permiso</button>
-                </div>
 
+
+            </div>
+
+            <div class="mt-4">
+                <button type="submit"
+                    class="border border-white rounded-full px-7 py-3 my-10 lg:my-0 hover:bg-white hover:text-primary">Solicitar
+                    permiso</button>
             </div>
 
             </form>
@@ -162,7 +166,7 @@
                     icon: 'success',
                     confirmButtonText: 'Confirmar',
                 }).then((result) => {
-                    if(result.isConfirmed) {
+                    if (result.isConfirmed) {
                         location.href = '/organizador/mis-solicitudes';
                     }
                 });

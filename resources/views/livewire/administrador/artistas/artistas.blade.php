@@ -6,7 +6,7 @@
     @if (count($artistasPendientes) > 0)
         <div class="w-full">
             @foreach ($artistasPendientes as $artistaPendiente)
-                <div class="bg-gray-200 px-4 py-6 text-primary my-4 lg:w-5/6">
+                <div class="bg-gray-200 px-4 py-6 text-primary my-4 lg:w-full">
 
                     <div class="flex justify-between items-center mb-5">
                         <div>
@@ -207,7 +207,7 @@
                                     </a>
                                 @endif
                             </div>
-                            <div class="flex mt-2">
+                            <div class="flex mt-2 gap-5 lg:flex-row flex-col">
                                 @if ($artistaPendiente->artista->spotify != '')
                                     <iframe
                                         src="https://open.spotify.com/follow/1/?uri=spotify:artist:{{ $artistaPendiente->artista->spotify }}&size=detail&theme=light&show-count=0"
@@ -216,7 +216,7 @@
                                 @endif
 
                                 @if ($artistaPendiente->artista->youtube != '')
-                                    <div class="g-ytsubscribe"
+                                    <div class="g-ytsubscribe "
                                         data-channelid="{{ $artistaPendiente->artista->youtube }}" data-layout="full"
                                         data-count="hidden">
                                     </div>

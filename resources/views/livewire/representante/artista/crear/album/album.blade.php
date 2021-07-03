@@ -1,8 +1,9 @@
-<div x-data="formularios()" class="col-span-8 flex flex-col items-center my-5">
+<div x-data="formularios()" class="col-span-8 my-5">
     <div class="bg-black bg-opacity-20 px-2 py-1 text-center">
         <span class="top-5 mb-3 text-4xl font-bold">Agrega tus albums aquí</span>
     </div>
-    <div class="flex flex-wrap justify-center content-center mt-5">
+    <div class="flex flex-col items-center">
+        <div class="flex flex-wrap justify-center content-center mt-5">
         @foreach ($albumes as $index => $album)
 
             <div class="flex mr-5">
@@ -135,7 +136,9 @@
             <button wire:click="agregarAlbum" class="py-1 px-5 bg-primary text-white">Agregar</button>
         </div>
     </div>
+    </div>
 </div>
+
 
 <div class="my-5 text-center"><span>¿No sabes cual/es albumes destacar?
         No te preocupes, si omites este paso más adelante
