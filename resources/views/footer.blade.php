@@ -6,9 +6,6 @@
                     <img src="/logo-1b.png" />
                 </div>
                 <div class="flex flex-col">
-                    <span class="my-1"><a href="#" class="text-white font-bold text-md hover:text-blue-500">Contacto</a></span>
-                    <span class="my-1"><a href="#" class="text-white font-bold text-md hover:text-blue-500">Reglamento</a></span>
-                    <span class="my-1"><a href="#" class="text-white font-bold text-md hover:text-blue-500">Quiénes somos</a></span>
                     <span class="my-1"><a href="http://calamacultural.cl/index2/" class="text-white font-bold text-md hover:text-blue-500">Calama cultural</a></span>
                     <span class="my-1"><a href="{{ route('terminos-condiciones') }}" class="text-white font-bold text-md hover:text-blue-500">Terminos y condiciones</a></span>
                 </div>

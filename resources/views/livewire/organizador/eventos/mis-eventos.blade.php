@@ -101,7 +101,7 @@
 
 <script>
     var swiper = new Swiper(".swiperEventosPendientes", {
-        slidesPerView: 3,
+        slidesPerView: "auto",
         spaceBetween: 30,
         pagination: {
             el: ".swiper-pagination",
@@ -116,7 +116,7 @@
     });
 
     var swiper = new Swiper(".swiperEventosRevisados", {
-        slidesPerView: 3,
+        slidesPerView: "auto",
         spaceBetween: 30,
         pagination: {
             el: ".swiper-pagination",
@@ -131,7 +131,7 @@
     });
 
     var swiper = new Swiper(".swiperEventosModificados", {
-        slidesPerView: 3,
+        slidesPerView: "auto",
         spaceBetween: 30,
         pagination: {
             el: ".swiper-pagination",

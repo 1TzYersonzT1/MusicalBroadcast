@@ -1,7 +1,7 @@
 <div class="swiper-slide">
-    <div class="lg:flex lg:w-96">
+    <div class="lg:flex lg:w-96 justify-center">
         <div class="flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden">
-            <img src="{{'https://musicalimages.blob.core.windows.net/images/' . $evento->imagen }}" class="h-48 lg:w-48 w-80" />
+            <img src="{{'https://musicalimages.blob.core.windows.net/images/' . $evento->imagen }}" class="h-48 lg:w-48 w-48" />
         </div>
         <div
             class="object-content border-l border-grey-light 
