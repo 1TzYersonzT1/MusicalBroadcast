@@ -11,6 +11,15 @@ class MisSolicitudes extends Component
 
     public $artistasPendientes, $artistasRevisados, $artistasModificados;
 
+    /**
+     * Selecciona los artistas del representante autenticado
+     * basado en los siguientes estados de solicitud
+     * 0 - Pendiente
+     * 1 - Revisada
+     * 2 - (No aplica reservada para futura implementacion)
+     * 3 - Aprobada
+     * 4 - Modificada
+     */
     public function mount()
     {
         $this->artistasPendientes = Artista::whereHas('solicitud', function (Builder $query) {

@@ -14,13 +14,22 @@ class InscripcionTaller extends Component
     public $rut, $nombre, $apellidos, $email, $telefono;
 
     protected $rules = [
-        "rut" => "required|string|min:8|max:9", 
+        "rut" => "required|string|min:8|max:9",
         "nombre" => "required|string|min:2|max:20",
         'apellidos' => "required|string|min:2|max:40",
         "email" => "required|email:rfc",
         "telefono" => 'required|integer',
     ];
 
+    /**
+     * Valida que el asistente haya completado
+     * todos los campos para la inscripcion
+     * si es asi crea un nuevo registro, en caso
+     * de que el asistente ya se haya inscrito a este
+     * o otro taller se actualizaran sus datos de contacto
+     * , en caso de que no se haya inscrito antes
+     * se le apartara el cupo correspondiente
+     */
     public function inscripcion()
     {
         $this->validate();

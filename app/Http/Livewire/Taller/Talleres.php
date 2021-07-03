@@ -12,6 +12,13 @@ class Talleres extends Component
 
     public $talleres;
 
+    /**
+     * Se seleccionan todos los talleres
+     * de forma ascendiente que tengan
+     * fecha para hoy o en adelante
+     * y solo aquellos que tengan cupo y su
+     * estado este activo
+     */
     public function mount()
     {
         $this->talleres = Taller::orderBy('TAL_Fecha', 'asc')

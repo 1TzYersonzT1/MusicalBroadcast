@@ -230,7 +230,7 @@
             </a>
         @endif
         @if ($artistaActual->instagram != '')
-            <a href="https://www.instagram.com{{ $artistaActual->instagram }}" target="_blank">
+            <a href="{{ $artistaActual->instagram }}" target="_blank">
                 <div style="float:left">
                     <img src="/insta.png" width="40" height="40">
                 </div>

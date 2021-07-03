@@ -61,7 +61,6 @@ class ModificarArtista extends Component
      */
     function mount($id)
     {
-     
         $this->artista = Artista::find($id);
 
         if($this->artista->user_rut != auth()->user()->rut) {
@@ -86,22 +85,22 @@ class ModificarArtista extends Component
      * sus estilos musicales pero solo se entrega la diferencia
      * entre ese resultado y los estilos del artista
      */
-    public function updatedGenerosSeleccionados()
-    {
-        $this->estilos = [];
+    // public function updatedGenerosSeleccionados()
+    // {
+    //     $this->estilos = [];
 
-        foreach ($this->generosSeleccionados as $index => $generoSeleccionado) {
-            if ($this->generosSeleccionados[$index] == false) {
-                unset($this->generosSeleccionados[$index]);
-            }
-        }
+    //     foreach ($this->generosSeleccionados as $index => $generoSeleccionado) {
+    //         if ($this->generosSeleccionados[$index] == false) {
+    //             unset($this->generosSeleccionados[$index]);
+    //         }
+    //     }
 
-        $generosSeleccionados = Genero::whereIn("id", $this->generosSeleccionados)->get();
+    //     $generosSeleccionados = Genero::whereIn("id", $this->generosSeleccionados)->get();
 
-        foreach ($generosSeleccionados as $generoSeleccionado) {
-            $this->estilos[] = $generoSeleccionado->estilos->diff($this->artista->estilos);
-        }
-    }
+    //     foreach ($generosSeleccionados as $generoSeleccionado) {
+    //         $this->estilos[] = $generoSeleccionado->estilos->diff($this->artista->estilos);
+    //     }
+    // }
 
     /**
      * Esta function es emitidad desde nuevo integrante
