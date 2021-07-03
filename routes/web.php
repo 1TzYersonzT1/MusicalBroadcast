@@ -85,9 +85,11 @@ Route::get('/artista/{artista}', ArtistaPreview::class)->name("artista.show");
 Route::get("/reglamento", function() {
     return view("terms");
 })->name("reglamento");
+
 Route::get("/ayuda", function() {
     return view("help");
 })->name("ayuda");
+
 Route::get("/terminos-condiciones", function() {
     return view("terms");
 })->name("terminos-condiciones");

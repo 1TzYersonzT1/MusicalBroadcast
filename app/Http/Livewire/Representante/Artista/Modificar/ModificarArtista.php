@@ -8,6 +8,7 @@ use App\Models\Genero;
 use App\Models\Estilo;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
+use Auth;
 
 class ModificarArtista extends Component
 {
@@ -17,6 +18,7 @@ class ModificarArtista extends Component
     public $artista, $nuevaImagen, $integrantes = [], $caracteres_biografia;
     public $generos, $generos_actuales, $generosSeleccionados = [];
     public $estilos = [], $estilosSeleccionados = [];
+    public $albumes = [];
 
     protected $rules = [
         'artista.ART_Nombre' => 'required|string',
@@ -31,9 +33,18 @@ class ModificarArtista extends Component
     ];
 
     protected $listeners = [
-        'updatedEstilosSeleccionados',
         'updatedIntegrantes',
+        'updatedAlbumes',
         'modificarArtistaConfirmado',
+    ];
+
+    protected $messages = [
+        'estilosSeleccionados.required' => 'Debe seleccionar al menos un estilo que represente al artista.',
+        'instagram.regex' => 'La URL ingresada no corresponde al sitio web de instagram.',
+        'facebook.regex' => 'La URL ingresada no corresponde al sitio web de facebook.',
+        'twitter.regex' => 'La URL ingresada no corresponde al sitio web de twitter.',
+        'spotify.regex' => 'La URL ingresada no corresponde a la cuenta de spotify del artista.',
+        'youtube.regex' => 'La URL ingresada no corresponde al canal de youtube del artista.',
     ];
 
     /**
@@ -50,7 +61,12 @@ class ModificarArtista extends Component
      */
     function mount($id)
     {
+     
         $this->artista = Artista::find($id);
+
+        if($this->artista->user_rut != auth()->user()->rut) {
+            abort(403);
+        }
 
         foreach ($this->artista->estilos as $estilo) {
             $generos_artista[] = $estilo->genero_id;
@@ -88,18 +104,6 @@ class ModificarArtista extends Component
     }
 
     /**
-     * Esta function es llamada desde el componente Estilo
-     * el cual recibe como parametro el nuevo arreglo
-     * de estilos seleccionados
-     * 
-     * @param $seleccionados Estilos seleccionados
-     */
-    public function updatedEstilosSeleccionados($seleccionados)
-    {
-        $this->estilosSeleccionados[] = $seleccionados;
-    }
-
-    /**
      * Esta function es emitidad desde nuevo integrante
      * y recibe el arreglo de integrantes actualizado
      * 
@@ -132,10 +136,7 @@ class ModificarArtista extends Component
      */
     public function updatedNuevaImagen()
     {
-        $this->validate([
-            "artista.nuevaImagen" => 'images|mimes:jpg,png,svg,gif|max:1024',
-        ]);
-        $imagen = $this->nuevaImagen->store("representantes/" . auth()->user()->rut . "/artistas/" . $this->artista->ART_Nombre, "azure");
+        $imagen = $this->nuevaImagen->store("representantes/" . auth()->user()->rut . "/artistas/" . $this->artista->ART_Nombre, "azure");;
         $this->artista->imagen = $imagen;
         $this->artista->save();
     }
@@ -159,6 +160,15 @@ class ModificarArtista extends Component
         $this->caracteres_biografia = strlen($this->artista->biografia);
     }
 
+    /**
+     * Esta function es llamada desde Album cada vez
+     * que se agrega o elimina un album
+     */
+    public function updatedAlbumes(array $albumes)
+    {
+        $this->albumes = $albumes;
+    }
+
 
     /**
      * Verifica que ningun campo haya quedado vacio
@@ -170,6 +180,12 @@ class ModificarArtista extends Component
     public function validarModificarArtista()
     {
         $this->validate();
+        if ($this->artista->tipo_artista == 2) {
+            $this->validate([
+                "integrantes" => 'required|array|min:1',
+            ]);
+        }
+        $this->limpiarURL();
         $this->dispatchBrowserEvent("validarModificarArtista");
     }
 
@@ -180,15 +196,28 @@ class ModificarArtista extends Component
      */
     public function modificarArtistaConfirmado()
     {
-        
         $artista = $this->artista;
 
-        
-        
-        $artista->integrantes()->sync($this->integrantes);
-
-      
         $artista->save();
+    }
+
+    /**
+     * Verifica que las URL cumplan
+     * un cuerpo preestablecido
+     */
+    public function limpiarURL()
+    {
+        $this->validate([
+            "artista.instagram" => "nullable|regex:/https:\/\/www.instagram.com/",
+            "artista.facebook" => "nullable|regex:/https:\/\/www.facebook.com/",
+            "artista.twitter" => "nullable|regex:/twitter.com/",
+            "artista.spotify" => "nullable|regex:/https:\/\/open.spotify.com\/artist/",
+        ]);
+
+        $this->artista->instagram = preg_replace('/https:\/\/www.instagram.com/', '', $this->artista->instagram);
+        $this->artista->facebook = preg_replace('/https:\/\/www.facebook.com/', '',  $this->artista->facebook);
+        $this->artista->twitter = preg_replace('/https:\/\/twitter.com/', '',  $this->artista->twitter);
+        $this->artista->spotify = preg_replace('/https:\/\/open.spotify.com\/artist\//', '',  $this->artista->spotify);
     }
 
     public function render()

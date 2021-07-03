@@ -14,7 +14,7 @@ class Novedades extends Component
     {
         $crawler = GoutteFacade::request('GET', 'http://calamacultural.cl/index2/Noticias%20Cultura.html');
         $crawler->filter('.mbr-timeline-title')->each(function ($node) {
-         
+          
         });
     
     }

@@ -93,14 +93,30 @@
 
                     <div class="flex justify-center">
                         @foreach ($estilos as $index => $estilo)
-                            @foreach ($estilo as $index => $info)
-                                <livewire:representante.artista.modificar.estilo :info="$info" :index='$index'
-                                    :wire:key="$info['id']" />
-                            @endforeach
+                            <div class="flex flex-col items-center">
+                                @foreach ($estilo as $index => $info)
+                                    <div class="flex flex-col items-center">
+                                        <div class="mb-2 genero">
+                                            <input type="checkbox" name="estilo" value={{ $info['id'] }} :wire:key="{{$info['id']}}"
+                                                wire:model="estilosSeleccionados.{{ $index }}"
+                                                class="opacity-0 absolute w-32 h-32 rounded-full" />
+
+                                            <div
+                                                class="bg-trasparent w-32 h-32 flex rounded-full flex-shrink-0 justify-center items-center mr-2 focus-within:border-red-500">
+                                                <img src="https://tailwindcss.com/img/card-left.jpg"
+                                                    class="rounded-full w-28 h-28" />
+                                            </div>
+                                        </div>
+                                        <span>{{ $info['EST_Nombre'] }}</span>
+                                    </div>
+
+                                @endforeach
+                            </div>
                         @endforeach
                     </div>
                 @endif
             </div>
+            @json($estilosSeleccionados)
 
 
             <!-- Imagen artista -->
@@ -120,7 +136,6 @@
                                 d="M6 18L18 6M6 6l12 12" />
                         </svg>
                     @else
-
                         <div class="w-80 flex flex-col items-center">
                             <label for="nuevaImagen">
                                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -130,9 +145,8 @@
                                         d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
                             </label>
-                            <input type="file" wire:model="artista.imagen" id="nuevaImagen" class="hidden" />
+                            <input type="file" wire:model="nuevaImagen" id="nuevaImagen" class="hidden" />
                         </div>
-
                     @endif
 
                 </div>
@@ -158,12 +172,12 @@
             </div>
 
             <!-- Albumes -->
-            <livewire:representante.artista.crear.album.album :albumes="$artista->albumes" :nombreArtista="$artista->ART_Nombre" />
-
+            <livewire:representante.artista.modificar.album.album :artista="$artista" />
 
             <!-- Integrantes -->
-            <livewire:representante.artista.crear.integrantes.nuevo-integrante :integrantes="$artista->integrantes" :nombreArtista="$artista->ART_Nombre" />
-
+            @if ($artista->tipo_artista == 2)
+                <livewire:representante.artista.modificar.integrante.nuevo-integrante :artista="$artista" />
+            @endif
 
             <!-- Redes sociales -->
             <div class="lg:col-span-8">
@@ -239,7 +253,7 @@
                                         viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                        <a href="https://www.youtube.com/account_advanced"></a>
+                                        <a href="https://www.youtube.com/account_advanced" target="_blank"></a>
                                     </svg>
                                 </button>
                             </div>

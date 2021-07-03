@@ -181,7 +181,7 @@ class CrearArtista extends Component
             'biografia' => $this->biografia,
             'tipo_artista' => $this->tipoArtista,
             'user_rut' => auth()->user()->rut,
-            'imagen' => "storage/" . $imagen,
+            'imagen' => $imagen,
             'estado' => 0,
             'instagram' => $this->instagram,
             'facebook' => $this->facebook,

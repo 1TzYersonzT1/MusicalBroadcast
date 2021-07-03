@@ -2,23 +2,22 @@
     <div class="bg-black bg-opacity-20 px-2 py-1 text-center">
         <span class="top-5 mb-3 text-4xl font-bold">Agrega tus albums aquí</span>
     </div>
-    <div class="flex flex-wrap justify-center content-center mt-5">
-        @foreach ($albumes as $index => $album)
+    <div class="flex flex-wrap justify-center items-center mt-5">
 
-            <div class="flex mr-5">
-                <button @click="open = true">
+        @foreach ($albumes as $index => $album)
+            <div class="flex m-5">
+                <button>
                     <div class="flex flex-col items-center">
                         <img src="{{ 'https://musicalimages.blob.core.windows.net/images/' . $album['imagen'] }}"
-                            class="rounded-full  h-32 w-32 " />
+                            class="rounded-full h-32 w-32" />
                         <span>{{ $album['ALB_Nombre'] }}</span>
                     </div>
                 </button>
-                <svg wire:click="eliminarAlbum('{{ $index }}')" xmlns="http://www.w3.org/2000/svg"
+                <svg wire:click="validarEliminarAlbum('{{ $album["id"] }}')" xmlns="http://www.w3.org/2000/svg"
                     class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
             </div>
-
         @endforeach
         <div>
             <button @click="abrir()">
@@ -32,10 +31,11 @@
     </div>
 
 
-    <div class="relative h-2 w-32 bg-cover rounded-full lg:rounded-t-full lg:rounded-1">
+    <div class="relative h-0 w-32 bg-cover rounded-full lg:rounded-t-full lg:rounded-1">
         <div x-show.transition.out="estaAbierto()" @click.away='cerrar()'
             class="bg-white absolute lg:left-54 -right-24 z-50 p-4 text-primary w-80 border-4 shadow-md">
             <div class="flex justify-between items-center">
+                <div><!-- Espacio vacio --></div>
                 <span class="font-bold text-2xl block text-center mb-5">Agregar album.</span>
                 <svg @click="cerrar()" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
                     viewBox="0 0 24 24" stroke="currentColor">
@@ -60,7 +60,7 @@
                     @enderror
                 @else
                     @if ($imagenAlbum)
-                        <div class="flex mt-4">
+                        <div class="flex justify-center mt-4">
                             <img src="{{ $imagenAlbum->temporaryUrl() }}" class="h-32 w-32 rounded-full" />
                             <svg wire:click="eliminarImagenAlbum" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"
                                 fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -69,14 +69,16 @@
                             </svg>
                         </div>
                     @else
-                        <label for="imagenAlbum">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-32 w-32 border-2" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
-                                    d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                        </label>
-                        <input type="file" wire:model="imagenAlbum" id="imagenAlbum" class="hidden" />
+                        <div class="flex justify-center">
+                            <label for="imagenAlbum">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-32 w-32 border-2" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
+                                        d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </label>
+                            <input type="file" wire:model="imagenAlbum" id="imagenAlbum" class="hidden" />
+                        </div>
                         @error('imagenAlbum')
                             <span class="text-red-600">{{ $message }}</span>
                         @enderror
@@ -137,8 +139,28 @@
     </div>
 </div>
 
-<div class="my-5 text-center"><span>¿No sabes cual/es albumes destacar?
+<div class="text-center"><span>¿No sabes cual/es albumes destacar?
         No te preocupes, si omites este paso más adelante
         podrás agregar albumes a tus artistas.</span>
 </div>
 </div>
+
+
+<script>
+    window.addEventListener("validarEliminarAlbum", function() {
+        Swal.fire({
+            title: '¿Está seguro?',
+            text: `Esta a punto de eliminar este album.`,
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonText: 'Continuar',
+            cancelButtonText: 'Cancelar',
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Livewire.emit("eliminarAlbumConfirmado");
+            }
+        });
+    });
+</script>

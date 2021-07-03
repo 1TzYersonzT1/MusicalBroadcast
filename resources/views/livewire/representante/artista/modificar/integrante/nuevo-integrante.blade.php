@@ -2,10 +2,10 @@
     <div class="bg-black bg-opacity-20 px-2 my-5 text-center">
         <span class="top-5 mb-3 text-4xl font-bold">¿Tienes más integrantes? Agregalos aquí</span>
     </div>
-    <div class="flex flex-wrap justify-center content-center mt-5">
 
+    <div class="flex flex-wrap justify-center content-center mt-5">
         @foreach ($integrantes as $index => $integrante)
-            <div class="flex mr-5">
+            <div class="flex m-2">
                 <button>
                     <div class="flex flex-col items-center">
                         <img src="{{ 'https://musicalimages.blob.core.windows.net/images/' . $integrante['imagen'] }}"
@@ -13,12 +13,14 @@
                         <span>{{ $integrante['nombre'] }}</span>
                     </div>
                 </button>
-                <svg wire:click="eliminarIntegrante('{{ $index }}')" xmlns="http://www.w3.org/2000/svg"
-                    class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg wire:click="validarEliminarIntegrante('{{ $integrante->rut }}')"
+                    xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
             </div>
         @endforeach
+
         <div>
             <button @click="abrir()">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-32 w-32 hover:text-green-400 cursor-pointer"
@@ -30,10 +32,11 @@
         </div>
     </div>
 
-    <div class="relative h-2 bg-yellow-700 w-32 bg-cover rounded-full lg:rounded-t-full lg:rounded-1">
-        <div x-show.transition.out="estaAbierto()"
-            class="bg-white lg:w-96 w-80 absolute lg:left-54 -right-24 -left-28 p-4 text-primary">
+    <div class="relative h-2 w-32 bg-cover rounded-full lg:rounded-t-full lg:rounded-1">
+        <div @click.away="cerrar()" x-show.transition.out="estaAbierto()"
+            class="bg-white absolute lg:left-54 -right-24 -left-28 p-4 text-primary">
             <div class="flex justify-between items-center">
+                <div><!-- Espacio vacio--></div>
                 <span class="font-bold text-2xl block text-center mb-5">Agregar integrante.</span>
                 <svg @click="cerrar()" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
                     viewBox="0 0 24 24" stroke="currentColor">
@@ -139,12 +142,29 @@
 
             <button wire:click="agregarIntegrante" class="py-1 px-5 bg-primary text-white">Agregar</button>
         </div>
-
     </div>
 </div>
-</div>
+
 
 <script>
+    window.addEventListener("validarEliminarIntegrante", function() {
+        Swal.fire({
+            title: '¿Está seguro?',
+            text: `Esta a punto de eliminar al integrante.`,
+            icon: 'info',
+            showCancelButton: true,
+            confirmButtonText: 'Continuar',
+            cancelButtonText: 'Cancelar',
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Livewire.emit("eliminarIntegranteConfirmado");
+            }
+        });
+    });
+
+
     var swiper = new Swiper(".swiperInstrumentos", {
         slidesPerView: 4,
         spaceBetween: -100,
