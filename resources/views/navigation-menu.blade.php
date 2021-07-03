@@ -302,7 +302,7 @@
                                 </span>
                             </div>
 
-                            <div x-show="open" class="absolute bg-gray-100">
+                            <div x-show="open" class="absolute bg-gray-100 z-50" x-cloak>
                                 <!-- Account Management -->
                                 <div class="block px-4 py-2 text-xs text-gray-400">
                                     {{ __('Administración de cuenta') }}
@@ -442,7 +442,7 @@
         <!-- Talleres reponsive -->
         @guest
             <div class="pt-2 pb-3 space-y-1">
-                <x-jet-responsive-nav-link href="{{ route('artistas.index') }}">
+                <x-jet-responsive-nav-link href="{{ route('talleres.index') }}">
                     <span class="text-white flex justify-center">{{ __('Talleres') }}</span>
                 </x-jet-responsive-nav-link>
             </div>
@@ -518,8 +518,15 @@
             </div>
         @endauth
 
-
         <!-- Eventos responsive -->
+        @guest
+            <div class="pt-2 pb-3 space-y-1">
+                <x-jet-responsive-nav-link href="{{ route('eventos.index') }}">
+                    <span class="text-white flex justify-center">{{ __('Eventos') }}</span>
+                </x-jet-responsive-nav-link>
+            </div>
+        @endguest
+
         @auth
             <div class="sm:flex sm:items-center">
                 @can('organizar')

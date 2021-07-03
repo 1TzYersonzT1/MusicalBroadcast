@@ -3,7 +3,7 @@
         <div class="grid grid-cols-12 gap-5">
             <div class="lg:col-span-4 col-span-12">
                 <img src="{{ 'https://musicalimages.blob.core.windows.net/images/' . $solicitudActual->evento->imagen }}"
-                    class="h-80 w-full  lg:m-0 mb-5 mr-5" />
+                    class="h-70 w-70  lg:m-0 mb-5 mr-5" />
             </div>
 
             <div class="lg:col-span-8 col-span-12 grid grid-cols-12 gap-y-4">

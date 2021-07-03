@@ -55,6 +55,7 @@
                 </div>
             </div>
 
+            <!--{{--
             <div>
                 <div class="bg-black bg-opacity-20 px-2 py-1 text-center mt-5">
                     <span class="mb-3 text-4xl font-bold">Agrega uno o más generos aquí</span>
@@ -117,7 +118,7 @@
                 @endif
             </div>
             @json($estilosSeleccionados)
-
+            --}}-->
 
             <!-- Imagen artista -->
             <div class=" col-span-8 align-content-center my-5">
@@ -171,13 +172,13 @@
 
             </div>
 
-            <!-- Albumes -->
+            <!--{{-- Albumes 
             <livewire:representante.artista.modificar.album.album :artista="$artista" />
 
-            <!-- Integrantes -->
+                Integrantes 
             @if ($artista->tipo_artista == 2)
                 <livewire:representante.artista.modificar.integrante.nuevo-integrante :artista="$artista" />
-            @endif
+            @endif--}}-->
 
             <!-- Redes sociales -->
             <div class="lg:col-span-8">

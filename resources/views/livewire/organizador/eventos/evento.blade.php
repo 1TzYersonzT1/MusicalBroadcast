@@ -3,7 +3,7 @@
         <div class="flex justify-between items-center">
             <div> 
                 <img src="{{ 'https://musicalimages.blob.core.windows.net/images/' . $evento->imagen }}"
-                class="h-32 w-48" />
+                class="h-36 w-36" />
                 <span>{{ $evento->EVE_Nombre }}</span>
             </div>
 
