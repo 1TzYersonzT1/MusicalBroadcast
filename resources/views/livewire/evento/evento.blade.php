@@ -1,7 +1,7 @@
 <div class="swiper-slide">
     <div class="lg:flex lg:w-96">
         <div class="flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden">
-            <img src="{{ asset('storage/' . $evento->imagen) }}" class="h-48 lg:w-48 w-80" />
+            <img src="{{'https://musicalimages.blob.core.windows.net/images/' . $evento->imagen }}" class="h-48 lg:w-48 w-80" />
         </div>
         <div
             class="object-content border-l border-grey-light 
@@ -15,7 +15,7 @@
 
             <div>
                 <button
-                    class="font-bold px-2 py-2 w-40 text-center text-white hover:bg-white hover:text-primary cursor-pointer"
+                    class="font-bold px-2 py-2 w-40 text-center text-white hover:bg-white hover:text-primary cursor-pointer rounded-lg"
                     wire:click="mostrarEvento">Más
                     información</button>
             </div>

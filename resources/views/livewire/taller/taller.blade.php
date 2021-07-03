@@ -15,7 +15,7 @@
 
             <div>
                 <button
-                    class="font-bold px-2 py-2 w-40 text-center text-white hover:bg-white hover:text-primary cursor-pointer"
+                    class="font-bold px-2 py-2 w-40 text-center text-white hover:bg-white hover:text-primary cursor-pointer rounded-lg"
                     wire:click="mostrarTaller">Más
                     información</button>
             </div>

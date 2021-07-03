@@ -1,5 +1,5 @@
 <div class="min-h-screen py-5">
-    <div class='container mx-auto text-white'>
+    <div class='container mx-auto text-white bg-black bg-opacity-20 px-5 py-3'>
         <div class="mb-6 lg:mt-0 mt-5"><span class="text-4xl">Organizar nuevo evento.</span></div>
         @if ($errors)
             @foreach ($errors->all() as $message)
@@ -16,7 +16,7 @@
                         <div class="flex flex-col">
                             <span class="font-bold">Titulo</span>
                             <div class="flex flex-col mt-1">
-                                <input type="text" class="border-0 bg-primary px-0 py-1 font-light lg:w-96"
+                                <input type="text" class="border-1 border-white rounded-lg bg-primary py-1 px-2 font-light lg:w-96"
                                     wire:model='nombre' maxlength="30"
                                     placeholder="Escriba el titulo del taller (máximo 30 caracteres)" />
                             </div>
@@ -28,13 +28,13 @@
                                 <span class="font-bold">Fecha</span>
 
                                 <input type="date" wire:model="fecha" x-bind:min="$wire.hoy"
-                                    class="bg-primary text-white p-0 mr-5 mt-1" />
+                                    class="bg-primary text-white p-0 mr-5 mt-1 border-1 border-white rounded-lg px-2" />
                             </div>
 
                             <div class="flex flex-col mt-3">
                                 <span class="font-bold">Hora</span>
                                 <div class="flex flex-col">
-                                    <input type="time" id="hora" wire:model="hora" class="bg-primary border-0 p-0 mt-1">
+                                    <input type="time" id="hora" wire:model="hora" class="bg-primary px-2 p-0 mt-1 border-1 border-white rounded-lg">
 
                                 </div>
 
@@ -46,7 +46,7 @@
                             <span class="font-bold">Lugar: </span>
                             <div class="flex flex-col">
                                 <input type="text" placeholder="¿Donde planeas realizar el evento?" wire:model='lugar'
-                                    class="border-0 bg-primary w-64 py-0 px-2" />
+                                    class="bg-primary w-64 py-0 px-2 border-1 border-white rounded-lg" />
 
                             </div>
                         </div>
@@ -56,7 +56,7 @@
                             <div class="flex flex-col">
                                 <textarea placeholder="Escriba una descripción (máximo 255 caracteres)"
                                     wire:model='descripcion' maxlength="255"
-                                    class="resize-none lg:w-96 bg-primary h-40 mt-1 mb-1" wrap="hard"></textarea>
+                                    class="resize-none lg:w-96 bg-primary h-40 mt-1 mb-1 border-1 border-white rounded-lg" wrap="hard"></textarea>
                                 <span>{{ $caracteres_descripcion }} / 255</span>
                             </div>
                         </div>
@@ -65,7 +65,7 @@
 
             <div class="flex justify-between">
                 <div class="flex flex-col">
-                    <input type="file" wire:model="imagen" />
+                    <input type="file" wire:model="imagen" class="rounded-lg"/>
                     <div wire:loading wire:target="imagen"
                         class="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3" role="alert">
                         <p class="font-bold">Cargando imagen</p>
@@ -82,7 +82,7 @@
 
                 <div class="ml-10">
                     <button type="submit"
-                        class="border border-white px-7 py-3 my-10 lg:my-0 hover:bg-white hover:text-primary">Solicitar
+                        class="border border-white rounded-lg px-7 py-4 my-10 lg:my-0 hover:bg-white hover:text-primary">Solicitar
                         permiso</button>
                 </div>
 

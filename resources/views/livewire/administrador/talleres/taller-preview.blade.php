@@ -2,7 +2,7 @@
     <div class="mt-4">
         <div>
             <img src="{{ 'https://musicalimages.blob.core.windows.net/images/' . $solicitudActual->taller->imagen }}"
-                class="h-52 w-52 lg:m-0 mb-5 mr-5" />
+                class="h-52 w-52 lg:m-0 mb-5 mr-5 rounded-lg" />
         </div>
         <div class="grid grid-cols-2 lg:gap-10 gap-5">
             <div class="col">
@@ -73,7 +73,7 @@
 
                     <textarea maxlength='255'
                         placeholder="Agregue y envíe una observación al organizador (máximo 255 caracteres)"
-                        wire:model='observacion' class="mt-5 resize-none lg:w-96 bg-primary h-40 text-white"></textarea>
+                        wire:model='observacion' class="mt-5 resize-none lg:w-96 bg-primary rounded-lg h-40 text-white border-1 border-white rounded-lg"></textarea>
                     @error('observacion')
                         <script>
                             $.fancybox.close();

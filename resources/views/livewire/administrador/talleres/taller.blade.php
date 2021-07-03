@@ -1,6 +1,6 @@
 <div class="swiper-slide">
     <div class="lg:w-96">
-        <div class="bg-white text-primary rounded-br-lg rounded-tl-lg py-3">
+        <div class="bg-white text-primary rounded-lg py-3">
             <div class="flex flex-col px-5">
                 <div>
                     <span class="font-bold block">{{ $solicitud->taller->TAL_Nombre }}</span>
