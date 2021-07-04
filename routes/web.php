@@ -20,7 +20,7 @@ use App\Http\Livewire\Organizador\Talleres\Crear\CrearTaller;
 use App\Http\Livewire\Organizador\Talleres\MisTalleres;
 use App\Http\Livewire\Organizador\Talleres\ModificarTaller;
 use App\Http\Livewire\Organizador\Talleres\Asistentes\Asistentes as AsistenteTaller;
-use App\Http\Livewire\Representante\Artista\ModificarArtista;
+use App\Http\Livewire\Representante\Artista\Modificar\ModificarArtista;
 
 /*
 |--------------------------------------------------------------------------
@@ -85,9 +85,11 @@ Route::get('/artista/{artista}', ArtistaPreview::class)->name("artista.show");
 Route::get("/reglamento", function() {
     return view("terms");
 })->name("reglamento");
+
 Route::get("/ayuda", function() {
     return view("help");
 })->name("ayuda");
+
 Route::get("/terminos-condiciones", function() {
     return view("terms");
 })->name("terminos-condiciones");

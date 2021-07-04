@@ -1,22 +1,28 @@
-<div>
+<div class="swiper-slide">
     <div class="bg-white w-80 text-primary px-4 py-8">
         <div class="flex flex-col justify-between">
-            <div class="flex justify-between">
+            <div class="flex flex-col mb-3">
+                <img src="{{ 'https://musicalimages.blob.core.windows.net/images/' . $artista->imagen }}" 
+                class="w-68 h-40"/>
                 <span>{{ $artista->ART_Nombre }}</span>
+            </div>
+            <div class="flex justify-between">
+                
+              
                 @if ($artista->solicitud->estado == 0)
-                    <div class="bg-yellow-400 text-purple-500 px-3 py-1 rounded-full">
+                    <div class="bg-yellow-400 text-purple-500 px-3 rounded-full">
                         <span>Pendiente</span>
                     </div>
                 @endif
 
                 @if ($artista->solicitud->estado == 1)
-                    <div class="bg-pink-400 rounded-full w-32 py-1 text-center">
+                    <div class="bg-pink-400 rounded-full w-32 text-center">
                         <span class="text-purple-600">Revisada</span>
                     </div>
                 @endif
 
                 @if ($artista->solicitud->estado == 4)
-                    <div class="bg-blue-400 rounded-full w-32 py-1 text-center"><span
+                    <div class="bg-blue-400 rounded-full w-32 text-center"><span
                             class="text-purple-600">Modificada</span>
                     </div>
                 @endif
@@ -31,6 +37,7 @@
                     </div>
                 </div>
             @endif
+
             <button
                 class="mt-4 w-28 bg-primary text-white px-3 py-1 hover:bg-transparent hover:text-primary hover:border-1 hover:border-b-black flex items-center">
                 <a href="{{ route('representante.modificar-artista', $artista->id) }}">
@@ -44,7 +51,5 @@
             </button>
         </div>
     </div>
-
-</div>
 
 </div>

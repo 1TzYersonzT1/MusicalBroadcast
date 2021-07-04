@@ -4,7 +4,6 @@ namespace App\Http\Livewire\Representante\Artista\Crear;
 
 
 use App\Models\Genero;
-use App\Models\Estilo;
 use App\Models\Album;
 use App\Models\Artista;
 use App\Models\Integrante;
@@ -22,9 +21,10 @@ class CrearArtista extends Component
     public $generos, $generosSeleccionados = [], $integrantes = [];
     public $estilos = [], $estilosSeleccionados = [];
     public $albumes = [];
+    public $nombreConfirmado;
 
     protected $rules = [
-        'nombreArtista' => 'required|string|min:2|max:30',
+        'nombreArtista' => 'required|string|min:1|max:30',
         'tipoArtista' => 'required',
         'imagenArtista' => 'required|image',
         'biografia' => 'required|string|min:20|max:2000',
@@ -41,6 +41,7 @@ class CrearArtista extends Component
     ];
 
     protected $listeners = [
+        'nombreConfirmado',
         'updatedEstilo',
         'updatedAlbumes',
         'updatedGenerosSeleccionados',
@@ -48,16 +49,40 @@ class CrearArtista extends Component
         'agregarArtista',
     ];
 
+    /**
+     * Al cargarse este componente
+     * se seleccionan todos los generos
+     * musicales
+     */
     public function mount()
     {
         $this->generos = Genero::all();
     }
 
+
+    public function nombreConfirmado() {
+        $this->nombreConfirmado = 1;
+        $this->dispatchBrowserEvent("onContentChanged");
+    }
+
+
+    /**
+     * Cada vez que el usuario actualiza
+     * el campo de biografia del artista
+     * se comparan la cantidad de caracteres que ha
+     * escrito versus el maximo permitido de 2000
+     */
     public function updatedBiografia()
     {
         $this->caracteres_biografia = strlen($this->biografia);
     }
 
+    /**
+     * Cada vez que el usuario actualiza el nombre
+     * del artista se envia el nuevo nombre
+     * a album y nuevo integrante
+     * para la actualizacion del directorio
+     */
     public function updatedNombreArtista($value)
     {
         $this->emitTo("representante.artista.crear.album.album", 'updatedNombreArtista', $value);
@@ -65,22 +90,13 @@ class CrearArtista extends Component
         $this->dispatchBrowserEvent("onContentChanged");
     }
 
-    public function updatedEstilo(array $estilos)
-    {
-        $this->estilosSeleccionados = [];
-        $this->estilos = $estilos;
-        $this->dispatchBrowserEvent("onContentChanged");
-    }
-
-    public function updatedEstilosSeleccionados()
-    {
-        foreach ($this->estilosSeleccionados as $index => $estiloSeleccionado) {
-            if ($this->estilosSeleccionados[$index] == false) {
-                unset($this->estilosSeleccionados[$index]);
-            }
-        }
-    }
-
+    /**
+     * Selecciona los estilos musicales
+     * que estan asociados a los generos
+     * que ha sido seleccionados, cada vez
+     * que se actualiza esta seleccion
+     * se vuelven a cargar los estilos asociados
+     */
     public function updatedGenerosSeleccionados()
     {
         $this->estilos = [];
@@ -92,33 +108,80 @@ class CrearArtista extends Component
         }
     }
 
+    /**
+     * Cada vez que se deselecciona
+     * un estilo se debe eliminar ya que
+     * su valor por defecto pasa a false
+     */
+    public function updatedEstilosSeleccionados()
+    {
+        foreach ($this->estilosSeleccionados as $index => $estiloSeleccionado) {
+            if ($this->estilosSeleccionados[$index] == false) {
+                unset($this->estilosSeleccionados[$index]);
+            }
+        }
+    }
+
+    /**
+     * Esta function es emitida desde el componente
+     * Album cada vez que se agrega o elimina
+     * un album
+     */
     public function updatedAlbumes(array $albumes)
     {
         $this->albumes = $albumes;
     }
 
+
+    /**
+     * Esta function es emitiada desde el
+     * componente NuevoIntegrantes cada vez
+     * que se agrega o elimina
+     * un integrante
+     */
     public function updatedIntegrantes(array $integrantes)
     {
         $this->integrantes = $integrantes;
     }
 
+    /**
+     * Se valida si el representante ha completado
+     * los campos minimos obligatorios, si es asi
+     * se limpiam las url y se emite una alerta 
+     * para confirmar su accion
+     */
     public function validarAgregarArtista()
     {
         $this->validate();
+        if ($this->tipoArtista == 2) {
+            $this->validate([
+                'integrantes' => 'required|array|min:1',
+            ]);
+        }
         $this->limpiarURL();
         $this->dispatchBrowserEvent('solicitudAgregarArtista');
     }
 
+    /**
+     * Almacena la imagen del artista, crea
+     * el registro del artista en estado
+     * inactivo (0) y su respectiva
+     * solicitud en estado pendiente (0),
+     * luego en caso de que el artista
+     * sea una banda se asocian sus integrantes
+     * , para ambos artistas se asocian los albumes
+     * y los respectivos estilos seleccionados
+     */
     public function agregarArtista()
     {
-        $imagen = $this->imagenArtista->store("representantes/" . auth()->user()->rut . "/artistas/" . $this->nombreArtista);
+        $imagen = $this->imagenArtista->store("representantes/" . auth()->user()->rut . "/artistas/" . $this->nombreArtista, "azure");
 
         $artista = Artista::create([
             'ART_Nombre' => $this->nombreArtista,
             'biografia' => $this->biografia,
             'tipo_artista' => $this->tipoArtista,
             'user_rut' => auth()->user()->rut,
-            'imagen' => "storage/" . $imagen,
+            'imagen' => $imagen,
             'estado' => 0,
             'instagram' => $this->instagram,
             'facebook' => $this->facebook,
@@ -132,7 +195,6 @@ class CrearArtista extends Component
             'observacion' => '',
             'estado' => 0,
         ]);
-
 
         foreach ($this->integrantes as $integrante) {
             $integrante["artista_id"] = $artista->id;
@@ -151,29 +213,24 @@ class CrearArtista extends Component
             $nuevoAlbum->canciones()->createMany($canciones);
         }
 
-
         $artista->estilos()->sync($this->estilosSeleccionados);
 
         $this->estilosSeleccionados = [];
     }
 
+    /**
+     * Elimina la vista previa de la imagen
+     * del artista
+     */
     public function eliminarImagenArtista()
     {
         $this->imagenArtista = '';
     }
 
-    public function prueba()
-    {
-        $go = [
-            $this->nombreArtista,
-            $this->tipoArtista,
-            $this->integrantes,
-            $this->imagenArtista,
-            $this->estilosSeleccionados,
-        ];
-        $this->dispatchBrowserEvent("prueba", array("test" => $go));
-    }
-
+    /**
+     * Verifica que las URL cumplan
+     * un cuerpo preestablecido
+     */
     public function limpiarURL()
     {
         $this->validate([

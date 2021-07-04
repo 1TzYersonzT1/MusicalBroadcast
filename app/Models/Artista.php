@@ -12,36 +12,86 @@ class Artista extends Model
     protected $table = 'artista';
     public $timestamps = false;
 
-    protected $guarded= [];
+    protected $guarded = [];
 
-    public function estilos() {
+    /**
+     * Corresponde a la relacion entre estilos y artista
+     */
+    public function estilos()
+    {
         return $this->belongsToMany(Estilo::class, 'artista_estilo', 'artista_id', 'estilo_id');
     }
 
-    public function eventos() {
+    /**
+     * Corresponde a la relacion entre artista y los eventos
+     * a los cuales puede asistir
+     */
+    public function eventos()
+    {
         return $this->belongsToMany(Evento::class, "artista_evento", "artista_id", "evento_id");
     }
 
-    public function albumes() {
+    /**
+     * Corresponde a la relacion entre artista y los albumes
+     * que tiene creados
+     */
+    public function albumes()
+    {
         return $this->hasMany(Album::class, "artista_id", "id");
     }
 
-    public function integrantes() {
+    /**
+     * Corresponde a la relacion entre artista y los integrantes
+     * que tiene
+     */
+    public function integrantes()
+    {
         return $this->hasMany(Integrante::class, "artista_id");
     }
 
-    public function representante() {
+    /**
+     * Corresponde a la relacion entre artista y el usuario
+     * que lo representa
+     */
+    public function representante()
+    {
         return $this->belongsTo(User::class, 'user_rut');
     }
 
-    public function solicitud() {
+    /**
+     * Corresponde a la relacion entre artista y la solicitud
+     * que puede tener en determinado momento
+     */
+    public function solicitud()
+    {
         return $this->hasOne(SolicitudArtista::class, 'artista_id');
     }
 
-    public function getImagenAttribute($value) {
-        $url = explode("/", $value);
-        unset($url[array_search("storage", $url)]);
-        return implode("/", $url);
+    /**
+     * Adjunta el cuerpo predeterminado de instagram
+     * al usuario
+     */
+    public function getInstagramAttribute($value)
+    {
+        return "https://www.instagram.com" . $value;
+    }
+
+    /**
+     * Adjunta el cuerpo predeterminado de facebook
+     * al usuario
+     */
+    public function getFacebookAttribute($value)
+    {
+        return "https://www.facebook.com" . $value;
+    }
+
+    /**
+     * Adjunta el cuerpo predeterminado de spotify
+     * al usuario
+     */
+    public function getSpotifyAttribute($value)
+    {
+        return "https://open.spotify.com/artist/" . $value;
     }
 
 }

@@ -10,15 +10,20 @@ class TusArtistas extends Component
 {
     public $artistas;
 
-    public function mount() {
+    /**
+     * Selecciona los artistas que pertenecen
+     * al representante autenticado y solo aquellos
+     * que tengan un estado activo
+     */
+    public function mount()
+    {
         $this->artistas = Artista::where("user_rut", auth()->user()->rut)
-        ->where("estado", 1)
-        ->get();
+            ->where("estado", 1)
+            ->get();
     }
 
     public function render()
     {
         return view('livewire.representante.artista.tus-artistas');
     }
-    
 }

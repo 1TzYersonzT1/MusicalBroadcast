@@ -5,9 +5,7 @@ namespace App\Http\Livewire\Organizador\Eventos\Crear;
 use Livewire\Component;
 use App\Models\Evento;
 use App\Models\SolicitudEvento;
-use DateTime;
 use Livewire\WithFileUploads;
-use Carbon\Carbon;
 
 class CrearEvento extends Component
 {
@@ -88,7 +86,7 @@ class CrearEvento extends Component
      */
     public function nuevoEventoConfirmado()
     {
-        $imagen = $this->imagen->store("/eventos/organizador/" . auth()->user()->rut);
+        $imagen = $this->imagen->store("/eventos/organizador/" . auth()->user()->rut . '/' . $this->nombre, 'azure');
 
         $evento = Evento::create([
             'user_rut' => auth()->user()->rut,
@@ -97,7 +95,7 @@ class CrearEvento extends Component
             'EVE_Lugar' => $this->lugar,
             'EVE_Fecha' => $this->fecha,
             'EVE_Hora' => $this->hora,
-            'imagen' => 'storage/' . $imagen,
+            'imagen' => $imagen,
             'estado' => 0,
         ]);
 

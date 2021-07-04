@@ -109,6 +109,8 @@ class ModificarTaller extends Component
      */
     public function eliminarImagen()
     {
+        $disk = Storage::disk("azure");
+        $disk->delete($this->taller->imagen);
         $this->taller->imagen = '';
         $this->taller->save();
         $this->nuevaImagen =  null;
@@ -134,7 +136,6 @@ class ModificarTaller extends Component
      */
     public function modificarTallerConfirmado()
     {
-        $taller = Taller::find($this->taller->id);
         $taller = $this->taller;
         $taller->TAL_Requisitos = implode(", ", $this->requisitos);
         $taller->TAL_Protocolo = implode(", ", $this->protocolos);
@@ -142,9 +143,10 @@ class ModificarTaller extends Component
         $taller->solicitudes[0]->save();
 
         if ($this->nuevaImagen != null) {
-            Storage::delete($taller->imagen);
-            $nuevaImagen = $this->nuevaImagen->store("/talleres/organizador/" . auth()->user()->rut);
-            $taller->imagen = "storage/" . $nuevaImagen;
+            $disk = Storage::disk("azure");
+            $disk->delete($this->taller->imagen);
+            $nuevaImagen = $this->nuevaImagen->store("/talleres/organizador/" . auth()->user()->rut . '/' . $taller->TAL_Nombre, 'azure');
+            $taller->imagen = $nuevaImagen;
         }
 
         $taller->save();

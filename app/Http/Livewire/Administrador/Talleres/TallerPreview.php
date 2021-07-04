@@ -103,7 +103,8 @@ class TallerPreview extends Component
     public function eliminarTaller()
     {
         $taller = Taller::find($this->solicitudActual->taller->id);
-        Storage::delete($taller->imagen);
+        $disk = Storage::disk('azure');
+        $disk->delete($taller->imagen);
 
         $hojaVida = HojaVida::where("user_rut", $taller->user_rut)->get();
 

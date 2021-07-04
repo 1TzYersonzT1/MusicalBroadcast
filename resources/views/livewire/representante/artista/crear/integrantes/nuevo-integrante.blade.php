@@ -1,29 +1,26 @@
-<div class="col-span-8 align-content-center my-5">
+<div x-data="formularios()" class="col-span-8 my-5">
     <div class="bg-black bg-opacity-20 px-2 my-5 text-center">
         <span class="top-5 mb-3 text-4xl font-bold">¿Tienes más integrantes? Agregalos aquí</span>
     </div>
-    <div class="flex justify-center flex-wrap content-center">
+    <div class="flex flex-col items-center">
+        <div class="flex flex-wrap justify-center content-center mt-5">
 
-        <div class="flex">
             @foreach ($integrantes as $index => $integrante)
-                <div class="flex flex-col items-center mr-5">
-                    <div class="flex">
-                        <img src="{{ asset('storage/' . $integrante['imagen']) }}" class="rounded-full w-28 h-28" />
-                        <svg wire:click="eliminarIntegrante('{{ $index }}')" xmlns="http://www.w3.org/2000/svg"
-                            class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </div>
-                    <span>{{ $integrante['nombre'] }}</span>
+                <div class="flex mr-5">
+                    <button>
+                        <div class="flex flex-col items-center">
+                            <img src="{{ 'https://musicalimages.blob.core.windows.net/images/' . $integrante['imagen'] }}"
+                                class="rounded-full w-28 h-28" />
+                            <span>{{ $integrante['nombre'] }}</span>
+                        </div>
+                    </button>
+                    <svg wire:click="eliminarIntegrante('{{ $index }}')" xmlns="http://www.w3.org/2000/svg"
+                        class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
                 </div>
             @endforeach
-        </div>
-
-        <div x-data="formularios()" @click.away='cerrar()'
-            class="relative h-32 w-32 bg-cover rounded-full lg:rounded-t-full lg:rounded-1">
-
-
             <div>
                 <button @click="abrir()">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-32 w-32 hover:text-green-400 cursor-pointer"
@@ -33,10 +30,11 @@
                     </svg>
                 </button>
             </div>
+        </div>
 
-
+        <div class="relative h-2 w-32 bg-cover rounded-full lg:rounded-t-full lg:rounded-1">
             <div x-show.transition.out="estaAbierto()"
-                class="bg-white lg:w-96 w-80 absolute top-0 lg:left-40 -left-28 p-4 text-primary">
+                class="bg-white z-50 lg:w-96 w-80 absolute lg:left-54 -right-24 p-4 text-primary shadow-md border-4 overflow-y-auto">
                 <div class="flex justify-between items-center">
                     <span class="font-bold text-2xl block text-center mb-5">Agregar integrante.</span>
                     <svg @click="cerrar()" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
@@ -138,7 +136,7 @@
                             </div>
                         @endforeach
                     </div>
-                  
+
 
                 </div>
 
@@ -147,6 +145,7 @@
 
         </div>
     </div>
+</div>
 </div>
 
 <script>
@@ -166,4 +165,3 @@
         },
     });
 </script>
-

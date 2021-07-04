@@ -15,6 +15,10 @@ class TallerPreview extends Component
 
     protected $listeners = ['visualizar', 'inscripcion'];
 
+    /**
+     * Selecciona la informacion del taller
+     * seleccionado
+     */
     public function visualizar(array $tallerSeleccionado)
     {
         $this->tallerActual = Taller::find($tallerSeleccionado["id"]);

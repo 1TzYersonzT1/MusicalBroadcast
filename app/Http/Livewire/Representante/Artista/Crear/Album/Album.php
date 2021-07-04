@@ -9,6 +9,10 @@ use Livewire\WithFileUploads;
 
 class Album extends Component
 {
+
+    /**
+     * Trait necesario para la subida de archivos
+     */
     use WithFileUploads;
 
     public $albumes = [], $nombreAlbum, $imagenAlbum, $fechaLanz;
@@ -40,16 +44,14 @@ class Album extends Component
     {
         $this->validate();
 
-        $imagenAlbum = $this->imagenAlbum
-            ->store("/representantes/" . auth()->user()->rut . "/artistas/" . $this->nombreArtista .
-                "/albumes/" . $this->nombreAlbum . "/");
+        $imagen = $this->imagenAlbum->store("representantes/" . auth()->user()->rut . "/artistas/" . $this->nombreArtista . "/albums", "azure");
 
         $this->albumes[] = [
             "ALB_Nombre" => $this->nombreAlbum,
             "artista_id" => null,
             "ALB_FechaLanzamiento" => Carbon::parse($this->fechaLanz)->isoFormat("Y-M-D"),
             "ALB_CantCanciones" => count($this->canciones),
-            "imagen" => $imagenAlbum,
+            "imagen" => $imagen,
             "canciones" => $this->canciones,
         ];
 
@@ -63,24 +65,41 @@ class Album extends Component
 
     public function eliminarAlbum($seleccionado)
     {
-        Storage::delete($this->albumes[$seleccionado]["imagen"]);
+        $disk = Storage::disk("azure");
+        $disk->delete($this->albumes[$seleccionado]["imagen"]);
         unset($this->albumes[$seleccionado]);
         $this->emitTo("representante.artista.crear.crear-artista", "updatedAlbumes", $this->albumes);
     }
 
 
+    /**
+     * Cada vez que se selecciona un nuevo archivo
+     * para subir en el input imagen album
+     * se valida que este sea solo de tipo imagen
+     * con un maximo de 1024kb
+     */
     public function updatedImagenAlbum()
     {
         $this->validate([
-            'imagenAlbum' => 'image|mimes:jpeg,jpg,png,svg,gif',
+            'imagenAlbum' => 'image|mimes:jpeg,jpg,png,svg,gif|max:1024',
         ]);
     }
 
+    /**
+     * Elimina la vista previa de la imagen
+     * del album en el formulario de agregar
+     * nuevo album
+     */
     public function eliminarImagenAlbum()
     {
         $this->imagenAlbum = '';
     }
 
+    /**
+     * Permite introducir la nueva cancion
+     * al listado de canciones del album
+     * en especifico que se intenta crear
+     */
     public function nuevaCancion()
     {
         if ($this->nombreCancion != '') {
@@ -92,6 +111,11 @@ class Album extends Component
         }
     }
 
+    /**
+     * Es utilizado para eliminar una cancion
+     * del listado en el formulario
+     * agregar nuevo album
+     */
     public function eliminarCancion($seleccionado)
     {
         unset($this->canciones[$seleccionado]);

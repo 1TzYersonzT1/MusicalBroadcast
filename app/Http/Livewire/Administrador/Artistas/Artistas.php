@@ -8,11 +8,12 @@ use App\Mail\Artista\ArtistaAprobado;
 use App\Mail\Artista\ArtistaRechazado;
 use App\Models\Artista;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 
 class Artistas extends Component
 {
 
-    public $artistasPendientes, $artistaSeleccionado, $observacion;
+    public $artistasPendientes=[], $artistaSeleccionado, $observacion;
 
     protected $listeners = [
         "confirmarAgregarArtista",
@@ -106,19 +107,32 @@ class Artistas extends Component
      */
     public function confirmarEliminarArtista()
     {
+        $disk = Storage::disk("azure");
+        $disk->delete($this->artistaSeleccionado->imagen);
+
         $mensaje = [
             "artista" => $this->artistaSeleccionado->ART_Nombre,
             'representante' => $this->artistaSeleccionado->representante,
         ];
 
-        Mail::to($this->artistaSeleccionado->representante->email)->send(new ArtistaRechazado($mensaje));
-
         $this->artistaSeleccionado->solicitud()->delete();
         $this->artistaSeleccionado->estilos()->detach();
         $this->artistaSeleccionado->eventos()->delete();
+
+        foreach($this->artistaSeleccionado->integrantes as $integrante) {
+            $disk->delete($integrante->imagen);
+        }
+
         $this->artistaSeleccionado->integrantes()->delete();
+
+        foreach($this->artistaSeleccionado->albumes as $album) {
+            $disk->delete($album->imagen);
+        }
+
         $this->artistaSeleccionado->albumes()->delete();
         $this->artistaSeleccionado->delete();
+
+        Mail::to($this->artistaSeleccionado->representante->email)->send(new ArtistaRechazado($mensaje));
     }
 
     public function render()

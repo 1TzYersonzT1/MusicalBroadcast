@@ -8,10 +8,10 @@
             <div class="swiper-container swiperArtistas">
                 <div class="swiper-wrapper">
                     @foreach ($artistas as $artista)
-                        <div class="swiper-slide bg-gray-200 h-full w-80 py-2 px-3 text-primary">
+                        <div class="swiper-slide bg-gray-200 h-full w-80 py-2 px-3 text-primary rounded-lg">
                             <div class="flex flex-col items-center mb-2">
                                 <span class="text-xl block mb-2">{{ $artista->ART_Nombre }}</span>
-                                <img src="{{ asset('storage/' . $artista->imagen) }}" class="w-72 h-60" />
+                                <img src="{{ 'https://musicalimages.blob.core.windows.net/images/' . $artista->imagen }}" class="w-72 h-60" />
                             </div>
                             <div class="flex flex-col">
                                 <span class="text-xl">Estilos</span>
@@ -25,10 +25,10 @@
                                     @endforeach
                                 </span>
                             </div>
-                            <a href="{{ route('artista.show', $artista->id) }}" class="mt-4 inline-flex px-6 py-1 bg-primary text-white">
+                            <a href="{{ route('artista.show', $artista->id) }}" class="mt-4 inline-flex px-6 py-1 bg-primary text-white rounded-lg">
                                 Perfil
                             </a>
-                            <a href="{{ route('representante.modificar-artista', $artista->id) }}" class="mt-4 inline-flex px-6 py-1 bg-primary text-white">
+                            <a href="{{ route('representante.modificar-artista', $artista->id) }}" class="mt-4 inline-flex px-6 py-1 bg-primary text-white rounded-lg">
                                 Modificar Perfil
                             </a>
                         </div>

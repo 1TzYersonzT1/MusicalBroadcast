@@ -8,16 +8,8 @@
                 <div class="swiper-container swiperEventosPendientes">
                     <div class="swiper-wrapper">
                         @foreach ($eventosPendientes as $eventoPendiente)
-                            <div class="swiper-slide">
-                                <div class="lg:w-96 w-80 bg-white text-primary py-3 px-5">
-                                    <div class="flex justify-between items-center">
-                                        <span>{{ $eventoPendiente->EVE_Nombre }}</span>
-                                        <div class="bg-yellow-400 text-purple-500 px-3 py-1 rounded-full">
-                                            <span>Pendiente</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <livewire:organizador.eventos.evento :evento="$eventoPendiente"
+                                :wire:key="$eventoPendiente->id" />
                         @endforeach
                     </div>
                 </div>
@@ -50,7 +42,7 @@
                 <span class="text-4xl block mb-5">Solicitudes modificadas</span>
             </div>
             @if (count($eventosModificados) > 0)
-                <div class="swiper-container swiperRevisadas">
+                <div class="swiper-container swiperEventosModificados">
                     <div class="swiper-wrapper">
                         @foreach ($eventosModificados as $eventoModificado)
                             <livewire:organizador.eventos.evento :evento="$eventoModificado"
@@ -109,20 +101,47 @@
 
 <script>
     var swiper = new Swiper(".swiperEventosPendientes", {
-        slidesPerView: 3,
+        slidesPerView: "auto",
         spaceBetween: 30,
         pagination: {
             el: ".swiper-pagination",
             clickable: true,
         },
+        breakpoints: {
+            1024: {
+                slidesPerView: 4,
+                spaceBetween: 50,
+            },
+        },
     });
 
     var swiper = new Swiper(".swiperEventosRevisados", {
-        slidesPerView: 3,
+        slidesPerView: "auto",
         spaceBetween: 30,
         pagination: {
             el: ".swiper-pagination",
             clickable: true,
+        },
+        breakpoints: {
+            1024: {
+                slidesPerView: 4,
+                spaceBetween: 50,
+            },
+        },
+    });
+
+    var swiper = new Swiper(".swiperEventosModificados", {
+        slidesPerView: "auto",
+        spaceBetween: 30,
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        breakpoints: {
+            1024: {
+                slidesPerView: 4,
+                spaceBetween: 50,
+            },
         },
     });
 </script>

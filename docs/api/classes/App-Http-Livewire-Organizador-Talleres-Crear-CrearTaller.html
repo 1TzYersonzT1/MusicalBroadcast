@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="../">
+    <link rel="icon" href="images/favicon.ico"/>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/base.css">
+            <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/template.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/css/all.min.css" integrity="sha256-ybRkN9dBjhcS2qrW1z+hfCxq+1aBdwyQM5wlQoQVt/0=" crossorigin="anonymous" />
+                <script src="https://cdn.jsdelivr.net/npm/fuse.js@3.4.6"></script>
+        <script src="https://cdn.jsdelivr.net/npm/css-vars-ponyfill@2"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/js/all.min.js" integrity="sha256-0vuk8LXoyrmCjp1f0O300qo1M75ZQyhH9X3J6d+scmk=" crossorigin="anonymous"></script>
+        <script src="js/search.js"></script>
+        <script defer src="js/searchIndex.js"></script>
+    </head>
+<body id="top">
+    <header class="phpdocumentor-header phpdocumentor-section">
+    <h1 class="phpdocumentor-title"><a href="" class="phpdocumentor-title__link">Documentation</a></h1>
+    <input class="phpdocumentor-header__menu-button" type="checkbox" id="menu-button" name="menu-button" />
+    <label class="phpdocumentor-header__menu-icon" for="menu-button">
+        <i class="fas fa-bars"></i>
+    </label>
+    <section data-search-form class="phpdocumentor-search">
+    <label>
+        <span class="visually-hidden">Search for</span>
+        <svg class="phpdocumentor-search__icon" width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="7.5" cy="7.5" r="6.5" stroke="currentColor" stroke-width="2"/>
+            <line x1="12.4892" y1="12.2727" x2="19.1559" y2="18.9393" stroke="currentColor" stroke-width="3"/>
+        </svg>
+        <input type="search" class="phpdocumentor-field phpdocumentor-search__field" placeholder="Loading .." disabled />
+    </label>
+</section>
+
+    <nav class="phpdocumentor-topnav">
+    <ul class="phpdocumentor-topnav__menu">
+        </ul>
+</nav>
+</header>
+
+    <main class="phpdocumentor">
+        <div class="phpdocumentor-section">
+            <input class="phpdocumentor-sidebar__menu-button" type="checkbox" id="sidebar-button" name="sidebar-button" />
+<label class="phpdocumentor-sidebar__menu-icon" for="sidebar-button">
+    Menu
+</label>
+<aside class="phpdocumentor-column -four phpdocumentor-sidebar">
+    
+    <section class="phpdocumentor-sidebar__category">
+        <h2 class="phpdocumentor-sidebar__category-header">Namespaces</h2>
+                                                <h4 class="phpdocumentor-sidebar__root-namespace"><a href="namespaces/app.html"><abbr title="\App">App</abbr></a></h4>
+                <ul class="phpdocumentor-list">
+                                            <li><a href="namespaces/app-http.html"><abbr title="\App\Http">Http</abbr></a></li>
+                                            <li><a href="namespaces/app-models.html"><abbr title="\App\Models">Models</abbr></a></li>
+                                    </ul>
+                        </section>
+
+    
+    <section class="phpdocumentor-sidebar__category">
+        <h2 class="phpdocumentor-sidebar__category-header">Reports</h2>
+                <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/deprecated.html">Deprecated</a></h3>
+        <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/errors.html">Errors</a></h3>
+        <h3 class="phpdocumentor-sidebar__root-package"><a href="reports/markers.html">Markers</a></h3>
+    </section>
+
+    <section class="phpdocumentor-sidebar__category">
+        <h2 class="phpdocumentor-sidebar__category-header">Indices</h2>
+        <h3 class="phpdocumentor-sidebar__root-package"><a href="indices/files.html">Files</a></h3>
+    </section>
+</aside>
+
+            <div class="phpdocumentor-column -eight phpdocumentor-content">
+                    <ul class="phpdocumentor-breadcrumbs">
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/app.html">App</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/app-http.html">Http</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/app-http-livewire.html">Livewire</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/app-http-livewire-organizador.html">Organizador</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/app-http-livewire-organizador-talleres.html">Talleres</a></li>
+            <li class="phpdocumentor-breadcrumb"><a href="namespaces/app-http-livewire-organizador-talleres-crear.html">Crear</a></li>
+    </ul>
+
+    <article class="phpdocumentor-element -class">
+        <h2 class="phpdocumentor-content__title">
+    CrearTaller
+
+        <span class="phpdocumentor-element__extends">
+        extends <abbr title="\Livewire\Component">Component</abbr>
+    </span>
+    
+    
+    
+            <span class="phpdocumentor-element__extends">
+            Uses
+                            <abbr title="\Livewire\WithFileUploads">WithFileUploads</abbr>                    </span>
+    </h2>
+
+        <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="app/Http/Livewire/Organizador/Talleres/Crear/CrearTaller.php"><a href="files/app-http-livewire-organizador-talleres-crear-creartaller.html"><abbr title="app/Http/Livewire/Organizador/Talleres/Crear/CrearTaller.php">CrearTaller.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">13</span>
+</aside>
+
+        
+
+
+
+
+
+
+
+
+<h3 id="toc">
+    Table of Contents
+    <a href="#toc" class="headerlink"><i class="fas fa-link"></i></a>
+</h3>
+
+<dl class="phpdocumentor-table-of-contents">
+                <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/App-Http-Livewire-Organizador-Talleres-Crear-CrearTaller.html#property_aforo">$aforo</a>
+    <span>
+                &nbsp;: mixed            </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/App-Http-Livewire-Organizador-Talleres-Crear-CrearTaller.html#property_caracteres_descripcion">$caracteres_descripcion</a>
+    <span>
+                &nbsp;: mixed            </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/App-Http-Livewire-Organizador-Talleres-Crear-CrearTaller.html#property_descripcion">$descripcion</a>
+    <span>
+                &nbsp;: mixed            </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/App-Http-Livewire-Organizador-Talleres-Crear-CrearTaller.html#property_fecha">$fecha</a>
+    <span>
+                &nbsp;: mixed            </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/App-Http-Livewire-Organizador-Talleres-Crear-CrearTaller.html#property_hora">$hora</a>
+    <span>
+                &nbsp;: mixed            </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/App-Http-Livewire-Organizador-Talleres-Crear-CrearTaller.html#property_hoy">$hoy</a>
+    <span>
+                &nbsp;: mixed            </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/App-Http-Livewire-Organizador-Talleres-Crear-CrearTaller.html#property_imagen">$imagen</a>
+    <span>
+                &nbsp;: mixed            </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/App-Http-Livewire-Organizador-Talleres-Crear-CrearTaller.html#property_lugar">$lugar</a>
+    <span>
+                &nbsp;: mixed            </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/App-Http-Livewire-Organizador-Talleres-Crear-CrearTaller.html#property_protocolos">$protocolos</a>
+    <span>
+                &nbsp;: mixed            </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/App-Http-Livewire-Organizador-Talleres-Crear-CrearTaller.html#property_requisitos">$requisitos</a>
+    <span>
+                &nbsp;: mixed            </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/App-Http-Livewire-Organizador-Talleres-Crear-CrearTaller.html#property_titulo">$titulo</a>
+    <span>
+                &nbsp;: mixed            </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -public">
+    <a href="classes/App-Http-Livewire-Organizador-Talleres-Crear-CrearTaller.html#property_user_rut">$user_rut</a>
+    <span>
+                &nbsp;: mixed            </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -protected">
+    <a href="classes/App-Http-Livewire-Organizador-Talleres-Crear-CrearTaller.html#property_listeners">$listeners</a>
+    <span>
+                &nbsp;: mixed            </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -property -protected">
+    <a href="classes/App-Http-Livewire-Organizador-Talleres-Crear-CrearTaller.html#property_rules">$rules</a>
+    <span>
+                &nbsp;: mixed            </span>
+</dt>
+<dd>Las reglas que aplican
+a los campos minimos obligatorios
+para organizar un nuevo taller</dd>
+
+                <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/App-Http-Livewire-Organizador-Talleres-Crear-CrearTaller.html#method_eliminarImagen">eliminarImagen()</a>
+    <span>
+                        &nbsp;: mixed    </span>
+</dt>
+<dd>Se encarga de eliminar la vista previa de la
+imagen</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/App-Http-Livewire-Organizador-Talleres-Crear-CrearTaller.html#method_mount">mount()</a>
+    <span>
+                        &nbsp;: mixed    </span>
+</dt>
+<dd>Se encarga de limitar el minimo de fecha
+al dia actual</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/App-Http-Livewire-Organizador-Talleres-Crear-CrearTaller.html#method_nuevoTallerConfirmado">nuevoTallerConfirmado()</a>
+    <span>
+                        &nbsp;: mixed    </span>
+</dt>
+<dd>Una vez que el organizador ha confirmado la accion
+almacena la imagen del taller y crea
+un taller en estado inactivo (0) junto a su solicitud
+en estado pendiente (0) finalmente envia
+una alerta de exito</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/App-Http-Livewire-Organizador-Talleres-Crear-CrearTaller.html#method_render">render()</a>
+    <span>
+                        &nbsp;: mixed    </span>
+</dt>
+<dd></dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/App-Http-Livewire-Organizador-Talleres-Crear-CrearTaller.html#method_updatedDescripcion">updatedDescripcion()</a>
+    <span>
+                        &nbsp;: mixed    </span>
+</dt>
+<dd>Cada vez que se actualiza el campo de descripcion se contabiliza
+la cantidad de caracteres para compararlos con el maximo de 255
+permitidos</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/App-Http-Livewire-Organizador-Talleres-Crear-CrearTaller.html#method_updatedImagen">updatedImagen()</a>
+    <span>
+                        &nbsp;: mixed    </span>
+</dt>
+<dd>Cada vez que se sube un archivo al campo imagen
+se valida que este sea solo de tipo imagen con un
+maximo de 1024kb</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/App-Http-Livewire-Organizador-Talleres-Crear-CrearTaller.html#method_updatedProtocolos">updatedProtocolos()</a>
+    <span>
+                        &nbsp;: mixed    </span>
+</dt>
+<dd>Esta function es emitida desde el componente Protcolos
+y trae consigo el arreglo de protocolos actualizado
+cada vez que se aniade o elimina un nuevo protocolo</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/App-Http-Livewire-Organizador-Talleres-Crear-CrearTaller.html#method_updatedRequisitos">updatedRequisitos()</a>
+    <span>
+                        &nbsp;: mixed    </span>
+</dt>
+<dd>Esta function es emitida desde el componente Requisitos
+y trae consigo el arreglo de requisitos actualizado
+cada vez que se aniade o elimina un nuevo requisito</dd>
+
+            <dt class="phpdocumentor-table-of-contents__entry -method -public">
+    <a href="classes/App-Http-Livewire-Organizador-Talleres-Crear-CrearTaller.html#method_validarNuevoTaller">validarNuevoTaller()</a>
+    <span>
+                        &nbsp;: mixed    </span>
+</dt>
+<dd>Verifica que todos los campos minimos
+hayan sido ingresados por el organizador
+si es asi envia una alerta para confirmar
+la accion</dd>
+
+        </dl>
+
+
+
+        
+
+        
+    <section class="phpdocumentor-properties">
+        <h3 class="phpdocumentor-elements__header" id="properties">
+            Properties
+            <a href="classes/App-Http-Livewire-Organizador-Talleres-Crear-CrearTaller.html#properties" class="headerlink"><i class="fas fa-link"></i></a>
+        </h3>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_aforo">
+        $aforo
+        <a href="classes/App-Http-Livewire-Organizador-Talleres-Crear-CrearTaller.html#property_aforo" class="headerlink"><i class="fas fa-link"></i></a>
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="app/Http/Livewire/Organizador/Talleres/Crear/CrearTaller.php"><a href="files/app-http-livewire-organizador-talleres-crear-creartaller.html"><abbr title="app/Http/Livewire/Organizador/Talleres/Crear/CrearTaller.php">CrearTaller.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">21</span>
+</aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">$aforo</span>
+    </code>
+
+    
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_caracteres_descripcion">
+        $caracteres_descripcion
+        <a href="classes/App-Http-Livewire-Organizador-Talleres-Crear-CrearTaller.html#property_caracteres_descripcion" class="headerlink"><i class="fas fa-link"></i></a>
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="app/Http/Livewire/Organizador/Talleres/Crear/CrearTaller.php"><a href="files/app-http-livewire-organizador-talleres-crear-creartaller.html"><abbr title="app/Http/Livewire/Organizador/Talleres/Crear/CrearTaller.php">CrearTaller.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">22</span>
+</aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">$caracteres_descripcion</span>
+     = <span class="phpdocumentor-signature__default-value">0</span></code>
+
+    
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_descripcion">
+        $descripcion
+        <a href="classes/App-Http-Livewire-Organizador-Talleres-Crear-CrearTaller.html#property_descripcion" class="headerlink"><i class="fas fa-link"></i></a>
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="app/Http/Livewire/Organizador/Talleres/Crear/CrearTaller.php"><a href="files/app-http-livewire-organizador-talleres-crear-creartaller.html"><abbr title="app/Http/Livewire/Organizador/Talleres/Crear/CrearTaller.php">CrearTaller.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">21</span>
+</aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">$descripcion</span>
+    </code>
+
+    
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_fecha">
+        $fecha
+        <a href="classes/App-Http-Livewire-Organizador-Talleres-Crear-CrearTaller.html#property_fecha" class="headerlink"><i class="fas fa-link"></i></a>
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="app/Http/Livewire/Organizador/Talleres/Crear/CrearTaller.php"><a href="files/app-http-livewire-organizador-talleres-crear-creartaller.html"><abbr title="app/Http/Livewire/Organizador/Talleres/Crear/CrearTaller.php">CrearTaller.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">21</span>
+</aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">$fecha</span>
+    </code>
+
+    
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_hora">
+        $hora
+        <a href="classes/App-Http-Livewire-Organizador-Talleres-Crear-CrearTaller.html#property_hora" class="headerlink"><i class="fas fa-link"></i></a>
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="app/Http/Livewire/Organizador/Talleres/Crear/CrearTaller.php"><a href="files/app-http-livewire-organizador-talleres-crear-creartaller.html"><abbr title="app/Http/Livewire/Organizador/Talleres/Crear/CrearTaller.php">CrearTaller.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">21</span>
+</aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">$hora</span>
+    </code>
+
+    
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_hoy">
+        $hoy
+        <a href="classes/App-Http-Livewire-Organizador-Talleres-Crear-CrearTaller.html#property_hoy" class="headerlink"><i class="fas fa-link"></i></a>
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="app/Http/Livewire/Organizador/Talleres/Crear/CrearTaller.php"><a href="files/app-http-livewire-organizador-talleres-crear-creartaller.html"><abbr title="app/Http/Livewire/Organizador/Talleres/Crear/CrearTaller.php">CrearTaller.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">21</span>
+</aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">$hoy</span>
+    </code>
+
+    
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_imagen">
+        $imagen
+        <a href="classes/App-Http-Livewire-Organizador-Talleres-Crear-CrearTaller.html#property_imagen" class="headerlink"><i class="fas fa-link"></i></a>
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="app/Http/Livewire/Organizador/Talleres/Crear/CrearTaller.php"><a href="files/app-http-livewire-organizador-talleres-crear-creartaller.html"><abbr title="app/Http/Livewire/Organizador/Talleres/Crear/CrearTaller.php">CrearTaller.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">21</span>
+</aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">$imagen</span>
+    </code>
+
+    
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_lugar">
+        $lugar
+        <a href="classes/App-Http-Livewire-Organizador-Talleres-Crear-CrearTaller.html#property_lugar" class="headerlink"><i class="fas fa-link"></i></a>
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="app/Http/Livewire/Organizador/Talleres/Crear/CrearTaller.php"><a href="files/app-http-livewire-organizador-talleres-crear-creartaller.html"><abbr title="app/Http/Livewire/Organizador/Talleres/Crear/CrearTaller.php">CrearTaller.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">21</span>
+</aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">$lugar</span>
+    </code>
+
+    
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_protocolos">
+        $protocolos
+        <a href="classes/App-Http-Livewire-Organizador-Talleres-Crear-CrearTaller.html#property_protocolos" class="headerlink"><i class="fas fa-link"></i></a>
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="app/Http/Livewire/Organizador/Talleres/Crear/CrearTaller.php"><a href="files/app-http-livewire-organizador-talleres-crear-creartaller.html"><abbr title="app/Http/Livewire/Organizador/Talleres/Crear/CrearTaller.php">CrearTaller.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">23</span>
+</aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">$protocolos</span>
+     = <span class="phpdocumentor-signature__default-value">[]</span></code>
+
+    
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_requisitos">
+        $requisitos
+        <a href="classes/App-Http-Livewire-Organizador-Talleres-Crear-CrearTaller.html#property_requisitos" class="headerlink"><i class="fas fa-link"></i></a>
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="app/Http/Livewire/Organizador/Talleres/Crear/CrearTaller.php"><a href="files/app-http-livewire-organizador-talleres-crear-creartaller.html"><abbr title="app/Http/Livewire/Organizador/Talleres/Crear/CrearTaller.php">CrearTaller.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">23</span>
+</aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">$requisitos</span>
+     = <span class="phpdocumentor-signature__default-value">[]</span></code>
+
+    
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_titulo">
+        $titulo
+        <a href="classes/App-Http-Livewire-Organizador-Talleres-Crear-CrearTaller.html#property_titulo" class="headerlink"><i class="fas fa-link"></i></a>
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="app/Http/Livewire/Organizador/Talleres/Crear/CrearTaller.php"><a href="files/app-http-livewire-organizador-talleres-crear-creartaller.html"><abbr title="app/Http/Livewire/Organizador/Talleres/Crear/CrearTaller.php">CrearTaller.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">21</span>
+</aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">$titulo</span>
+    </code>
+
+    
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_user_rut">
+        $user_rut
+        <a href="classes/App-Http-Livewire-Organizador-Talleres-Crear-CrearTaller.html#property_user_rut" class="headerlink"><i class="fas fa-link"></i></a>
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="app/Http/Livewire/Organizador/Talleres/Crear/CrearTaller.php"><a href="files/app-http-livewire-organizador-talleres-crear-creartaller.html"><abbr title="app/Http/Livewire/Organizador/Talleres/Crear/CrearTaller.php">CrearTaller.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">21</span>
+</aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">$user_rut</span>
+    </code>
+
+    
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -protected
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_listeners">
+        $listeners
+        <a href="classes/App-Http-Livewire-Organizador-Talleres-Crear-CrearTaller.html#property_listeners" class="headerlink"><i class="fas fa-link"></i></a>
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="app/Http/Livewire/Organizador/Talleres/Crear/CrearTaller.php"><a href="files/app-http-livewire-organizador-talleres-crear-creartaller.html"><abbr title="app/Http/Livewire/Organizador/Talleres/Crear/CrearTaller.php">CrearTaller.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">41</span>
+</aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">$listeners</span>
+     = <span class="phpdocumentor-signature__default-value">[&#039;updatedRequisitos&#039;, &#039;updatedProtocolos&#039;, &#039;nuevoTallerConfirmado&#039;]</span></code>
+
+    
+    
+
+</article>
+                    <article
+        class="
+            phpdocumentor-element
+            -property
+            -protected
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="property_rules">
+        $rules
+        <a href="classes/App-Http-Livewire-Organizador-Talleres-Crear-CrearTaller.html#property_rules" class="headerlink"><i class="fas fa-link"></i></a>
+        <span class="phpdocumentor-element__modifiers">
+                                </span>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="app/Http/Livewire/Organizador/Talleres/Crear/CrearTaller.php"><a href="files/app-http-livewire-organizador-talleres-crear-creartaller.html"><abbr title="app/Http/Livewire/Organizador/Talleres/Crear/CrearTaller.php">CrearTaller.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">30</span>
+</aside>
+
+        <p class="phpdocumentor-summary">Las reglas que aplican
+a los campos minimos obligatorios
+para organizar un nuevo taller</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">protected</span>
+        <span class="phpdocumentor-signature__type">mixed</span>
+    <span class="phpdocumentor-signature__name">$rules</span>
+     = <span class="phpdocumentor-signature__default-value">[&#039;titulo&#039; =&gt; [&#039;required&#039;, &#039;string&#039;, &#039;max:30&#039;], &#039;hora&#039; =&gt; [&#039;required&#039;, &#039;date_format:H:i&#039;], &#039;aforo&#039; =&gt; [&#039;required&#039;, &#039;integer&#039;], &#039;lugar&#039; =&gt; [&#039;required&#039;, &#039;string&#039;, &#039;max:55&#039;], &#039;descripcion&#039; =&gt; [&#039;required&#039;, &#039;string&#039;, &#039;max:255&#039;], &#039;imagen&#039; =&gt; &#039;required|image|mimes:jpeg,png,svg,jpg,gif|max:1024&#039;, &#039;protocolos&#039; =&gt; &#039;required|array|min:1&#039;, &#039;requisitos&#039; =&gt; &#039;required|array|min:1&#039;]</span></code>
+
+        <section class="phpdocumentor-description"></section>
+
+    
+
+</article>
+            </section>
+
+            <section class="phpdocumentor-methods">
+        <h3 class="phpdocumentor-elements__header" id="methods">
+            Methods
+            <a href="classes/App-Http-Livewire-Organizador-Talleres-Crear-CrearTaller.html#methods" class="headerlink"><i class="fas fa-link"></i></a>
+        </h3>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_eliminarImagen">
+        eliminarImagen()
+        <a href="classes/App-Http-Livewire-Organizador-Talleres-Crear-CrearTaller.html#method_eliminarImagen" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="app/Http/Livewire/Organizador/Talleres/Crear/CrearTaller.php"><a href="files/app-http-livewire-organizador-talleres-crear-creartaller.html"><abbr title="app/Http/Livewire/Organizador/Talleres/Crear/CrearTaller.php">CrearTaller.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">101</span>
+</aside>
+
+        <p class="phpdocumentor-summary">Se encarga de eliminar la vista previa de la
+imagen</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                <span class="phpdocumentor-signature__name">eliminarImagen</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+        <section class="phpdocumentor-description"></section>
+
+    
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">mixed</span>
+            &mdash;
+            <section class="phpdocumentor-description"></section>
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_mount">
+        mount()
+        <a href="classes/App-Http-Livewire-Organizador-Talleres-Crear-CrearTaller.html#method_mount" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="app/Http/Livewire/Organizador/Talleres/Crear/CrearTaller.php"><a href="files/app-http-livewire-organizador-talleres-crear-creartaller.html"><abbr title="app/Http/Livewire/Organizador/Talleres/Crear/CrearTaller.php">CrearTaller.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">51</span>
+</aside>
+
+        <p class="phpdocumentor-summary">Se encarga de limitar el minimo de fecha
+al dia actual</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                <span class="phpdocumentor-signature__name">mount</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+        <section class="phpdocumentor-description"></section>
+
+    
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">mixed</span>
+            &mdash;
+            <section class="phpdocumentor-description"></section>
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_nuevoTallerConfirmado">
+        nuevoTallerConfirmado()
+        <a href="classes/App-Http-Livewire-Organizador-Talleres-Crear-CrearTaller.html#method_nuevoTallerConfirmado" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="app/Http/Livewire/Organizador/Talleres/Crear/CrearTaller.php"><a href="files/app-http-livewire-organizador-talleres-crear-creartaller.html"><abbr title="app/Http/Livewire/Organizador/Talleres/Crear/CrearTaller.php">CrearTaller.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">125</span>
+</aside>
+
+        <p class="phpdocumentor-summary">Una vez que el organizador ha confirmado la accion
+almacena la imagen del taller y crea
+un taller en estado inactivo (0) junto a su solicitud
+en estado pendiente (0) finalmente envia
+una alerta de exito</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                <span class="phpdocumentor-signature__name">nuevoTallerConfirmado</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+        <section class="phpdocumentor-description"></section>
+
+    
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">mixed</span>
+            &mdash;
+            <section class="phpdocumentor-description"></section>
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_render">
+        render()
+        <a href="classes/App-Http-Livewire-Organizador-Talleres-Crear-CrearTaller.html#method_render" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="app/Http/Livewire/Organizador/Talleres/Crear/CrearTaller.php"><a href="files/app-http-livewire-organizador-talleres-crear-creartaller.html"><abbr title="app/Http/Livewire/Organizador/Talleres/Crear/CrearTaller.php">CrearTaller.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">150</span>
+</aside>
+
+    
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                <span class="phpdocumentor-signature__name">render</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+    
+    
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">mixed</span>
+            &mdash;
+            <section class="phpdocumentor-description"></section>
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_updatedDescripcion">
+        updatedDescripcion()
+        <a href="classes/App-Http-Livewire-Organizador-Talleres-Crear-CrearTaller.html#method_updatedDescripcion" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="app/Http/Livewire/Organizador/Talleres/Crear/CrearTaller.php"><a href="files/app-http-livewire-organizador-talleres-crear-creartaller.html"><abbr title="app/Http/Livewire/Organizador/Talleres/Crear/CrearTaller.php">CrearTaller.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">60</span>
+</aside>
+
+        <p class="phpdocumentor-summary">Cada vez que se actualiza el campo de descripcion se contabiliza
+la cantidad de caracteres para compararlos con el maximo de 255
+permitidos</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                <span class="phpdocumentor-signature__name">updatedDescripcion</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+        <section class="phpdocumentor-description"></section>
+
+    
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">mixed</span>
+            &mdash;
+            <section class="phpdocumentor-description"></section>
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_updatedImagen">
+        updatedImagen()
+        <a href="classes/App-Http-Livewire-Organizador-Talleres-Crear-CrearTaller.html#method_updatedImagen" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="app/Http/Livewire/Organizador/Talleres/Crear/CrearTaller.php"><a href="files/app-http-livewire-organizador-talleres-crear-creartaller.html"><abbr title="app/Http/Livewire/Organizador/Talleres/Crear/CrearTaller.php">CrearTaller.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">90</span>
+</aside>
+
+        <p class="phpdocumentor-summary">Cada vez que se sube un archivo al campo imagen
+se valida que este sea solo de tipo imagen con un
+maximo de 1024kb</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                <span class="phpdocumentor-signature__name">updatedImagen</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+        <section class="phpdocumentor-description"></section>
+
+    
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">mixed</span>
+            &mdash;
+            <section class="phpdocumentor-description"></section>
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_updatedProtocolos">
+        updatedProtocolos()
+        <a href="classes/App-Http-Livewire-Organizador-Talleres-Crear-CrearTaller.html#method_updatedProtocolos" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="app/Http/Livewire/Organizador/Talleres/Crear/CrearTaller.php"><a href="files/app-http-livewire-organizador-talleres-crear-creartaller.html"><abbr title="app/Http/Livewire/Organizador/Talleres/Crear/CrearTaller.php">CrearTaller.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">80</span>
+</aside>
+
+        <p class="phpdocumentor-summary">Esta function es emitida desde el componente Protcolos
+y trae consigo el arreglo de protocolos actualizado
+cada vez que se aniade o elimina un nuevo protocolo</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                <span class="phpdocumentor-signature__name">updatedProtocolos</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$value</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+        <section class="phpdocumentor-description"></section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$value</span>
+                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">mixed</span>
+            &mdash;
+            <section class="phpdocumentor-description"></section>
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_updatedRequisitos">
+        updatedRequisitos()
+        <a href="classes/App-Http-Livewire-Organizador-Talleres-Crear-CrearTaller.html#method_updatedRequisitos" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="app/Http/Livewire/Organizador/Talleres/Crear/CrearTaller.php"><a href="files/app-http-livewire-organizador-talleres-crear-creartaller.html"><abbr title="app/Http/Livewire/Organizador/Talleres/Crear/CrearTaller.php">CrearTaller.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">70</span>
+</aside>
+
+        <p class="phpdocumentor-summary">Esta function es emitida desde el componente Requisitos
+y trae consigo el arreglo de requisitos actualizado
+cada vez que se aniade o elimina un nuevo requisito</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                <span class="phpdocumentor-signature__name">updatedRequisitos</span><span>(</span><span class="phpdocumentor-signature__argument"><span class="phpdocumentor-signature__argument__return-type">mixed&nbsp;</span><span class="phpdocumentor-signature__argument__name">$value</span></span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+        <section class="phpdocumentor-description"></section>
+
+        <h5 class="phpdocumentor-argument-list__heading">Parameters</h5>
+    <dl class="phpdocumentor-argument-list">
+                    <dt class="phpdocumentor-argument-list__entry">
+                <span class="phpdocumentor-signature__argument__name">$value</span>
+                : <span class="phpdocumentor-signature__argument__return-type">mixed</span>
+                            </dt>
+            <dd class="phpdocumentor-argument-list__definition">
+                
+            </dd>
+            </dl>
+
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">mixed</span>
+            &mdash;
+            <section class="phpdocumentor-description"></section>
+
+    
+</article>
+                    <article
+        class="phpdocumentor-element
+            -method
+            -public
+                                                        "
+>
+    <h4 class="phpdocumentor-element__name" id="method_validarNuevoTaller">
+        validarNuevoTaller()
+        <a href="classes/App-Http-Livewire-Organizador-Talleres-Crear-CrearTaller.html#method_validarNuevoTaller" class="headerlink"><i class="fas fa-link"></i></a>
+    </h4>
+    <aside class="phpdocumentor-element-found-in">
+    <abbr class="phpdocumentor-element-found-in__file" title="app/Http/Livewire/Organizador/Talleres/Crear/CrearTaller.php"><a href="files/app-http-livewire-organizador-talleres-crear-creartaller.html"><abbr title="app/Http/Livewire/Organizador/Talleres/Crear/CrearTaller.php">CrearTaller.php</abbr></a></abbr>
+    :
+    <span class="phpdocumentor-element-found-in__line">112</span>
+</aside>
+
+        <p class="phpdocumentor-summary">Verifica que todos los campos minimos
+hayan sido ingresados por el organizador
+si es asi envia una alerta para confirmar
+la accion</p>
+
+    <code class="phpdocumentor-code phpdocumentor-signature ">
+    <span class="phpdocumentor-signature__visibility">public</span>
+                <span class="phpdocumentor-signature__name">validarNuevoTaller</span><span>(</span><span>)</span><span> : </span><span class="phpdocumentor-signature__response_type">mixed</span></code>
+
+        <section class="phpdocumentor-description"></section>
+
+    
+    
+
+        <h5 class="phpdocumentor-return-value__heading">Return values</h5>
+    <span class="phpdocumentor-signature__response_type">mixed</span>
+            &mdash;
+            <section class="phpdocumentor-description"></section>
+
+    
+</article>
+            </section>
+
+    </article>
+                <section data-search-results class="phpdocumentor-search-results phpdocumentor-search-results--hidden">
+    <section class="phpdocumentor-search-results__dialog">
+        <header class="phpdocumentor-search-results__header">
+            <h2 class="phpdocumentor-search-results__title">Search results</h2>
+            <button class="phpdocumentor-search-results__close"><i class="fas fa-times"></i></button>
+        </header>
+        <section class="phpdocumentor-search-results__body">
+            <ul class="phpdocumentor-search-results__entries"></ul>
+        </section>
+    </section>
+</section>
+            </div>
+        </div>
+        <a href="classes/App-Http-Livewire-Organizador-Talleres-Crear-CrearTaller.html#top" class="phpdocumentor-back-to-top"><i class="fas fa-chevron-circle-up"></i></a>
+
+    </main>
+
+    <script>
+        cssVars({});
+    </script>
+</body>
+</html>

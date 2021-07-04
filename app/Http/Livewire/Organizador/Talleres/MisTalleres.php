@@ -26,7 +26,7 @@ class MisTalleres extends Component
     /**
      * Selecciona la hoja de vida del organizador autenticado
      * y ademas seleccionas los talleres que este tiene asociado
-     * basando en los siguientes estados de solicitud
+     * basado en los siguientes estados de solicitud
      * 0 - Pendiente
      * 1 - Revisada
      * 2 - (No aplica reservada para futura implementacion)

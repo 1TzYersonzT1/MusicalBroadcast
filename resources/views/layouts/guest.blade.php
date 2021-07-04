@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'MusicBroadcast') }}</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;600&display=swap" rel="stylesheet" />
@@ -21,12 +21,12 @@
     @livewireStyles
 </head>
 
-<body  class="relative bg-fixed bg-center bg-cover bg-no-repeat"
-style="background-image:linear-gradient(rgba(135, 80, 156, 0.9), rgba(135, 80, 156, 0.9)), url('Fondo.png')">
+<body  class="bg-fixed bg-center bg-cover bg-no-repeat"
+style="background-image:linear-gradient(rgba(0, 0, 0, 0), rgba(0, 52, 89, 0.9)), url('Fondo.png')">
     <div 
-        class="font-sans bg-gray-900 antialiased">
+        class="font-sans antialiased">
         @livewire('navigation-menu')
-        {{ $slot }}
+        @yield("contenido")
         @include("footer")
     </div>
 

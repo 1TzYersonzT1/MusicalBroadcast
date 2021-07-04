@@ -6,7 +6,7 @@
     @if (count($artistasPendientes) > 0)
         <div class="w-full">
             @foreach ($artistasPendientes as $artistaPendiente)
-                <div class="bg-gray-200 px-4 py-6 text-primary my-4 lg:w-5/6">
+                <div class="bg-gray-200 px-4 py-6 text-primary my-4 lg:w-full">
 
                     <div class="flex justify-between items-center mb-5">
                         <div>
@@ -16,8 +16,9 @@
                         </div>
 
                         @if ($artistaPendiente->estado == 0)
-                            <div class="bg-yellow-300 rounded-full w-32 py-1 text-center"><span
-                                    class="text-purple-600">Pendiente</span> </div>
+                            <div class="bg-yellow-300 rounded-full w-32 py-1 text-center">
+                                <span class="text-purple-600">Pendiente</span>
+                            </div>
                         @endif
 
                         @if ($artistaPendiente->estado == 1)
@@ -41,7 +42,7 @@
 
                     <div class="grid grid-rows-3 grid-cols-12 gap-4">
                         <div class="lg:row-span-2 row-span-1 lg:col-span-4 col-span-12">
-                            <img src="{{ asset('storage/' . $artistaPendiente->artista->imagen) }}"
+                            <img src="{{ 'https://musicalimages.blob.core.windows.net/images/' . $artistaPendiente->artista->imagen }}"
                                 class="h-full w-full" />
                         </div>
 
@@ -115,24 +116,49 @@
                             </div>
                         </div>
                         @if ($artistaPendiente->artista->tipo_artista == 2)
-                        <div class="lg:col-span-4 col-span-12 h-2">
-                            <span class="block mb-2 font-bold">Integrantes</span>
-                            
-                                <div class="swiper-container swiperIntegrantes">
+                            <div class="lg:col-span-4 col-span-12 h-2 items-center">
+                                <span class="block mb-2 font-bold">Integrantes</span>
+
+                                <div class="swiper-container swiperIntegrantes ">
                                     <div class="swiper-wrapper">
                                         @foreach ($artistaPendiente->artista->integrantes as $integrante)
-                                            <div class="swiper-slide flex flex-col items-center">
-                                                <img src="{{ asset('storage/' . $integrante->imagen) }}"
-                                                    class="h-12 w-12 rounded-full" />
-                                                <span>{{ $integrante->nombre }} {{ $integrante->apellidos }}
-                                                </span>
+                                            <div class="swiper-slide flex flex-col items-center "
+                                                x-data="{ open: false }">
+
+                                                <div x-on:mouseover="open = true" x-on:mouseout="open = false">
+                                                    <img src="{{ 'https://musicalimages.blob.core.windows.net/images/' . $integrante->imagen }}"
+                                                        class="h-12 w-12 rounded-full" />
+                                                </div>
+                                                <div>
+                                                    <span>{{ $integrante->nombre }}</span>
+                                                </div>
+                                                <div>
+                                                    <span>{{ $integrante->apellidos }}</span>
+                                                </div>
+                                                <div x-show="open"
+                                                    class="bg-white -mt-14 p-4  z-50 text-primary lg:w-34"
+                                                    x-transition:enter="transition ease-out duration-300"
+                                                    x-transition:enter-start="opacity-0 transform scale-90"
+                                                    x-transition:enter-end="opacity-100 transform scale-100"
+                                                    x-transition:leave="transition ease-in duration-300"
+                                                    x-transition:leave-start="opacity-100 transform scale-100"
+                                                    x-transition:leave-end="opacity-0 transform scale-90">
+
+                                                    <div class="mb-5 flex flex-col">
+                                                        <span class="font-bold">Instrumentos</span>
+                                                        @foreach ($integrante->instrumentos as $instrumento)
+                                                            <span>{{ $instrumento->INST_Nombre }}</span>
+                                                        @endforeach
+                                                    </div>
+                                                </div>
+
                                             </div>
                                         @endforeach
                                     </div>
                                 </div>
                                 <div class="swiper-pagination-integrantes"></div>
-               
-                        </div>
+                            </div>
+
                         @endif
 
                         <div class="lg:col-span-4 col-span-12 row-span-2">
@@ -142,7 +168,7 @@
                                     @foreach ($artistaPendiente->artista->albumes as $album)
                                         <div class="swiper-slide flex flex-col items-center">
 
-                                            <img src="{{ asset('storage/' . $album->imagen) }}"
+                                            <img src="{{ 'https://musicalimages.blob.core.windows.net/images/' . $album->imagen }}"
                                                 class="h-12 w-12 rounded-full" />
                                             <span>{{ $album->ALB_Nombre }}</span>
 
@@ -181,7 +207,7 @@
                                     </a>
                                 @endif
                             </div>
-                            <div class="flex mt-2">
+                            <div class="flex mt-2 gap-5 lg:flex-row flex-col">
                                 @if ($artistaPendiente->artista->spotify != '')
                                     <iframe
                                         src="https://open.spotify.com/follow/1/?uri=spotify:artist:{{ $artistaPendiente->artista->spotify }}&size=detail&theme=light&show-count=0"
@@ -190,7 +216,7 @@
                                 @endif
 
                                 @if ($artistaPendiente->artista->youtube != '')
-                                    <div class="g-ytsubscribe"
+                                    <div class="g-ytsubscribe "
                                         data-channelid="{{ $artistaPendiente->artista->youtube }}" data-layout="full"
                                         data-count="hidden">
                                     </div>
@@ -311,7 +337,8 @@
     });
 
     var swiper = new Swiper('.swiperIntegrantes', {
-        slidesPerView: 2,
+        effect: "coverflow",
+        slidesPerView: "auto",
         spaceBetween: 10,
         pagination: {
             el: ".swiper-pagination-integrantes",

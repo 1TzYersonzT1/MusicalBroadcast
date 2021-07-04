@@ -86,7 +86,7 @@
 
                 @else
                     @if(~$taller->imagen)
-                        <img src="{{ asset('storage/'.$taller->imagen) }}" class="h-48 w-80"/>
+                        <img src="{{ 'https://musicalimages.blob.core.windows.net/images/' . $taller->imagen }}" class="h-48 w-80"/>
                     @else
                         @if ($nuevaImagen )
                         <div class="mt-3"> 

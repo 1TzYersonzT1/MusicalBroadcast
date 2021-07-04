@@ -39,10 +39,4 @@ class Taller extends Model
     public function getTALProtocoloAttribute($value) {
         return explode(", ", $value);
     }
-
-    public function getImagenAttribute($value) {
-        $url = explode("/", $value);
-        unset($url[array_search("storage", $url)]);
-        return implode("/", $url);
-    }
 }

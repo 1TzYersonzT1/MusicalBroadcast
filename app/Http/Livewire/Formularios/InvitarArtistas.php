@@ -15,6 +15,9 @@ class InvitarArtistas extends Component
         $this->resultados = [];
     }
 
+    /**
+     * 
+     */
     public function updated()
     {
         foreach ($this->artistasSeleccionados as $index => $artistaSeleccionado) {
@@ -24,6 +27,9 @@ class InvitarArtistas extends Component
         }
     }
 
+    /**
+     * 
+     */
     public function updatedNombreArtista()
     {
         if ($this->nombreArtista != '') {
@@ -33,6 +39,9 @@ class InvitarArtistas extends Component
         $this->artistasSeleccionados = [];
     }
 
+    /**
+     * 
+     */
     public function updatedArtistasSeleccionados()
     {
         $this->emitTo('evento.evento-preview', 'updatedArtistasSeleccionados', $this->artistasSeleccionados);

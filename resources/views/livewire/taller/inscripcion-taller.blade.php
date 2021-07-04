@@ -2,7 +2,7 @@
     <div class="flex flex-col items-center justify-center mb-10">
         <span class="text-2xl text-white mb-4">¿Estás interesado/a?</span>
         <button data-fancybox data-src="#formulario-taller"
-            class="bg-gradient-to-tr from-white via-black to-primary px-5 py-2 hover:bg-gradient-to-b hover:from-primary hover:via-black hover:to-white">Participar</button>
+            class="rounded-lg bg-gradient-to-tr from-white via-black to-primary px-5 py-2 hover:bg-gradient-to-b hover:from-primary hover:via-black hover:to-white">Participar</button>
     </div>
     <div id="formulario-taller" class="hidden formulario-taller">
 
@@ -18,6 +18,7 @@
                 <div class="flex flex-col">
                     <label for="rut">Rut</label>
                     <input type="text" wire:model="rut" maxlength="9" class="rounded-full" />
+                    <span>Ejemplo: 123456789 (Sin puntos, ni guión)</span>
                 </div>
 
                 <div class="flex flex-col">
@@ -38,7 +39,7 @@
                 <div class="flex flex-col">
                     <label for="telefono">Teléfono</label>
                     <input id="telefono" type="tel" wire:model="telefono" pattern="[0-9]{9}"
-                        class="rounded-full w-full" />
+                        class="rounded-full w-full" maxlength="9" />
                     <span>Ejemplo: 912345678</span>
                 </div>
             </div>

@@ -6,6 +6,11 @@ use Livewire\Component;
 
 class Cancion extends Component
 {
+    /**
+     * Es utilizado para bindear la informacion
+     * de cada cancion que pertenece a un album
+     * en particular
+     */
     public $cancion;
 
     public function render()
