@@ -67,9 +67,13 @@ class ModificarArtista extends Component
             abort(403);
         }
 
+        $generos_artista = [];
+
         foreach ($this->artista->estilos as $estilo) {
             $generos_artista[] = $estilo->genero_id;
         }
+
+        $this->limpiarURL();
 
         $this->generos = Genero::all();
         $this->generos_actuales = Genero::whereIn('id', $generos_artista)->get();

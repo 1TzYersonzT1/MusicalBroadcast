@@ -12,12 +12,13 @@ class Artista extends Model
     protected $table = 'artista';
     public $timestamps = false;
 
-    protected $guarded= [];
+    protected $guarded = [];
 
     /**
      * Corresponde a la relacion entre estilos y artista
      */
-    public function estilos() {
+    public function estilos()
+    {
         return $this->belongsToMany(Estilo::class, 'artista_estilo', 'artista_id', 'estilo_id');
     }
 
@@ -25,7 +26,8 @@ class Artista extends Model
      * Corresponde a la relacion entre artista y los eventos
      * a los cuales puede asistir
      */
-    public function eventos() {
+    public function eventos()
+    {
         return $this->belongsToMany(Evento::class, "artista_evento", "artista_id", "evento_id");
     }
 
@@ -33,7 +35,8 @@ class Artista extends Model
      * Corresponde a la relacion entre artista y los albumes
      * que tiene creados
      */
-    public function albumes() {
+    public function albumes()
+    {
         return $this->hasMany(Album::class, "artista_id", "id");
     }
 
@@ -41,7 +44,8 @@ class Artista extends Model
      * Corresponde a la relacion entre artista y los integrantes
      * que tiene
      */
-    public function integrantes() {
+    public function integrantes()
+    {
         return $this->hasMany(Integrante::class, "artista_id");
     }
 
@@ -49,7 +53,8 @@ class Artista extends Model
      * Corresponde a la relacion entre artista y el usuario
      * que lo representa
      */
-    public function representante() {
+    public function representante()
+    {
         return $this->belongsTo(User::class, 'user_rut');
     }
 
@@ -57,7 +62,8 @@ class Artista extends Model
      * Corresponde a la relacion entre artista y la solicitud
      * que puede tener en determinado momento
      */
-    public function solicitud() {
+    public function solicitud()
+    {
         return $this->hasOne(SolicitudArtista::class, 'artista_id');
     }
 
@@ -65,15 +71,27 @@ class Artista extends Model
      * Adjunta el cuerpo predeterminado de instagram
      * al usuario
      */
-    public function getInstagramAttribute($value) {
+    public function getInstagramAttribute($value)
+    {
         return "https://www.instagram.com" . $value;
     }
 
-    public function getFacebookAttribute($value) {
+    /**
+     * Adjunta el cuerpo predeterminado de facebook
+     * al usuario
+     */
+    public function getFacebookAttribute($value)
+    {
         return "https://www.facebook.com" . $value;
     }
 
-    public function getSpotifyAttribute($value) {
+    /**
+     * Adjunta el cuerpo predeterminado de spotify
+     * al usuario
+     */
+    public function getSpotifyAttribute($value)
+    {
         return "https://open.spotify.com/artist/" . $value;
     }
+
 }

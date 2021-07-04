@@ -16,7 +16,7 @@
                 <div class="bg-black bg-opacity-20 px-2 py-1 text-center mt-5">
                     <span class="mb-3 text-4xl font-bold">Tus generos</span>
                 </div>
-
+                @if(count($generos_actuales) > 0)
                 <div class="flex justify-center mt-1">
                     @foreach ($generos_actuales as $index => $genero)
                         <div>
@@ -31,6 +31,7 @@
                         </div>
                     @endforeach
                 </div>
+                @endif
 
                 <div class="mt-4">
                     <span class="font-bold text-2xl">Tus estilos</span>
