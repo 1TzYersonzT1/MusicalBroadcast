@@ -70,13 +70,18 @@ class ModificarArtista extends Component
         $generos_artista = [];
 
         foreach ($this->artista->estilos as $estilo) {
-            $generos_artista[] = $estilo->genero_id;
+            $this->generos_actuales[] = Genero::find($estilo->genero_id);
         }
 
-        $this->limpiarURL();
+        $this->artista->spotify=($this->artista->spotify != null)?'https://open.spotify.com/artist/'.$this->artista->spotify:'';
+        $this->artista->facebook=($this->artista->facebook != null)?'https://www.facebook.com'.$this->artista->facebook:'';
+        $this->artista->instagram=($this->artista->instagram != null)?'https://www.instagram.com'.$this->artista->instagram:'';
+        $this->artista->twitter=($this->artista->twitter != null)?'https://www.twitter.com'.$this->artista->twitter:'';
+        
 
-        $this->generos = Genero::all();
-        $this->generos_actuales = Genero::whereIn('id', $generos_artista)->get();
+
+        /**$this->generos = Genero::all();**/
+        /**$this->generos_actuales = Genero::whereIn($generos_artista)->get();**/
         $this->integrantes = $this->artista->integrantes;
         $this->caracteres_biografia = strlen($this->artista->biografia);
     }
@@ -218,9 +223,9 @@ class ModificarArtista extends Component
         ]);
 
         $this->artista->instagram = preg_replace('/https:\/\/www.instagram.com/', '', $this->artista->instagram);
-        $this->artista->facebook = preg_replace('/https:\/\/www.facebook.com/', '',  $this->artista->facebook);
-        $this->artista->twitter = preg_replace('/https:\/\/twitter.com/', '',  $this->artista->twitter);
-        $this->artista->spotify = preg_replace('/https:\/\/open.spotify.com\/artist\//', '',  $this->artista->spotify);
+        $this->artista->twitter = preg_replace('/https:\/\/twitter.com/', '', $this->artista->twitter);
+        $this->artista->facebook = preg_replace('/https:\/\/www.facebook.com/', '', $this->artista->facebook);
+        $this->artista->spotify = preg_replace('/https:\/\/open.spotify.com\/artist\//', '', $this->artista->spotify);
     }
 
     public function render()

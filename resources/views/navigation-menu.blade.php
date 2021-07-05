@@ -284,7 +284,7 @@
                 @endguest
 
                 @auth
-                <div class="ml-3">
+                    <div class="ml-3">
                         <div class="relative w-48" x-data="{open:false}">
                             <div>
                                 <span class="inline-flex rounded-md">
@@ -292,8 +292,8 @@
                                         class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-gray-900 hover:text-gray-200 focus:outline-none transition">
                                         {{ Auth::user()->nombre }} {{ Auth::user()->apellidos }}
 
-                                        <svg @click="open=!open" class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 20 20" fill="currentColor">
+                                        <svg @click="open=!open" class="ml-2 -mr-0.5 h-4 w-4"
+                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                             <path fill-rule="evenodd"
                                                 d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
                                                 clip-rule="evenodd" />
@@ -331,7 +331,7 @@
                                 </form>
                             </div>
                         </div>
-                </div>
+                    </div>
                 @endauth
             </div>
 
@@ -435,6 +435,12 @@
 
                         </div>
                     </div>
+                @elsecan('organizar')
+                    <div class="pt-2 pb-3 space-y-1">
+                        <x-jet-responsive-nav-link href="{{ route('artistas.index') }}">
+                            <span class="text-white flex justify-center">{{ __('Artistas') }}</span>
+                        </x-jet-responsive-nav-link>
+                    </div>
                 @endcan
             </div>
         @endauth
@@ -514,6 +520,13 @@
                             </div>
                         </div>
                     </div>
+                @elsecan('representar')<div class="pt-2 pb-3 space-y-1">
+
+                        <x-jet-responsive-nav-link href="{{ route('talleres.index') }}">
+                            <span class="text-white flex justify-center">{{ __('Talleres') }}</span>
+                        </x-jet-responsive-nav-link>
+                    </div>
+
                 @endcan
             </div>
         @endauth
@@ -597,6 +610,12 @@
                                 </x-jet-responsive-nav-link>
                             </div>
                         </div>
+                    </div>
+                @elsecan('representar')<div class="pt-2 pb-3 space-y-1">
+
+                        <x-jet-responsive-nav-link href="{{ route('eventos.index') }}">
+                            <span class="text-white flex justify-center">{{ __('Eventos') }}</span>
+                        </x-jet-responsive-nav-link>
                     </div>
                 @endcan
             </div>
