@@ -62,7 +62,7 @@
                 @else
                     @if ($imagenAlbum)
                         <div class="flex mt-4">
-                            <img src="{{ $imagenAlbum->temporaryUrl() }}" class="h-32 w-32 rounded-full" />
+                            <img src="{{ 'https://musicalimages.blob.core.windows.net/images/' . $url }}" class="h-32 w-32 rounded-full" />
                             <svg wire:click="eliminarImagenAlbum" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"
                                 fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -83,6 +83,11 @@
                         @enderror
                     @endif
                 @enderror
+                <div class="flex flex-col lg:justify-between mb-3">
+                    <div wire:loading wire:target="imagenAlbum" class="bg-blue-100 w-64 text-blue-700 px-4" role="alert">
+                        <p class="font-bold  py-1">Cargando imagen</p>
+                    </div>
+                </div>
             </div>
 
             <div class="mb-5 flex flex-col">

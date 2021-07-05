@@ -8,6 +8,7 @@ use App\Models\Album;
 use App\Models\Artista;
 use App\Models\Integrante;
 use App\Models\SolicitudArtista;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -16,7 +17,7 @@ class CrearArtista extends Component
 
     use WithFileUploads;
 
-    public $nombreArtista, $imagenArtista, $tipoArtista, $instagram, $facebook, $twitter, $spotify, $youtube,
+    public $nombreArtista, $imagenArtista, $url, $tipoArtista, $instagram, $facebook, $twitter, $spotify, $youtube,
         $biografia, $caracteres_biografia = 0;
     public $generos, $generosSeleccionados = [], $integrantes = [];
     public $estilos = [], $estilosSeleccionados = [];
@@ -60,7 +61,8 @@ class CrearArtista extends Component
     }
 
 
-    public function nombreConfirmado() {
+    public function nombreConfirmado()
+    {
         $this->nombreConfirmado = 1;
         $this->dispatchBrowserEvent("onContentChanged");
     }
@@ -121,6 +123,28 @@ class CrearArtista extends Component
             }
         }
     }
+
+    public function updatedImagenArtista()
+    {
+        $this->validate([
+            'imagenArtista' => 'image|mimes:svg,png,jpeg,jpg,gif|max:3000',
+        ]);
+        $this->url = $this->imagenArtista->store("livewire-tmp", 'azure');
+    }
+
+
+    /**
+     * Elimina la vista previa de la imagen
+     * del artista
+     */
+    public function eliminarImagenArtista()
+    {
+        $disk = Storage::disk("azure");
+        $disk->delete($this->url);
+        $this->imagenArtista = '';
+    }
+
+
 
     /**
      * Esta function es emitida desde el componente
@@ -219,15 +243,6 @@ class CrearArtista extends Component
     }
 
     /**
-     * Elimina la vista previa de la imagen
-     * del artista
-     */
-    public function eliminarImagenArtista()
-    {
-        $this->imagenArtista = '';
-    }
-
-    /**
      * Verifica que las URL cumplan
      * un cuerpo preestablecido
      */
@@ -244,7 +259,6 @@ class CrearArtista extends Component
         $this->facebook = preg_replace('/https:\/\/www.facebook.com/', '', $this->facebook);
         $this->spotify = preg_replace('/https:\/\/open.spotify.com\/artist\//', '', $this->spotify);
         $this->twitter = preg_replace('/https:\/\/twitter.com/', '', $this->twitter);
-        
     }
 
     public function render()

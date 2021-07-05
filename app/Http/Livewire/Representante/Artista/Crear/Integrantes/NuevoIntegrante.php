@@ -14,7 +14,7 @@ class NuevoIntegrante extends Component
     use WithFileUploads;
 
     public $integrantes = [], $rutIntegrante, $nombreIntegrante,
-        $apellidosIntegrante, $imagenIntegrante, $instrumentos = [], $instrumentosSeleccionados = [];
+        $apellidosIntegrante, $imagenIntegrante, $url, $instrumentos = [], $instrumentosSeleccionados = [];
 
     public $nombreArtista;
 
@@ -62,6 +62,8 @@ class NuevoIntegrante extends Component
         $this->validate([
             "imagenIntegrante" => 'image|mimes:jpeg,jpg,png,svg,gif|max:1024',
         ]);
+
+        $this->url = $this->imagenIntegrante->store("livewire-tmp", "azure");
     }
 
     /**
@@ -71,6 +73,8 @@ class NuevoIntegrante extends Component
      */
     public function eliminarImagenIntegrante()
     {
+        $disk = Storage::disk("azure");
+        $disk->delete($this->url);
         $this->imagenIntegrante = '';
     }
 

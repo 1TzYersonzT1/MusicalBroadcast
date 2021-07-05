@@ -12,7 +12,7 @@ class ModificarEvento extends Component
 
     use WithFileUploads;
 
-    public $evento, $nuevaImagen, $hoy,  $caracteres_descripcion = 0;
+    public $evento, $nuevaImagen, $url, $hoy,  $caracteres_descripcion = 0;
 
     /**
      * Valida si el organizador del evento esta indicando
@@ -56,7 +56,33 @@ class ModificarEvento extends Component
         $this->validate([
             "nuevaImagen" => 'image|mimes:jpeg,jpg,png,gif,svg|max:1024',
         ]);
+
+        $this->url = $this->nuevaImagen->store("livewire-tmp", "azure");
     }
+
+    
+    public function eliminarNuevaImagen()
+    {
+        $disk = Storage::disk("azure");
+        $disk->delete($this->url);
+        $this->nuevaImagen = '';
+    }
+
+
+    /**
+     * Si el usuario decide eliminar la imagen 
+     * actual que se encuentra almacenada en la base
+     * de datos se ejecuta esta function
+     */
+    public function eliminarImagen()
+    {
+        $disk = Storage::disk("azure");
+        $disk->delete($this->evento->imagen);
+        $this->evento->imagen = '';
+        $this->evento->save();
+        $this->nuevaImagen =  null;
+    }
+
 
     /**
      * Cada vez que el organizador modifica la descripcion del evento
@@ -95,7 +121,7 @@ class ModificarEvento extends Component
         if ($this->nuevaImagen) {
             $disk = Storage::disk("azure");
             $disk->delete($evento->imagen);
-            $nuevaImagen = $this->nuevaImagen->store("/eventos/organizador/" . auth()->user()->rut . '/' .$evento->EVE_Nombre, 'azure');
+            $nuevaImagen = $this->nuevaImagen->store("/eventos/organizador/" . auth()->user()->rut . '/' . $evento->EVE_Nombre, 'azure');
             $evento->imagen =  $nuevaImagen;
         }
 

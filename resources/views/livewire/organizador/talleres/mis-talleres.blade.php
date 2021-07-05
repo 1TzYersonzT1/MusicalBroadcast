@@ -41,7 +41,7 @@
                 <span class="text-4xl block mb-5">Solicitudes modificadas</span>
             </div>
             @if (count($talleresModificados) > 0)
-                <div class="swiper-container swiperRevisadas">
+                <div class="swiper-container swiperModificadas">
                     <div class="swiper-wrapper">
                         @foreach ($talleresModificados as $tallerModificado)
                             <livewire:organizador.talleres.taller :taller='$tallerModificado'
@@ -100,20 +100,44 @@
 
 <script>
     var swiper = new Swiper(".swiperPendientes", {
-        slidesPerView: 3,
+        slidesPerView: 'auto',
         spaceBetween: 30,
         pagination: {
             el: ".swiper-pagination",
             clickable: true,
         },
+        breakpoints: {
+            1024: {
+                slidesPerView: 3,
+            }
+        }
     });
 
     var swiper = new Swiper(".swiperRevisadas", {
-        slidesPerView: 3,
+        slidesPerView: 'auto',
         spaceBetween: 30,
         pagination: {
             el: ".swiper-pagination",
             clickable: true,
         },
+        breakpoints: {
+            1024: {
+                slidesPerView: 3,
+            }
+        }
+    });
+
+    var swiper = new Swiper(".swiperModificadas", {
+        slidesPerView: 'auto',
+        spaceBetween: 30,
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        breakpoints: {
+            1024: {
+                slidesPerView: 3,
+            }
+        }
     });
 </script>

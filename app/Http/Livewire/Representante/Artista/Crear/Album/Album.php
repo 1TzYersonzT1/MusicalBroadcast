@@ -15,7 +15,7 @@ class Album extends Component
      */
     use WithFileUploads;
 
-    public $albumes = [], $nombreAlbum, $imagenAlbum, $fechaLanz;
+    public $albumes = [], $nombreAlbum, $imagenAlbum, $url, $fechaLanz;
     public $nombreArtista;
     public $canciones = [], $nombreCancion;
 
@@ -83,6 +83,7 @@ class Album extends Component
         $this->validate([
             'imagenAlbum' => 'image|mimes:jpeg,jpg,png,svg,gif|max:1024',
         ]);
+        $this->url = $this->imagenAlbum->store("livewire-tmp", "azure");
     }
 
     /**
@@ -92,6 +93,8 @@ class Album extends Component
      */
     public function eliminarImagenAlbum()
     {
+        $disk = Storage::disk("azure");
+        $disk->delete($this->url);
         $this->imagenAlbum = '';
     }
 

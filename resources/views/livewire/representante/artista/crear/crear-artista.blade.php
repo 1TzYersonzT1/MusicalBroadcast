@@ -109,9 +109,11 @@
                     <div class="bg-black bg-opacity-20 px-2 py-1 text-center">
                         <span class="top-5 mb-3 text-4xl font-bold">Sube la imagen del artista</span>
                     </div>
-                    <div class="flex justify-center gap-5 mt-5">
+
+                    <div class="flex flex-col items-center justify-center gap-5 mt-5">
                         @if ($imagenArtista)
-                            <img src="{{ asset($imagenArtista->temporaryUrl()) }}" class="rounded-full w-32 h-32" />
+                            <img src="{{ 'https://musicalimages.blob.core.windows.net/images/' . $url }}"
+                                class="rounded-full w-32 h-32" />
                             <svg wire:click="eliminarImagenArtista" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"
                                 fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -130,6 +132,11 @@
                                 <input type="file" wire:model="imagenArtista" id="imagenArtista" class="hidden" />
                             </div>
                         @endif
+                        <div class="flex flex-col lg:justify-between mb-3">
+                            <div wire:loading wire:target="imagenArtista" class="bg-blue-100 w-64 text-blue-700 px-4" role="alert">
+                                <p class="font-bold  py-1">Cargando imagen</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -163,11 +170,11 @@
 
                 <!-- Redes sociales -->
                 <div class="bg-black bg-opacity-20 px-2 text-center">
-                        <span class="my-3 text-4xl font-bold">Redes sociales del artista</span>
-                    </div>
+                    <span class="my-3 text-4xl font-bold">Redes sociales del artista</span>
+                </div>
                 <div class="lg:col-span-8 flex flex-col items-center">
 
-                    
+
                     <div class="my-5">
                         <div class="flex flex-col py-2">
                             <span class="mb-3 text-2xl justify-self-start font-bold mt-2">Instagram</span>

@@ -222,6 +222,7 @@
                                     </div>
                                 @endif
                             </div>
+                            @json($artistaPendiente->artista->spotify)
                         </div>
                     </div>
                 </div>

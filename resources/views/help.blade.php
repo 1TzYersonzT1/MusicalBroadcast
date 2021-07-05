@@ -59,17 +59,6 @@
                             <li class="hover:text-gray-400 py-1 cursor-pointer">¿Puedo enseñar a menores de edad?</li> 
                         </ul>
                    </div>
-
-                    <span class="font-bold text-2xl border-b-2">Representante</span>
-                    <ul class="mb-10">
-                        <li class="hover:text-gray-400 py-1 cursor-pointer">Artistas.</li>
-                        <li class="hover:text-gray-400 py-1 cursor-pointer">¿Cuantos artistas puedo representar?</li>
-                        <li class="hover:text-gray-400 py-1 cursor-pointer">¿Me puedo representar a mi mismo?</li> 
-                        <li class="hover:text-gray-400 py-1 cursor-pointer">¿Cuanto debo esperar para que mi artista aparezca en el sitio web?</li> 
-                        <li class="hover:text-gray-400 py-1 cursor-pointer">¿Porque mi artista no aparece?</li> 
-                        <li class="hover:text-gray-400 py-1 cursor-pointer">¿Que debo hacer si un artista al cuál represento fue eliminado de un evento?</li>
-                        <li class="hover:text-gray-400 py-1 cursor-pointer"><a  href="#anular-inscripcion">¿Como puedo anular la inscripción de uno o más de mis artistas a un evento?</a></li>
-                    </ol>
                 </nav>
             </aside>
             
@@ -143,12 +132,6 @@
                     </div>
                 </div>
 
-                {{-- <li class="hover:text-gray-400 py-1 cursor-pointer">Organizar un taller.</li>
-                <li class="hover:text-gray-400 py-1 cursor-pointer">¿Qué significa que mi taller está pendiente?</li>
-                <li class="hover:text-gray-400 py-1 cursor-pointer">¿Cuál es el máximo de personas que puedo reunir?</li> 
-                <li class="hover:text-gray-400 py-1 cursor-pointer">¿Cuanto debo esperar para que mi taller esté aprobado?</li> 
-                <li class="hover:text-gray-400 py-1 cursor-pointer">¿Puedo enseñar a menores de edad?</li>  --}}
-
                 <div>
                     <span class="text-3xl">Organizador</span>
                     <div class="mb-10 py-4" id="organizar-taller"> 
@@ -180,31 +163,6 @@
                                 se encuentre en estado pendiente, revisada, modificada o pospuesta. Para más información acerca
                                 de los demás estados consulte <a href="estados-solicitud-taller" class="font-bold">estados de soliticud</a>
                             </p>
-                        </div>
-                    </div>
-        
-                    <div class="mb-10" id="anular-inscripcion"> 
-                        <span class="text-2xl font-bold">¿Cómo puedo anular mi inscripción a un taller? </span>
-                        <div class="font-light">
-                            <p>En caso de que te hayas inscrito a un taller y ya no quieres o puedes participar en él,
-                                la única forma que existe hasta el momento para anular tu inscripción es comunicarte directamente
-                                con el organizador del taller ya sea por teléfono o correo electronico, los cuáles
-                                puedes encontrar en la información del mismo taller al cuál te has inscrito y deseas abandonar.
-                            </p>
-        
-                         
-                        </div>
-                    </div>
-
-                    <div class="mb-20" id="reinscribirse-taller"> 
-                        <span class="text-2xl font-bold">¿Puedo volver a inscribirme a un taller del cual fui eliminado?</span>
-                        <div class="font-light">
-                            <p>En caso de que te hayan eliminado de un taller es posible que te vuelvas a inscribir, pero ten en cuenta
-                                que pronto esto ya no te será posible con el <span class="font-bold">nuevo sistema de comportamiento</span>,
-                                además de que volverás a ser eliminado una y otra vez.
-                            </p>
-        
-                         
                         </div>
                     </div>
                 </div>

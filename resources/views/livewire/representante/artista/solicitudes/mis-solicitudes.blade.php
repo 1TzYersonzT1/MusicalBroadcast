@@ -42,7 +42,7 @@
                 <span class="text-4xl block mb-5">Solicitudes modificadas</span>
             </div>
             @if (count($artistasModificados) > 0)
-                <div class="swiper-container swiperRevisadas">
+                <div class="swiper-container swiperModificadas">
                     <div class="swiper-wrapper">
                         @foreach ($artistasModificados as $artistaModificado)
                             <livewire:representante.artista.solicitudes.artista :artista="$artistaModificado"
@@ -76,6 +76,22 @@
     });
 
     var swiper = new Swiper(".swiperRevisadas", {
+        loop: false,
+        grabCursor: true,
+        slidePerView: 'auto',
+        spaceBetween: 30,
+        breakpoints: {
+            640: {
+                slidesPerView: 'auto',
+            },
+            1024: {
+                slidesPerView: 3,
+                spaceBetween: 10,
+            },
+        },
+    });
+
+    var swiper = new Swiper(".swiperModificadas", {
         loop: false,
         grabCursor: true,
         slidePerView: 'auto',

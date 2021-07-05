@@ -1,5 +1,5 @@
 <div>
-    <div class="flex">
+    <div class="flex lg:flex-row flex-col">
         <span class="block text-center font-light mb-2 mr-4">Busca uno o más artistas</span>
         <input type="text" wire:model="nombreArtista" class="p-0" />
     </div>
