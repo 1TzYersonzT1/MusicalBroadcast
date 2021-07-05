@@ -16,7 +16,7 @@ class ModificarTaller extends Component
      */
     use WithFileUploads;
 
-    public $taller, $caracteres_descripcion = 0, $nuevaImagen;
+    public $taller, $caracteres_descripcion = 0, $nuevaImagen, $url;
     public $requisitos = [], $protocolos = [];
 
     protected $listeners = [
@@ -100,6 +100,13 @@ class ModificarTaller extends Component
         $this->validate([
             'nuevaImagen' => 'image|mimes:jpeg,png,svg,jpg,gif|max:1024',
         ]);
+        $this->url = $this->nuevaImagen->store('livewire-tmp', 'azure');
+    }
+
+    public function eliminarNuevaImagen() {
+        $disk = Storage::disk("azure");
+        $disk->delete($this->nuevaImagen);
+        $this->nuevaImagen = '';
     }
 
     /**

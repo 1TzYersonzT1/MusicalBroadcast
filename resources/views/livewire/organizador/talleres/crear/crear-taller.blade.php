@@ -26,13 +26,13 @@
                             <div class="flex flex-col mt-3" x-data>
                                 <span class="font-bold">Fecha</span>
                                 <input type="date" wire:model="fecha" x-bind:min="$wire.hoy"
-                                    class="bg-primary text-white p-0 mr-8 px-5 mt-1 rounded-lg border-1 border-white" />
+                                    class="bg-primary text-white p-0 mr-8 px-5 mt-1 rounded-lg border-1 border-white w-64" />
                             </div>
                             <div class="flex flex-col mt-3">
                                 <span class="font-bold">Hora</span>
                                 <div class="rounded-full">
                                     <input type="time" id="hora" wire:model="hora"
-                                        class="bg-primary rounded-lg px-5 border-1 border-white p-0 mt-1">
+                                        class="bg-primary rounded-lg px-5 w-24 border-1 border-white p-0 mt-1">
 
                                 </div>
 
@@ -52,7 +52,7 @@
                                 <span>Máximo 10 personas.</span>
                             </div>
                         </div>
-                        <div class="flex items-center mb-3 mt-3 text-sm">
+                        <div class="flex lg:flex-row flex-col lg:items-center mb-3 mt-3 text-sm">
                             <span class="font-bold">Lugar: </span>
                             <div class="flex flex-col">
                                 <input type="text" placeholder="¿Donde planeas realizar el taller?" wire:model='lugar'
@@ -74,9 +74,9 @@
             </div>
 
             <div class="w-80">
-                <div class="flex justify-between mb-3 items-center">
+                <div class="flex flex-col lg:justify-between mb-3">
                     <span>Imagen</span>
-                    <div wire:loading wire:target="imagen" class="bg-blue-100 text-blue-700 px-4" role="alert">
+                    <div wire:loading wire:target="imagen" class="bg-blue-100 w-64 text-blue-700 px-4" role="alert">
                         <p class="font-bold  py-1">Cargando imagen</p>
                     </div>
                 </div>
@@ -98,7 +98,7 @@
                         <div>
                             <label for="imagen-taller">
                                 <svg xmlns="http://www.w3.org/2000/svg"
-                                    class="h-40 lg:w-80 border-2 border-white rounded-lg border-light-blue-500 border-opacity-100"
+                                    class="h-40 lg:w-80 w-48 border-2 border-white rounded-lg border-light-blue-500 border-opacity-100"
                                     fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
@@ -108,9 +108,9 @@
                         </div>
                     @else
                         <div class="mt-3">
-                            <img src="{{ $imagen->temporaryUrl() }}" class="h-40 lg:w-80 border-2">
+                            <img src="{{ 'https://musicalimages.blob.core.windows.net/images/' . $url }}" class="h-40 lg:w-80 w-48 border-2">
 
-                            <div class="flex justify-between">
+                            <div class="flex flex-wrap justify-between w-64">
                                 <span>{{ $imagen->getClientOriginalName() }}</span>
                                 <svg wire:click="eliminarImagen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"
                                     fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -119,6 +119,7 @@
                                 </svg>
                             </div>
                         </div>
+                      
                     @endif
                 @enderror
             </div>

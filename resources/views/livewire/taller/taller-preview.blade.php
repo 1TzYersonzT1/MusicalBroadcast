@@ -31,7 +31,7 @@
                 <p>{{ $tallerActual->TAL_Fecha }} {{ $tallerActual->TAL_Hora }}</p>
             </div>
 
-            <div class="flex justify-between w-80">
+            <div class="flex lg:flex-row flex-col justify-between w-80">
                 <div>
                     <span class="font-bold">REQUISITOS</span>
                     @foreach($tallerActual->TAL_Requisitos as $requisito)
@@ -39,7 +39,7 @@
                     @endforeach
                 </div>
 
-                <div>
+                <div class="lg:mt-0 mt-4">
                     <span class="font-bold">PROTOCOLO COVID</span>
                     @foreach($tallerActual->TAL_Protocolo as $protocolo)
                     <p>{{ $protocolo }}</p>

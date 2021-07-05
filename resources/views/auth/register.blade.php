@@ -1,30 +1,28 @@
 @extends("layouts.guest")
 @section('contenido')
-    <div class="py-5 w-96 container mx-auto text-white min-h-screen">
+    <div class="py-5 lg:w-96 w-80 container mx-auto text-white min-h-screen">
         <div>
-
-
             <x-jet-validation-errors class="mb-4" />
 
-            <form method="POST" action="{{ route('register') }}" class="w-96 ">
+            <form method="POST" action="{{ route('register') }}" class="w-80 lg:w-96">
                 @csrf
 
                 <div class="">
                     <span>Rut</span>
-                    <x-jet-input id="rut" class="block mt-1 w-96 text-primary" type="text" name="rut" maxlength="9" :value="old('rut')"
+                    <x-jet-input id="rut" class="block w-full mt-1 text-primary" type="text" name="rut" maxlength="9" :value="old('rut')"
                         required autofocus autocomplete="rut" />
                     <span>(Sin puntos, ni guión) Ejemplo: 123456789</span>
                 </div>
 
                 <div class="mt-4">
                     <span>Nombre</span>
-                    <x-jet-input id="nombre" class="block mt-1 w-96 text-primary" type="text" name="nombre" :value="old('nombre')"
+                    <x-jet-input id="nombre" class="block w-full mt-1 text-primary" type="text" name="nombre" :value="old('nombre')"
                         required autofocus autocomplete="nombre" />
                 </div>
 
                 <div class="mt-4">
                     <span>Apellido</span>
-                    <x-jet-input id="apellido" class="block mt-1 w-96 text-primary" type="text" name="apellido" :value="old('apellido')"
+                    <x-jet-input id="apellido" class="block w-full mt-1 text-primary" type="text" name="apellido" :value="old('apellido')"
                         required autofocus autocomplete="apellido" />
                 </div>
 
@@ -54,26 +52,26 @@
                             </span>
                         </div>
                     </div>
-                    <x-jet-input id="email" class="block mt-1 w-96 text-primary" type="email" name="email" :value="old('email')"
+                    <x-jet-input id="email" class="block w-full mt-1 text-primary" type="email" name="email" :value="old('email')"
                         required />
                 </div>
 
                 <div class="mt-4">
                     <span>Numero de celular</span>
-                    <x-jet-input id="telefono" class="block mt-1 w-96 text-primary" type="tel" pattern="[0-9]{9}" maxlength="9"
+                    <x-jet-input id="telefono" class="block w-full mt-1 text-primary" type="tel" pattern="[0-9]{9}" maxlength="9"
                         name="telefono" :value="old('telefono')" required autofocus autocomplete="telefono" />
                     <span>Ejemplo: 912345678</span>
                 </div>
 
                 <div class="mt-4">
                     <span>Contraseña</span>
-                    <x-jet-input id="password" class="block mt-1 w-96 text-primary" type="password" name="password" required
+                    <x-jet-input id="password" class="block w-full mt-1 text-primary" type="password" name="password" required
                         autocomplete="new-password" />
                 </div>
 
                 <div class="mt-4">
                     <span>Confirmar contraseña</span>
-                    <x-jet-input id="password_confirmation" class="block mt-1 w-96 text-primary" type="password"
+                    <x-jet-input id="password_confirmation" class="block w-full mt-1 text-primary" type="password"
                         name="password_confirmation" required autocomplete="new-password" />
                 </div>
 

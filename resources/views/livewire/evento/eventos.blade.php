@@ -12,7 +12,7 @@
                         <div class="swiper-container swiperEventos mb-5">
                             <div class="swiper-wrapper">
                                 @foreach ($eventos as $evento)
-                                    <livewire:evento.evento :evento='$evento' :wire:key='$evento->id' />
+                                    <livewire:evento.evento :evento='$evento' :slideActual="$loop->index" :wire:key='$evento->id' />
                                 @endforeach
                             </div>
                         </div>
@@ -40,11 +40,10 @@
             breakpoints: {
                 640: {
                     slidesPerView: 'auto',
-
                 },
                 1024: {
-                    slidesPerView: 3,
-                    spaceBetween: 10,
+                    slidesPerView: 2,
+                    spaceBetween: 30,
                 },
             },
         });

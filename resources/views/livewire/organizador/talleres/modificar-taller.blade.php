@@ -90,7 +90,7 @@
                     @else
                         @if ($nuevaImagen )
                         <div class="mt-3"> 
-                            <img src="{{ $nuevaImagen->temporaryUrl() }}" class="w-80 h-48 border-2">
+                            <img src="{{'https://musicalimages.blob.core.windows.net/images/' . $url }}" class="w-80 h-48 border-2">
                         
                             <div class="flex justify-between">
                                 <span>{{ $nuevaImagen->getClientOriginalName() }}</span>

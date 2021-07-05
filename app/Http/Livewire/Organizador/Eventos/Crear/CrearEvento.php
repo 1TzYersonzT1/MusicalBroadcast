@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Evento;
 use App\Models\SolicitudEvento;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Storage;
 
 class CrearEvento extends Component
 {
@@ -15,7 +16,7 @@ class CrearEvento extends Component
      */
     use WithFileUploads;
 
-    public $nombre, $fecha, $hoy, $hora, $lugar, $descripcion, $imagen,
+    public $nombre, $fecha, $hoy, $hora, $lugar, $descripcion, $imagen, $url,
         $caracteres_descripcion = 0;
 
     /**
@@ -65,6 +66,13 @@ class CrearEvento extends Component
         $this->validate([
             'imagen' => 'required|image|mimes:jpeg,jpg,png,svg,gif|max:1024'
         ]);
+        $this->url = $this->imagen->store("livewire-tmp", "azure");
+    }
+
+    public function eliminarImagen() {
+        $disk = Storage::disk("azure");
+        $disk->delete($this->url);
+        $this->imagen = '';
     }
 
     /**
