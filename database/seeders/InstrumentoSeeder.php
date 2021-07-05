@@ -15,8 +15,14 @@ class InstrumentoSeeder extends Seeder
      */
     public function run()
     {
+
         Instrumento::factory()->create([
-            "INST_Nombre" => 'Bateria',
+            "INST_Nombre" => 'Voz',
+            'imagen' => 'https://i.ibb.co/dpRGFGf/3349157-200.png',
+        ]);
+
+        Instrumento::factory()->create([
+            "INST_Nombre" => 'Percusiones',
             'imagen' => 'https://i.ibb.co/M7kP9Xh/049-drums.png',
         ]);
 
@@ -41,23 +47,8 @@ class InstrumentoSeeder extends Seeder
         ]);
 
         Instrumento::factory()->create([
-            "INST_Nombre" => 'Saxophone',
-            'imagen' => 'https://i.ibb.co/bvc7KKF/046-saxophone.png',
-        ]);
-
-        Instrumento::factory()->create([
             "INST_Nombre" => 'Piano',
             'imagen' => 'https://i.ibb.co/CVQYXTb/045-piano.png',
-        ]);
-
-        Instrumento::factory()->create([
-            "INST_Nombre" => 'Banjo',
-            'imagen' => 'https://i.ibb.co/znJdJz2/044-banjo.png',
-        ]);
-
-        Instrumento::factory()->create([
-            "INST_Nombre" => 'Triangulo',
-            'imagen' => 'https://i.ibb.co/jVz5QfY/043-triangle.png',
         ]);
 
         Instrumento::factory()->create([
@@ -71,25 +62,10 @@ class InstrumentoSeeder extends Seeder
         ]);
 
         Instrumento::factory()->create([
-            "INST_Nombre" => 'Pandero',
-            'imagen' => 'https://i.ibb.co/84XyR9g/040-tambourine.png',
-        ]);
-
-        Instrumento::factory()->create([
-            "INST_Nombre" => 'Maracas',
-            'imagen' => 'https://i.ibb.co/0DFcjV7/036-maracas.png',
-        ]);
-
-        Instrumento::factory()->create([
             "INST_Nombre" => 'Armónica',
             'imagen' => ' https://i.ibb.co/dcT5ZZ1/033-harmonica.png',
         ]);
-
-        Instrumento::factory()->create([
-            "INST_Nombre" => 'Campanas chinas',
-            'imagen' => 'https://i.ibb.co/HHGdD9H/039-chime.png',
-        ]);
-        
+    
         Instrumento::factory()->create([
             "INST_Nombre" => 'Teclados',
             'imagen' => 'https://i.ibb.co/Hp2KHDp/019-keyboard.png',
@@ -101,8 +77,8 @@ class InstrumentoSeeder extends Seeder
         ]);
 
         Instrumento::factory()->create([
-            "INST_Nombre" => 'Conga',
-            'imagen' => 'https://i.ibb.co/Tb7xvQn/009-conga.png',
+            "INST_Nombre" => 'Contra bajo',
+            'imagen' => 'https://i.ibb.co/qj4vYSD/035-double-bass.png',
         ]);
 
         Instrumento::factory()->create([
@@ -110,11 +86,16 @@ class InstrumentoSeeder extends Seeder
             'imagen' => ' https://i.ibb.co/55x0nMx/034-trumpet.png',
         ]);
 
+        Instrumento::factory()->create([
+            "INST_Nombre" => 'Trombón',
+            'imagen' => 'https://i.ibb.co/Km3G6ZZ/025-trombone.png',
+        ]);
+
         // Instrumentos que deberia agregarse
         // segun necesidad
         // https: //i.ibb.co/72XkrK6/038-cello.png
         // https: //i.ibb.co/8mZpxMv/037-djembe.png
-        // https: //i.ibb.co/qj4vYSD/035-double-bass.png
+        // 
         // https: //i.ibb.co/Hp2KHDp/019-keyboard.png
         // https: //i.ibb.co/LrVyKNz/032-harp.png
         // https: //i.ibb.co/37BNM7T/031-clarinet.png
@@ -123,7 +104,7 @@ class InstrumentoSeeder extends Seeder
         // https: //i.ibb.co/XWjc2nG/027-drum.png
         // https: //i.ibb.co/cFjRt67/028-mandolin.png
         // https: //i.ibb.co/Zxwz19W/026-accordion.png
-        // https: //i.ibb.co/Km3G6ZZ/025-trombone.png
+        // 
         // https: //i.ibb.co/6XSqTTm/024-gong.png
         // https: //i.ibb.co/thJQt9W/023-xylophone.png
         // https: //i.ibb.co/xhVwvD8/022-bassoon.png

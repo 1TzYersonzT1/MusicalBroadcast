@@ -136,7 +136,7 @@
                                                     <span>{{ $integrante->apellidos }}</span>
                                                 </div>
                                                 <div x-show="open"
-                                                    class="bg-white -mt-14 p-4  z-50 text-primary lg:w-34"
+                                                    class="bg-white -mt-14 p-4 z-50 text-primary lg:w-34"
                                                     x-transition:enter="transition ease-out duration-300"
                                                     x-transition:enter-start="opacity-0 transform scale-90"
                                                     x-transition:enter-end="opacity-100 transform scale-100"
@@ -222,7 +222,6 @@
                                     </div>
                                 @endif
                             </div>
-                            @json($artistaPendiente->artista->spotify)
                         </div>
                     </div>
                 </div>

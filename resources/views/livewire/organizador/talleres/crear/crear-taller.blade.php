@@ -26,13 +26,13 @@
                             <div class="flex flex-col mt-3" x-data>
                                 <span class="font-bold">Fecha</span>
                                 <input type="date" wire:model="fecha" x-bind:min="$wire.hoy"
-                                    class="bg-primary text-white p-0 mr-8 px-5 mt-1 rounded-lg border-1 border-white w-64" />
+                                    class="bg-primary text-white p-0 mr-8 px-5 mt-1 rounded-lg border-1 border-white" />
                             </div>
                             <div class="flex flex-col mt-3">
                                 <span class="font-bold">Hora</span>
                                 <div class="rounded-full">
                                     <input type="time" id="hora" wire:model="hora"
-                                        class="bg-primary rounded-lg px-5 w-24 border-1 border-white p-0 mt-1">
+                                        class="bg-primary rounded-lg px-5 border-1 border-white p-0 mt-1">
 
                                 </div>
 

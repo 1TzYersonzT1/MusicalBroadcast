@@ -328,6 +328,7 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         location.href = "/representante/artistas/mis-solicitudes";
+                        location.href = location.href;
                     }
                 });
             }

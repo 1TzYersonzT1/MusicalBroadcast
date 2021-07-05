@@ -103,6 +103,10 @@
                     title: 'Exito',
                     text: `Se ha aprobado el evento exitosamente.`,
                     icon: 'success',
+                }).then((result) => {
+                    if(!result.isVisible) {
+                        location.href = location.href;
+                    }
                 });
             }
         });
@@ -118,7 +122,7 @@
             timer: 8000
         }).then((result) => {
             if (!result.isConfirmed) {
-                location.href = "/administrador/solicitudes/eventos";
+                location.href = location.href;
             }
         })
     });
@@ -144,7 +148,7 @@
                     timer: 3000,
                 }).then((result) => {
                     if (!result.isVisible) {
-                        location.href = "/administrador/solicitudes/eventos";
+                        location.href = location.href;
                     }
                 });
             }

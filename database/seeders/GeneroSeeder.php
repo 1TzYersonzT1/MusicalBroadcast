@@ -15,12 +15,15 @@ class GeneroSeeder extends Seeder
     public function run()
     {
         Genero::factory()
-        ->count(5)->state(new Sequence(
+        ->count(8)->state(new Sequence(
             ["GEN_Nombre" => "Rock"],
-            ["GEN_Nombre" => "Folclor"],
-            ["GEN_Nombre" => "Metal"],
-            ["GEN_Nombre" => "Hip-Hop"],
+            ["GEN_Nombre" => "Urbano"],
             ["GEN_Nombre" => "Pop"],
+            ["GEN_Nombre" => "Electrónica"],
+            ["GEN_Nombre" => "Metal"],
+            ["GEN_Nombre" => "Folklore"],
+            ["GEN_Nombre" => "Latina"],
+            ["GEN_Nombre" => "Otros"],
         ))->create();
     }
 }

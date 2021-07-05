@@ -1,12 +1,11 @@
-<div class="grid grid-cols-12 gap-20">
-    <div class="lg:col-span-5 col-span-5">
-        <div class="grid lg:grid-cols-2">
-            <div class="mb-8 flex lg:flex-row col-span-2 flex-col justify-between lg:items-center">
-                <div>
-                    <span class="text-2xl">{{ $evento->EVE_Nombre }}</span>
-                </div>
+<div class="grid lg:grid-cols-12 grid-cols-4 gap-x-20">
+    <div class="lg:col-span-5 col-span-4">
+        <div class="grid lg:grid-cols-2 grid-cols-12">
+            <div class="lg:col-span-1 col-span-12">
+                <span class="text-2xl">{{ $evento->EVE_Nombre }}</span>
+            </div>
+            <div class="lg:col-span-1 col-span-12">
                 <div class="flex flex-col lg:mt-0 mt-4 lg:items-end">
-
                     <span>{{ $evento->EVE_Fecha }} {{ $evento->EVE_Hora }}</span>
                     @if ($evento->solicitudes[0]->estado == 5)
                         <div class="bg-pink-700 mt-1 rounded-full w-32 py-1 text-center justify-self-end">
@@ -15,98 +14,16 @@
                     @endif
                 </div>
             </div>
-
-            <div class="mb-8 col-span-2">
-                <p>{{ $evento->EVE_Descripcion }}</p>
-            </div>
-
-            <div class="mt-10 flex flex-col w-80 items-center">
-                <span>¿Tienes problemas para llevar a cabo este evento?</span>
-                <div>
-                    <button data-fancybox data-src="#posponerEventoForm"
-                        class="mt-4 mr-4 bg-white text-primary px-5 py-2 rounded-full">Posponer</button>
-                    <div id="posponerEventoForm" class="hidden bg-white lg:w-96 w-80">
-                        <div>
-                            <form wire:submit.prevent="posponerEvento" class="flex flex-col items-center">
-                                <div class="flex flex-col items-center mb-2">
-                                    <span class="text-xl">Posponer evento</span>
-                                    <span>{{ $evento->EVE_Nombre }}</span>
-                                </div>
-
-                                <div class="flex flex-col items-center mb-5">
-                                    <span>Motivo</span>
-                                    <textarea maxlength='255'
-                                        placeholder="Indique el motivo por el cuál está posponiendo el taller, de esta forma los asistentes serán informados (máximo 255 caracteres)"
-                                        wire:model='observacion_pospuesto'
-                                        class="resize-none lg:w-80 px-2 bg-primary h-40 text-white"></textarea>
-                                    @if ($errors)
-                                        @foreach ($errors->all() as $message)
-                                            <script>
-                                                $.fancybox.close();
-                                                Swal.fire({
-                                                    title: 'Error',
-                                                    text: 'Complete los campos solicitados',
-                                                    icon: 'warning',
-                                                    timer: 4000,
-                                                }).then((result) => {
-                                                    if (!result.isVisible) {
-                                                        location.href = location.href;
-                                                    }
-                                                });
-                                            </script>
-                                        @endforeach
-                                    @endif
-                                </div>
-
-                                <div class="flex flex-col items-center mb-5">
-                                    <span>Nueva fecha</span>
-                                    <div class="flex justify-between">
-                                        <input type="date" wire:model="fecha" />
-                                        <input type="time" wire:model="hora" />
-                                    </div>
-                                </div>
-                                <button type="submit"
-                                    class="mt-5 px-4 py-2 rounded-full bg-primary text-white hover:bg-primary hover:text-white">
-                                    Posponer
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-
-                    <button data-fancybox data-src="#cancelarEventoForm" class="mt-4 bg-white text-primary px-5 py-2 rounded-full">
-                        Cancelar
-                    </button>
-                    <div id="cancelarEventoForm" class="hidden bg-white lg:w-96 w-80">
-                        <div>
-                            <form wire:submit.prevent="cancelarEvento" class="flex flex-col items-center">
-                                <div class="flex flex-col items-center mb-2">
-                                    <span class="text-xl">Cancelar evento</span>
-                                    <span>{{ $evento->EVE_Nombre }}</span>
-                                </div>
-
-                                <div class="flex flex-col items-center mb-5">
-                                    <span>Motivo</span>
-                                    <textarea maxlength='255'
-                                        placeholder="Indique el motivo por el cuál está posponiendo el evento, de esta forma los asistentes serán informados (máximo 255 caracteres)"
-                                        wire:model='observacion_cancelado'
-                                        class="resize-none w-72 px-4 bg-primary h-40 text-white"></textarea>
-                                </div>
-
-
-                                <button type="submit"
-                                    class="mt-5 px-4 py-2 rounded-full bg-primary text-white hover:bg-primary hover:text-white">
-                                    Cancelar evento
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+            <div class="lg:col-span-2 col-span-12">
+                <textarea maxlength="255" disabled='disabled'
+                    class="resize-none w-full bg-black bg-opacity-10 h-40 border-0 mt-1 mb-1 disabled rounded-lg"
+                    wrap="hard">{{ $evento->EVE_Descripcion }}</textarea>
             </div>
         </div>
     </div>
 
 
-    <div class="lg:col-start-6 lg:col-span-3 col-start-1 col-span-5 lg:overflow-visible overflow-x-auto">
+    <div class="lg:col-start-6 lg:col-span-6 col-span-4 lg:overflow-visible overflow-x-auto">
         @if (count($evento->artistas) > 0)
             <table class="text-primary">
                 <thead class="bg-gray-200">
@@ -132,7 +49,8 @@
                                     @endforeach
                                 </span>
                             </td>
-                            <td class="px-4 py-2">{{ $artista->representante->nombre }} {{ $artista->representante->apellidos }}</td>
+                            <td class="px-4 py-2">{{ $artista->representante->nombre }}
+                                {{ $artista->representante->apellidos }}</td>
                             <td class="px-4 py-2">{{ $artista->representante->email }}</td>
                             <td class="px-4 py-2">{{ $artista->representante->telefono }}</td>
                             <td class="px-4 py-2">
@@ -154,6 +72,89 @@
     </div>
 
 
+    <div class="col-span-4 mt-10 flex flex-col w-72 items-center">
+        <span>¿Tienes problemas para llevar a cabo este evento?</span>
+        <div>
+            <button data-fancybox data-src="#posponerEventoForm"
+                class="mt-4 mr-4 bg-white text-primary px-5 py-2 rounded-full">Posponer</button>
+            <div id="posponerEventoForm" class="hidden bg-white lg:w-96 w-80">
+                <div>
+                    <form wire:submit.prevent="posponerEvento" class="flex flex-col items-center">
+                        <div class="flex flex-col items-center mb-2">
+                            <span class="text-xl">Posponer evento</span>
+                            <span>{{ $evento->EVE_Nombre }}</span>
+                        </div>
+
+                        <div class="flex flex-col items-center mb-5">
+                            <span>Motivo</span>
+                            <textarea maxlength='255'
+                                placeholder="Indique el motivo por el cuál está posponiendo el taller, de esta forma los asistentes serán informados (máximo 255 caracteres)"
+                                wire:model='observacion_pospuesto'
+                                class="resize-none lg:w-80 w-72 px-2 bg-primary h-40 text-white"></textarea>
+                            @if ($errors)
+                                @foreach ($errors->all() as $message)
+                                    <script>
+                                        $.fancybox.close();
+                                        Swal.fire({
+                                            title: 'Error',
+                                            text: 'Complete los campos solicitados',
+                                            icon: 'warning',
+                                            timer: 4000,
+                                        }).then((result) => {
+                                            if (!result.isVisible) {
+                                                location.href = location.href;
+                                            }
+                                        });
+                                    </script>
+                                @endforeach
+                            @endif
+                        </div>
+
+                        <div class="flex flex-col items-center mb-5">
+                            <span>Nueva fecha</span>
+                            <div class="flex justify-between">
+                                <input type="date" wire:model="fecha" />
+                                <input type="time" wire:model="hora" />
+                            </div>
+                        </div>
+                        <button type="submit"
+                            class="mt-5 px-4 py-2 rounded-full bg-primary text-white hover:bg-primary hover:text-white">
+                            Posponer
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <button data-fancybox data-src="#cancelarEventoForm"
+                class="mt-4 bg-white text-primary px-5 py-2 rounded-full">
+                Cancelar
+            </button>
+            <div id="cancelarEventoForm" class="hidden bg-white lg:w-96 w-80">
+                <div>
+                    <form wire:submit.prevent="cancelarEvento" class="flex flex-col items-center">
+                        <div class="flex flex-col items-center mb-2">
+                            <span class="text-xl">Cancelar evento</span>
+                            <span>{{ $evento->EVE_Nombre }}</span>
+                        </div>
+
+                        <div class="flex flex-col items-center mb-5">
+                            <span>Motivo</span>
+                            <textarea maxlength='255'
+                                placeholder="Indique el motivo por el cuál está posponiendo el evento, de esta forma los asistentes serán informados (máximo 255 caracteres)"
+                                wire:model='observacion_cancelado'
+                                class="resize-none w-72 px-4 bg-primary h-40 text-white"></textarea>
+                        </div>
+
+
+                        <button type="submit"
+                            class="mt-5 px-4 py-2 rounded-full bg-primary text-white hover:bg-primary hover:text-white">
+                            Cancelar evento
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -173,7 +174,7 @@
                 Swal.fire({
                     title: "Artista eliminado",
                     text: 'Se ha eliminado al artista',
-                    icon: 'sucess',
+                    icon: 'success',
                     timer: 2000,
                 }).then((result) => {
                     if (result.isConfirmed) {
