@@ -9,6 +9,7 @@ use App\Models\SolicitudTaller;
 use Auth; // Es probable que indique un error pero no afecta
 use Carbon\Carbon;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Storage;
 
 class CrearTaller extends Component
 {
@@ -18,7 +19,7 @@ class CrearTaller extends Component
      */
     use WithFileUploads;
 
-    public $titulo, $descripcion, $aforo, $hora, $lugar, $user_rut, $fecha, $hoy, $imagen;
+    public $titulo, $descripcion, $aforo, $hora, $lugar, $user_rut, $fecha, $hoy, $imagen, $url;
     public $caracteres_descripcion = 0;
     public $protocolos = [], $requisitos = [];
 
@@ -92,6 +93,7 @@ class CrearTaller extends Component
         $this->validate([
             'imagen' => 'required|image|mimes:jpeg,png,svg,jpg,gif|max:1024',
         ]);
+        $this->url = $this->imagen->store("livewire-tmp", "azure");
     }
 
     /**
@@ -99,7 +101,9 @@ class CrearTaller extends Component
      * imagen
      */
     public function eliminarImagen()
-    {
+    {   
+        $disk = Storage::disk("azure");
+        $disk->delete($this->url);
         $this->imagen = '';
     }
 

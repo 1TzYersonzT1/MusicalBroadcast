@@ -22,9 +22,6 @@
                 @endif
             </div>
         </div>
-
-
-
     </div>
 </div>
 
@@ -36,6 +33,7 @@
         mySwiper = new Swiper('.swiperTalleres', {
             slidesPerView: 1,
             spaceBetween: 30,
+            initialSlide: slideActual,
             pagination: {
                 el: ".swiper-pagination",
                 clickable: true,

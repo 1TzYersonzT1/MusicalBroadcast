@@ -36,7 +36,7 @@
                                 <span class="font-bold">Hora</span>
                                 <div class="flex flex-col">
                                     <input type="time" id="hora" wire:model="hora"
-                                        class="bg-primary px-2 p-0 mt-1 border-1 border-white rounded-lg">
+                                        class="bg-primary px-2 p-0 mt-1 border-1 border-white w-24 rounded-lg">
 
                                 </div>
 
@@ -44,7 +44,7 @@
 
                         </div>
 
-                        <div class="flex items-center mb-3 mt-3 text-sm">
+                        <div class="flex lg:flex-row flex-col lg:items-center mb-3 mt-3 text-sm">
                             <span class="font-bold">Lugar: </span>
                             <div class="flex flex-col">
                                 <input type="text" placeholder="¿Donde planeas realizar el evento?" wire:model='lugar'
@@ -67,9 +67,9 @@
             </div>
 
             <div class="w-80">
-                <div class="flex justify-between mb-3 items-center">
+                <div class="flex flex-col justify-between mb-3">
                     <span>Imagen</span>
-                    <div wire:loading wire:target="imagen" class="bg-blue-100 text-blue-700 px-4" role="alert">
+                    <div wire:loading wire:target="imagen" class="bg-blue-100 text-blue-700 w-64 px-4" role="alert">
                         <p class="font-bold  py-1">Cargando imagen</p>
                     </div>
                 </div>
@@ -91,7 +91,7 @@
                         <div>
                             <label for="imagen-evento">
                                 <svg xmlns="http://www.w3.org/2000/svg"
-                                    class="h-40 lg:w-80 border-2 border-white rounded-lg border-light-blue-500 border-opacity-100"
+                                    class="h-40 lg:w-80 w-48 border-2 border-white rounded-lg border-light-blue-500 border-opacity-100"
                                     fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
@@ -101,9 +101,9 @@
                         </div>
                     @else
                         <div class="mt-3">
-                            <img src="{{ $imagen->temporaryUrl() }}" class="h-40 lg:w-80 border-2">
+                            <img src="{{ 'https://musicalimages.blob.core.windows.net/images/' . $url }}" class="h-40 lg:w-80 w-48 border-2">
 
-                            <div class="flex justify-between">
+                            <div class="flex flex-wrap w-64 justify-between">
                                 <span>{{ $imagen->getClientOriginalName() }}</span>
                                 <svg wire:click="eliminarImagen" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6"
                                     fill="none" viewBox="0 0 24 24" stroke="currentColor">

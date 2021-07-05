@@ -1,6 +1,6 @@
 @extends("layouts.guest")
 @section('contenido')
-    <div class="py-60 w-96 container mx-auto text-white min-h-screen">
+    <div class="py-60 lg:w-96 w-80 container mx-auto text-white min-h-screen">
         <x-jet-validation-errors class="mb-4" />
 
         @if (session('status'))

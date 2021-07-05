@@ -301,7 +301,7 @@
 <script>
     var swiper = new Swiper(".swipercancion", {
         direction: "vertical",
-        slidesPerView: 5,
+        slidesPerView: 3,
         freeMode: true,
         scrollbar: {
             el: ".swiper-scrollbar",
