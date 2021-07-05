@@ -1,8 +1,7 @@
 <div>
     <div class="col">
         <div class="max-w-md w-full lg:flex flex-col">
-            <div class=" h-40 lg:w-60 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-1 text-center overflow-hidden"
-                title="Woman holding a mug">
+            <div class=" h-40 lg:w-60 w-60 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-1 text-center overflow-hidden">
                 <img src="{{ "https://musicalimages.blob.core.windows.net/images/" . $artista->imagen }}" />
             </div>
             <div

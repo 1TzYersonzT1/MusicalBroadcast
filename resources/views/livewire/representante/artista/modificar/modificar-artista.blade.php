@@ -16,7 +16,7 @@
                 <div class="bg-black bg-opacity-20 px-2 py-1 text-center mt-5">
                     <span class="mb-3 text-4xl font-bold">Tus generos</span>
                 </div>
-                @if(count($generos_actuales) > 0)
+               
                 <div class="flex justify-center mt-1">
                     @foreach ($generos_actuales as $index => $genero)
                         <div>
@@ -27,11 +27,11 @@
                                         class="rounded-full w-28 h-28" />
                                 </div>
                             </div>
-                            <span>{{ $genero->GEN_Nombre }}</span>
+                            <span>{{ $genero['GEN_Nombre'] }}</span>
                         </div>
                     @endforeach
                 </div>
-                @endif
+                
 
                 <div class="mt-4">
                     <span class="font-bold text-2xl">Tus estilos</span>
@@ -178,7 +178,7 @@
                     <div class="flex  justify-between py-2">
                         <span class="mb-3 text-2xl justify-self-start font-bold mt-2">Instagram</span>
                         <div class="flex flex-col">
-                            <input type="text" wire:model="artista.instagram"
+                            <input type="text" wire:model="artista.instagram" wire:ignore
                                 placeholder="Pega la URL del perfil del artista de instagram"
                                 class="bg-white h-14 px-5 lg:w-96 focus:outline-none rounded-full text-black">
                             @error('instagram')
@@ -190,7 +190,7 @@
                     <div class="flex justify-between py-2">
                         <span class="mb-3 text-2xl font-bold mt-2">Facebook</span>
                         <div class="flex flex-col">
-                            <input type="text" wire:model="artista.facebook"
+                            <input type="text" wire:model="artista.facebook" wire:ignore
                                 placeholder="Pega la URL del perfil del artista de facebook"
                                 class="bg-white h-14 px-5 lg:w-96 focus:outline-none rounded-full text-black">
                             @error('facebook')
@@ -202,7 +202,7 @@
                     <div class="flex lg:flex-row flex-col justify-center justify-between py-2">
                         <span class="mb-3 text-2xl font-bold mt-2">Twitter</span>
                         <div class="flex flex-col">
-                            <input type="text" wire:model="artista.twitter"
+                            <input type="text" wire:model="artista.twitter" wire:ignore
                                 placeholder="Pega la URL del perfil del artista de twiter"
                                 class="bg-white h-14 px-5 lg:w-96 w-80 focus:outline-none rounded-full text-black">
                             @error('twitter')
@@ -222,7 +222,7 @@
                 <div class="flex justify-between py-2 mt-5">
                     <span class="mb-3 text-2xl font-bold mt-2">Spotify</span>
                     <div class="flex flex-col">
-                        <input type="text" wire:model="artista.spotify"
+                        <input type="text" wire:model="artista.spotify" wire:ignore
                             placeholder="Pega la URL del perfil del artista de spotify"
                             class="bg-white h-14 px-5 lg:w-96 focus:outline-none rounded-full text-black">
                         @error('spotify')
@@ -263,7 +263,7 @@
                     </div>
                     <div class="flex flex-col">
                         <div class="flex ">
-                            <input type="text" wire:model="artista.youtube"
+                            <input type="text" wire:model="artista.youtube" wire:ignore
                                 placeholder="Pega el ID del canal de youtube del artisa"
                                 class="bg-white h-14 px-5 lg:w-96 focus:outline-none rounded-full text-black">
                         </div>

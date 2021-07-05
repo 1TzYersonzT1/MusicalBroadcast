@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Livewire\Representante\Artista\Modificar\ModificarArtista;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -67,31 +68,6 @@ class Artista extends Model
         return $this->hasOne(SolicitudArtista::class, 'artista_id');
     }
 
-    /**
-     * Adjunta el cuerpo predeterminado de instagram
-     * al usuario
-     */
-    public function getInstagramAttribute($value)
-    {
-        return "https://www.instagram.com" . $value;
-    }
-
-    /**
-     * Adjunta el cuerpo predeterminado de facebook
-     * al usuario
-     */
-    public function getFacebookAttribute($value)
-    {
-        return "https://www.facebook.com" . $value;
-    }
-
-    /**
-     * Adjunta el cuerpo predeterminado de spotify
-     * al usuario
-     */
-    public function getSpotifyAttribute($value)
-    {
-        return "https://open.spotify.com/artist/" . $value;
-    }
+    
 
 }

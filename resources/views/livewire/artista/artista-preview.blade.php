@@ -84,15 +84,14 @@
 
 
 
-                                    <div class="swiper-container swipercancion">
-                                        <div class="swiper-wrapper text-center flex items-end">
-                                            <ul>
-                                                @foreach ($album->canciones as $index => $cancion)
-                                                    <li>{{ $index + 1 }}.{{ $cancion->CAN_Nombre }}</li>
-                                                @endforeach
-                                            </ul>
+                                    <div class="swiper-container swipercancion w-48">
+                                        <div class="swiper-wrapper text-center flex items-end h-40 lg:h-40">
+                                            @foreach ($album->canciones as $index => $cancion)
+                                                <li class="swiper-slide">
+                                                    {{ $index + 1 }}.{{ $cancion->CAN_Nombre }}</li>
+                                            @endforeach
                                         </div>
-                                        <div class="swiper-scrollbar"></div>
+                                        <div class="swiper-scrollbar right-20"></div>
                                     </div>
 
                                 </div>
@@ -214,7 +213,7 @@
                         </div>
 
                     @endforeach
-                </div>  
+                </div>
                 <div class="swiper-pagination"></div>
             </div>
         </div>
@@ -230,14 +229,14 @@
             </a>
         @endif
         @if ($artistaActual->instagram != '')
-            <a href="{{ $artistaActual->instagram }}" target="_blank">
+            <a href="https://www.instagram.com{{ $artistaActual->instagram }}" target="_blank">
                 <div style="float:left">
                     <img src="/insta.png" width="40" height="40">
                 </div>
             </a>
         @endif
         @if ($artistaActual->twitter != '')
-            <a href="https://twitter.com/{{ $artistaActual->twitter }}" target="_blank">
+            <a href="https://twitter.com{{ $artistaActual->twitter }}" target="_blank">
                 <div style="float:left">
                     <img src="/twiter.png" width="40" height="40">
                 </div>
@@ -302,7 +301,7 @@
 <script>
     var swiper = new Swiper(".swipercancion", {
         direction: "vertical",
-        slidesPerView: 10,
+        slidesPerView: 5,
         freeMode: true,
         scrollbar: {
             el: ".swiper-scrollbar",

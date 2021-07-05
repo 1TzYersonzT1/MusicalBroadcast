@@ -1,4 +1,4 @@
-<div class="flex lg:flex-row flex-col lg:justify-between py-8 min-h-screen w-full">
+<div class="flex lg:flex-row flex-col lg:justify-between py-8 gap-10 min-h-screen w-full">
     @section('banner')
         @include("banner-artista");
     @endsection
