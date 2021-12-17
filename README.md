@@ -1,3 +1,7 @@
+## ¿Qué es musical broadcast?
+
+Musical Broadcast nace de la idea de desarrollar una plataforma web donde los músicos de calama puedan promocionar sus canciones y hitos más importantes, así como participar de eventos de diferentes organizadores registrados en la plataforma, a su vez la comunidad calameña podrá conocer más acerca de los artistas y la cultura de la ciudad, pudiendo participar de estos eventos y además talleres que organizarán otros miembros de la comunidad o personas interesadas en enseñar música con el fin de potenciar el consumo y el desarrollo de la música originaria de alto el loa. 
+
 ## Como correr la app
 
 * ### Pre requisitos
